@@ -1,2 +1,2 @@
 # LibCommon
-Library für Datentypen (mit JSON-Serealisierung und -Deserialisierung), Spiel-Logik (Validierung, Siegerekennung) und KI-Logik (Generierung von Operationen)
+Library für Datentypen (mit JSON-Serialisierung und -Deserialisierung), Spiel-Logik (Validierung, Sieger-Erkennung) und KI-Logik (Generierung von Operationen)
