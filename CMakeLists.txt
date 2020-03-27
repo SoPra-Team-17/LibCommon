@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(SampleLibrary)
+project(SopraCommon)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -8,10 +8,10 @@ set(SOURCE
 	)
 
 set(INCLUDE
-	library.cpp
+	library.h
 	)
 
-add_library(SampleLibrary SHARED ${SOURCE})
+add_library(${PROJECT_NAME} SHARED ${SOURCE})
 
-install(TARGETS SampleLibrary DESTINATION /usr/lib)
-install(FILES ${INCLUDE} DESTINATION /usr/include/SampleLibrary)
+install(TARGETS ${PROJECT_NAME} DESTINATION /usr/lib)
+install(FILES ${INCLUDE} DESTINATION /usr/include/${PROJECT_NAME})
