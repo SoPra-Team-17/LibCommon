@@ -4,14 +4,29 @@ project(SopraCommon)
 set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCE
-		library.cpp
-		Gadget.cpp
-		gadgets/WiretapWithEarplugs.cpp
-		gadgets/Cocktail.cpp
+		datatypes/gadgets/Gadget.cpp
+		datatypes/gadgets/WiretapWithEarplugs.cpp
+		datatypes/gadgets/Cocktail.cpp
+		datatypes/character/Character.cpp
+		datatypes/character/CharacterInformation.cpp
+		datatypes/character/CharacterDescription.cpp
 		util/UUID.cpp
+		util/Point.cpp
+		)
+
+set(INCLUDE
+		datatypes/gadgets/Gadget.hpp
+		datatypes/gadgets/WiretapWithEarplugs.hpp
+		datatypes/gadgets/Cocktail.hpp
+		datatypes/character/Character.hpp
+		datatypes/character/CharacterInformation.hpp
+		datatypes/character/CharacterDescription.hpp
+		util/UUID.hpp
+		util/Point.hpp
 		)
 
 include_directories(.)
+include_directories(src)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
 

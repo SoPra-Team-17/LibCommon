@@ -5,7 +5,7 @@
 #ifndef LIBCOMMON_COCKTAIL_HPP
 #define LIBCOMMON_COCKTAIL_HPP
 
-#include <Gadget.hpp>
+#include <datatypes/gadgets/Gadget.hpp>
 
 namespace spy::gadget {
     class Cocktail : public Gadget {

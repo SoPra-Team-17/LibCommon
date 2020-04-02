@@ -7,7 +7,7 @@ add_subdirectory(googletest)
 
 include_directories(../src)
 
-add_executable(${PROJECT_NAME} main.cpp test1.cpp gadgetTest.cpp)
+add_executable(${PROJECT_NAME} main.cpp gadgetTest.cpp)
 target_link_libraries(${PROJECT_NAME}
         gtest gmock pthread SopraCommon
         )

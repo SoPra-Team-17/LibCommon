@@ -5,7 +5,7 @@
 #ifndef LIBCOMMON_WIRETAPWITHEARPLUGS_HPP
 #define LIBCOMMON_WIRETAPWITHEARPLUGS_HPP
 
-#include <Gadget.hpp>
+#include <datatypes/gadgets/Gadget.hpp>
 #include <util/UUID.hpp>
 #include <optional>
 
