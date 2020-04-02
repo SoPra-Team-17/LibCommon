@@ -5,7 +5,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_subdirectory(googletest)
 
-add_executable(${PROJECT_NAME} main.cpp test1.cpp)
+include_directories(../src)
+
+add_executable(${PROJECT_NAME} main.cpp test1.cpp gadgetTest.cpp)
 target_link_libraries(${PROJECT_NAME}
-        gtest gmock pthread
+        gtest gmock pthread SopraCommon
         )

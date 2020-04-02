@@ -4,12 +4,14 @@ project(SopraCommon)
 set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCE
-	library.cpp
-	)
+		library.cpp
+		Gadget.cpp
+		gadgets/WiretapWithEarplugs.cpp
+		gadgets/Cocktail.cpp
+		util/UUID.cpp
+		)
 
-set(INCLUDE
-	library.h
-	)
+include_directories(.)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
 
