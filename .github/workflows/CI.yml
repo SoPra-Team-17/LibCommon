@@ -1,6 +1,6 @@
 name: CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
     build:
@@ -8,6 +8,10 @@ jobs:
         strategy:
             max-parallel: 4
             fail-fast: false
+            matrix:
+              cxx: [g++-8, clang++]
+        env:
+          CXX: ${{ matrix.cxx }}
             
         steps:
         - uses: actions/checkout@v1
@@ -20,7 +24,7 @@ jobs:
             git submodule update --init --recursive
         - name: Install Dependencies
           run: |
-            xargs -ra dependencies.txt sudo apt-get install
+            ./installDependencies.sh
         - name: Set up Build
           run: |
             mkdir build
@@ -40,6 +44,10 @@ jobs:
         strategy:
             max-parallel: 4
             fail-fast: false
+            matrix:
+              cxx: [g++-8, clang++]
+        env:
+          CXX: ${{ matrix.cxx }}
             
         steps:
         - uses: actions/checkout@v1
@@ -52,7 +60,7 @@ jobs:
             git submodule update --init --recursive
         - name: Install Dependencies
           run: |
-            xargs -ra dependencies.txt sudo apt-get install
+            ./installDependencies.sh
         - name: Set up Build
           run: |
             mkdir build
