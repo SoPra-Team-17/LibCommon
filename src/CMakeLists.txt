@@ -4,12 +4,17 @@ project(SopraCommon)
 set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCE
-		library.cpp
-		Gadget.cpp
-		gadgets/WiretapWithEarplugs.cpp
-		gadgets/Cocktail.cpp
-		util/UUID.cpp
-		)
+        library.cpp
+        Gadget.cpp
+        gadgets/WiretapWithEarplugs.cpp
+        gadgets/Cocktail.cpp
+        util/UUID.cpp)
+
+set(INCLUDE
+        Gadget.hpp
+        gadgets/Cocktail.hpp
+        gadgets/WiretapWithEarplugs.hpp
+        util/UUID.hpp)
 
 include_directories(.)
 
