@@ -3,8 +3,6 @@ project(LibCommon)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(TESTVAR 7)
-
 add_subdirectory(src)
 
 option(LIBCOMMON_TESTS "Build the tests" ON)
