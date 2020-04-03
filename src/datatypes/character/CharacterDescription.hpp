@@ -25,18 +25,13 @@ namespace spy::character {
         : name(name), description(description), gender(gender), features(features) {}
 
     // getter
-    [[nodiscard]] const std::string &getName() const {
-      return name;
-    }
-    [[nodiscard]] const std::string &getDescription() const {
-      return description;
-    }
-    [[nodiscard]] GenderEnum getGender() const {
-      return gender;
-    }
-    [[nodiscard]] const std::list<spy::character::PropertyEnum> &getFeatures() const {
-      return features;
-    }
+    [[nodiscard]] const std::string &getName() const;
+
+    [[nodiscard]] const std::string &getDescription() const;
+
+    [[nodiscard]] const GenderEnum getGender() const;
+
+    [[nodiscard]] const std::list<PropertyEnum> &getFeatures() const;
 
    private:
     const std::string name;

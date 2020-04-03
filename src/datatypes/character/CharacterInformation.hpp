@@ -18,12 +18,10 @@ namespace spy::character {
         character_id), character(character) {}
 
     // getter and setter
-    [[nodiscard]] const util::UUID &getCharacterId() const {
-      return characterId;
-    }
-    [[nodiscard]] const CharacterDescription &getCharacter() const {
-      return character;
-    }
+    [[nodiscard]] const util::UUID &getCharacterId() const;
+
+    [[nodiscard]] const CharacterDescription &getCharacter() const;
+
 
    private:
     const spy::util::UUID characterId;
