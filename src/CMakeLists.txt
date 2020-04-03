@@ -21,6 +21,7 @@ set(INCLUDE
 		datatypes/character/Character.hpp
 		datatypes/character/CharacterInformation.hpp
 		datatypes/character/CharacterDescription.hpp
+		datatypes/character/PropertyEnum.hpp
 		util/UUID.hpp
 		util/Point.hpp
 		)

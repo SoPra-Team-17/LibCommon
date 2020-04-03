@@ -11,34 +11,10 @@
 #include <list>
 #include <util/Point.hpp>
 #include <datatypes/gadgets/Gadget.hpp>
+#include <datatypes/character/PropertyEnum.hpp>
 #include <util/UUID.hpp>
 
 namespace spy::character{
-  //TODO: Wofuer ist das gut ? -> never used
-  enum class NPCEnum {
-    CAT,
-    JANITOR
-  };
-
-  enum class PropertyEnum {
-    NIMBLENESS,
-    SLUGGISHNESS,
-    SPRYNESS,
-    AGILITY,
-    LUCKY_DEVIL,
-    JINX,
-    CLAMMY_CLOTHES,
-    CONSTANT_CLAMMY_CLOTHES,
-    ROBUST_STOMACH,
-    TOUGHNESS,
-    BABYSITTER,
-    HONEY_TRAP,
-    BANG_AND_BURN,
-    FLAPS_AND_SEALS,
-    TRADECRAFT,
-    OBSERVATION
-  };
-
   class Character {
    public:
     // TODO constructor
@@ -47,14 +23,8 @@ namespace spy::character{
     const util::UUID &getCharacterId() const {
       return characterId;
     }
-    void setCharacterId(const util::UUID &character_id) {
-      characterId = character_id;
-    }
     [[nodiscard]] const std::string &getName() const {
       return name;
-    }
-    void setName(const std::string &n) {
-      Character::name = n;
     }
     [[nodiscard]] const spy::util::Point &getCoordinates() const {
       return coordinates;
@@ -106,8 +76,8 @@ namespace spy::character{
     }
 
    private:
-    spy::util::UUID characterId;
-    std::string name;
+    const spy::util::UUID characterId;
+    const std::string name;
     spy::util::Point coordinates;
     int mp;
     int ap;

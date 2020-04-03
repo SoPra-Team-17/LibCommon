@@ -14,25 +14,20 @@
 namespace spy::character {
   class CharacterInformation {
    public:
-    // TODO constructor
+    CharacterInformation(util::UUID &character_id, CharacterDescription &character) : characterId(
+        character_id), character(character) {}
 
     // getter and setter
     [[nodiscard]] const util::UUID &getCharacterId() const {
       return characterId;
     }
-    void setCharacterId(const util::UUID &character_id) {
-      characterId = character_id;
-    }
     [[nodiscard]] const CharacterDescription &getCharacter() const {
       return character;
     }
-    void setCharacter(const CharacterDescription &characterdescription) {
-      CharacterInformation::character = characterdescription;
-    }
 
    private:
-    spy::util::UUID characterId;
-    CharacterDescription character;
+    const spy::util::UUID characterId;
+    const CharacterDescription character;
   };
 
 }

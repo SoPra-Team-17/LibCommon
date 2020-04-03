@@ -18,39 +18,31 @@ namespace spy::character {
 
   class CharacterDescription {
    public:
-    // TODO constructor
+    CharacterDescription(std::string &name,
+                         std::string &description,
+                         GenderEnum gender,
+                         std::list<PropertyEnum> &features)
+        : name(name), description(description), gender(gender), features(features) {}
 
-    // getter and setter
+    // getter
     [[nodiscard]] const std::string &getName() const {
       return name;
-    }
-    void setName(const std::string &n) {
-      CharacterDescription::name = n;
     }
     [[nodiscard]] const std::string &getDescription() const {
       return description;
     }
-    void setDescription(const std::string &descript) {
-      CharacterDescription::description = descript;
-    }
     [[nodiscard]] GenderEnum getGender() const {
       return gender;
-    }
-    void setGender(GenderEnum gend) {
-      CharacterDescription::gender = gend;
     }
     [[nodiscard]] const std::list<spy::character::PropertyEnum> &getFeatures() const {
       return features;
     }
-    void setFeatures(const std::list<spy::character::PropertyEnum> &propertylist) {
-      CharacterDescription::features = propertylist;
-    }
 
    private:
-    std::string name;
-    std::string description;
-    GenderEnum gender;
-    std::list<spy::character::PropertyEnum> features;
+    const std::string name;
+    const std::string description;
+    const GenderEnum gender;
+    const std::list<spy::character::PropertyEnum> features;
   };
 }
 
