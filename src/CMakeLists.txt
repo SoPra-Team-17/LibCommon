@@ -28,6 +28,7 @@ set(INCLUDE
 
 include_directories(.)
 include_directories(src)
+include_directories(datatypes)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
 

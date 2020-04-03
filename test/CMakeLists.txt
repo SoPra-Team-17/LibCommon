@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 add_subdirectory(googletest)
 
 include_directories(../src)
+include_directories(../src/datatypes)
 
 add_executable(${PROJECT_NAME} main.cpp gadgetTest.cpp)
 target_link_libraries(${PROJECT_NAME}

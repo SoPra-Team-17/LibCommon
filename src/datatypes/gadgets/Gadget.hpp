@@ -45,7 +45,7 @@ namespace spy::gadget {
         }
 
     private:
-        const GadgetEnum type;
+        GadgetEnum type;
         int usagesLeft;
     };
 }
