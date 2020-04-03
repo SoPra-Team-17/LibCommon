@@ -1,6 +1,6 @@
 name: CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
     build:
@@ -8,19 +8,18 @@ jobs:
         strategy:
             max-parallel: 4
             fail-fast: false
+            matrix:
+              cxx: [g++-8, clang++]
+        env:
+          CXX: ${{ matrix.cxx }}
             
         steps:
-        - uses: actions/checkout@v1
-        - name: Checkout Submodules
-          run: |
-            git config --file .gitmodules --get-regexp url | while read url; do
-              git config --file=.gitmodules $(echo "$url" | sed -E "s/git@github.com:|https:\/\/github.com\//https:\/\/${{ secrets.CI_PAT }}:${{ secrets.CI_PAT }}@github.com\//")
-            done
-            git submodule sync
-            git submodule update --init --recursive
+        - uses: actions/checkout@v2
+          with:
+            submodules: true
         - name: Install Dependencies
           run: |
-            xargs -ra dependencies.txt sudo apt-get install
+            ./installDependencies.sh
         - name: Set up Build
           run: |
             mkdir build
@@ -40,19 +39,18 @@ jobs:
         strategy:
             max-parallel: 4
             fail-fast: false
+            matrix:
+              cxx: [g++-8, clang++]
+        env:
+          CXX: ${{ matrix.cxx }}
             
         steps:
-        - uses: actions/checkout@v1
-        - name: Checkout Submodules
-          run: |
-            git config --file .gitmodules --get-regexp url | while read url; do
-              git config --file=.gitmodules $(echo "$url" | sed -E "s/git@github.com:|https:\/\/github.com\//https:\/\/${{ secrets.CI_PAT }}:${{ secrets.CI_PAT }}@github.com\//")
-            done
-            git submodule sync
-            git submodule update --init --recursive
+        - uses: actions/checkout@v2
+          with:
+            submodules: true
         - name: Install Dependencies
           run: |
-            xargs -ra dependencies.txt sudo apt-get install
+            ./installDependencies.sh
         - name: Set up Build
           run: |
             mkdir build
@@ -61,11 +59,11 @@ jobs:
         - name: Build
           run: |
             cd build
-            make
+            make -j$(nproc)
         - name: Tests
           run: |
             cd build
-            ./test/LibCommon_test
+            make test
             
     cpplint:
         runs-on: ubuntu-latest
@@ -74,7 +72,7 @@ jobs:
             fail-fast: false
 
         steps:
-        - uses: actions/checkout@master
+        - uses: actions/checkout@v1
         - name: Set up Python
           uses: actions/setup-python@v1
           with:
