@@ -17,7 +17,18 @@
 namespace spy::character{
   class Character {
    public:
-    // TODO constructor
+    Character(util::UUID &character_id,
+              std::string &name)
+        : characterId(character_id),
+          name(name),
+          coordinates{spy::util::Point{}},
+          mp(0),
+          ap(0),
+          hp(100),
+          ip(0),
+          chips(10),
+          properties(properties),
+          gadgets(gadgets) {}
 
     // setter and getter
     const util::UUID &getCharacterId() const {
