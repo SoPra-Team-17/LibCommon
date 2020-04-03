@@ -14,7 +14,7 @@ namespace spy::character {
         return description;
     }
 
-    const spy::character::GenderEnum spy::character::CharacterDescription::getGender() const {
+    spy::character::GenderEnum spy::character::CharacterDescription::getGender() const {
         return gender;
     }
 

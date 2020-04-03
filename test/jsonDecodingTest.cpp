@@ -2,7 +2,7 @@
 // Created by jonas on 02.04.20.
 //
 #include <gtest/gtest.h>
-#include <Gadget.hpp>
+#include <gadgets/Gadget.hpp>
 
 TEST(JSON_Decode, Gadget_generic) {
     auto input = R"({"GadgetEnum":"ROCKET_PEN","usages":7})"_json;

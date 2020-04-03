@@ -36,7 +36,7 @@ namespace spy::character {
    private:
     const std::string name;
     const std::string description;
-    const GenderEnum gender;
+    GenderEnum gender;
     const std::list<spy::character::PropertyEnum> features;
   };
 }

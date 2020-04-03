@@ -2,7 +2,7 @@
 // Created by jonas on 02.04.20.
 //
 #include <gtest/gtest.h>
-#include <Gadget.hpp>
+#include <gadgets/Gadget.hpp>
 
 TEST(JSON_Encode, Gadget_generic) {
     spy::gadget::Gadget rocketPen(spy::gadget::GadgetEnum::ROCKET_PEN);
