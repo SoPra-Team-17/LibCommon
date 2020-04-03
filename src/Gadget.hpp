@@ -4,32 +4,16 @@
 
 #ifndef LIBCOMMON_GADGET_HPP
 #define LIBCOMMON_GADGET_HPP
+
+#include <nlohmann/json.hpp>
+#include <GadgetEnum.hpp>
+
 namespace spy::gadget {
-    enum class GadgetEnum {
-        HAIRDRYER,
-        MOLEDIE,
-        TECHNICOLOUR_PRISM,
-        BOWLER_BLADE,
-        MAGNETIC_WATCH,
-        POISON_PILLS,
-        LASER_COMPACT,
-        ROCKET_PEN,
-        GAS_GLOSS,
-        MOTHBALL_POUCH,
-        FOG_TIN,
-        GRAPPLE,
-        WIRETAP_WITH_EARPLUGS,
-        DIAMOND_COLLAR,
-        JETPACK,
-        CHICKEN_FEED,
-        NUGGET,
-        MIRROR_OF_WILDERNESS,
-        POCKET_LITTER,
-        COCKTAIL
-    };
 
     class Gadget {
     public:
+        Gadget() : type{GadgetEnum::INVALID}, usagesLeft{0} {};
+
         explicit Gadget(GadgetEnum type) : type{type}, usagesLeft{0} {};
 
         [[nodiscard]] GadgetEnum getType() const {
@@ -44,8 +28,12 @@ namespace spy::gadget {
             Gadget::usagesLeft = newUsages;
         }
 
+        friend void to_json(nlohmann::json &j, const Gadget &g);
+
+        friend void from_json(const nlohmann::json &j, Gadget &g);
+
     private:
-        const GadgetEnum type;
+        GadgetEnum type;
         int usagesLeft;
     };
 }

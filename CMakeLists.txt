@@ -3,5 +3,13 @@ project(LibCommon)
 
 set(CMAKE_CXX_STANDARD 17)
 
+set(TESTVAR 7)
+
 add_subdirectory(src)
-add_subdirectory(test)
+
+option(LIBCOMMON_TESTS "Build the tests" ON)
+if (LIBCOMMON_TESTS)
+    enable_testing()
+    include(GoogleTest)
+    add_subdirectory(test)
+endif ()
