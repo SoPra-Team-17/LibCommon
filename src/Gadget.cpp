@@ -27,4 +27,4 @@ namespace spy::gadget {
         j.at("GadgetEnum").get_to(g.type);
         j.at("usages").get_to(g.usagesLeft);
     }
-}
+}  // namespace spy::gadget

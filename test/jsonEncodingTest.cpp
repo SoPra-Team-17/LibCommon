@@ -5,8 +5,7 @@
 #include <Gadget.hpp>
 
 TEST(JSON_Encode, Gadget_generic) {
-    using namespace spy::gadget;
-    Gadget rocketPen(GadgetEnum::ROCKET_PEN);
+    spy::gadget::Gadget rocketPen(spy::gadget::GadgetEnum::ROCKET_PEN);
     rocketPen.setUsagesLeft(7);
 
     nlohmann::json rocketPenJson = rocketPen;

@@ -22,4 +22,4 @@ namespace spy::gadget {
         WiretapWithEarplugs::activeOn = active;
     }
 
-}
+}  // namespace spy::gadget
