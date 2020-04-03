@@ -16,17 +16,11 @@ namespace spy::gadget {
 
         explicit Gadget(GadgetEnum type) : type{type}, usagesLeft{0} {};
 
-        [[nodiscard]] GadgetEnum getType() const {
-            return type;
-        }
+        [[nodiscard]] GadgetEnum getType() const;
 
-        [[nodiscard]] int getUsagesLeft() const {
-            return usagesLeft;
-        }
+        [[nodiscard]] int getUsagesLeft() const;
 
-        void setUsagesLeft(int newUsages) {
-            Gadget::usagesLeft = newUsages;
-        }
+        void setUsagesLeft(int newUsages);
 
         friend void to_json(nlohmann::json &j, const Gadget &g);
 

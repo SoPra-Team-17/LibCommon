@@ -12,13 +12,9 @@ namespace spy::gadget {
     public:
         Cocktail() : Gadget{GadgetEnum::COCKTAIL}, poisoned{false} {};
 
-        [[nodiscard]] bool isPoisoned() const {
-            return poisoned;
-        }
+        [[nodiscard]] bool isPoisoned() const;
 
-        void setIsPoisoned(bool isPoisoned) {
-            Cocktail::poisoned = isPoisoned;
-        }
+        void setIsPoisoned(bool isPoisoned);
 
     private:
         bool poisoned;
