@@ -14,7 +14,7 @@
 #include <util/UUID.hpp>
 
 namespace spy::character{
-  //TODO: Wofuer ist das gut ?
+  //TODO: Wofuer ist das gut ? -> never used
   enum class NPCEnum {
     CAT,
     JANITOR
