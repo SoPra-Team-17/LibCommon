@@ -6,75 +6,75 @@
 
 namespace spy::character {
 
-    const spy::util::UUID &spy::character::Character::getCharacterId() const {
+    const util::UUID &Character::getCharacterId() const {
         return characterId;
     }
 
-    const std::string &spy::character::Character::getName() const {
+    const std::string &Character::getName() const {
         return name;
     }
 
-    const spy::util::Point &spy::character::Character::getCoordinates() const {
+    const util::Point &Character::getCoordinates() const {
         return coordinates;
     }
 
-    void spy::character::Character::setCoordinates(const spy::util::Point &coordinate) {
+    void Character::setCoordinates(const util::Point &coordinate) {
         Character::coordinates = coordinate;
     }
 
-    int spy::character::Character::getMp() const {
+    int Character::getMp() const {
         return mp;
     }
 
-    void spy::character::Character::setMp(int mpoints) {
+    void Character::setMp(int mpoints) {
         Character::mp = mpoints;
     }
 
-    int spy::character::Character::getAp() const {
+    int Character::getAp() const {
         return ap;
     }
 
-    void spy::character::Character::setAp(int apoints) {
+    void Character::setAp(int apoints) {
         Character::ap = apoints;
     }
 
-    int spy::character::Character::getHp() const {
+    int Character::getHp() const {
         return hp;
     }
 
-    void spy::character::Character::setHp(int hpoints) {
+    void Character::setHp(int hpoints) {
         Character::hp = hpoints;
     }
 
-    int spy::character::Character::getIp() const {
+    int Character::getIp() const {
         return ip;
     }
 
-    void spy::character::Character::setIp(int ipoints) {
+    void Character::setIp(int ipoints) {
         Character::ip = ipoints;
     }
 
-    int spy::character::Character::getChips() const {
+    int Character::getChips() const {
         return chips;
     }
 
-    void spy::character::Character::setChips(int chip) {
+    void Character::setChips(int chip) {
         Character::chips = chip;
     }
 
-    const std::list<spy::character::PropertyEnum> &spy::character::Character::getProperties() const {
+    const std::list<PropertyEnum> &Character::getProperties() const {
         return properties;
     }
 
-    void spy::character::Character::setProperties(const std::list<spy::character::PropertyEnum> &propertylist) {
+    void Character::setProperties(const std::list<PropertyEnum> &propertylist) {
         Character::properties = propertylist;
     }
 
-    const std::list<spy::gadget::Gadget> &spy::character::Character::getGadgets() const {
+    const std::list<gadget::Gadget> &Character::getGadgets() const {
         return gadgets;
     }
 
-    void spy::character::Character::setGadgets(const std::list<spy::gadget::Gadget> &gadgetlist) {
+    void Character::setGadgets(const std::list<gadget::Gadget> &gadgetlist) {
         Character::gadgets = gadgetlist;
     }
 

@@ -6,19 +6,19 @@
 
 namespace spy::character {
 
-    const std::string &spy::character::CharacterDescription::getName() const {
+    const std::string &CharacterDescription::getName() const {
         return name;
     }
 
-    const std::string &spy::character::CharacterDescription::getDescription() const {
+    const std::string &CharacterDescription::getDescription() const {
         return description;
     }
 
-    spy::character::GenderEnum spy::character::CharacterDescription::getGender() const {
+    GenderEnum CharacterDescription::getGender() const {
         return gender;
     }
 
-    const std::list<spy::character::PropertyEnum> &spy::character::CharacterDescription::getFeatures() const {
+    const std::list<PropertyEnum> &CharacterDescription::getFeatures() const {
         return features;
     }
 

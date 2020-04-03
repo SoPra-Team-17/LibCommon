@@ -6,11 +6,11 @@
 
 namespace spy::character {
 
-    const spy::util::UUID &spy::character::CharacterInformation::getCharacterId() const {
+    const util::UUID &CharacterInformation::getCharacterId() const {
         return characterId;
     }
 
-    const spy::character::CharacterDescription &spy::character::CharacterInformation::getCharacter() const {
+    const CharacterDescription &CharacterInformation::getCharacter() const {
         return character;
     }
 
