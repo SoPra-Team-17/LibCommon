@@ -5,12 +5,12 @@
 set -e
 
 
-# spdlog
+# nlohmann json
 cd /tmp
-git clone https://github.com/gabime/spdlog.git
-cd spdlog
+git clone --depth 1 https://github.com/nlohmann/json.git
+cd json
 mkdir build && cd build
-cmake ..
+cmake -DJSON_BuildTests=false ..
 make -j$(nproc)
 sudo make install
 
