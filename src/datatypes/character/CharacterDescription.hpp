@@ -29,7 +29,7 @@ namespace spy::character {
 
     [[nodiscard]] const std::string &getDescription() const;
 
-    [[nodiscard]] const GenderEnum getGender() const;
+    [[nodiscard]] GenderEnum getGender() const;
 
     [[nodiscard]] const std::list<PropertyEnum> &getFeatures() const;
 
