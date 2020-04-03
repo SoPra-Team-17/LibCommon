@@ -4,7 +4,7 @@
 
 #include "CharacterInformation.hpp"
 
-namespace spy::character{
+namespace spy::character {
 
     const spy::util::UUID &spy::character::CharacterInformation::getCharacterId() const {
         return characterId;
