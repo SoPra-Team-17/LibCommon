@@ -59,11 +59,11 @@ jobs:
         - name: Build
           run: |
             cd build
-            make
+            make -j$(nproc)
         - name: Tests
           run: |
             cd build
-            ./test/LibCommon_test
+            make test
             
     cpplint:
         runs-on: ubuntu-latest
