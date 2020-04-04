@@ -1,81 +1,153 @@
-//
-// Created by Carolin on 02.04.2020.
-//
+/**
+ * @file   Character.hpp
+ * @author Carolin
+ * @date   02.04.2020 (creation)
+ * @brief  Declaration of the character class.
+ */
 
 #ifndef LIBCOMMON_CHARACTER_HPP
 #define LIBCOMMON_CHARACTER_HPP
 
 #include <string>
 #include <list>
-#include <util/Point.hpp>
 #include <datatypes/gadgets/Gadget.hpp>
 #include <datatypes/character/PropertyEnum.hpp>
 #include <util/UUID.hpp>
+#include <util/Point.hpp>
 
 namespace spy::character {
+    /**
+     * @brief Representation of a character.
+     */
     class Character {
-    public:
-        Character(util::UUID &character_id,
-                  std::string &name)
-                : characterId(character_id),
-                  name(name),
-                  coordinates{spy::util::Point{}},
-                  mp(0),
-                  ap(0),
-                  hp(100),
-                  ip(0),
-                  chips(10),
-                  properties({}),
-                  gadgets({}) {}
+        public:
+            /**
+             * Constructor, creates a new character with the given id and name.
+             * @param character_id
+             * @param name
+             */
+            Character(util::UUID &character_id,
+                      std::string &name);
 
-        // setter and getter
-        [[nodiscard]] const util::UUID &getCharacterId() const;
+            /**
+             * Getter for the character Id.
+             * @return Id of the character.
+             */
+            [[nodiscard]] const util::UUID &getCharacterId() const;
 
-        [[nodiscard]] const std::string &getName() const;
+            /**
+             * Getter for the character name.
+             * @return Character name.
+             */
+            [[nodiscard]] const std::string &getName() const;
 
-        [[nodiscard]] const util::Point &getCoordinates() const;
+            /**
+             * Getter for the current position of the character.
+             * @return Character position.
+             */
+            [[nodiscard]] const util::Point &getCoordinates() const;
 
-        void setCoordinates(const util::Point &coordinates);
+            /**
+             * Setter for the position of the character.
+             * @param coordinates New coordinate of the character.
+             */
+            void setCoordinates(const util::Point &coordinates);
 
-        [[nodiscard]] unsigned int getMp() const;
+            /**
+             * Getter for the move points of the character.
+             * @return Move points of the character.
+             */
+            [[nodiscard]] unsigned int getMp() const;
 
-        void setMp(unsigned int mp);
+            /**
+             * Setter for the move points of the character.
+             * @param mp Move points to set.
+             */
+            void setMp(unsigned int mp);
 
-        [[nodiscard]] unsigned int getAp() const;
+            /**
+             * Getter for the action points of the character.
+             * @return Current action points of the character.
+             */
+            [[nodiscard]] unsigned int getAp() const;
 
-        void setAp(unsigned int ap);
+            /**
+             * Setter for the action points of the character.
+             * @param ap Action points to set.
+             */
+            void setAp(unsigned int ap);
 
-        [[nodiscard]] unsigned int getHp() const;
+            /**
+             * Getter for the health points of the character.
+             * @return Current health points of the character.
+             */
+            [[nodiscard]] unsigned int getHp() const;
 
-        void setHp(unsigned int hp);
+            /**
+             * Setter for the health points of the character.
+             * @param hp Health points to set.
+             */
+            void setHp(unsigned int hp);
 
-        [[nodiscard]] unsigned int getIp() const;
+            /**
+             * Getter for the intelligence points of the character.
+             * @return Current intelligence points of the character.
+             */
+            [[nodiscard]] unsigned int getIp() const;
 
-        void setIp(unsigned int ip);
+            /**
+             * Setter for the intelligence points of the character.
+             * @param ip Intelligence points to set.
+             */
+            void setIp(unsigned int ip);
 
-        [[nodiscard]] unsigned int getChips() const;
+            /**
+             * Getter for the number of gambling chips owned by the character.
+             * @return Current number of gambling chips.
+             */
+            [[nodiscard]] unsigned int getChips() const;
 
-        void setChips(unsigned int chips);
+            /**
+             * Setter for the number of gambling chips owned by the character.
+             * @param chips Chip number to set.
+             */
+            void setChips(unsigned int chips);
 
-        [[nodiscard]] const std::list<PropertyEnum> &getProperties() const;
+            /**
+             * Getter for the character properties.
+             * @return List of the character properties.
+             */
+            [[nodiscard]] const std::list<PropertyEnum> &getProperties() const;
 
-        void setProperties(const std::list<PropertyEnum> &properties);
+            /**
+             * Setter for the character properties.
+             * @param properties List with the character properties that should be set.
+             */
+            void setProperties(const std::list<PropertyEnum> &properties);
 
-        [[nodiscard]] const std::list<gadget::Gadget> &getGadgets() const;
+            /**
+             * Getter for the gadgets owned by the character.
+             * @return List with the current gadgets of the character.
+             */
+            [[nodiscard]] const std::list<gadget::Gadget> &getGadgets() const;
 
-        void setGadgets(const std::list<gadget::Gadget> &gadgets);
+            /**
+             * Setter for the gadgets of the character.
+             * @param gadgets List of gadgets to set.
+             */
+            void setGadgets(const std::list<gadget::Gadget> &gadgets);
 
-    private:
-        const spy::util::UUID characterId;
-        const std::string name;
-        spy::util::Point coordinates;
-        unsigned int mp;  // MovePoints
-        unsigned int ap;  // ActionsPoints
-        unsigned int hp;  // HealthPoints
-        unsigned int ip;  // IntelligencePoints
-        unsigned int chips;
-        std::list<PropertyEnum> properties;
-        std::list<spy::gadget::Gadget> gadgets;
+        private:
+            const spy::util::UUID characterId;
+            const std::string name;                                     ///< Character name.
+            spy::util::Point coordinates;                               ///< Current coordinate of the character.
+            unsigned int mp;                                            ///< MovePoints.
+            unsigned int ap;                                            ///< ActionsPoints.
+            unsigned int hp;                                            ///< HealthPoints.
+            unsigned int ip;                                            ///< IntelligencePoints.
+            unsigned int chips;                                         ///< Number of gambling chips.
+            std::list<PropertyEnum> properties;                         ///< Character properties.
+            std::list<spy::gadget::Gadget> gadgets;                     ///< Gadgets owned by the character.
     };
 }
 
