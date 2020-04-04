@@ -24,27 +24,27 @@ endif ()
 find_package(nlohmann_json REQUIRED)
 
 set(SOURCE
-		datatypes/gadgets/Gadget.cpp
-		datatypes/gadgets/WiretapWithEarplugs.cpp
-		datatypes/gadgets/Cocktail.cpp
-		datatypes/character/Character.cpp
-		datatypes/character/CharacterInformation.cpp
-		datatypes/character/CharacterDescription.cpp
-		util/UUID.cpp
-		util/Point.cpp
-		)
+        datatypes/gadgets/Gadget.cpp
+        datatypes/gadgets/WiretapWithEarplugs.cpp
+        datatypes/gadgets/Cocktail.cpp
+        datatypes/character/Character.cpp
+        datatypes/character/CharacterInformation.cpp
+        datatypes/character/CharacterDescription.cpp
+        util/UUID.cpp
+        util/Point.cpp
+        )
 
 set(INCLUDE
-		datatypes/gadgets/Gadget.hpp
-		datatypes/gadgets/WiretapWithEarplugs.hpp
-		datatypes/gadgets/Cocktail.hpp
-		datatypes/character/Character.hpp
-		datatypes/character/CharacterInformation.hpp
-		datatypes/character/CharacterDescription.hpp
-		datatypes/character/PropertyEnum.hpp
-		util/UUID.hpp
-		util/Point.hpp
-		)
+        datatypes/gadgets/Gadget.hpp
+        datatypes/gadgets/WiretapWithEarplugs.hpp
+        datatypes/gadgets/Cocktail.hpp
+        datatypes/character/Character.hpp
+        datatypes/character/CharacterInformation.hpp
+        datatypes/character/CharacterDescription.hpp
+        datatypes/character/PropertyEnum.hpp
+        util/UUID.hpp
+        util/Point.hpp
+        )
 
 include_directories(.)
 include_directories(src)

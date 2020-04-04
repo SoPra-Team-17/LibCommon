@@ -22,43 +22,43 @@ namespace spy::character {
         Character::coordinates = coordinate;
     }
 
-    int Character::getMp() const {
+    unsigned int Character::getMp() const {
         return mp;
     }
 
-    void Character::setMp(int mpoints) {
+    void Character::setMp(unsigned int mpoints) {
         Character::mp = mpoints;
     }
 
-    int Character::getAp() const {
+    unsigned int Character::getAp() const {
         return ap;
     }
 
-    void Character::setAp(int apoints) {
+    void Character::setAp(unsigned int apoints) {
         Character::ap = apoints;
     }
 
-    int Character::getHp() const {
+    unsigned int Character::getHp() const {
         return hp;
     }
 
-    void Character::setHp(int hpoints) {
+    void Character::setHp(unsigned int hpoints) {
         Character::hp = hpoints;
     }
 
-    int Character::getIp() const {
+    unsigned int Character::getIp() const {
         return ip;
     }
 
-    void Character::setIp(int ipoints) {
+    void Character::setIp(unsigned int ipoints) {
         Character::ip = ipoints;
     }
 
-    int Character::getChips() const {
+    unsigned int Character::getChips() const {
         return chips;
     }
 
-    void Character::setChips(int chip) {
+    void Character::setChips(unsigned int chip) {
         Character::chips = chip;
     }
 

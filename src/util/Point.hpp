@@ -6,9 +6,9 @@
 #define LIBCOMMON_SRC_UTIL_POINT_HPP_
 
 namespace spy::util {
-  class Point {
-    //TODO implement Point class
-  };
+    class Point {
+        //TODO implement Point class
+    };
 }
 
 #endif //LIBCOMMON_SRC_UTIL_POINT_HPP_

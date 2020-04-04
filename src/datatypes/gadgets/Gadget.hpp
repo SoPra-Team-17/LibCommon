@@ -6,7 +6,7 @@
 #define LIBCOMMON_GADGET_HPP
 
 #include <nlohmann/json.hpp>
-#include <GadgetEnum.hpp>
+#include <datatypes/gadgets/GadgetEnum.hpp>
 
 namespace spy::gadget {
 
