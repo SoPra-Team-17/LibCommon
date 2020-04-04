@@ -10,15 +10,15 @@
 namespace spy::character {
 
     Character::Character(util::UUID &characterId, std::string &name) : characterId(characterId),
-                                                                        name(name),
-                                                                        coordinates{spy::util::Point{}},
-                                                                        mp(0),
-                                                                        ap(0),
-                                                                        hp(100),
-                                                                        ip(0),
-                                                                        chips(10),
-                                                                        properties({}),
-                                                                        gadgets({}) {
+                                                                       name(name),
+                                                                       coordinates{spy::util::Point{}},
+                                                                       mp(0),
+                                                                       ap(0),
+                                                                       hp(100),
+                                                                       ip(0),
+                                                                       chips(10),
+                                                                       properties({}),
+                                                                       gadgets({}) {
 
     }
 
