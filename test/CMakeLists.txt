@@ -1,8 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
 
-# Find googletest directory relative to project root
-add_subdirectory("${PROJECT_SOURCE_DIR}/extern/googletest" "extern/googletest")
-
 find_package(nlohmann_json REQUIRED)
 
 include_directories(../src)
