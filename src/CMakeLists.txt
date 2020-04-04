@@ -24,19 +24,31 @@ endif ()
 find_package(nlohmann_json REQUIRED)
 
 set(SOURCE
-        library.cpp
-        Gadget.cpp
-        gadgets/WiretapWithEarplugs.cpp
-        gadgets/Cocktail.cpp
-        util/UUID.cpp)
+        datatypes/gadgets/Gadget.cpp
+        datatypes/gadgets/WiretapWithEarplugs.cpp
+        datatypes/gadgets/Cocktail.cpp
+        datatypes/character/Character.cpp
+        datatypes/character/CharacterInformation.cpp
+        datatypes/character/CharacterDescription.cpp
+        util/UUID.cpp
+        util/Point.cpp
+        )
 
 set(INCLUDE
-        Gadget.hpp
-        gadgets/Cocktail.hpp
-        gadgets/WiretapWithEarplugs.hpp
-        util/UUID.hpp)
+        datatypes/gadgets/Gadget.hpp
+        datatypes/gadgets/WiretapWithEarplugs.hpp
+        datatypes/gadgets/Cocktail.hpp
+        datatypes/character/Character.hpp
+        datatypes/character/CharacterInformation.hpp
+        datatypes/character/CharacterDescription.hpp
+        datatypes/character/PropertyEnum.hpp
+        util/UUID.hpp
+        util/Point.hpp
+        )
 
 include_directories(.)
+include_directories(src)
+include_directories(datatypes)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
 target_link_libraries(${PROJECT_NAME} nlohmann_json::nlohmann_json)
