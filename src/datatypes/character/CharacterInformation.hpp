@@ -41,8 +41,8 @@ namespace spy::character {
 
 
         private:
-            const spy::util::UUID characterId;                  ///< Character Id.
-            const CharacterDescription character;               ///< Character meta data.
+            const spy::util::UUID characterId;
+            const CharacterDescription character;
     };
 
 }

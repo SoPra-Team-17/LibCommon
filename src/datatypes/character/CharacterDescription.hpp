@@ -61,10 +61,10 @@ namespace spy::character {
             [[nodiscard]] const std::list<PropertyEnum> &getFeatures() const;
 
         private:
-            const std::string name;                                     ///< Character name.
-            const std::string description;                              ///< Textual character description.
-            GenderEnum gender;                                          ///< Character gender.
-            const std::list<spy::character::PropertyEnum> features;     ///< Character properties.
+            const std::string name;
+            const std::string description;
+            GenderEnum gender;
+            const std::list<spy::character::PropertyEnum> features;
     };
 }
 

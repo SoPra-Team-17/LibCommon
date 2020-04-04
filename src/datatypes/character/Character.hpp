@@ -57,49 +57,49 @@ namespace spy::character {
              * Getter for the move points of the character.
              * @return Move points of the character.
              */
-            [[nodiscard]] unsigned int getMp() const;
+            [[nodiscard]] unsigned int getMovePoints() const;
 
             /**
              * Setter for the move points of the character.
              * @param mp Move points to set.
              */
-            void setMp(unsigned int mp);
+            void setMovePoints(unsigned int mp);
 
             /**
              * Getter for the action points of the character.
              * @return Current action points of the character.
              */
-            [[nodiscard]] unsigned int getAp() const;
+            [[nodiscard]] unsigned int getActionPoints() const;
 
             /**
              * Setter for the action points of the character.
              * @param ap Action points to set.
              */
-            void setAp(unsigned int ap);
+            void setActionPoints(unsigned int ap);
 
             /**
              * Getter for the health points of the character.
              * @return Current health points of the character.
              */
-            [[nodiscard]] unsigned int getHp() const;
+            [[nodiscard]] unsigned int getHealthPoints() const;
 
             /**
              * Setter for the health points of the character.
              * @param hp Health points to set.
              */
-            void setHp(unsigned int hp);
+            void setHealthPoints(unsigned int hp);
 
             /**
              * Getter for the intelligence points of the character.
              * @return Current intelligence points of the character.
              */
-            [[nodiscard]] unsigned int getIp() const;
+            [[nodiscard]] unsigned int getIntelligencePoints() const;
 
             /**
              * Setter for the intelligence points of the character.
              * @param ip Intelligence points to set.
              */
-            void setIp(unsigned int ip);
+            void setIntelligencePoints(unsigned int ip);
 
             /**
              * Getter for the number of gambling chips owned by the character.
@@ -139,15 +139,15 @@ namespace spy::character {
 
         private:
             const spy::util::UUID characterId;
-            const std::string name;                                     ///< Character name.
-            spy::util::Point coordinates;                               ///< Current coordinate of the character.
-            unsigned int mp;                                            ///< MovePoints.
-            unsigned int ap;                                            ///< ActionsPoints.
-            unsigned int hp;                                            ///< HealthPoints.
-            unsigned int ip;                                            ///< IntelligencePoints.
-            unsigned int chips;                                         ///< Number of gambling chips.
-            std::list<PropertyEnum> properties;                         ///< Character properties.
-            std::list<spy::gadget::Gadget> gadgets;                     ///< Gadgets owned by the character.
+            const std::string name;
+            spy::util::Point coordinates;
+            unsigned int movePoints;
+            unsigned int actionPoints;
+            unsigned int healthPoints;
+            unsigned int intelligencePoints;
+            unsigned int chips;
+            std::list<PropertyEnum> properties;
+            std::list<spy::gadget::Gadget> gadgets;
     };
 }
 

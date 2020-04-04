@@ -12,10 +12,10 @@ namespace spy::character {
     Character::Character(util::UUID &characterId, std::string &name) : characterId(characterId),
                                                                        name(name),
                                                                        coordinates{spy::util::Point{}},
-                                                                       mp(0),
-                                                                       ap(0),
-                                                                       hp(100),
-                                                                       ip(0),
+                                                                       movePoints(0),
+                                                                       actionPoints(0),
+                                                                       healthPoints(100),
+                                                                       intelligencePoints(0),
                                                                        chips(10),
                                                                        properties({}),
                                                                        gadgets({}) {
@@ -38,36 +38,36 @@ namespace spy::character {
         Character::coordinates = coordinate;
     }
 
-    unsigned int Character::getMp() const {
-        return mp;
+    unsigned int Character::getMovePoints() const {
+        return movePoints;
     }
 
-    void Character::setMp(unsigned int mPoints) {
-        Character::mp = mPoints;
+    void Character::setMovePoints(unsigned int mp) {
+        Character::movePoints = mp;
     }
 
-    unsigned int Character::getAp() const {
-        return ap;
+    unsigned int Character::getActionPoints() const {
+        return actionPoints;
     }
 
-    void Character::setAp(unsigned int aPoints) {
-        Character::ap = aPoints;
+    void Character::setActionPoints(unsigned int ap) {
+        Character::actionPoints = ap;
     }
 
-    unsigned int Character::getHp() const {
-        return hp;
+    unsigned int Character::getHealthPoints() const {
+        return healthPoints;
     }
 
-    void Character::setHp(unsigned int hPoints) {
-        Character::hp = hPoints;
+    void Character::setHealthPoints(unsigned int hp) {
+        Character::healthPoints = hp;
     }
 
-    unsigned int Character::getIp() const {
-        return ip;
+    unsigned int Character::getIntelligencePoints() const {
+        return intelligencePoints;
     }
 
-    void Character::setIp(unsigned int iPoints) {
-        Character::ip = iPoints;
+    void Character::setIntelligencePoints(unsigned int ip) {
+        Character::intelligencePoints = ip;
     }
 
     unsigned int Character::getChips() const {
