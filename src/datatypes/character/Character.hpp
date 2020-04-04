@@ -17,16 +17,16 @@
 
 namespace spy::character {
     /**
-     * @brief Representation of a character.
+     * @brief Representation of a character during the game.
      */
     class Character {
         public:
             /**
              * Constructor, creates a new character with the given id and name.
-             * @param character_id
+             * @param characterId
              * @param name
              */
-            Character(util::UUID &character_id,
+            Character(util::UUID &characterId,
                       std::string &name);
 
             /**
