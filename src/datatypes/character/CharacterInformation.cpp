@@ -10,9 +10,7 @@
 namespace spy::character {
 
     CharacterInformation::CharacterInformation(util::UUID &characterId, CharacterDescription &character) :
-        characterId(characterId), character(character) {
-
-    }
+        characterId(characterId), character(character) {}
 
     const util::UUID &CharacterInformation::getCharacterId() const {
         return characterId;
