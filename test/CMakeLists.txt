@@ -10,5 +10,5 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
 endif ()
 
 add_executable(allTests gadgetTest.cpp jsonEncodingTest.cpp jsonDecodingTest.cpp characterTest.cpp matchConfigTest.cpp)
-target_link_libraries(allTests gtest gmock gtest_main SopraCommon nlohmann_json::nlohmann_json stdc++fs)
+target_link_libraries(allTests gtest gmock gtest_main SopraCommon nlohmann_json::nlohmann_json)
 gtest_discover_tests(allTests)
