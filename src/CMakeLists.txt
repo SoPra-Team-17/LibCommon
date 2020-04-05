@@ -2,24 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(SopraCommon)
 
 # build options
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Release)
-endif (NOT CMAKE_BUILD_TYPE)
-
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Werror -mtune=native -march=native")
-if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    message("\n##########################")
-    message("###### DEBUG BUILD #######")
-    message("##########################\n")
-else ()
-    message("\n############################")
-    message("###### RELEASE BUILD #######")
-    message("############################\n")
-endif ()
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror -mtune=native -march=native")
 
 find_package(nlohmann_json REQUIRED)
 
