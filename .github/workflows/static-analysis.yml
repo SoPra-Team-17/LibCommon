@@ -1,75 +1,16 @@
-name: CI
-
-on: [push, pull_request]
+name: Static analysis
+# Run static analysis only on PRs towards develop, as sonarcloud does not support gitflow with master+develop
+on:
+  pull_request:
+    branches:
+      - develop
+  push:
+    branches:
+      - develop
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-      fail-fast: false
-      matrix:
-        cxx: [g++-8, clang++]
-    env:
-      CXX: ${{ matrix.cxx }}
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: true
-      - name: Install Dependencies
-        run: |
-          ./installDependencies.sh
-      - name: Set up Build
-        run: |
-          mkdir build
-          cd build
-          cmake ..
-      - name: Build
-        run: |
-          cd build
-          make
-      - name: Install
-        run: |
-          cd build
-          sudo make install
-
-  googletest:
-    runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-      fail-fast: false
-      matrix:
-        cxx: [g++-8, clang++]
-    env:
-      CXX: ${{ matrix.cxx }}
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: true
-      - name: Install Dependencies
-        run: |
-          ./installDependencies.sh
-      - name: Set up Build
-        run: |
-          mkdir build
-          cd build
-          cmake ..
-      - name: Build
-        run: |
-          cd build
-          make -j$(nproc)
-      - name: Tests
-        run: |
-          cd build
-          make test
-
   sonar:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-      fail-fast: false
     env:
       CXX: g++-8
 
