@@ -30,6 +30,7 @@ set(SOURCE
         datatypes/character/Character.cpp
         datatypes/character/CharacterInformation.cpp
         datatypes/character/CharacterDescription.cpp
+        datatypes/matchconfig/MatchConfig.cpp
         util/UUID.cpp
         util/Point.cpp
         )
@@ -42,6 +43,7 @@ set(INCLUDE
         datatypes/character/CharacterInformation.hpp
         datatypes/character/CharacterDescription.hpp
         datatypes/character/PropertyEnum.hpp
+        datatypes/matchconfig/MatchConfig.hpp
         util/UUID.hpp
         util/Point.hpp
         )
