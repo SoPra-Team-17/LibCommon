@@ -24,7 +24,7 @@ jobs:
         env:
           cache-name: cache-sonar
         with:
-          path: ~/.cache/sonar
+          path: /home/runner/.cache/sonar
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.ref }}
       - name: Install Dependencies
         run: ./installDependencies.sh
@@ -56,7 +56,7 @@ jobs:
         run: |
           sonar-scanner \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-          -Dsonar.cfamily.cache.path=~/.cache/sonar \
+          -Dsonar.cfamily.cache.path=/home/runner/.cache/sonar \
           -Dsonar.cfamily.cache.enabled=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
