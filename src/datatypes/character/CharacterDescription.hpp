@@ -24,40 +24,18 @@ namespace spy::character {
      */
     class CharacterDescription {
         public:
-            /**
-             * Constructor.
-             * @param name          Character name.
-             * @param description   Textual description of the character.
-             * @param gender        Gender of the character.
-             * @param features      List of the character's properties.
-             */
+
             CharacterDescription(std::string &name,
                                  std::string &description,
                                  GenderEnum gender,
                                  std::list<PropertyEnum> &features);
 
-            /**
-             * Getter for the character name.
-             * @return Name of the character.
-             */
             [[nodiscard]] const std::string &getName() const;
 
-            /**
-             * Getter for the descriptive text of the character.
-             * @return Character description text.
-             */
             [[nodiscard]] const std::string &getDescription() const;
 
-            /**
-             * Getter for the character's gender.
-             * @return Gender of the character.
-             */
             [[nodiscard]] GenderEnum getGender() const;
 
-            /**
-             * Getter for the character's properties.
-             * @return List of the character's properties.
-             */
             [[nodiscard]] const std::list<PropertyEnum> &getFeatures() const;
 
         private:

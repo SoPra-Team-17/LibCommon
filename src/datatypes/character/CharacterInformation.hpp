@@ -20,23 +20,10 @@ namespace spy::character {
      */
     class CharacterInformation {
         public:
-            /**
-             * Constructor.
-             * @param characterId Id of the character.
-             * @param character   Character meta data.
-             */
             CharacterInformation(util::UUID &characterId, CharacterDescription &character);
 
-            /**
-             * Getter for the character Id.
-             * @return Character Id.
-             */
             [[nodiscard]] const util::UUID &getCharacterId() const;
 
-            /**
-             * Getter for the character meta data.
-             * @return Character description (meta data).
-             */
             [[nodiscard]] const CharacterDescription &getCharacter() const;
 
 
