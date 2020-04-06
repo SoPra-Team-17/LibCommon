@@ -25,10 +25,10 @@ namespace spy::character {
     class CharacterDescription {
         public:
 
-            CharacterDescription(std::string &name,
-                                 std::string &description,
+            CharacterDescription(const std::string &name,
+                                 const std::string &description,
                                  GenderEnum gender,
-                                 std::list<PropertyEnum> &features);
+                                 const std::list<PropertyEnum> &features);
 
             [[nodiscard]] const std::string &getName() const;
 
