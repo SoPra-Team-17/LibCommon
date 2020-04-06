@@ -11,8 +11,8 @@
 
 namespace spy::character {
 
-    Character::Character(const util::UUID &characterId, std::string name) : characterId(characterId),
-                                                                       name(std::move(name)) {
+    Character::Character(const util::UUID &characterId, const std::string &name) : characterId(characterId),
+                                                                       name(name) {
 
     }
 

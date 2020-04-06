@@ -29,7 +29,7 @@ namespace spy::character {
     class Character {
         public:
             Character(const util::UUID &characterId,
-                      std::string name);
+                      const std::string &name);
 
 
             [[nodiscard]] const util::UUID &getCharacterId() const;
