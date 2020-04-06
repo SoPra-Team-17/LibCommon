@@ -7,18 +7,12 @@
 
 #include "Character.hpp"
 
+#include <utility>
+
 namespace spy::character {
 
-    Character::Character(util::UUID &characterId, std::string &name) : characterId(characterId),
-                                                                       name(name),
-                                                                       coordinates{spy::util::Point{}},
-                                                                       movePoints(0),
-                                                                       actionPoints(0),
-                                                                       healthPoints(100),
-                                                                       intelligencePoints(0),
-                                                                       chips(10),
-                                                                       properties({}),
-                                                                       gadgets({}) {
+    Character::Character(const util::UUID &characterId, std::string name) : characterId(characterId),
+                                                                       name(std::move(name)) {
 
     }
 

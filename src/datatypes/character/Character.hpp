@@ -15,14 +15,21 @@
 #include <util/UUID.hpp>
 #include <util/Point.hpp>
 
+constexpr unsigned int DEFAULT_HEALTH_POINTS = 100;
+constexpr unsigned int DEFAULT_CHIPS = 10;
+constexpr unsigned int DEFAULT_ACTION_POINTS = 0;
+constexpr unsigned int DEFAULT_MOVE_POINTS = 0;
+constexpr unsigned int DEFAULT_INTELLIGENCE_POINTS = 0;
+
+
 namespace spy::character {
     /**
      * @brief Representation of a character during the game.
      */
     class Character {
         public:
-            Character(util::UUID &characterId,
-                      std::string &name);
+            Character(const util::UUID &characterId,
+                      std::string name);
 
 
             [[nodiscard]] const util::UUID &getCharacterId() const;
@@ -67,11 +74,11 @@ namespace spy::character {
             const spy::util::UUID characterId;
             const std::string name;
             spy::util::Point coordinates;
-            unsigned int movePoints;
-            unsigned int actionPoints;
-            unsigned int healthPoints;
-            unsigned int intelligencePoints;
-            unsigned int chips;
+            unsigned int movePoints = DEFAULT_MOVE_POINTS;
+            unsigned int actionPoints = DEFAULT_ACTION_POINTS;
+            unsigned int healthPoints = DEFAULT_HEALTH_POINTS;
+            unsigned int intelligencePoints = DEFAULT_INTELLIGENCE_POINTS;
+            unsigned int chips = DEFAULT_CHIPS;
             std::list<PropertyEnum> properties;
             std::list<spy::gadget::Gadget> gadgets;
     };
