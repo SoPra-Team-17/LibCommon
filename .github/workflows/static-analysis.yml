@@ -19,6 +19,13 @@ jobs:
         with:
           # fetch-depth = 0 is equivalent to entire commit-history
           fetch-depth: 0
+      - name: Restore cache for sonar analysis
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-sonar
+        with:
+          path: /home/runner/.sonarcache
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.ref }}
       - name: Install Dependencies
         run: ./installDependencies.sh
       - uses: ottojo/sonarscanner-github-action@master
@@ -46,6 +53,10 @@ jobs:
           ./test/allTests
           gcov-8 $(find . -type f -name "*.gc*")
       - name: sonar-scanner
-        run: sonar-scanner -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        run: |
+          sonar-scanner \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+          -Dsonar.cfamily.cache.path=/home/runner/.sonarcache \
+          -Dsonar.cfamily.cache.enabled=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
