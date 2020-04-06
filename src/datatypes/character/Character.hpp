@@ -15,14 +15,14 @@
 #include <util/UUID.hpp>
 #include <util/Point.hpp>
 
-constexpr unsigned int DEFAULT_HEALTH_POINTS = 100;
-constexpr unsigned int DEFAULT_CHIPS = 10;
-constexpr unsigned int DEFAULT_ACTION_POINTS = 0;
-constexpr unsigned int DEFAULT_MOVE_POINTS = 0;
-constexpr unsigned int DEFAULT_INTELLIGENCE_POINTS = 0;
-
 
 namespace spy::character {
+    constexpr unsigned int DEFAULT_HEALTH_POINTS = 100;
+    constexpr unsigned int DEFAULT_CHIPS = 10;
+    constexpr unsigned int DEFAULT_ACTION_POINTS = 0;
+    constexpr unsigned int DEFAULT_MOVE_POINTS = 0;
+    constexpr unsigned int DEFAULT_INTELLIGENCE_POINTS = 0;
+
     /**
      * @brief Representation of a character during the game.
      */

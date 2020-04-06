@@ -7,14 +7,10 @@
 
 #include "Character.hpp"
 
-#include <utility>
-
 namespace spy::character {
 
     Character::Character(const util::UUID &characterId, const std::string &name) : characterId(characterId),
-                                                                       name(name) {
-
-    }
+                                                                                   name(name) {}
 
     const util::UUID &Character::getCharacterId() const {
         return characterId;
