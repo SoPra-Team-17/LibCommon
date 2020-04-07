@@ -4,6 +4,8 @@
 # Exit the script if any command fails
 set -e
 
+# libuuid
+sudo apt install uuid-dev
 
 # nlohmann json
 cd /tmp
