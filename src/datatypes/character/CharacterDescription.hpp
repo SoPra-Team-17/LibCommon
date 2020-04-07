@@ -1,9 +1,12 @@
-//
-// Created by Carolin on 02.04.2020.
-//
+/**
+ * @file   CharacterDescription.hpp
+ * @author Carolin
+ * @date   02.04.2020 (creation)
+ * @brief  Declaration of the character description class.
+ */
 
-#ifndef LIBCOMMON_CHARACTERDESCRIPTION_HPP
-#define LIBCOMMON_CHARACTERDESCRIPTION_HPP
+#ifndef LIBCOMMON_CHARACTER_DESCRIPTION_HPP
+#define LIBCOMMON_CHARACTER_DESCRIPTION_HPP
 
 #include <string>
 #include <list>
@@ -16,28 +19,31 @@ namespace spy::character {
         DIVERSE
     };
 
+    /**
+     * @brief Representation of the character information stored in the character configuration file.
+     */
     class CharacterDescription {
-    public:
-        CharacterDescription(std::string &name,
-                             std::string &description,
-                             GenderEnum gender,
-                             std::list<PropertyEnum> &features)
-                : name(name), description(description), gender(gender), features(features) {}
+        public:
 
-        [[nodiscard]] const std::string &getName() const;
+            CharacterDescription(const std::string &name,
+                                 const std::string &description,
+                                 GenderEnum gender,
+                                 const std::list<PropertyEnum> &features);
 
-        [[nodiscard]] const std::string &getDescription() const;
+            [[nodiscard]] const std::string &getName() const;
 
-        [[nodiscard]] GenderEnum getGender() const;
+            [[nodiscard]] const std::string &getDescription() const;
 
-        [[nodiscard]] const std::list<PropertyEnum> &getFeatures() const;
+            [[nodiscard]] GenderEnum getGender() const;
 
-    private:
-        const std::string name;
-        const std::string description;
-        GenderEnum gender;
-        const std::list<spy::character::PropertyEnum> features;
+            [[nodiscard]] const std::list<PropertyEnum> &getFeatures() const;
+
+        private:
+            const std::string name;
+            const std::string description;
+            GenderEnum gender;
+            const std::list<spy::character::PropertyEnum> features;
     };
 }
 
-#endif //LIBCOMMON_CHARACTERDESCRIPTION_HPP
+#endif //LIBCOMMON_CHARACTER_DESCRIPTION_HPP

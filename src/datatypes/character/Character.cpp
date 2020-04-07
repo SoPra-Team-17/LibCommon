@@ -1,10 +1,16 @@
-//
-// Created by Carolin on 02.04.2020.
-//
+/**
+ * @file   Character.cpp
+ * @author Carolin
+ * @date   02.04.2020 (creation)
+ * @brief  Definition of the character class.
+ */
 
 #include "Character.hpp"
 
 namespace spy::character {
+
+    Character::Character(const util::UUID &characterId, const std::string &name) : characterId(characterId),
+                                                                                   name(name) {}
 
     const util::UUID &Character::getCharacterId() const {
         return characterId;
@@ -22,36 +28,36 @@ namespace spy::character {
         Character::coordinates = coordinate;
     }
 
-    unsigned int Character::getMp() const {
-        return mp;
+    unsigned int Character::getMovePoints() const {
+        return movePoints;
     }
 
-    void Character::setMp(unsigned int mpoints) {
-        Character::mp = mpoints;
+    void Character::setMovePoints(unsigned int mp) {
+        Character::movePoints = mp;
     }
 
-    unsigned int Character::getAp() const {
-        return ap;
+    unsigned int Character::getActionPoints() const {
+        return actionPoints;
     }
 
-    void Character::setAp(unsigned int apoints) {
-        Character::ap = apoints;
+    void Character::setActionPoints(unsigned int ap) {
+        Character::actionPoints = ap;
     }
 
-    unsigned int Character::getHp() const {
-        return hp;
+    unsigned int Character::getHealthPoints() const {
+        return healthPoints;
     }
 
-    void Character::setHp(unsigned int hpoints) {
-        Character::hp = hpoints;
+    void Character::setHealthPoints(unsigned int hp) {
+        Character::healthPoints = hp;
     }
 
-    unsigned int Character::getIp() const {
-        return ip;
+    unsigned int Character::getIntelligencePoints() const {
+        return intelligencePoints;
     }
 
-    void Character::setIp(unsigned int ipoints) {
-        Character::ip = ipoints;
+    void Character::setIntelligencePoints(unsigned int ip) {
+        Character::intelligencePoints = ip;
     }
 
     unsigned int Character::getChips() const {
@@ -66,16 +72,16 @@ namespace spy::character {
         return properties;
     }
 
-    void Character::setProperties(const std::list<PropertyEnum> &propertylist) {
-        Character::properties = propertylist;
+    void Character::setProperties(const std::list<PropertyEnum> &propertyList) {
+        Character::properties = propertyList;
     }
 
     const std::list<gadget::Gadget> &Character::getGadgets() const {
         return gadgets;
     }
 
-    void Character::setGadgets(const std::list<gadget::Gadget> &gadgetlist) {
-        Character::gadgets = gadgetlist;
+    void Character::setGadgets(const std::list<gadget::Gadget> &gadgetList) {
+        Character::gadgets = gadgetList;
     }
 
 }  // namespace spy::character

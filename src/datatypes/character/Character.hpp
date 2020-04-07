@@ -1,81 +1,86 @@
-//
-// Created by Carolin on 02.04.2020.
-//
+/**
+ * @file   Character.hpp
+ * @author Carolin
+ * @date   02.04.2020 (creation)
+ * @brief  Declaration of the character class.
+ */
 
 #ifndef LIBCOMMON_CHARACTER_HPP
 #define LIBCOMMON_CHARACTER_HPP
 
 #include <string>
 #include <list>
-#include <util/Point.hpp>
 #include <datatypes/gadgets/Gadget.hpp>
 #include <datatypes/character/PropertyEnum.hpp>
 #include <util/UUID.hpp>
+#include <util/Point.hpp>
+
 
 namespace spy::character {
+    constexpr unsigned int DEFAULT_HEALTH_POINTS = 100;
+    constexpr unsigned int DEFAULT_CHIPS = 10;
+    constexpr unsigned int DEFAULT_ACTION_POINTS = 0;
+    constexpr unsigned int DEFAULT_MOVE_POINTS = 0;
+    constexpr unsigned int DEFAULT_INTELLIGENCE_POINTS = 0;
+
+    /**
+     * @brief Representation of a character during the game.
+     */
     class Character {
-    public:
-        Character(util::UUID &character_id,
-                  std::string &name)
-                : characterId(character_id),
-                  name(name),
-                  coordinates{spy::util::Point{}},
-                  mp(0),
-                  ap(0),
-                  hp(100),
-                  ip(0),
-                  chips(10),
-                  properties({}),
-                  gadgets({}) {}
+        public:
+            Character(const util::UUID &characterId,
+                      const std::string &name);
 
-        // setter and getter
-        [[nodiscard]] const util::UUID &getCharacterId() const;
 
-        [[nodiscard]] const std::string &getName() const;
+            [[nodiscard]] const util::UUID &getCharacterId() const;
 
-        [[nodiscard]] const util::Point &getCoordinates() const;
 
-        void setCoordinates(const util::Point &coordinates);
+            [[nodiscard]] const std::string &getName() const;
 
-        [[nodiscard]] unsigned int getMp() const;
 
-        void setMp(unsigned int mp);
+            [[nodiscard]] const util::Point &getCoordinates() const;
 
-        [[nodiscard]] unsigned int getAp() const;
+            void setCoordinates(const util::Point &coordinates);
 
-        void setAp(unsigned int ap);
+            [[nodiscard]] unsigned int getMovePoints() const;
 
-        [[nodiscard]] unsigned int getHp() const;
+            void setMovePoints(unsigned int mp);
 
-        void setHp(unsigned int hp);
+            [[nodiscard]] unsigned int getActionPoints() const;
 
-        [[nodiscard]] unsigned int getIp() const;
+            void setActionPoints(unsigned int ap);
 
-        void setIp(unsigned int ip);
+            [[nodiscard]] unsigned int getHealthPoints() const;
 
-        [[nodiscard]] unsigned int getChips() const;
+            void setHealthPoints(unsigned int hp);
 
-        void setChips(unsigned int chips);
+            [[nodiscard]] unsigned int getIntelligencePoints() const;
 
-        [[nodiscard]] const std::list<PropertyEnum> &getProperties() const;
+            void setIntelligencePoints(unsigned int ip);
 
-        void setProperties(const std::list<PropertyEnum> &properties);
+            [[nodiscard]] unsigned int getChips() const;
 
-        [[nodiscard]] const std::list<gadget::Gadget> &getGadgets() const;
+            void setChips(unsigned int chips);
 
-        void setGadgets(const std::list<gadget::Gadget> &gadgets);
+            [[nodiscard]] const std::list<PropertyEnum> &getProperties() const;
 
-    private:
-        const spy::util::UUID characterId;
-        const std::string name;
-        spy::util::Point coordinates;
-        unsigned int mp;  // MovePoints
-        unsigned int ap;  // ActionsPoints
-        unsigned int hp;  // HealthPoints
-        unsigned int ip;  // IntelligencePoints
-        unsigned int chips;
-        std::list<PropertyEnum> properties;
-        std::list<spy::gadget::Gadget> gadgets;
+            void setProperties(const std::list<PropertyEnum> &properties);
+
+            [[nodiscard]] const std::list<gadget::Gadget> &getGadgets() const;
+
+            void setGadgets(const std::list<gadget::Gadget> &gadgets);
+
+        private:
+            const spy::util::UUID characterId;
+            const std::string name;
+            spy::util::Point coordinates;
+            unsigned int movePoints = DEFAULT_MOVE_POINTS;
+            unsigned int actionPoints = DEFAULT_ACTION_POINTS;
+            unsigned int healthPoints = DEFAULT_HEALTH_POINTS;
+            unsigned int intelligencePoints = DEFAULT_INTELLIGENCE_POINTS;
+            unsigned int chips = DEFAULT_CHIPS;
+            std::list<PropertyEnum> properties;
+            std::list<spy::gadget::Gadget> gadgets;
     };
 }
 

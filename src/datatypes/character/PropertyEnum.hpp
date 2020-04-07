@@ -1,12 +1,18 @@
-//
-// Created by Carolin on 03.04.2020.
-//
+/**
+ * @file   PropertyEnum.hpp
+ * @author Carolin
+ * @date   02.04.2020 (creation)
+ * @brief  Declaration of the character properties.
+ */
 
-#ifndef LIBCOMMON_PROPERTYENUM_HPP
-#define LIBCOMMON_PROPERTYENUM_HPP
+#ifndef LIBCOMMON_PROPERTY_ENUM_HPP
+#define LIBCOMMON_PROPERTY_ENUM_HPP
 
 
 namespace spy::character {
+    /**
+     * Represents the different possible properties of characters.
+     */
     enum class PropertyEnum {
         NIMBLENESS,
         SLUGGISHNESS,
@@ -27,7 +33,7 @@ namespace spy::character {
     };
 
 
-    //TODO: Wofuer ist das gut ? -> never used
+    //TODO: Wofuer ist das gut ? -> never used + misleading, because there are also NPC agents
     enum class NPCEnum {
         CAT,
         JANITOR
@@ -35,4 +41,4 @@ namespace spy::character {
 }
 
 
-#endif //LIBCOMMON_PROPERTYENUM_HPP
+#endif //LIBCOMMON_PROPERTY_ENUM_HPP
