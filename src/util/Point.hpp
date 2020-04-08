@@ -9,6 +9,7 @@
 #define LIBCOMMON_SRC_UTIL_POINT_HPP_
 
 #include <nlohmann/json.hpp>
+#include <tuple>
 
 namespace spy::util {
     /**
@@ -35,12 +36,9 @@ namespace spy::util {
              */
             void setLocation(int xCoord, int yCoord);
 
-            /**
-             * Translate x and y value of Point. New x and y values of Point are x+dx and y+dy.
-             * @param dx value to be added to x value of Point
-             * @param dy value to be added to y value of Point
-             */
-            void translate(int dx, int dy);
+            void operator+=(const Point &rhs);
+
+            void operator-=(const Point &rhs);
 
             bool operator==(const Point &other) const;
 

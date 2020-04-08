@@ -31,8 +31,12 @@ namespace spy::util {
         Point::y = yCoord;
     }
 
-    void Point::translate(int dx, int dy) {
-        setLocation(Point::x + dx, Point::y + dy);
+    void Point::operator+=(const Point &rhs) {
+        setLocation(Point::x + rhs.x, Point::y + rhs.y);
+    }
+
+    void Point::operator-=(const Point &rhs) {
+        setLocation(Point::x - rhs.x, Point::y - rhs.y);
     }
 
     bool Point::operator==(const Point &other) const {

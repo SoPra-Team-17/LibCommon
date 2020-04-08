@@ -22,7 +22,7 @@ TEST(point, Point) {
     EXPECT_TRUE(p1 != p2);
     EXPECT_TRUE(p2 != p1);
 
-    p2.translate(2, 3);
+    p2 += {2, 3};
     EXPECT_EQ(p2.getX(), 5);
     EXPECT_EQ(p2.getY(), 8);
     EXPECT_FALSE(p1 == p2);
@@ -38,10 +38,10 @@ TEST(point, Point) {
     EXPECT_FALSE(p1 != p2);
     EXPECT_FALSE(p2 != p1);
 
-    p2.translate(-5, -8);
+    p2 -= {5, 8};
     EXPECT_EQ(p2.getX(), 0);
     EXPECT_EQ(p2.getY(), 0);
-    p2.translate(-1, 0);
+    p2 += {-1, 0};
     EXPECT_EQ(p2.getX(), -1);
     EXPECT_EQ(p2.getY(), 0);
 }
