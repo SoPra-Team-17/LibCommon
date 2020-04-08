@@ -8,6 +8,7 @@
 #ifndef LIBCOMMON_CHARACTER_HPP
 #define LIBCOMMON_CHARACTER_HPP
 
+#include <nlohmann/json.hpp>
 #include <string>
 #include <list>
 #include <datatypes/gadgets/Gadget.hpp>
@@ -69,6 +70,10 @@ namespace spy::character {
             [[nodiscard]] const std::list<gadget::Gadget> &getGadgets() const;
 
             void setGadgets(const std::list<gadget::Gadget> &gadgets);
+
+            friend void to_json(nlohmann::json &j, const Character &c);
+
+            friend void from_json(const nlohmann::json &j, Character &c);
 
         private:
             const spy::util::UUID characterId;

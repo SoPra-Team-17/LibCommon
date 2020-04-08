@@ -8,6 +8,7 @@
 #ifndef LIBCOMMON_CHARACTER_DESCRIPTION_HPP
 #define LIBCOMMON_CHARACTER_DESCRIPTION_HPP
 
+#include <nlohmann/json.hpp>
 #include <string>
 #include <list>
 #include <datatypes/character/Character.hpp>
@@ -38,11 +39,15 @@ namespace spy::character {
 
             [[nodiscard]] const std::list<PropertyEnum> &getFeatures() const;
 
+            friend void to_json(nlohmann::json &j, const CharacterDescription &cd);
+
+            friend void from_json(const nlohmann::json &j, CharacterDescription &cd);
+
         private:
             const std::string name;
             const std::string description;
             GenderEnum gender;
-            const std::list<spy::character::PropertyEnum> features;
+            std::list<spy::character::PropertyEnum> features;
     };
 }
 

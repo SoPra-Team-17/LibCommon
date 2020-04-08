@@ -20,4 +20,14 @@ namespace spy::character {
         return character;
     }
 
+    void to_json(nlohmann::json &j, const spy::character::CharacterInformation &ci) {
+        j["characterId"] = ci.characterId;
+        j["character"] = ci.character;
+    }
+
+    void from_json(const nlohmann::json &j, spy::character::CharacterInformation &ci) {
+        j.at("characterId").get_to(ci.characterId);
+        j.at("character").get_to(ci.character);
+    }
+
 }   // namespace spy::character

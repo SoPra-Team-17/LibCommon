@@ -28,4 +28,18 @@ namespace spy::character {
         return features;
     }
 
+    void to_json(nlohmann::json &j, const spy::character::CharacterDescription &cd) {
+        j["name"] = cd.name;
+        j["description"] = cd.description;
+        j["gender"] = cd.gender;
+        j["features"] = cd.features;
+    }
+
+    void from_json(const nlohmann::json &j, spy::character::CharacterDescription &cd) {
+        j.at("name").get_to(cd.name);
+        j.at("description").get_to(cd.description);
+        j.at("gender").get_to(cd.gender);
+        j.at("features").get_to(cd.features);
+    }
+
 }   // namespace spy::character

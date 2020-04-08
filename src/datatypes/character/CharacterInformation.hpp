@@ -8,6 +8,7 @@
 #ifndef LIBCOMMON_CHARACTER_INFORMATION_HPP
 #define LIBCOMMON_CHARACTER_INFORMATION_HPP
 
+#include <nlohmann/json.hpp>
 #include <util/UUID.hpp>
 #include <string>
 #include <list>
@@ -26,10 +27,14 @@ namespace spy::character {
 
             [[nodiscard]] const CharacterDescription &getCharacter() const;
 
+            friend void to_json(nlohmann::json &j, const CharacterInformation &ci);
+
+            friend void from_json(const nlohmann::json &j, CharacterInformation &ci);
+
 
         private:
             const spy::util::UUID characterId;
-            const CharacterDescription character;
+            CharacterDescription character;
     };
 
 }
