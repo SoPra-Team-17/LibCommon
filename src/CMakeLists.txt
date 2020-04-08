@@ -41,6 +41,7 @@ set(INCLUDE
         network/messages/GameLeave.hpp
         network/messages/GameLeft.hpp
         network/messages/MessageContainer.hpp
+        network/messages/MessageTypeEnum.hpp
         network/ErrorTypeEnum.hpp
         util/UUID.hpp
         util/Point.hpp
