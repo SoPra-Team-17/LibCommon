@@ -20,16 +20,21 @@ namespace spy::character {
      */
     class CharacterInformation {
         public:
+            CharacterInformation();
+
             CharacterInformation(const util::UUID &characterId, const CharacterDescription &character);
 
             [[nodiscard]] const util::UUID &getCharacterId() const;
 
             [[nodiscard]] const CharacterDescription &getCharacter() const;
 
+            friend void to_json(nlohmann::json &j, const CharacterInformation &c);
+
+            friend void from_json(const nlohmann::json &j, CharacterInformation &c);
 
         private:
-            const spy::util::UUID characterId;
-            const CharacterDescription character;
+            spy::util::UUID characterId;
+            CharacterDescription character;
     };
 
 }

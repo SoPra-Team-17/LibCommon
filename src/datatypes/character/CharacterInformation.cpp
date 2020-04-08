@@ -9,8 +9,10 @@
 
 namespace spy::character {
 
+    CharacterInformation::CharacterInformation() : characterId{}, character{} {}
+
     CharacterInformation::CharacterInformation(const util::UUID &characterId, const CharacterDescription &character) :
-        characterId(characterId), character(character) {}
+            characterId(characterId), character(character) {}
 
     const util::UUID &CharacterInformation::getCharacterId() const {
         return characterId;
@@ -20,4 +22,11 @@ namespace spy::character {
         return character;
     }
 
+    void from_json(const nlohmann::json &/*j*/, CharacterInformation &/*c*/) {
+        // TODO CharacterInformation from_json
+    }
+
+    void to_json(nlohmann::json &/*j*/, const CharacterInformation &/*c*/) {
+        // TODO CharacterInformation from_json
+    }
 }   // namespace spy::character
