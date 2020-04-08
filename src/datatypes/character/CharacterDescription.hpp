@@ -20,6 +20,12 @@ namespace spy::character {
         DIVERSE
     };
 
+    NLOHMANN_JSON_SERIALIZE_ENUM(GenderEnum , {
+        { GenderEnum::MALE, "MALE" },
+        { GenderEnum::FEMALE, "FEMALE" },
+        { GenderEnum::DIVERSE, "DIVERSE" },
+    })
+
     /**
      * @brief Representation of the character information stored in the character configuration file.
      */
