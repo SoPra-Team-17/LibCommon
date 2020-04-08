@@ -8,42 +8,53 @@
 #include "Point.hpp"
 
 namespace spy::util {
-    Point::Point(unsigned int x, unsigned int y) : x(x), y(y) {}
+    Point::Point(int x, int y) : x(x), y(y) {}
 
-    unsigned int Point::getX() const {
+    int Point::getX() const {
         return x;
     }
 
-    void Point::setX(unsigned int xCord) {
+    void Point::setX(int xCord) {
         Point::x = xCord;
     }
 
-    unsigned int Point::getY() const {
+    int Point::getY() const {
         return y;
     }
 
-    void Point::setY(unsigned int yCord) {
+    void Point::setY(int yCord) {
         Point::y = yCord;
     }
 
-    void Point::setLocation(unsigned int xCoord, unsigned int yCoord) {
+    void Point::setLocation(int xCoord, int yCoord) {
         Point::x = xCoord;
         Point::y = yCoord;
     }
 
-    bool Point::translate(int dx, int dy) {
-        if ((int)Point::x + dx < 0 || (int)Point::y + dy < 0) {
-            return false;
-        }
+    void Point::translate(int dx, int dy) {
         setLocation(Point::x + dx, Point::y + dy);
-        return true;
+    }
+
+    bool Point::isValid() {
+        return Point::x >= 0 && Point::y >= 0;
     }
 
     bool Point::operator==(const Point &other) const {
-        return this->x == other.x && this->y == other.y;
+        return Point::x == other.x && Point::y == other.y;
     }
 
     bool Point::operator!=(const Point &other) const {
         return !(other == *this);
     }
+
+    void to_json(nlohmann::json &j, const spy::util::Point &p) {
+        j["x"] = p.x;
+        j["y"] = p.y;
+    }
+
+    void from_json(const nlohmann::json &j, spy::util::Point &p) {
+        j.at("x").get_to(p.x);
+        j.at("y").get_to(p.y);
+    }
+
 }  // namespace spy::util

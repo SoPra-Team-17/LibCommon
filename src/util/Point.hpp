@@ -8,6 +8,8 @@
 #ifndef LIBCOMMON_SRC_UTIL_POINT_HPP_
 #define LIBCOMMON_SRC_UTIL_POINT_HPP_
 
+#include <nlohmann/json.hpp>
+
 namespace spy::util {
     /**
      * @brief Representation of coordinates.
@@ -16,39 +18,47 @@ namespace spy::util {
         public:
             Point() = default;
 
-            Point(unsigned int x, unsigned int y);
+            Point(int x, int y);
 
-            [[nodiscard]] unsigned int getX() const;
+            [[nodiscard]] int getX() const;
 
-            void setX(unsigned int xCoord);
+            void setX(int xCoord);
 
-            [[nodiscard]] unsigned int getY() const;
+            [[nodiscard]] int getY() const;
 
-            void setY(unsigned int yCoord);
+            void setY(int yCoord);
 
             /**
              * Set x and y value of Point
              * @param xCoord new x value of Point
              * @param yCoord new y value of Point
              */
-            void setLocation(unsigned int xCoord, unsigned int yCoord);
+            void setLocation(int xCoord, int yCoord);
 
             /**
-             * Translate x and y value of Point. New x and y values of Point are x+dx and y+dy
+             * Translate x and y value of Point. New x and y values of Point are x+dx and y+dy.
              * @param dx value to be added to x value of Point
              * @param dy value to be added to y value of Point
-             * @return true if translation worked
-             *         false if translation was not possible (x or y became negative)
              */
-            bool translate(int dx, int dy);
+            void translate(int dx, int dy);
+
+            /**
+             * Checks if Point represents valid coordinate
+             * @return true if x anc y value of Point a non negative
+             */
+            bool isValid();
 
             bool operator==(const Point &other) const;
 
             bool operator!=(const Point &other) const;
 
+            friend void to_json(nlohmann::json &j, const Point &p);
+
+            friend void from_json(const nlohmann::json &j, Point &p);
+
         private:
-            unsigned int x;
-            unsigned int y;
+            int x;
+            int y;
 
     };
 }
