@@ -14,9 +14,9 @@
 
 namespace spy::character {
     enum class GenderEnum {
-        MALE,
-        FEMALE,
-        DIVERSE
+            MALE,
+            FEMALE,
+            DIVERSE
     };
 
     /**
@@ -24,6 +24,8 @@ namespace spy::character {
      */
     class CharacterDescription {
         public:
+
+            CharacterDescription();
 
             CharacterDescription(const std::string &name,
                                  const std::string &description,
@@ -39,10 +41,10 @@ namespace spy::character {
             [[nodiscard]] const std::list<PropertyEnum> &getFeatures() const;
 
         private:
-            const std::string name;
-            const std::string description;
+            std::string name;
+            std::string description;
             GenderEnum gender;
-            const std::list<spy::character::PropertyEnum> features;
+            std::list<spy::character::PropertyEnum> features;
     };
 }
 
