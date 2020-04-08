@@ -50,8 +50,8 @@ TEST(point, Point) {
     EXPECT_FALSE(p2.isValid());
 }
 
-TEST(JSON_Decode, Gadget_generic) {
-    auto input = R"({"x":"8","y":13})"_json;
+TEST(JSON_Decode, Point) {
+    auto input = R"({"x":8,"y":13})"_json;
     auto decodedPoint = input.get<spy::util::Point>();
 
     spy::util::Point point = {8, 13};
@@ -60,11 +60,11 @@ TEST(JSON_Decode, Gadget_generic) {
 }
 
 TEST(JSON_Encode, Point) {
-    spy::util::Point point = {8, 13};
+    spy::util::Point point(8, 13);
 
     nlohmann::json pointJson = point;
 
     std::string serialized = pointJson.dump();
-    std::string expected = R"({"x":"8","y":13})";
+    std::string expected = R"({"x":8,"y":13})";
     EXPECT_EQ(expected, serialized);
 }
