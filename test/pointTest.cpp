@@ -49,3 +49,22 @@ TEST(point, Point) {
     EXPECT_EQ(p2.getY(), 0);
     EXPECT_FALSE(p2.isValid());
 }
+
+TEST(JSON_Decode, Gadget_generic) {
+    auto input = R"({"x":"8","y":13})"_json;
+    auto decodedPoint = input.get<spy::util::Point>();
+
+    spy::util::Point point = {8, 13};
+
+    EXPECT_TRUE(decodedPoint == point);
+}
+
+TEST(JSON_Encode, Point) {
+    spy::util::Point point = {8, 13};
+
+    nlohmann::json pointJson = point;
+
+    std::string serialized = pointJson.dump();
+    std::string expected = R"({"x":"8","y":13})";
+    EXPECT_EQ(expected, serialized);
+}
