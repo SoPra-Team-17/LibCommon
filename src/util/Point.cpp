@@ -35,10 +35,6 @@ namespace spy::util {
         setLocation(Point::x + dx, Point::y + dy);
     }
 
-    bool Point::isValid() {
-        return Point::x >= 0 && Point::y >= 0;
-    }
-
     bool Point::operator==(const Point &other) const {
         return Point::x == other.x && Point::y == other.y;
     }

@@ -42,12 +42,6 @@ namespace spy::util {
              */
             void translate(int dx, int dy);
 
-            /**
-             * Checks if Point represents valid coordinate
-             * @return true if x anc y value of Point a non negative
-             */
-            bool isValid();
-
             bool operator==(const Point &other) const;
 
             bool operator!=(const Point &other) const;
