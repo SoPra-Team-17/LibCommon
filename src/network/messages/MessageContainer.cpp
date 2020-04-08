@@ -16,9 +16,9 @@ namespace spy::network::messages {
 
     // TODO creationdate
     MessageContainer::MessageContainer(MessageTypeEnum messageType, util::UUID playerId) :
-            type(messageType),
             playerId(playerId),
+            type(messageType),
             creationDate("") {}
 
-    MessageContainer::MessageContainer() : type{MessageTypeEnum::INVALID} {};
+    MessageContainer::MessageContainer() : type{MessageTypeEnum::INVALID} {}
 }

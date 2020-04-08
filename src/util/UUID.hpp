@@ -10,7 +10,7 @@
 namespace spy::util {
     class UUID {
         public:
-            UUID() = default;;
+            UUID() = default;
 
             // TODO implement UUID class
             friend void to_json(nlohmann::json &j, const UUID &c);
