@@ -112,6 +112,10 @@ namespace spy {
         return strikeMaximum;
     }
 
+    void to_json(nlohmann::json &/*j*/, const MatchConfig &/*c*/) {
+        // TODO implement MatchConfig to_json
+    }
+
     void from_json(const nlohmann::json &j, MatchConfig &c) {
         j.at("Moledie_Range").get_to(c.moledieRange);
 
