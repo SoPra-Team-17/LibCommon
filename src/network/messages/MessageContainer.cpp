@@ -14,11 +14,8 @@ namespace spy::network::messages {
         MessageContainer::common_from_json(j, m);
     }
 
-    // TODO creationdate
+    // TODO initialize creationdate
     MessageContainer::MessageContainer(MessageTypeEnum messageType, util::UUID playerId) :
             playerId(playerId),
-            type(messageType),
-            creationDate("") {}
-
-    MessageContainer::MessageContainer() : type{MessageTypeEnum::INVALID} {}
+            type(messageType) {}
 }

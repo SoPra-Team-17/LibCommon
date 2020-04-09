@@ -16,8 +16,7 @@ namespace spy::network::messages {
     }
 
     ConnectionError::ConnectionError() :
-            MessageContainer{MessageTypeEnum::CONNECTION_ERROR, {}},
-            reason{ErrorTypeEnum::INVALID} {}
+            MessageContainer{MessageTypeEnum::CONNECTION_ERROR, {}} {}
 
     ConnectionError::ConnectionError(ErrorTypeEnum errorType) :
             MessageContainer{MessageTypeEnum::CONNECTION_ERROR, {}},

@@ -24,7 +24,7 @@ namespace spy::network::messages {
             friend void from_json(const nlohmann::json &j, ConnectionError &c);
 
         private:
-            ErrorTypeEnum reason;
+            ErrorTypeEnum reason = ErrorTypeEnum::INVALID;
     };
 }
 

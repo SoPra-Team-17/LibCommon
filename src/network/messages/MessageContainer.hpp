@@ -17,7 +17,7 @@ namespace spy::network::messages {
     class MessageContainer {
         public:
 
-            MessageContainer();
+            MessageContainer() = default;
 
             MessageContainer(MessageTypeEnum messageType, util::UUID playerId);
 
@@ -58,7 +58,7 @@ namespace spy::network::messages {
 
         private:
             spy::util::UUID playerId;
-            MessageTypeEnum type;
+            MessageTypeEnum type = MessageTypeEnum::INVALID;
             // TODO: std::chrono::system_clock::time_point creationDate;
             std::string creationDate;
             std::optional<std::string> debugMessage;
