@@ -10,32 +10,34 @@
 
 TEST(MatchConfigDecodingEncoding, MatchConfig) {
     auto input = R"({
-            "Moledie_Range" : 1 ,
-            "BowlerBlade_Range" : 1 ,
-            "BowlerBlade_HitChance" : 0.25 ,
-            "BowlerBlade_Damage" : 4 ,
-            "LaserCompact_HitChance" : 0.125 ,
-            "RocketPen_Damage" : 2 ,
-            "GasGloss_Damage" : 6 ,
-            "MothballPouch_Range" : 2 ,
-            "MothballPouch_Damage" : 1 ,
-            "FogTin_Range" : 2 ,
-            "Grapple_Range" : 3 ,
-            "Grapple_HitChance" : 0.35 ,
-            "WiretapWithEarplugs_FailChance" : 0.64 ,
-            "Mirror_SwapChance" : 0.35 ,
-            "Cocktail_DodgeChance" : 0.25 ,
-            "Cocktail_Hp" : 6 ,
-            "Spy_SuccessChance" : 0.65 ,
-            "Babysitter_SuccessChance" : 0.25 ,
-            "HoneyTrap_SuccessChance" : 0.35 ,
-            "Observation_SuccessChance" : 0.12 ,
-            "ChipsToIpFaktor" : 12 ,
-            "RoundLimit" : 15 ,
-            "TurnPhaseLimit" : 6 ,
-            "CatIp" : 8 ,
-            "StrikeMaximum" : 4
-    })"_json;
+    "moledieRange": 1,
+    "bowlerBladeRange": 1,
+    "bowlerBladeHitChance": 0.25,
+    "bowlerBladeDamage": 4,
+    "laserCompactHitChance": 0.125,
+    "rocketPenDamage": 2,
+    "gasGlossDamage": 6,
+    "mothballPouchRange": 2,
+    "mothballPouchDamage": 1,
+    "fogTinRange": 2,
+    "grappleRange": 3,
+    "grappleHitChance": 0.35,
+    "wiretapWithEarplugsFailChance": 0.64,
+    "mirrorSwapChance": 0.35,
+    "cocktailDodgeChance": 0.25,
+    "cocktailHp": 6,
+    "spySuccessChance": 0.65,
+    "babysitterSuccessChance": 0.25,
+    "honeyTrapSuccessChance": 0.35,
+    "observationSuccessChance": 0.12,
+    "chipsToIpFactor": 12,
+    "roundLimit": 15,
+    "turnPhaseLimit": 6,
+    "catIp": 8,
+    "strikeMaximum": 4,
+    "pauseLimit": 320,
+    "reconnectLimit": 20
+})"_json;
 
     spy::MatchConfig decodedMatchConfig;
     EXPECT_NO_THROW(decodedMatchConfig = input.get<spy::MatchConfig>());
@@ -65,6 +67,8 @@ TEST(MatchConfigDecodingEncoding, MatchConfig) {
     EXPECT_EQ(decodedMatchConfig.getTurnPhaseLimit(), 6);
     EXPECT_EQ(decodedMatchConfig.getCatIp(), 8);
     EXPECT_EQ(decodedMatchConfig.getStrikeMaximum(), 4);
+    EXPECT_EQ(decodedMatchConfig.getPauseLimit(), 320);
+    EXPECT_EQ(decodedMatchConfig.getReconnectLimit(), 20);
 
     std::string jsonString;
     nlohmann::json json;
