@@ -6,7 +6,7 @@
 #define LIBCOMMON_CONNECTIONERROR_HPP
 
 
-#include <network/messages/MessageContainer.hpp>
+#include <network/MessageContainer.hpp>
 #include <network/ErrorTypeEnum.hpp>
 
 namespace spy::network::messages {

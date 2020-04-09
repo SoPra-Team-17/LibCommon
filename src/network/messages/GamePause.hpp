@@ -5,7 +5,7 @@
 #ifndef LIBCOMMON_GAMEPAUSE_HPP
 #define LIBCOMMON_GAMEPAUSE_HPP
 
-#include <network/messages/MessageContainer.hpp>
+#include <network/MessageContainer.hpp>
 
 namespace spy::network::messages {
     class GamePause : public MessageContainer {

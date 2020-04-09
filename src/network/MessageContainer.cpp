@@ -5,7 +5,7 @@
 #include "MessageContainer.hpp"
 #include <util/OptionalSerialization.hpp>
 
-namespace spy::network::messages {
+namespace spy::network {
     void to_json(nlohmann::json &j, const MessageContainer &m) {
         MessageContainer::common_to_json(j, m);
     }
@@ -15,7 +15,7 @@ namespace spy::network::messages {
     }
 
     // TODO initialize creationdate
-    MessageContainer::MessageContainer(MessageTypeEnum messageType, util::UUID playerId) :
+    MessageContainer::MessageContainer(messages::MessageTypeEnum messageType, util::UUID playerId) :
             playerId(playerId),
             type(messageType) {}
 }

@@ -5,7 +5,7 @@
 #ifndef LIBCOMMON_EQUIPMENTCHOICE_HPP
 #define LIBCOMMON_EQUIPMENTCHOICE_HPP
 
-#include <network/messages/MessageContainer.hpp>
+#include <network/MessageContainer.hpp>
 #include <datatypes/gadgets/GadgetEnum.hpp>
 
 namespace spy::network::messages {

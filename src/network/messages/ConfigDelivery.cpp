@@ -3,7 +3,7 @@
 //
 
 #include "ConfigDelivery.hpp"
-#include "MessageContainer.hpp"
+#include "network/MessageContainer.hpp"
 
 namespace spy::network::messages {
 

@@ -5,7 +5,7 @@
 #ifndef LIBCOMMON_GAMEOPERATION_HPP
 #define LIBCOMMON_GAMEOPERATION_HPP
 
-#include <network/messages/MessageContainer.hpp>
+#include <network/MessageContainer.hpp>
 #include <datatypes/gameplay/Operation.hpp>
 
 namespace spy::network::messages {

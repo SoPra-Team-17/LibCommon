@@ -9,7 +9,7 @@
 #include <datatypes/matchconfig/MatchConfig.hpp>
 #include <vector>
 #include <datatypes/character/CharacterInformation.hpp>
-#include "MessageContainer.hpp"
+#include "network/MessageContainer.hpp"
 
 namespace spy::network::messages {
     class ConfigDelivery : public MessageContainer {

@@ -5,7 +5,7 @@
 #ifndef LIBCOMMON_GAMELEAVE_HPP
 #define LIBCOMMON_GAMELEAVE_HPP
 
-#include <network/messages/MessageContainer.hpp>
+#include <network/MessageContainer.hpp>
 
 namespace spy::network::messages {
     class GameLeave : public MessageContainer {

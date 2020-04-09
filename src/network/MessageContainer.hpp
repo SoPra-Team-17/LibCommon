@@ -13,13 +13,13 @@
 #include <nlohmann/json.hpp>
 #include <util/OptionalSerialization.hpp>
 
-namespace spy::network::messages {
+namespace spy::network {
     class MessageContainer {
         public:
 
             MessageContainer() = default;
 
-            MessageContainer(MessageTypeEnum messageType, util::UUID playerId);
+            MessageContainer(messages::MessageTypeEnum messageType, util::UUID playerId);
 
             friend void to_json(nlohmann::json &j, const MessageContainer &m);
 
@@ -58,7 +58,7 @@ namespace spy::network::messages {
 
         private:
             spy::util::UUID playerId;
-            MessageTypeEnum type = MessageTypeEnum::INVALID;
+            messages::MessageTypeEnum type = messages::MessageTypeEnum::INVALID;
             // TODO: std::chrono::system_clock::time_point creationDate;
             std::string creationDate;
             std::optional<std::string> debugMessage;

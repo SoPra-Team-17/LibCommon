@@ -23,7 +23,7 @@ set(SOURCE
         network/messages/GameLeft.cpp
         network/messages/GameOperation.cpp
         network/messages/GamePause.cpp
-        network/messages/MessageContainer.cpp
+        network/MessageContainer.cpp
         util/UUID.cpp
         util/Point.cpp
         )
@@ -46,7 +46,7 @@ set(INCLUDE
         network/messages/GameLeft.hpp
         network/messages/GameOperation.hpp
         network/messages/GamePause.hpp
-        network/messages/MessageContainer.hpp
+        network/MessageContainer.hpp
         network/messages/MessageTypeEnum.hpp
         network/ErrorTypeEnum.hpp
         util/UUID.hpp
