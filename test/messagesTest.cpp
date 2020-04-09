@@ -24,7 +24,7 @@ TEST(messages, helloMessage){
     EXPECT_EQ(serialized, expected);
 
 
-    auto input = R"({"creationDate":"","name":"name123","playerId":null,"role":"PLAYER","type":"HELLO"})"_json;
+    auto input = R"({"creationDate":"","name":"name123","playerId":"00000000-0000-0000-0000-000000000000","role":"PLAYER","type":"HELLO"})"_json;
     auto decodedMessage = input.get<HelloMessage>();
 
     EXPECT_EQ(decodedMessage.getName(), m.getName());
