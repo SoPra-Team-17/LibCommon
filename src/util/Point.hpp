@@ -39,6 +39,10 @@ namespace spy::util {
 
             void operator-=(const Point &rhs);
 
+            Point operator+(const Point &rhs);
+
+            Point operator-(const Point &rhs);
+
             bool operator==(const Point &other) const;
 
             bool operator!=(const Point &other) const;
