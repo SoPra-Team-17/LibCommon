@@ -9,7 +9,6 @@
 #define LIBCOMMON_SRC_UTIL_POINT_HPP_
 
 #include <nlohmann/json.hpp>
-#include <tuple>
 
 namespace spy::util {
     /**
