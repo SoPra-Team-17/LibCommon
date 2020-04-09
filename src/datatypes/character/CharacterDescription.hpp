@@ -25,7 +25,7 @@ namespace spy::character {
     class CharacterDescription {
         public:
 
-            CharacterDescription();
+            CharacterDescription() = default;
 
             CharacterDescription(const std::string &name,
                                  const std::string &description,
@@ -43,7 +43,7 @@ namespace spy::character {
         private:
             std::string name;
             std::string description;
-            GenderEnum gender;
+            GenderEnum gender = GenderEnum::DIVERSE;
             std::list<spy::character::PropertyEnum> features;
     };
 }

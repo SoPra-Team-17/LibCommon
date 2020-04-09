@@ -32,6 +32,4 @@ namespace spy::character {
     const std::list<PropertyEnum> &CharacterDescription::getFeatures() const {
         return features;
     }
-
-    CharacterDescription::CharacterDescription() : gender{GenderEnum::DIVERSE} {}
 }   // namespace spy::character
