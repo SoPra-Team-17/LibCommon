@@ -8,10 +8,6 @@
 #include "MatchConfig.hpp"
 
 namespace spy {
-    MatchConfig::MatchConfig() {
-
-    }
-
     unsigned int MatchConfig::getMoledieRange() const {
         return moledieRange;
     }
@@ -100,8 +96,16 @@ namespace spy {
         return roundLimit;
     }
 
-    unsigned int MatchConfig::getTurnPhaseLimit() const {
+    int MatchConfig::getTurnPhaseLimit() const {
         return turnPhaseLimit;
+    }
+
+    int MatchConfig::getPauseLimit() const {
+        return pauseLimit;
+    }
+
+    int MatchConfig::getReconnectLimit() const {
+        return reconnectLimit;
     }
 
     unsigned int MatchConfig::getCatIp() const {
@@ -113,98 +117,106 @@ namespace spy {
     }
 
     void to_json(nlohmann::json &j, const MatchConfig &c) {
-        j["Moledie_Range"] = c.moledieRange;
+        j["moledieRange"] = c.moledieRange;
 
-        j["BowlerBlade_Range"] = c.bowlerBladeRange;
-        j["BowlerBlade_HitChance"] = c.bowlerBladeHitChance;
-        j["BowlerBlade_Damage"] = c.bowlerBladeDamage;
+        j["bowlerBladeRange"] = c.bowlerBladeRange;
+        j["bowlerBladeHitChance"] = c.bowlerBladeHitChance;
+        j["bowlerBladeDamage"] = c.bowlerBladeDamage;
 
-        j["LaserCompact_HitChance"] = c.laserCompactHitChance;
+        j["laserCompactHitChance"] = c.laserCompactHitChance;
 
-        j["RocketPen_Damage"] = c.rocketPenDamage;
+        j["rocketPenDamage"] = c.rocketPenDamage;
 
-        j["GasGloss_Damage"] = c.gasGlossDamage;
+        j["gasGlossDamage"] = c.gasGlossDamage;
 
-        j["MothballPouch_Range"] = c.mothballPouchRange;
-        j["MothballPouch_Damage"] = c.mothballPouchDamage;
+        j["mothballPouchRange"] = c.mothballPouchRange;
+        j["mothballPouchDamage"] = c.mothballPouchDamage;
 
-        j["FogTin_Range"] = c.fogTinRange;
+        j["fogTinRange"] = c.fogTinRange;
 
-        j["Grapple_Range"] = c.grappleRange;
-        j["Grapple_HitChance"] = c.grappleHitChance;
+        j["grappleRange"] = c.grappleRange;
+        j["grappleHitChance"] = c.grappleHitChance;
 
-        j["WiretapWithEarplugs_FailChance"] = c.wiretapWithEarplugsFailChance;
+        j["wiretapWithEarplugsFailChance"] = c.wiretapWithEarplugsFailChance;
 
-        j["Mirror_SwapChance"] = c.mirrorSwapChance;
+        j["mirrorSwapChance"] = c.mirrorSwapChance;
 
-        j["Cocktail_DodgeChance"] = c.cocktailDodgeChance;
+        j["cocktailDodgeChance"] = c.cocktailDodgeChance;
 
-        j["Cocktail_Hp"] = c.cocktailHealthPoints;
+        j["cocktailHp"] = c.cocktailHealthPoints;
 
-        j["Spy_SuccessChance"] = c.spySuccessChance;
+        j["spySuccessChance"] = c.spySuccessChance;
 
-        j["Babysitter_SuccessChance"] = c.babysitterSuccessChance;
+        j["babysitterSuccessChance"] = c.babysitterSuccessChance;
 
-        j["HoneyTrap_SuccessChance"] = c.honeyTrapSuccessChance;
+        j["honeyTrapSuccessChance"] = c.honeyTrapSuccessChance;
 
-        j["Observation_SuccessChance"] = c.observationSuccessChance;
+        j["observationSuccessChance"] = c.observationSuccessChance;
 
-        j["ChipsToIpFaktor"] = c.chipsToIpFactor;
+        j["chipsToIpFactor"] = c.chipsToIpFactor;
 
-        j["RoundLimit"] = c.roundLimit;
+        j["roundLimit"] = c.roundLimit;
 
-        j["TurnPhaseLimit"] = c.turnPhaseLimit;
+        j["turnPhaseLimit"] = c.turnPhaseLimit;
 
-        j["CatIp"] = c.catIp;
+        j["catIp"] = c.catIp;
 
-        j["StrikeMaximum"] = c.strikeMaximum;
+        j["strikeMaximum"] = c.strikeMaximum;
+
+        j["pauseLimit"] = c.pauseLimit;
+
+        j["reconnectLimit"] = c.reconnectLimit;
     }
 
     void from_json(const nlohmann::json &j, MatchConfig &c) {
-        j.at("Moledie_Range").get_to(c.moledieRange);
+        j.at("moledieRange").get_to(c.moledieRange);
 
-        j.at("BowlerBlade_Range").get_to(c.bowlerBladeRange);
-        j.at("BowlerBlade_HitChance").get_to(c.bowlerBladeHitChance);
-        j.at("BowlerBlade_Damage").get_to(c.bowlerBladeDamage);
+        j.at("bowlerBladeRange").get_to(c.bowlerBladeRange);
+        j.at("bowlerBladeHitChance").get_to(c.bowlerBladeHitChance);
+        j.at("bowlerBladeDamage").get_to(c.bowlerBladeDamage);
 
-        j.at("LaserCompact_HitChance").get_to(c.laserCompactHitChance);
+        j.at("laserCompactHitChance").get_to(c.laserCompactHitChance);
 
-        j.at("RocketPen_Damage").get_to(c.rocketPenDamage);
+        j.at("rocketPenDamage").get_to(c.rocketPenDamage);
 
-        j.at("GasGloss_Damage").get_to(c.gasGlossDamage);
+        j.at("gasGlossDamage").get_to(c.gasGlossDamage);
 
-        j.at("MothballPouch_Range").get_to(c.mothballPouchRange);
-        j.at("MothballPouch_Damage").get_to(c.mothballPouchDamage);
+        j.at("mothballPouchRange").get_to(c.mothballPouchRange);
+        j.at("mothballPouchDamage").get_to(c.mothballPouchDamage);
 
-        j.at("FogTin_Range").get_to(c.fogTinRange);
+        j.at("fogTinRange").get_to(c.fogTinRange);
 
-        j.at("Grapple_Range").get_to(c.grappleRange);
-        j.at("Grapple_HitChance").get_to(c.grappleHitChance);
+        j.at("grappleRange").get_to(c.grappleRange);
+        j.at("grappleHitChance").get_to(c.grappleHitChance);
 
-        j.at("WiretapWithEarplugs_FailChance").get_to(c.wiretapWithEarplugsFailChance);
+        j.at("wiretapWithEarplugsFailChance").get_to(c.wiretapWithEarplugsFailChance);
 
-        j.at("Mirror_SwapChance").get_to(c.mirrorSwapChance);
+        j.at("mirrorSwapChance").get_to(c.mirrorSwapChance);
 
-        j.at("Cocktail_DodgeChance").get_to(c.cocktailDodgeChance);
+        j.at("cocktailDodgeChance").get_to(c.cocktailDodgeChance);
 
-        j.at("Cocktail_Hp").get_to(c.cocktailHealthPoints);
+        j.at("cocktailHp").get_to(c.cocktailHealthPoints);
 
-        j.at("Spy_SuccessChance").get_to(c.spySuccessChance);
+        j.at("spySuccessChance").get_to(c.spySuccessChance);
 
-        j.at("Babysitter_SuccessChance").get_to(c.babysitterSuccessChance);
+        j.at("babysitterSuccessChance").get_to(c.babysitterSuccessChance);
 
-        j.at("HoneyTrap_SuccessChance").get_to(c.honeyTrapSuccessChance);
+        j.at("honeyTrapSuccessChance").get_to(c.honeyTrapSuccessChance);
 
-        j.at("Observation_SuccessChance").get_to(c.observationSuccessChance);
+        j.at("observationSuccessChance").get_to(c.observationSuccessChance);
 
-        j.at("ChipsToIpFaktor").get_to(c.chipsToIpFactor);
+        j.at("chipsToIpFactor").get_to(c.chipsToIpFactor);
 
-        j.at("RoundLimit").get_to(c.roundLimit);
+        j.at("roundLimit").get_to(c.roundLimit);
 
-        j.at("TurnPhaseLimit").get_to(c.turnPhaseLimit);
+        j.at("turnPhaseLimit").get_to(c.turnPhaseLimit);
 
-        j.at("CatIp").get_to(c.catIp);
+        j.at("catIp").get_to(c.catIp);
 
-        j.at("StrikeMaximum").get_to(c.strikeMaximum);
+        j.at("strikeMaximum").get_to(c.strikeMaximum);
+
+        j.at("pauseLimit").get_to(c.pauseLimit);
+
+        j.at("reconnectLimit").get_to(c.reconnectLimit);
     }
 }
