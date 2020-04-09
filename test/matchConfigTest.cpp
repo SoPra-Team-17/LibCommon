@@ -8,7 +8,7 @@
 #include <gtest/gtest.h>
 #include <matchconfig/MatchConfig.hpp>
 
-TEST(MatchConfigDecoding, MatchConfig) {
+TEST(MatchConfigDecodingEncoding, MatchConfig) {
     auto input = R"({
             "Moledie_Range" : 1 ,
             "BowlerBlade_Range" : 1 ,
@@ -65,4 +65,11 @@ TEST(MatchConfigDecoding, MatchConfig) {
     EXPECT_EQ(decodedMatchConfig.getTurnPhaseLimit(), 6);
     EXPECT_EQ(decodedMatchConfig.getCatIp(), 8);
     EXPECT_EQ(decodedMatchConfig.getStrikeMaximum(), 4);
+
+    std::string jsonString;
+    nlohmann::json json;
+    EXPECT_NO_THROW(json = decodedMatchConfig);
+    EXPECT_EQ(json.dump(), input.dump());
 }
+
+
