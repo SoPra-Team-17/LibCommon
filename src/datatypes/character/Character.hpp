@@ -29,6 +29,8 @@ namespace spy::character {
      */
     class Character {
         public:
+            Character() = default;
+
             Character(const util::UUID &characterId,
                       const std::string &name);
 

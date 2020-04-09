@@ -34,16 +34,13 @@ TEST(JSON_Encode, Character) {
     EXPECT_EQ(expected, serialized);
 }
 
-/*
 TEST(JSON_Decode, Character) {
-    // TODO: define input
-    auto input = R"({"description":"Bester Geheimagent aller Zeiten mit 00-Status.","features":["SPRYNESS","TOUGHNESS","ROBUST_STOMACH","LUCKY_DEVIL","TRADECRAFT"],"gender":"DIVERSE","name":"James Bond"})"_json;
+    auto input = R"({"ap":0,"characterId":"00000000-0000-0000-0000-000000000000","chips":10,"coordinates":{"x":0,"y":0},"features":["SPRYNESS","TOUGHNESS","ROBUST_STOMACH","LUCKY_DEVIL","TRADECRAFT"],"gadgets":[],"hp":100,"ip":0,"mp":0,"name":"James Bond"})"_json;
     auto decodedCharacter = input.get<spy::character::Character>();
 
-    // TODO: define character according to input
     spy::character::Character character({}, "James Bond");
 
-    EXPECT_EQ(character.getCharacterId(), decodedCharacter.getCharacterId());
+    EXPECT_EQ(character.getCharacterId().to_string(), decodedCharacter.getCharacterId().to_string());
     EXPECT_EQ(character.getName(), decodedCharacter.getName());
     EXPECT_EQ(character.getCoordinates(), decodedCharacter.getCoordinates());
     EXPECT_EQ(character.getMovePoints(), decodedCharacter.getMovePoints());
@@ -51,10 +48,9 @@ TEST(JSON_Decode, Character) {
     EXPECT_EQ(character.getHealthPoints(), decodedCharacter.getHealthPoints());
     EXPECT_EQ(character.getIntelligencePoints(), decodedCharacter.getIntelligencePoints());
     EXPECT_EQ(character.getChips(), decodedCharacter.getChips());
-    EXPECT_EQ(character.getProperties(), decodedCharacter.getProperties());
-    EXPECT_EQ(character.getGadgets(), decodedCharacter.getGadgets());
+    //no operator==: EXPECT_EQ(character.getProperties(), decodedCharacter.getProperties());
+    //no operator==: EXPECT_EQ(character.getGadgets(), decodedCharacter.getGadgets());
 }
- */
 
 TEST(JSON_Encode, CharacterDescription) {
     spy::character::CharacterDescription characterDescription("James Bond", "Bester Geheimagent aller Zeiten mit 00-Status.",
@@ -71,7 +67,6 @@ TEST(JSON_Encode, CharacterDescription) {
     EXPECT_EQ(expected, serialized);
 }
 
-/*
 TEST(JSON_Decode, CharacterDescription) {
     auto input = R"({"description":"Bester Geheimagent aller Zeiten mit 00-Status.","features":["SPRYNESS","TOUGHNESS","ROBUST_STOMACH","LUCKY_DEVIL","TRADECRAFT"],"gender":"DIVERSE","name":"James Bond"})"_json;
     auto decodedCharacterDescription = input.get<spy::character::CharacterDescription>();
@@ -87,10 +82,8 @@ TEST(JSON_Decode, CharacterDescription) {
     EXPECT_EQ(characterDescription.getGender(), decodedCharacterDescription.getGender());
     EXPECT_EQ(characterDescription.getFeatures(), decodedCharacterDescription.getFeatures());
 }
- */
 
 TEST(JSON_Encode, CharacterInformation) {
-    // TODO: define UUID in characterInformation
     spy::character::CharacterInformation characterInformation({},
             {"James Bond","Bester Geheimagent aller Zeiten mit 00-Status.", spy::character::GenderEnum::DIVERSE,
              {spy::character::PropertyEnum::SPRYNESS, spy::character::PropertyEnum::TOUGHNESS,
@@ -100,25 +93,20 @@ TEST(JSON_Encode, CharacterInformation) {
     nlohmann::json characterInformationJson = characterInformation;
 
     std::string serialized = characterInformationJson.dump();
-    // TODO: define expected UUID according to character
     std::string expected = R"({"character":{"description":"Bester Geheimagent aller Zeiten mit 00-Status.","features":["SPRYNESS","TOUGHNESS","ROBUST_STOMACH","LUCKY_DEVIL","TRADECRAFT"],"gender":"DIVERSE","name":"James Bond"},"characterId":"00000000-0000-0000-0000-000000000000"})";
     EXPECT_EQ(expected, serialized);
 }
 
-/*
 TEST(JSON_Decode, CharacterInformation) {
-    // TODO: define UUID in input
-    auto input = R"({"description":"Bester Geheimagent aller Zeiten mit 00-Status.","features":["SPRYNESS","TOUGHNESS","ROBUST_STOMACH","LUCKY_DEVIL","TRADECRAFT"],"gender":"DIVERSE","name":"James Bond"})"_json;
+    auto input = R"({"character":{"description":"Bester Geheimagent aller Zeiten mit 00-Status.","features":["SPRYNESS","TOUGHNESS","ROBUST_STOMACH","LUCKY_DEVIL","TRADECRAFT"],"gender":"DIVERSE","name":"James Bond"},"characterId":"00000000-0000-0000-0000-000000000000"})"_json;
     auto decodedCharacterInformation = input.get<spy::character::CharacterInformation>();
 
-    // TODO: define UUID in characterInformation according to input
     spy::character::CharacterInformation characterInformation({},
             {"James Bond","Bester Geheimagent aller Zeiten mit 00-Status.", spy::character::GenderEnum::DIVERSE,
              {spy::character::PropertyEnum::SPRYNESS, spy::character::PropertyEnum::TOUGHNESS,
               spy::character::PropertyEnum::ROBUST_STOMACH, spy::character::PropertyEnum::LUCKY_DEVIL,
               spy::character::PropertyEnum::TRADECRAFT}});
 
-    EXPECT_EQ(characterInformation.getCharacterId(), decodedCharacterInformation.getCharacterId());
-    EXPECT_EQ(characterInformation.getCharacter(), decodedCharacterInformation.getCharacter());
+    EXPECT_EQ(characterInformation.getCharacterId().to_string(), decodedCharacterInformation.getCharacterId().to_string());
+    //no operator==: EXPECT_EQ(characterInformation.getCharacter(), decodedCharacterInformation.getCharacter());
 }
- */

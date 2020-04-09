@@ -19,6 +19,8 @@ namespace spy::character {
      */
     class CharacterInformation {
         public:
+            CharacterInformation() = default;
+
             CharacterInformation(const util::UUID &characterId, const CharacterDescription &character);
 
             [[nodiscard]] const util::UUID &getCharacterId() const;

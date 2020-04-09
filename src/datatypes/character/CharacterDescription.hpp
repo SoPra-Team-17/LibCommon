@@ -31,6 +31,7 @@ namespace spy::character {
      */
     class CharacterDescription {
         public:
+            CharacterDescription() = default;
 
             CharacterDescription(const std::string &name,
                                  const std::string &description,
