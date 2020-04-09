@@ -32,4 +32,13 @@ TEST(UUID, deserializeJson) {
     EXPECT_NO_THROW(u = json.get<spy::util::UUID>());
     EXPECT_FALSE(u.isNull());
     EXPECT_EQ(u.to_string_lower(), uuidText);
+    std::string upperCase;
+    std::transform(uuidText.begin(), uuidText.end(), std::back_inserter(upperCase), ::toupper);
+    EXPECT_EQ(u.to_string_upper(), upperCase);
+}
+
+TEST(UUID, deserializeInvalid) {
+    std::string uuidText = "6a13z3d0-2317-4044-9d37-047d29205011";
+    auto json = nlohmann::json::parse("\"" + uuidText + "\"");
+    EXPECT_THROW(json.get<spy::util::UUID>(), std::invalid_argument);
 }
