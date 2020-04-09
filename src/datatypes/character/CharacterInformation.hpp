@@ -20,7 +20,7 @@ namespace spy::character {
      */
     class CharacterInformation {
         public:
-            CharacterInformation();
+            CharacterInformation() = default;
 
             CharacterInformation(const util::UUID &characterId, const CharacterDescription &character);
 
