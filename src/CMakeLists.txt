@@ -16,8 +16,6 @@ set(SOURCE
         datatypes/character/CharacterDescription.cpp
         datatypes/matchconfig/MatchConfig.cpp
         datatypes/scenario/Scenario.cpp
-        network/messages/ConfigDelivery.cpp
-        network/messages/ConnectionError.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/GameLeave.cpp
         network/messages/GameLeft.cpp
@@ -39,8 +37,6 @@ set(INCLUDE
         datatypes/character/PropertyEnum.hpp
         datatypes/matchconfig/MatchConfig.hpp
         datatypes/scenario/Scenario.hpp
-        network/messages/ConfigDelivery.hpp
-        network/messages/ConnectionError.hpp
         network/messages/EquipmentChoice.hpp
         network/messages/GameLeave.hpp
         network/messages/GameLeft.hpp
