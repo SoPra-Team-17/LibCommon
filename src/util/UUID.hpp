@@ -21,11 +21,6 @@ namespace spy::util {
             UUID() = default;
 
             /**
-             * Creates a copy of the supplied UUID
-             */
-            UUID(const UUID &rhs);
-
-            /**
              * Parses a UUID from string
              * @param s UUID string of the form 1b4e28ba-2fa1-11d2-883f-b9a761bde3fb
              */

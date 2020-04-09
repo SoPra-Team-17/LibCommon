@@ -58,10 +58,6 @@ namespace spy::util {
         return !(*this < rhs);
     }
 
-    UUID::UUID(const UUID &rhs) {
-        uuid_copy(uuidData, rhs.uuidData);
-    }
-
     UUID::UUID(const std::string &s) {
         if (uuid_parse(s.c_str(), uuidData) != 0) {
             throw std::invalid_argument("Could not parse \"" + s + "\" as a UUID.");
