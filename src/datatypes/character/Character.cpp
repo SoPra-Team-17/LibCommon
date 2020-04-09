@@ -93,7 +93,7 @@ namespace spy::character {
         j["hp"] = c.healthPoints;
         j["ip"] = c.intelligencePoints;
         j["chips"] = c.chips;
-        j["properties"] = c.properties;
+        j["features"] = c.properties;
         j["gadgets"] = c.gadgets;
     }
 
@@ -106,7 +106,7 @@ namespace spy::character {
         j.at("hp").get_to(c.healthPoints);
         j.at("ip").get_to(c.intelligencePoints);
         j.at("chips").get_to(c.chips);
-        j.at("properties").get_to(c.properties);
+        j.at("features").get_to(c.properties);
         j.at("gadgets").get_to(c.gadgets);
     }
 
