@@ -68,19 +68,19 @@ namespace spy::character {
         Character::chips = chip;
     }
 
-    const std::list<PropertyEnum> &Character::getProperties() const {
+    const std::vector<PropertyEnum> &Character::getProperties() const {
         return properties;
     }
 
-    void Character::setProperties(const std::list<PropertyEnum> &propertyList) {
+    void Character::setProperties(const std::vector<PropertyEnum> &propertyList) {
         Character::properties = propertyList;
     }
 
-    const std::list<gadget::Gadget> &Character::getGadgets() const {
+    const std::vector<gadget::Gadget> &Character::getGadgets() const {
         return gadgets;
     }
 
-    void Character::setGadgets(const std::list<gadget::Gadget> &gadgetList) {
+    void Character::setGadgets(const std::vector<gadget::Gadget> &gadgetList) {
         Character::gadgets = gadgetList;
     }
 

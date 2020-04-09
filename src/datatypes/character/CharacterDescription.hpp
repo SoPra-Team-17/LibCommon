@@ -10,7 +10,7 @@
 
 #include <nlohmann/json.hpp>
 #include <string>
-#include <list>
+#include <vector>
 #include <datatypes/character/Character.hpp>
 
 namespace spy::character {
@@ -35,7 +35,7 @@ namespace spy::character {
             CharacterDescription(const std::string &name,
                                  const std::string &description,
                                  GenderEnum gender,
-                                 const std::list<PropertyEnum> &features);
+                                 const std::vector<PropertyEnum> &features);
 
             [[nodiscard]] const std::string &getName() const;
 
@@ -43,17 +43,17 @@ namespace spy::character {
 
             [[nodiscard]] GenderEnum getGender() const;
 
-            [[nodiscard]] const std::list<PropertyEnum> &getFeatures() const;
+            [[nodiscard]] const std::vector<PropertyEnum> &getFeatures() const;
 
             friend void to_json(nlohmann::json &j, const CharacterDescription &cd);
 
             friend void from_json(const nlohmann::json &j, CharacterDescription &cd);
 
         private:
-            const std::string name;
-            const std::string description;
+            std::string name;
+            std::string description;
             GenderEnum gender;
-            std::list<spy::character::PropertyEnum> features;
+            std::vector<spy::character::PropertyEnum> features;
     };
 }
 

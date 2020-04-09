@@ -10,7 +10,7 @@
 
 #include <nlohmann/json.hpp>
 #include <string>
-#include <list>
+#include <vector>
 #include <datatypes/gadgets/Gadget.hpp>
 #include <datatypes/character/PropertyEnum.hpp>
 #include <util/UUID.hpp>
@@ -63,29 +63,29 @@ namespace spy::character {
 
             void setChips(unsigned int chips);
 
-            [[nodiscard]] const std::list<PropertyEnum> &getProperties() const;
+            [[nodiscard]] const std::vector<PropertyEnum> &getProperties() const;
 
-            void setProperties(const std::list<PropertyEnum> &properties);
+            void setProperties(const std::vector<PropertyEnum> &properties);
 
-            [[nodiscard]] const std::list<gadget::Gadget> &getGadgets() const;
+            [[nodiscard]] const std::vector<gadget::Gadget> &getGadgets() const;
 
-            void setGadgets(const std::list<gadget::Gadget> &gadgets);
+            void setGadgets(const std::vector<gadget::Gadget> &gadgets);
 
             friend void to_json(nlohmann::json &j, const Character &c);
 
             friend void from_json(const nlohmann::json &j, Character &c);
 
         private:
-            const spy::util::UUID characterId;
-            const std::string name;
+            spy::util::UUID characterId;
+            std::string name;
             spy::util::Point coordinates;
             unsigned int movePoints = DEFAULT_MOVE_POINTS;
             unsigned int actionPoints = DEFAULT_ACTION_POINTS;
             unsigned int healthPoints = DEFAULT_HEALTH_POINTS;
             unsigned int intelligencePoints = DEFAULT_INTELLIGENCE_POINTS;
             unsigned int chips = DEFAULT_CHIPS;
-            std::list<PropertyEnum> properties;
-            std::list<spy::gadget::Gadget> gadgets;
+            std::vector<PropertyEnum> properties;
+            std::vector<spy::gadget::Gadget> gadgets;
     };
 }
 

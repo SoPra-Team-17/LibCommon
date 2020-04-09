@@ -10,8 +10,6 @@
 
 #include <nlohmann/json.hpp>
 #include <util/UUID.hpp>
-#include <string>
-#include <list>
 #include <datatypes/character/Character.hpp>
 #include <datatypes/character/CharacterDescription.hpp>
 
@@ -33,7 +31,7 @@ namespace spy::character {
 
 
         private:
-            const spy::util::UUID characterId;
+            spy::util::UUID characterId;
             CharacterDescription character;
     };
 
