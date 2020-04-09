@@ -55,6 +55,11 @@ namespace spy::util {
         return !(other == *this);
     }
 
+    std::ostream &operator<<(std::ostream &os, const Point &p) {
+        os << "[" << p.x << "|" << p.y << "]";
+        return os;
+    }
+
     void to_json(nlohmann::json &j, const spy::util::Point &p) {
         j["x"] = p.x;
         j["y"] = p.y;
