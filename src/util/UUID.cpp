@@ -6,19 +6,36 @@
 #include <array>
 
 namespace spy::util {
+    bool UUID::isNull() {
+        return uuid_is_null(uuidData);
+    }
+
+    UUID UUID::generate() {
+        UUID u;
+        uuid_generate(u.uuidData);
+        return u;
+    }
 
     void UUID::clear() {
         uuid_clear(uuidData);
     }
 
-    std::string UUID::toString() const {
+    std::string UUID::to_string() const {
         char uuidRawString[37];
         uuid_unparse(uuidData, uuidRawString);
         return std::string(uuidRawString);
     }
 
-    UUID::UUID() {
-        uuid_generate(uuidData);
+    std::string UUID::to_string_upper() const {
+        char uuidRawString[37];
+        uuid_unparse_upper(uuidData, uuidRawString);
+        return std::string(uuidRawString);
+    }
+
+    std::string UUID::to_string_lower() const {
+        char uuidRawString[37];
+        uuid_unparse_lower(uuidData, uuidRawString);
+        return std::string(uuidRawString);
     }
 
     bool UUID::operator==(const UUID &rhs) const {
@@ -51,7 +68,11 @@ namespace spy::util {
         }
     }
 
-    std::ostream &operator<<(std::ostream &stream, const UUID &uuid) {
-        return stream << uuid.toString();
+    void to_json(nlohmann::json &j, const UUID &c) {
+        j = c.to_string();
+    }
+
+    void from_json(const nlohmann::json &j, UUID &c) {
+        c = UUID(j.get<std::string>());
     }
 }
