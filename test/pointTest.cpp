@@ -4,6 +4,7 @@
 
 #include <gtest/gtest.h>
 #include <util/Point.hpp>
+#include <sstream>
 
 TEST(point, Point) {
     spy::util::Point p1 = {};
@@ -53,6 +54,10 @@ TEST(point, Point) {
     p2 += {-1, 0};
     EXPECT_EQ(p2.getX(), -1);
     EXPECT_EQ(p2.getY(), 0);
+
+    std::stringstream stream;
+    stream << p1;
+    EXPECT_EQ(stream.str(), "[5|8]");
 }
 
 TEST(JSON_Decode, Point) {
