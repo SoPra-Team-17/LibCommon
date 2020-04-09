@@ -12,7 +12,7 @@ set(SOURCES
         characterTest.cpp
         matchConfigTest.cpp
         pointTest.cpp
-        messagesTest.cpp
+        messages/helloMessageTest.cpp
         util/uuidTest.cpp)
 
 add_executable(allTests ${SOURCES})
