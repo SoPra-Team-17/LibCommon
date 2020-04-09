@@ -22,7 +22,7 @@ namespace spy::network::messages {
 
             friend void to_json(nlohmann::json &j, const HelloMessage &h);
 
-            friend void from_json(nlohmann::json &j, HelloMessage &h);
+            friend void from_json(const nlohmann::json &j, HelloMessage &h);
 
         private:
             std::string name;

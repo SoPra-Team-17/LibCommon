@@ -25,7 +25,7 @@ namespace spy::network::messages {
         j["name"] = h.name;
     }
 
-    void from_json(nlohmann::json &j, spy::network::messages::HelloMessage &h) {
+    void from_json(const nlohmann::json &j, spy::network::messages::HelloMessage &h) {
         MessageContainer::common_from_json(j, h);
         j.at("role").get_to(h.role);
         j.at("name").get_to(h.name);
