@@ -39,12 +39,25 @@ namespace spy::util {
         setLocation(Point::x - rhs.x, Point::y - rhs.y);
     }
 
+    Point Point::operator+(const Point &rhs) const {
+        return Point(this->x + rhs.x, this->y + rhs.y);
+    }
+
+    Point Point::operator-(const Point &rhs) const {
+        return Point(this->x - rhs.x, this->y - rhs.y);
+    }
+
     bool Point::operator==(const Point &other) const {
         return Point::x == other.x && Point::y == other.y;
     }
 
     bool Point::operator!=(const Point &other) const {
         return !(other == *this);
+    }
+
+    std::ostream &operator<<(std::ostream &os, const Point &p) {
+        os << "[" << p.x << "|" << p.y << "]";
+        return os;
     }
 
     void to_json(nlohmann::json &j, const spy::util::Point &p) {
