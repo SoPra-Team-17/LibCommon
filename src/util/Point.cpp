@@ -39,11 +39,11 @@ namespace spy::util {
         setLocation(Point::x - rhs.x, Point::y - rhs.y);
     }
 
-    Point Point::operator+(const Point &rhs) {
+    Point Point::operator+(const Point &rhs) const {
         return Point(this->x + rhs.x, this->y + rhs.y);
     }
 
-    Point Point::operator-(const Point &rhs) {
+    Point Point::operator-(const Point &rhs) const {
         return Point(this->x - rhs.x, this->y - rhs.y);
     }
 
