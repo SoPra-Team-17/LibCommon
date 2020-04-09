@@ -26,7 +26,7 @@ namespace spy::network::messages {
 
         private:
             std::string name;
-            RoleEnum role;
+            RoleEnum role = RoleEnum::INVALID;
     };
 }
 
