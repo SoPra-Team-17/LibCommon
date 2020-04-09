@@ -22,6 +22,15 @@ TEST(point, Point) {
     EXPECT_TRUE(p1 != p2);
     EXPECT_TRUE(p2 != p1);
 
+    spy::util::Point p3 = {5, 3};
+    spy::util::Point p4 = p2 + p3;
+    EXPECT_EQ(p4.getX(), 8);
+    EXPECT_EQ(p4.getY(), 8);
+
+    spy::util::Point p5 = p4 - p3;
+    EXPECT_EQ(p5.getX(), p2.getX());
+    EXPECT_EQ(p5.getY(), p2.getY());
+
     p2 += {2, 3};
     EXPECT_EQ(p2.getX(), 5);
     EXPECT_EQ(p2.getY(), 8);
