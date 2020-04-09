@@ -11,8 +11,10 @@ set(SOURCES
         jsonDecodingTest.cpp
         characterTest.cpp
         matchConfigTest.cpp
+        pointTest.cpp
         util/uuidTest.cpp)
 
 add_executable(allTests ${SOURCES})
+
 target_link_libraries(allTests gtest gmock gtest_main SopraCommon nlohmann_json::nlohmann_json)
 gtest_discover_tests(allTests)
