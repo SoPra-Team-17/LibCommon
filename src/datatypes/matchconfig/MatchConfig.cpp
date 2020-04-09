@@ -112,6 +112,54 @@ namespace spy {
         return strikeMaximum;
     }
 
+    void to_json(nlohmann::json &j, const MatchConfig &c) {
+        j["Moledie_Range"] = c.moledieRange;
+
+        j["BowlerBlade_Range"] = c.bowlerBladeRange;
+        j["BowlerBlade_HitChance"] = c.bowlerBladeHitChance;
+        j["BowlerBlade_Damage"] = c.bowlerBladeDamage;
+
+        j["LaserCompact_HitChance"] = c.laserCompactHitChance;
+
+        j["RocketPen_Damage"] = c.rocketPenDamage;
+
+        j["GasGloss_Damage"] = c.gasGlossDamage;
+
+        j["MothballPouch_Range"] = c.mothballPouchRange;
+        j["MothballPouch_Damage"] = c.mothballPouchDamage;
+
+        j["FogTin_Range"] = c.fogTinRange;
+
+        j["Grapple_Range"] = c.grappleRange;
+        j["Grapple_HitChance"] = c.grappleHitChance;
+
+        j["WiretapWithEarplugs_FailChance"] = c.wiretapWithEarplugsFailChance;
+
+        j["Mirror_SwapChance"] = c.mirrorSwapChance;
+
+        j["Cocktail_DodgeChance"] = c.cocktailDodgeChance;
+
+        j["Cocktail_Hp"] = c.cocktailHealthPoints;
+
+        j["Spy_SuccessChance"] = c.spySuccessChance;
+
+        j["Babysitter_SuccessChance"] = c.babysitterSuccessChance;
+
+        j["HoneyTrap_SuccessChance"] = c.honeyTrapSuccessChance;
+
+        j["Observation_SuccessChance"] = c.observationSuccessChance;
+
+        j["ChipsToIpFaktor"] = c.chipsToIpFactor;
+
+        j["RoundLimit"] = c.roundLimit;
+
+        j["TurnPhaseLimit"] = c.turnPhaseLimit;
+
+        j["CatIp"] = c.catIp;
+
+        j["StrikeMaximum"] = c.strikeMaximum;
+    }
+
     void from_json(const nlohmann::json &j, MatchConfig &c) {
         j.at("Moledie_Range").get_to(c.moledieRange);
 

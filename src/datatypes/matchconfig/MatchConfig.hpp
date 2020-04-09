@@ -68,6 +68,8 @@ namespace spy {
 
             [[nodiscard]] unsigned int getStrikeMaximum() const;
 
+            friend void to_json(nlohmann::json &j, const MatchConfig &c);
+
             friend void from_json(const nlohmann::json &j, MatchConfig &c);
 
         private:
