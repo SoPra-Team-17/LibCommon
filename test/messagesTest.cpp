@@ -20,7 +20,7 @@ TEST(messages, helloMessage){
 
     nlohmann::json json = m;
     std::string serialized = json.dump();
-    std::string expected = R"({"creationDate":"","name":"name123","playerId":null,"role":"PLAYER","type":"HELLO"})";
+    std::string expected = R"({"creationDate":"","name":"name123","playerId":"00000000-0000-0000-0000-000000000000","role":"PLAYER","type":"HELLO"})";
     EXPECT_EQ(serialized, expected);
 
 
