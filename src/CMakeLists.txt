@@ -31,6 +31,7 @@ set(SOURCE
         network/messages/Reconnect.cpp
         network/messages/RequestItemChoice.cpp
         network/messages/ItemChoice.cpp
+        network/messages/RequestEquipmentChoice.cpp
         )
 
 set(INCLUDE
@@ -61,6 +62,7 @@ set(INCLUDE
         network/messages/Reconnect.hpp
         network/messages/RequestItemChoice.hpp
         network/messages/ItemChoice.hpp
+        network/messages/RequestEquipmentChoice.hpp
         )
 
 
