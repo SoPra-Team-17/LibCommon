@@ -16,7 +16,7 @@ namespace spy {
      */
     class MatchConfig {
         public:
-            MatchConfig();
+            MatchConfig() = default;
 
             [[nodiscard]] unsigned int getMoledieRange() const;
 
@@ -62,11 +62,15 @@ namespace spy {
 
             [[nodiscard]] unsigned int getRoundLimit() const;
 
-            [[nodiscard]] unsigned int getTurnPhaseLimit() const;
-
             [[nodiscard]] unsigned int getCatIp() const;
 
             [[nodiscard]] unsigned int getStrikeMaximum() const;
+
+            [[nodiscard]] std::optional<unsigned int> getTurnPhaseLimit() const;
+
+            [[nodiscard]] std::optional<unsigned int> getPauseLimit() const;
+
+            [[nodiscard]] std::optional<unsigned int> getReconnectLimit() const;
 
             friend void to_json(nlohmann::json &j, const MatchConfig &c);
 
@@ -107,9 +111,12 @@ namespace spy {
 
             unsigned int chipsToIpFactor;
             unsigned int roundLimit;
-            unsigned int turnPhaseLimit;
             unsigned int catIp;
             unsigned int strikeMaximum;
+
+            std::optional<unsigned int> turnPhaseLimit;
+            std::optional<unsigned int> pauseLimit;
+            std::optional<unsigned int> reconnectLimit;
     };
 }
 
