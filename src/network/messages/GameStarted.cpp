@@ -12,10 +12,9 @@ namespace spy::network::messages {
 
     GameStarted::GameStarted() : MessageContainer{MessageTypeEnum::GAME_STARTED, {}} {}
 
-    //todo welche UUID kommt hier an den MessageContainer?
-    GameStarted::GameStarted(const util::UUID &playerOneId, const util::UUID &playerTwoId,
+    GameStarted::GameStarted(const util::UUID &playerId, const util::UUID &playerOneId, const util::UUID &playerTwoId,
                              std::string playerOneName, std::string playerTwoName,
-                             const util::UUID &sessionId) : MessageContainer{MessageTypeEnum::GAME_STARTED, {}},
+                             const util::UUID &sessionId) : MessageContainer{MessageTypeEnum::GAME_STARTED, playerId},
                                                             playerOneId(playerOneId), playerTwoId(playerTwoId),
                                                             playerOneName(std::move(playerOneName)),
                                                             playerTwoName(std::move(playerTwoName)),

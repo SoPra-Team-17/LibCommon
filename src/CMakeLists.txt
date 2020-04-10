@@ -39,7 +39,7 @@ set(SOURCE
         network/messages/RequestMetaInformation.cpp
         network/messages/Strike.cpp
         network/messages/RequestReplay.cpp
-        )
+        network/messages/Replay.cpp)
 
 set(INCLUDE
         datatypes/gadgets/Gadget.hpp
@@ -77,6 +77,7 @@ set(INCLUDE
         network/messages/RequestMetaInformation.hpp
         network/messages/Strike.hpp
         network/messages/RequestReplay.hpp
+        network/messages/Replay.hpp
         )
 
 
