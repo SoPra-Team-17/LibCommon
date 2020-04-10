@@ -15,6 +15,9 @@
 #include "util/Point.hpp"
 
 namespace spy::scenario {
+    /**
+     * @brief Represents the scenario encoded in the scenario configuration.
+     */
     class Scenario {
         public:
             Scenario() = default;
@@ -22,6 +25,10 @@ namespace spy::scenario {
             [[nodiscard]] FieldStateEnum getField(unsigned int x, unsigned int y) const;
 
             [[nodiscard]] FieldStateEnum getField(util::Point p) const;
+
+            [[nodiscard]] unsigned int getNumberOfRows() const;
+
+            [[nodiscard]] unsigned int getRowLength(unsigned int row) const;
 
             friend void to_json(nlohmann::json &j, const Scenario &s);
 
