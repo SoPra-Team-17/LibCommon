@@ -26,7 +26,7 @@ set(SOURCE
         network/messages/HelloReply.cpp
         network/MessageContainer.cpp
         util/UUID.cpp
-        util/Point.cpp)
+        util/Point.cpp network/messages/GameStarted.cpp network/messages/GameStarted.hpp)
 
 set(INCLUDE
         datatypes/gadgets/Gadget.hpp
