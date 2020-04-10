@@ -7,8 +7,6 @@
 
 #include "FieldMap.hpp"
 
-#include <iostream>
-
 namespace spy::scenario {
 
     FieldMap::FieldMap(const Scenario &scenario) {
