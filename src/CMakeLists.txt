@@ -43,7 +43,7 @@ include_directories(src)
 include_directories(datatypes)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
-target_link_libraries(${PROJECT_NAME} nlohmann_json::nlohmann_json)
+target_link_libraries(${PROJECT_NAME} nlohmann_json::nlohmann_json uuid)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION /usr/lib)
 install(FILES ${INCLUDE} DESTINATION /usr/include/${PROJECT_NAME})

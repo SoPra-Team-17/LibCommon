@@ -8,6 +8,7 @@
 #ifndef LIBCOMMON_PROPERTY_ENUM_HPP
 #define LIBCOMMON_PROPERTY_ENUM_HPP
 
+#include <nlohmann/json.hpp>
 
 namespace spy::character {
     /**
@@ -32,12 +33,24 @@ namespace spy::character {
         OBSERVATION
     };
 
-
-    //TODO: Wofuer ist das gut ? -> never used + misleading, because there are also NPC agents
-    enum class NPCEnum {
-        CAT,
-        JANITOR
-    };
+    NLOHMANN_JSON_SERIALIZE_ENUM(PropertyEnum , {
+        { PropertyEnum::NIMBLENESS, "NIMBLENESS" },
+        { PropertyEnum::SLUGGISHNESS, "SLUGGISHNESS" },
+        { PropertyEnum::SPRYNESS, "SPRYNESS" },
+        { PropertyEnum::AGILITY, "AGILITY" },
+        { PropertyEnum::LUCKY_DEVIL, "LUCKY_DEVIL" },
+        { PropertyEnum::JINX, "JINX" },
+        { PropertyEnum::CLAMMY_CLOTHES, "CLAMMY_CLOTHES" },
+        { PropertyEnum::CONSTANT_CLAMMY_CLOTHES, "CONSTANT_CLAMMY_CLOTHES" },
+        { PropertyEnum::ROBUST_STOMACH, "ROBUST_STOMACH" },
+        { PropertyEnum::TOUGHNESS, "TOUGHNESS" },
+        { PropertyEnum::BABYSITTER, "BABYSITTER" },
+        { PropertyEnum::HONEY_TRAP, "HONEY_TRAP" },
+        { PropertyEnum::BANG_AND_BURN, "BANG_AND_BURN" },
+        { PropertyEnum::FLAPS_AND_SEALS, "FLAPS_AND_SEALS" },
+        { PropertyEnum::TRADECRAFT, "TRADECRAFT" },
+        { PropertyEnum::OBSERVATION, "OBSERVATION" },
+    })
 }
 
 
