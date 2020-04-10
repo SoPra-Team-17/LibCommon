@@ -7,28 +7,30 @@
 
 #include <network/MessageContainer.hpp>
 #include <datatypes/gadgets/GadgetEnum.hpp>
+#include <variant>
 
 namespace spy::network::messages {
 
+    /**
+     * @brief Represents choice of either a spy::character::Character (by util::UUID) or a spy::gadget::Gadget
+     */
     class ItemChoice : public MessageContainer {
         public:
             ItemChoice();
 
-            ItemChoice(const util::UUID &playerId, const util::UUID &chosenCharacter,
-                       const spy::gadget::GadgetEnum &chosenGadger);
+            /**
+             * @param choice Character or Gadget
+             */
+            ItemChoice(const util::UUID &playerId, std::variant<util::UUID, gadget::GadgetEnum> choice);
 
-            [[nodiscard]] const util::UUID &getChosenCharacter() const;
-
-            [[nodiscard]] const gadget::GadgetEnum &getChosenGadget() const;
+            [[nodiscard]] const std::variant<util::UUID, gadget::GadgetEnum> &getChoice() const;
 
             friend void to_json(nlohmann::json &j, const ItemChoice &i);
 
             friend void from_json(const nlohmann::json &j, ItemChoice &i);
 
-
         private:
-            util::UUID chosenCharacter;
-            spy::gadget::GadgetEnum chosenGadget;
+            std::variant<util::UUID, gadget::GadgetEnum> choice;
     };
 }
 

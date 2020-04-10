@@ -8,30 +8,32 @@ namespace spy::network::messages {
 
     ItemChoice::ItemChoice() : MessageContainer(MessageTypeEnum::ITEM_CHOICE, {}) {}
 
-    ItemChoice::ItemChoice(const util::UUID &playerId, const util::UUID &chosenCharacter,
-                           const spy::gadget::GadgetEnum &chosenGadget) : MessageContainer(MessageTypeEnum::ITEM_CHOICE,
-                                                                                           playerId),
-                                                                          chosenCharacter(chosenCharacter),
-                                                                          chosenGadget(chosenGadget) {}
-
+    ItemChoice::ItemChoice(const util::UUID &playerId, std::variant<util::UUID, gadget::GadgetEnum> choice) :
+            MessageContainer(MessageTypeEnum::ITEM_CHOICE, playerId),
+            choice(choice) {}
 
     void to_json(nlohmann::json &j, const ItemChoice &i) {
         MessageContainer::common_to_json(j, i);
-        j["chosenCharacter"] = i.chosenCharacter;
-        j["chosenGadget"] = i.chosenGadget;
+        if (std::holds_alternative<util::UUID>(i.choice)) {
+            j["chosenCharacter"] = std::get<util::UUID>(i.choice);
+            j["chosenGadget"] = nullptr;
+        } else {
+            j["chosenGadget"] = std::get<gadget::GadgetEnum>(i.choice);
+            j["chosenCharacter"] = nullptr;
+        }
     }
 
     void from_json(const nlohmann::json &j, ItemChoice &i) {
         MessageContainer::common_from_json(j, i);
-        j.at("chosenCharacter").get_to(i.chosenCharacter);
-        j.at("chosenGadget").get_to(i.chosenGadget);
+        auto chosenCharacter = j.find("chosenCharacter");
+        if (chosenCharacter != j.end() && !chosenCharacter->is_null()) {
+            i.choice = j.at("chosenCharacter").get<util::UUID>();
+        } else {
+            i.choice = j.at("chosenGadget").get<gadget::GadgetEnum>();
+        }
     }
 
-    const util::UUID &ItemChoice::getChosenCharacter() const {
-        return chosenCharacter;
-    }
-
-    const spy::gadget::GadgetEnum &ItemChoice::getChosenGadget() const {
-        return chosenGadget;
+    const std::variant<util::UUID, gadget::GadgetEnum> &ItemChoice::getChoice() const {
+        return choice;
     }
 }

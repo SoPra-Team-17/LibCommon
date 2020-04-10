@@ -62,8 +62,7 @@ namespace spy::util {
 
             bool operator>=(const UUID &rhs) const;
 
-            template<typename OStream>
-            friend OStream &operator<<(OStream &stream, const UUID &uuid) {
+            friend std::ostream &operator<<(std::ostream &stream, const UUID &uuid) {
                 return stream << uuid.to_string();
             }
 

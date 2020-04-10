@@ -14,7 +14,8 @@ set(SOURCES
         util/pointTest.cpp
         util/uuidTest.cpp
         util/optionalSerialization.cpp
-        messages/helloMessageTest.cpp)
+        messages/helloMessageTest.cpp
+        messages/itemChoiceMessageTest.cpp)
 
 add_executable(allTests ${SOURCES})
 
