@@ -14,6 +14,9 @@ set(SOURCE
         datatypes/character/CharacterInformation.cpp
         datatypes/character/CharacterDescription.cpp
         datatypes/matchconfig/MatchConfig.cpp
+        datatypes/scenario/Scenario.cpp
+        datatypes/scenario/FieldMap.cpp
+        datatypes/scenario/Field.cpp
         util/UUID.cpp
         util/Point.cpp
         )
@@ -27,6 +30,10 @@ set(INCLUDE
         datatypes/character/CharacterDescription.hpp
         datatypes/character/PropertyEnum.hpp
         datatypes/matchconfig/MatchConfig.hpp
+        datatypes/scenario/Scenario.hpp
+        datatypes/scenario/FieldMap.hpp
+        datatypes/scenario/Field.hpp
+        datatypes/scenario/FieldStateEnum.hpp
         util/UUID.hpp
         util/Point.hpp
         )
