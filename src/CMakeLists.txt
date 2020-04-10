@@ -38,6 +38,7 @@ set(SOURCE
         network/messages/RequestGamePause.cpp
         network/messages/RequestMetaInformation.cpp
         network/messages/Strike.cpp
+        network/messages/RequestReplay.cpp
         )
 
 set(INCLUDE
@@ -75,6 +76,7 @@ set(INCLUDE
         network/messages/RequestGamePause.hpp
         network/messages/RequestMetaInformation.hpp
         network/messages/Strike.hpp
+        network/messages/RequestReplay.hpp
         )
 
 
