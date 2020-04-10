@@ -19,6 +19,16 @@ namespace spy::scenario {
         SAFE,
         FIREPLACE
     };
+
+    NLOHMANN_JSON_SERIALIZE_ENUM(FieldStateEnum, {
+        { FieldStateEnum::BAR_TABLE, "BAR_TABLE" },
+        { FieldStateEnum::FREE, "FREE" },
+        { FieldStateEnum::ROULETTE_TABLE, "ROULETTE_TABLE" },
+        { FieldStateEnum::WALL, "WALL" },
+        { FieldStateEnum::BAR_SEAT, "BAR_SEAT" },
+        { FieldStateEnum::SAFE, "SAFE" },
+        { FieldStateEnum::FIREPLACE, "FIREPLACE" }
+    })
 }
 
 #endif //LIBCOMMON_FIELD_STATE_ENUM_HPP
