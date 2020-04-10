@@ -13,7 +13,8 @@ set(SOURCES
         matchConfigTest.cpp
         pointTest.cpp
         util/uuidTest.cpp
-        gameplay/exfiltrationTest.cpp)
+        gameplay/exfiltrationTest.cpp
+        gameplay/gadgetActionTest.cpp)
 
 add_executable(allTests ${SOURCES})
 
