@@ -36,6 +36,14 @@ namespace spy::gameplay {
         }
     }
 
+    void to_json(nlohmann::json &j, const Operation &o) {
+        Operation::common_to_json(j, o);
+    }
+
+    void from_json(const nlohmann::json &j, Operation &o) {
+        Operation::common_from_json(j, o);
+    }
+
     OperationEnum Operation::getType() const {
         return type;
     }

@@ -36,6 +36,10 @@ namespace spy::gameplay {
 
             static void common_from_json(const nlohmann::json &j, Operation &op);
 
+            friend void to_json(nlohmann::json &j, const Operation &o);
+
+            friend void from_json(const nlohmann::json &j, Operation &o);
+
         private:
             OperationEnum type = OperationEnum::INVALID;
             bool successful;
