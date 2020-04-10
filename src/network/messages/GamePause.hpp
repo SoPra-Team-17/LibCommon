@@ -10,9 +10,9 @@
 namespace spy::network::messages {
     class GamePause : public MessageContainer {
         public:
-            GamePause() = default;
+            GamePause();
 
-            explicit GamePause(bool pause);
+            GamePause(util::UUID playerId, bool pause);
 
             [[nodiscard]] bool isGamePause() const;
 

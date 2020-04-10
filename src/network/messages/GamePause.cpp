@@ -6,7 +6,11 @@
 
 namespace spy::network::messages {
 
-    GamePause::GamePause(bool pause) : gamePause{pause} {}
+    GamePause::GamePause() : MessageContainer{MessageTypeEnum::GAME_PAUSE, {}} {}
+
+    GamePause::GamePause(util::UUID playerId, bool pause) :
+            MessageContainer{MessageTypeEnum::GAME_PAUSE, playerId},
+            gamePause{pause} {}
 
     void to_json(nlohmann::json &j, const GamePause &g) {
         MessageContainer::common_to_json(j, g);
