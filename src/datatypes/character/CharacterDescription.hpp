@@ -33,8 +33,6 @@ namespace spy::character {
         public:
             CharacterDescription() = default;
 
-            CharacterDescription() = default;
-
             CharacterDescription(const std::string &name,
                                  const std::string &description,
                                  GenderEnum gender,

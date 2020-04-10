@@ -29,11 +29,4 @@ namespace spy::character {
         j.at("characterId").get_to(ci.characterId);
     }
 
-    void from_json(const nlohmann::json &/*j*/, CharacterInformation &/*c*/) {
-        // TODO CharacterInformation from_json
-    }
-
-    void to_json(nlohmann::json &/*j*/, const CharacterInformation &/*c*/) {
-        // TODO CharacterInformation from_json
-    }
 }   // namespace spy::character
