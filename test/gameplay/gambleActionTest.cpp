@@ -10,7 +10,6 @@ TEST(GambleAction, encode) {
     spy::gameplay::GambleAction ga(true, {1, 2}, spy::util::UUID("12345678-1234-1234-1234-1234567890AB"), 3);
     nlohmann::json j;
     EXPECT_NO_THROW(j = ga);
-    std::cout << j.dump() << std::endl;
     EXPECT_EQ(j.dump(),
               R"({"characterId":"12345678-1234-1234-1234-1234567890ab","stake":3,"successful":true,"target":{"x":1,"y":2},"type":"GAMBLE_ACTION"})");
 }
