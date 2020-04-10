@@ -33,7 +33,8 @@ set(SOURCE
         network/messages/ItemChoice.cpp
         network/messages/RequestEquipmentChoice.cpp
         network/messages/RequestGameOperation.cpp
-        )
+        datatypes/gameplay/State.cpp
+        network/messages/GameStatus.cpp network/messages/GameStatus.hpp)
 
 set(INCLUDE
         datatypes/gadgets/Gadget.hpp
@@ -65,6 +66,7 @@ set(INCLUDE
         network/messages/ItemChoice.hpp
         network/messages/RequestEquipmentChoice.hpp
         network/messages/RequestGameOperation.hpp
+        datatypes/gameplay/State.hpp
         )
 
 
