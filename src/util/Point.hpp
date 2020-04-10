@@ -54,8 +54,8 @@ namespace spy::util {
             friend void from_json(const nlohmann::json &j, Point &p);
 
         private:
-            int x;
-            int y;
+            int x = 0;
+            int y = 0;
 
     };
 }

@@ -8,9 +8,8 @@
 #ifndef LIBCOMMON_CHARACTER_INFORMATION_HPP
 #define LIBCOMMON_CHARACTER_INFORMATION_HPP
 
+#include <nlohmann/json.hpp>
 #include <util/UUID.hpp>
-#include <string>
-#include <list>
 #include <datatypes/character/Character.hpp>
 #include <datatypes/character/CharacterDescription.hpp>
 
@@ -18,15 +17,18 @@ namespace spy::character {
     /**
      * @brief Representation of the information of characters being used in the network protocol.
      */
-    class CharacterInformation {
+    class CharacterInformation: public CharacterDescription {
         public:
             CharacterInformation() = default;
 
-            CharacterInformation(const util::UUID &characterId, const CharacterDescription &character);
+            CharacterInformation(const util::UUID &characterId, const std::string &name, const std::string &description, GenderEnum gender,
+                                 const std::vector<PropertyEnum> &features);
 
             [[nodiscard]] const util::UUID &getCharacterId() const;
 
-            [[nodiscard]] const CharacterDescription &getCharacter() const;
+            friend void to_json(nlohmann::json &j, const CharacterInformation &ci);
+
+            friend void from_json(const nlohmann::json &j, CharacterInformation &ci);
 
             friend void to_json(nlohmann::json &j, const CharacterInformation &c);
 
@@ -34,7 +36,6 @@ namespace spy::character {
 
         private:
             spy::util::UUID characterId;
-            CharacterDescription character;
     };
 
 }

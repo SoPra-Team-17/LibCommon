@@ -6,14 +6,15 @@ include_directories(../src)
 include_directories(../src/datatypes)
 
 set(SOURCES
-        gadgetTest.cpp
-        jsonEncodingTest.cpp
-        jsonDecodingTest.cpp
-        characterTest.cpp
-        matchConfigTest.cpp
-        pointTest.cpp
-        messages/helloMessageTest.cpp
-        util/uuidTest.cpp)
+        datatypes/gadgetTest.cpp
+        datatypes/jsonEncodingTest.cpp
+        datatypes/jsonDecodingTest.cpp
+        datatypes/characterTest.cpp
+        datatypes/matchConfigTest.cpp
+        util/pointTest.cpp
+        util/uuidTest.cpp
+        util/optionalSerialization.cpp
+        messages/helloMessageTest.cpp)
 
 add_executable(allTests ${SOURCES})
 
