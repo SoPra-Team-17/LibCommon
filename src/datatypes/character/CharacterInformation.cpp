@@ -20,20 +20,12 @@ namespace spy::character {
     }
 
     void to_json(nlohmann::json &j, const spy::character::CharacterInformation &ci) {
-        j["name"] = ci.name;
-        j["description"] = ci.description;
-        j["gender"] = ci.gender;
-        j["features"] = ci.features;
-
+        CharacterDescription::common_to_json(j, ci);
         j["characterId"] = ci.characterId;
     }
 
     void from_json(const nlohmann::json &j, spy::character::CharacterInformation &ci) {
-        j.at("name").get_to(ci.name);
-        j.find("description") != j.end() ? j.at("description").get_to(ci.description) : ci.description = "";
-        j.find("gender") != j.end() ? j.at("gender").get_to(ci.gender) : ci.gender = GenderEnum::DIVERSE;
-        j.at("features").get_to(ci.features);
-
+        CharacterDescription::common_from_json(j, ci);
         j.at("characterId").get_to(ci.characterId);
     }
 

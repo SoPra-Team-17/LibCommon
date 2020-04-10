@@ -41,7 +41,7 @@ namespace spy::character {
             [[nodiscard]] const std::string &getName() const;
 
 
-            [[nodiscard]] const util::Point &getCoordinates() const;
+            [[nodiscard]] const std::optional<util::Point> &getCoordinates() const;
 
             void setCoordinates(const util::Point &coordinates);
 
@@ -80,7 +80,7 @@ namespace spy::character {
         private:
             spy::util::UUID characterId;
             std::string name;
-            spy::util::Point coordinates;
+            std::optional<spy::util::Point> coordinates;
             unsigned int movePoints = DEFAULT_MOVE_POINTS;
             unsigned int actionPoints = DEFAULT_ACTION_POINTS;
             unsigned int healthPoints = DEFAULT_HEALTH_POINTS;

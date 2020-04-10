@@ -46,9 +46,33 @@ namespace spy::character {
 
             [[nodiscard]] const std::vector<PropertyEnum> &getFeatures() const;
 
-            friend void to_json(nlohmann::json &j, const CharacterDescription &cd);
+            friend void to_json(nlohmann::json &j, const CharacterDescription &m);
 
-            friend void from_json(const nlohmann::json &j, CharacterDescription &cd);
+            friend void from_json(const nlohmann::json &j, CharacterDescription &m);
+
+            /**
+             * Create json with common CharacterDescription fields
+             * @tparam T class type deriving from CharacterDescription
+             */
+            template<typename T>
+            static void common_to_json(nlohmann::json &j, const T &cd) {
+                j["name"] = cd.name;
+                j["description"] = cd.description;
+                j["gender"] = cd.gender;
+                j["features"] = cd.features;
+            }
+
+            /**
+             * Fill common CharacterDescription fields from json, to be used by classes deriving from CharacterDescription.
+             * @tparam T class type deriving from CharacterDescription
+             */
+            template<typename T>
+            static void common_from_json(const nlohmann::json &j, T &cd) {
+                j.at("name").get_to(cd.name);
+                j.find("description") != j.end() ? j.at("description").get_to(cd.description) : cd.description = "";
+                j.at("gender").get_to(cd.gender);
+                j.at("features").get_to(cd.features);
+            }
 
         protected:
             std::string name;

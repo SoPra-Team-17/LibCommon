@@ -27,6 +27,7 @@ TEST(Character, json_encode) {
                              spy::character::PropertyEnum::ROBUST_STOMACH,
                              spy::character::PropertyEnum::LUCKY_DEVIL,
                              spy::character::PropertyEnum::TRADECRAFT});
+    character.setCoordinates({0,0});
 
     nlohmann::json characterJson = character;
 
@@ -45,6 +46,7 @@ TEST(Character, json_decode) {
                              spy::character::PropertyEnum::ROBUST_STOMACH,
                              spy::character::PropertyEnum::LUCKY_DEVIL,
                              spy::character::PropertyEnum::TRADECRAFT});
+    character.setCoordinates({0,0});
 
     EXPECT_EQ(character.getCharacterId().to_string(), decodedCharacter.getCharacterId().to_string());
     EXPECT_EQ(character.getName(), decodedCharacter.getName());

@@ -20,7 +20,7 @@ namespace spy::character {
         return name;
     }
 
-    const util::Point &Character::getCoordinates() const {
+    const std::optional<util::Point> &Character::getCoordinates() const {
         return coordinates;
     }
 
@@ -87,7 +87,9 @@ namespace spy::character {
     void to_json(nlohmann::json &j, const spy::character::Character &c) {
         j["characterId"] = c.characterId;
         j["name"] = c.name;
-        j["coordinates"] = c.coordinates;
+        if (c.coordinates.has_value()) {
+            j["coordinates"] = c.coordinates.value();
+        }
         j["mp"] = c.movePoints;
         j["ap"] = c.actionPoints;
         j["hp"] = c.healthPoints;
@@ -100,7 +102,11 @@ namespace spy::character {
     void from_json(const nlohmann::json &j, spy::character::Character &c) {
         j.at("characterId").get_to(c.characterId);
         j.at("name").get_to(c.name);
-        j.find("coordinates") != j.end() ? j.at("coordinates").get_to(c.coordinates) : c.coordinates = {-1, -1};
+        if(j.find("coordinates") != j.end()) {
+            util::Point p;
+            j.at("coordinates").get_to(p);
+            c.coordinates = (p.getX() < 0 || p.getY() < 0) ? std::optional<util::Point>() : p;
+        }
         j.at("mp").get_to(c.movePoints);
         j.at("ap").get_to(c.actionPoints);
         j.at("hp").get_to(c.healthPoints);
