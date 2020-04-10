@@ -19,7 +19,7 @@ namespace spy::network::messages {
                               const util::UUID &winner,
                               const spy::statistics::VictoryEnum &reason, bool hasReplay);
 
-            [[nodiscard]] auto getStatistics() const -> const spy::statistics::Statistics &;
+            [[nodiscard]] const std::optional<spy::statistics::Statistics> &getStatistics() const;
 
             [[nodiscard]] auto getWinner() const -> const util::UUID &;
 
@@ -34,7 +34,7 @@ namespace spy::network::messages {
         private:
             util::UUID winner;
             spy::statistics::VictoryEnum reason;
-            spy::statistics::Statistics statistics;
+            std::optional<spy::statistics::Statistics> statistics;
             bool hasReplay;
     };
 

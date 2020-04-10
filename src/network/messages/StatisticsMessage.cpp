@@ -29,13 +29,15 @@ namespace spy::network::messages {
 
     void from_json(const nlohmann::json &j, StatisticsMessage &s) {
         MessageContainer::common_from_json(j, s);
-        j.at("statistics").get_to(s.statistics);
+        if (j.find("statistics") != j.end()) {
+            j.at("statistics").get_to(s.statistics);
+        }
         j.at("winner").get_to(s.winner);
         j.at("reason").get_to(s.reason);
         j.at("hasReplay").get_to(s.hasReplay);
     }
 
-    auto StatisticsMessage::getStatistics() const -> const spy::statistics::Statistics & {
+    const std::optional<spy::statistics::Statistics> &StatisticsMessage::getStatistics() const {
         return statistics;
     }
 
