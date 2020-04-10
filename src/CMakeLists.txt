@@ -22,6 +22,7 @@ set(INCLUDE
         datatypes/gadgets/Gadget.hpp
         datatypes/gadgets/WiretapWithEarplugs.hpp
         datatypes/gadgets/Cocktail.hpp
+        datatypes/gameplay/OperationEnum.hpp
         datatypes/character/Character.hpp
         datatypes/character/CharacterInformation.hpp
         datatypes/character/CharacterDescription.hpp
