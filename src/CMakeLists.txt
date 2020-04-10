@@ -16,6 +16,9 @@ set(SOURCE
         datatypes/character/CharacterDescription.cpp
         datatypes/matchconfig/MatchConfig.cpp
         datatypes/scenario/Scenario.cpp
+        datatypes/statistics/StatisticsEntry.cpp
+        datatypes/statistics/Statistics.cpp
+        datatypes/gameplay/State.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp
@@ -33,13 +36,13 @@ set(SOURCE
         network/messages/ItemChoice.cpp
         network/messages/RequestEquipmentChoice.cpp
         network/messages/RequestGameOperation.cpp
-        datatypes/gameplay/State.cpp
         network/messages/GameStatus.cpp
         network/messages/RequestGamePause.cpp
         network/messages/RequestMetaInformation.cpp
         network/messages/Strike.cpp
         network/messages/RequestReplay.cpp
-        network/messages/Replay.cpp)
+        network/messages/Replay.cpp
+        network/messages/StatisticsMessage.cpp)
 
 set(INCLUDE
         datatypes/gadgets/Gadget.hpp
@@ -52,6 +55,10 @@ set(INCLUDE
         datatypes/character/PropertyEnum.hpp
         datatypes/matchconfig/MatchConfig.hpp
         datatypes/scenario/Scenario.hpp
+        datatypes/statistics/StatisticsEntry.hpp
+        datatypes/gameplay/State.hpp
+        datatypes/statistics/Statistics.hpp
+        datatypes/statistics/VictoryEnum.hpp
         network/messages/EquipmentChoice.hpp
         network/messages/Error.hpp
         network/messages/GameLeave.hpp
@@ -71,13 +78,13 @@ set(INCLUDE
         network/messages/ItemChoice.hpp
         network/messages/RequestEquipmentChoice.hpp
         network/messages/RequestGameOperation.hpp
-        datatypes/gameplay/State.hpp
         network/messages/GameStatus.hpp
         network/messages/RequestGamePause.hpp
         network/messages/RequestMetaInformation.hpp
         network/messages/Strike.hpp
         network/messages/RequestReplay.hpp
         network/messages/Replay.hpp
+        network/messages/StatisticsMessage.hpp
         )
 
 
