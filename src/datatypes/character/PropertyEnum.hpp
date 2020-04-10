@@ -51,13 +51,6 @@ namespace spy::character {
         { PropertyEnum::TRADECRAFT, "TRADECRAFT" },
         { PropertyEnum::OBSERVATION, "OBSERVATION" },
     })
-
-
-    //TODO: Wofuer ist das gut ? -> never used + misleading, because there are also NPC agents
-    enum class NPCEnum {
-        CAT,
-        JANITOR
-    };
 }
 
 
