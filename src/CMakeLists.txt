@@ -29,6 +29,7 @@ set(SOURCE
         util/Point.cpp
         network/messages/GameStarted.cpp
         network/messages/Reconnect.cpp
+        network/messages/RequestItemChoice.cpp
         )
 
 set(INCLUDE
@@ -57,6 +58,7 @@ set(INCLUDE
         util/Point.hpp
         network/messages/GameStarted.hpp
         network/messages/Reconnect.hpp
+        network/messages/RequestItemChoice.hpp
         )
 
 
