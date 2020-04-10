@@ -8,6 +8,8 @@
 #include "MatchConfig.hpp"
 
 namespace spy {
+    constexpr int INFINITE_LIMIT = -1;
+
     unsigned int MatchConfig::getMoledieRange() const {
         return moledieRange;
     }
@@ -96,15 +98,15 @@ namespace spy {
         return roundLimit;
     }
 
-    int MatchConfig::getTurnPhaseLimit() const {
+    std::optional<unsigned int> MatchConfig::getTurnPhaseLimit() const {
         return turnPhaseLimit;
     }
 
-    int MatchConfig::getPauseLimit() const {
+    std::optional<unsigned int> MatchConfig::getPauseLimit() const {
         return pauseLimit;
     }
 
-    int MatchConfig::getReconnectLimit() const {
+    std::optional<unsigned int> MatchConfig::getReconnectLimit() const {
         return reconnectLimit;
     }
 
@@ -157,18 +159,34 @@ namespace spy {
 
         j["roundLimit"] = c.roundLimit;
 
-        j["turnPhaseLimit"] = c.turnPhaseLimit;
+        if (c.turnPhaseLimit.has_value()) {
+            j["turnPhaseLimit"] = c.turnPhaseLimit.value();
+        } else {
+            j["turnPhaseLimit"] = INFINITE_LIMIT;
+        }
 
         j["catIp"] = c.catIp;
 
         j["strikeMaximum"] = c.strikeMaximum;
 
-        j["pauseLimit"] = c.pauseLimit;
+        if (c.pauseLimit.has_value()) {
+            j["pauseLimit"] = c.pauseLimit.value();
+        } else {
+            j["pauseLimit"] = INFINITE_LIMIT;
+        }
 
-        j["reconnectLimit"] = c.reconnectLimit;
+        if (c.reconnectLimit.has_value()) {
+            j["reconnectLimit"] = c.reconnectLimit.value();
+        } else {
+            j["reconnectLimit"] = INFINITE_LIMIT;
+        }
     }
 
     void from_json(const nlohmann::json &j, MatchConfig &c) {
+        int turnPhaseLimit = 0;
+        int reconnectLimit = 0;
+        int pauseLimit = 0;
+
         j.at("moledieRange").get_to(c.moledieRange);
 
         j.at("bowlerBladeRange").get_to(c.bowlerBladeRange);
@@ -209,14 +227,16 @@ namespace spy {
 
         j.at("roundLimit").get_to(c.roundLimit);
 
-        j.at("turnPhaseLimit").get_to(c.turnPhaseLimit);
-
         j.at("catIp").get_to(c.catIp);
 
         j.at("strikeMaximum").get_to(c.strikeMaximum);
 
-        j.at("pauseLimit").get_to(c.pauseLimit);
+        j.at("turnPhaseLimit").get_to(turnPhaseLimit);
+        j.at("reconnectLimit").get_to(reconnectLimit);
+        j.at("pauseLimit").get_to(pauseLimit);
 
-        j.at("reconnectLimit").get_to(c.reconnectLimit);
+        c.turnPhaseLimit = (turnPhaseLimit < 0) ? std::optional<unsigned int>() : turnPhaseLimit;
+        c.reconnectLimit = (reconnectLimit < 0) ? std::optional<unsigned int>() : reconnectLimit;
+        c.pauseLimit = (pauseLimit < 0) ? std::optional<unsigned int>() : pauseLimit;
     }
 }

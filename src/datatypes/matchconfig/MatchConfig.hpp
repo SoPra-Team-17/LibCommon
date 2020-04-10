@@ -66,26 +66,11 @@ namespace spy {
 
             [[nodiscard]] unsigned int getStrikeMaximum() const;
 
-            /**
-            * Getter for the turn phase limit.
-            * @return Turn phase limit in seconds.
-            * @note   A negative value corresponds to an infinite limit.
-            */
-            [[nodiscard]] int getTurnPhaseLimit() const;
+            [[nodiscard]] std::optional<unsigned int> getTurnPhaseLimit() const;
 
-            /**
-             * Getter for the pause limit.
-             * @return Pause limit in seconds.
-             * @note   A negative value corresponds to an infinite limit.
-             */
-            [[nodiscard]] int getPauseLimit() const;
+            [[nodiscard]] std::optional<unsigned int> getPauseLimit() const;
 
-            /**
-             * Getter for the reconnect limit.
-             * @return Reconnect limit in seconds.
-             * @note   A negative value corresponds to an infinite limit.
-             */
-            [[nodiscard]] int getReconnectLimit() const;
+            [[nodiscard]] std::optional<unsigned int> getReconnectLimit() const;
 
             friend void to_json(nlohmann::json &j, const MatchConfig &c);
 
@@ -129,9 +114,9 @@ namespace spy {
             unsigned int catIp;
             unsigned int strikeMaximum;
 
-            int turnPhaseLimit;
-            int pauseLimit;
-            int reconnectLimit;
+            std::optional<unsigned int> turnPhaseLimit;
+            std::optional<unsigned int> pauseLimit;
+            std::optional<unsigned int> reconnectLimit;
     };
 }
 
