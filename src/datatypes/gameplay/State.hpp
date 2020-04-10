@@ -13,7 +13,6 @@ namespace spy::gameplay {
 
             friend void from_json(const nlohmann::json &j, State &s);
     };
-    };
 }
 
 
