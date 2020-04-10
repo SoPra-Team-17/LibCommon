@@ -24,8 +24,7 @@ set(SOURCE
         network/messages/Hello.cpp
         network/MessageContainer.cpp
         util/UUID.cpp
-        util/Point.cpp
-        network/messages/HelloMessage.cpp network/messages/HelloMessage.hpp network/RoleEnum.hpp)
+        util/Point.cpp)
 
 set(INCLUDE
         datatypes/gadgets/Gadget.hpp
