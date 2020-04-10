@@ -21,6 +21,7 @@ namespace spy::scenario {
 
         public:
             Field() = default;
+            explicit Field(FieldStateEnum fieldState);
 
             void setFieldState(FieldStateEnum fieldState);
             void setDestroyed(bool isDestroyed);

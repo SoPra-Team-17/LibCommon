@@ -8,6 +8,11 @@
 #include "Field.hpp"
 
 namespace spy::scenario {
+
+    Field::Field(FieldStateEnum fieldState) {
+        Field::state = fieldState;
+    }
+
     void Field::setFieldState(FieldStateEnum fieldState) {
         Field::state = fieldState;
     }
