@@ -13,6 +13,7 @@ set(SOURCE
         datatypes/gameplay/Exfiltration.cpp
         datatypes/gameplay/GadgetAction.cpp
         datatypes/gameplay/GambleAction.cpp
+        datatypes/gameplay/Movement.cpp
         datatypes/gameplay/Operation.cpp
         datatypes/character/Character.cpp
         datatypes/character/CharacterInformation.cpp
@@ -29,6 +30,7 @@ set(INCLUDE
         datatypes/gameplay/Exfiltration.hpp
         datatypes/gameplay/GadgetAction.hpp
         datatypes/gameplay/GambleAction.hpp
+        datatypes/gameplay/Movement.hpp
         datatypes/gameplay/Operation.hpp
         datatypes/gameplay/OperationEnum.hpp
         datatypes/character/Character.hpp

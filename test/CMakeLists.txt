@@ -15,7 +15,8 @@ set(SOURCES
         util/uuidTest.cpp
         gameplay/exfiltrationTest.cpp
         gameplay/gadgetActionTest.cpp
-        gameplay/gambleActionTest.cpp)
+        gameplay/gambleActionTest.cpp
+        gameplay/movementActionTest.cpp)
 
 add_executable(allTests ${SOURCES})
 
