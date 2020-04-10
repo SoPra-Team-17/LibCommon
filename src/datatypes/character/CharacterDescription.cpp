@@ -37,8 +37,8 @@ namespace spy::character {
 
     void from_json(const nlohmann::json &j, spy::character::CharacterDescription &cd) {
         j.at("name").get_to(cd.name);
-        j.at("description").get_to(cd.description);
-        j.at("gender").get_to(cd.gender);
+        j.find("description") != j.end() ? j.at("description").get_to(cd.description) : cd.description = "";
+        j.find("gender") != j.end() ? j.at("gender").get_to(cd.gender) : cd.gender = GenderEnum::DIVERSE;
         j.at("features").get_to(cd.features);
     }
 

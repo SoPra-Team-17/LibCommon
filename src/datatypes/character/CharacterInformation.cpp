@@ -9,25 +9,32 @@
 
 namespace spy::character {
 
-    CharacterInformation::CharacterInformation(const util::UUID &characterId, const CharacterDescription &character) :
-        characterId(characterId), character(character) {}
+    CharacterInformation::CharacterInformation(const util::UUID &characterId,
+                                               const std::string &name, const std::string &description,
+                                               GenderEnum gender, const std::vector<PropertyEnum> &features)
+            : CharacterDescription(name, description, gender, features),
+              characterId(characterId) {}
 
     const util::UUID &CharacterInformation::getCharacterId() const {
         return characterId;
     }
 
-    const CharacterDescription &CharacterInformation::getCharacter() const {
-        return character;
-    }
-
     void to_json(nlohmann::json &j, const spy::character::CharacterInformation &ci) {
+        j["name"] = ci.name;
+        j["description"] = ci.description;
+        j["gender"] = ci.gender;
+        j["features"] = ci.features;
+
         j["characterId"] = ci.characterId;
-        j["character"] = ci.character;
     }
 
     void from_json(const nlohmann::json &j, spy::character::CharacterInformation &ci) {
+        j.at("name").get_to(ci.name);
+        j.find("description") != j.end() ? j.at("description").get_to(ci.description) : ci.description = "";
+        j.find("gender") != j.end() ? j.at("gender").get_to(ci.gender) : ci.gender = GenderEnum::DIVERSE;
+        j.at("features").get_to(ci.features);
+
         j.at("characterId").get_to(ci.characterId);
-        j.at("character").get_to(ci.character);
     }
 
 }   // namespace spy::character

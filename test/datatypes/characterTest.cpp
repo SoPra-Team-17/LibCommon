@@ -91,31 +91,31 @@ TEST(CharacterDescription, json_decode) {
 
 TEST(CharacterInformation, json_encode) {
     spy::character::CharacterInformation characterInformation({},
-            {"James Bond","Bester Geheimagent aller Zeiten mit 00-Status.", spy::character::GenderEnum::DIVERSE,
+            "James Bond","Bester Geheimagent aller Zeiten mit 00-Status.", spy::character::GenderEnum::DIVERSE,
              {spy::character::PropertyEnum::SPRYNESS, spy::character::PropertyEnum::TOUGHNESS,
               spy::character::PropertyEnum::ROBUST_STOMACH, spy::character::PropertyEnum::LUCKY_DEVIL,
-              spy::character::PropertyEnum::TRADECRAFT}});
+              spy::character::PropertyEnum::TRADECRAFT});
 
     nlohmann::json characterInformationJson = characterInformation;
 
     std::string serialized = characterInformationJson.dump();
-    std::string expected = R"({"character":{"description":"Bester Geheimagent aller Zeiten mit 00-Status.","features":["SPRYNESS","TOUGHNESS","ROBUST_STOMACH","LUCKY_DEVIL","TRADECRAFT"],"gender":"DIVERSE","name":"James Bond"},"characterId":"00000000-0000-0000-0000-000000000000"})";
+    std::string expected = R"({"characterId":"00000000-0000-0000-0000-000000000000","description":"Bester Geheimagent aller Zeiten mit 00-Status.","features":["SPRYNESS","TOUGHNESS","ROBUST_STOMACH","LUCKY_DEVIL","TRADECRAFT"],"gender":"DIVERSE","name":"James Bond"})";
     EXPECT_EQ(expected, serialized);
 }
 
 TEST(CharacterInformation, json_decode) {
-    auto input = R"({"character":{"description":"Bester Geheimagent aller Zeiten mit 00-Status.","features":["SPRYNESS","TOUGHNESS","ROBUST_STOMACH","LUCKY_DEVIL","TRADECRAFT"],"gender":"DIVERSE","name":"James Bond"},"characterId":"00000000-0000-0000-0000-000000000000"})"_json;
+    auto input = R"({"characterId":"00000000-0000-0000-0000-000000000000","description":"Bester Geheimagent aller Zeiten mit 00-Status.","features":["SPRYNESS","TOUGHNESS","ROBUST_STOMACH","LUCKY_DEVIL","TRADECRAFT"],"gender":"DIVERSE","name":"James Bond"})"_json;
     auto decodedCharacterInformation = input.get<spy::character::CharacterInformation>();
 
     spy::character::CharacterInformation characterInformation({},
-            {"James Bond","Bester Geheimagent aller Zeiten mit 00-Status.", spy::character::GenderEnum::DIVERSE,
+            "James Bond","Bester Geheimagent aller Zeiten mit 00-Status.", spy::character::GenderEnum::DIVERSE,
              {spy::character::PropertyEnum::SPRYNESS, spy::character::PropertyEnum::TOUGHNESS,
               spy::character::PropertyEnum::ROBUST_STOMACH, spy::character::PropertyEnum::LUCKY_DEVIL,
-              spy::character::PropertyEnum::TRADECRAFT}});
+              spy::character::PropertyEnum::TRADECRAFT});
 
     EXPECT_EQ(characterInformation.getCharacterId().to_string(), decodedCharacterInformation.getCharacterId().to_string());
-    EXPECT_EQ(characterInformation.getCharacter().getName(), decodedCharacterInformation.getCharacter().getName());
-    EXPECT_EQ(characterInformation.getCharacter().getDescription(), decodedCharacterInformation.getCharacter().getDescription());
-    EXPECT_EQ(characterInformation.getCharacter().getGender(), decodedCharacterInformation.getCharacter().getGender());
-    EXPECT_EQ(characterInformation.getCharacter().getFeatures(), decodedCharacterInformation.getCharacter().getFeatures());
+    EXPECT_EQ(characterInformation.getName(), decodedCharacterInformation.getName());
+    EXPECT_EQ(characterInformation.getDescription(), decodedCharacterInformation.getDescription());
+    EXPECT_EQ(characterInformation.getGender(), decodedCharacterInformation.getGender());
+    EXPECT_EQ(characterInformation.getFeatures(), decodedCharacterInformation.getFeatures());
 }

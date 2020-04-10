@@ -100,7 +100,7 @@ namespace spy::character {
     void from_json(const nlohmann::json &j, spy::character::Character &c) {
         j.at("characterId").get_to(c.characterId);
         j.at("name").get_to(c.name);
-        j.at("coordinates").get_to(c.coordinates);
+        j.find("coordinates") != j.end() ? j.at("coordinates").get_to(c.coordinates) : c.coordinates = {-1, -1};
         j.at("mp").get_to(c.movePoints);
         j.at("ap").get_to(c.actionPoints);
         j.at("hp").get_to(c.healthPoints);

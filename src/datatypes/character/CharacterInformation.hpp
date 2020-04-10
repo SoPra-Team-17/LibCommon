@@ -17,15 +17,14 @@ namespace spy::character {
     /**
      * @brief Representation of the information of characters being used in the network protocol.
      */
-    class CharacterInformation {
+    class CharacterInformation: public CharacterDescription {
         public:
             CharacterInformation() = default;
 
-            CharacterInformation(const util::UUID &characterId, const CharacterDescription &character);
+            CharacterInformation(const util::UUID &characterId, const std::string &name, const std::string &description, GenderEnum gender,
+                                 const std::vector<PropertyEnum> &features);
 
             [[nodiscard]] const util::UUID &getCharacterId() const;
-
-            [[nodiscard]] const CharacterDescription &getCharacter() const;
 
             friend void to_json(nlohmann::json &j, const CharacterInformation &ci);
 
@@ -34,7 +33,6 @@ namespace spy::character {
 
         private:
             spy::util::UUID characterId;
-            CharacterDescription character;
     };
 
 }

@@ -15,15 +15,15 @@
 
 namespace spy::character {
     enum class GenderEnum {
+        DIVERSE,
         MALE,
-        FEMALE,
-        DIVERSE
+        FEMALE
     };
 
-    NLOHMANN_JSON_SERIALIZE_ENUM(GenderEnum , {
+    NLOHMANN_JSON_SERIALIZE_ENUM(GenderEnum, {
+        { GenderEnum::DIVERSE, "DIVERSE" },
         { GenderEnum::MALE, "MALE" },
         { GenderEnum::FEMALE, "FEMALE" },
-        { GenderEnum::DIVERSE, "DIVERSE" },
     })
 
     /**
@@ -50,10 +50,10 @@ namespace spy::character {
 
             friend void from_json(const nlohmann::json &j, CharacterDescription &cd);
 
-        private:
+        protected:
             std::string name;
             std::string description;
-            GenderEnum gender;
+            GenderEnum gender = GenderEnum::DIVERSE;
             std::vector<spy::character::PropertyEnum> features;
     };
 }
