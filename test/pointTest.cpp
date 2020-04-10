@@ -6,7 +6,7 @@
 #include <util/Point.hpp>
 #include <sstream>
 
-TEST(point, Point) {
+TEST(Point, Point) {
     spy::util::Point p1 = {};
     EXPECT_EQ(p1.getX(), 0);
     EXPECT_EQ(p1.getY(), 0);
@@ -60,7 +60,7 @@ TEST(point, Point) {
     EXPECT_EQ(stream.str(), "[5|8]");
 }
 
-TEST(JSON_Decode, Point) {
+TEST(Point, json_decode) {
     auto input = R"({"x":8,"y":13})"_json;
     auto decodedPoint = input.get<spy::util::Point>();
 
@@ -69,7 +69,7 @@ TEST(JSON_Decode, Point) {
     EXPECT_TRUE(decodedPoint == point);
 }
 
-TEST(JSON_Encode, Point) {
+TEST(Point, json_dncode) {
     spy::util::Point point(8, 13);
 
     nlohmann::json pointJson = point;

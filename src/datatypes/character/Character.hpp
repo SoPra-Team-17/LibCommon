@@ -86,7 +86,7 @@ namespace spy::character {
             unsigned int healthPoints = DEFAULT_HEALTH_POINTS;
             unsigned int intelligencePoints = DEFAULT_INTELLIGENCE_POINTS;
             unsigned int chips = DEFAULT_CHIPS;
-            std::vector<PropertyEnum> properties;
+            std::vector<spy::character::PropertyEnum> properties;
             std::vector<spy::gadget::Gadget> gadgets;
     };
 }
