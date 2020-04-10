@@ -9,7 +9,6 @@
 
 namespace spy::network {
     enum class ErrorTypeEnum {
-            // TODO: handle special INVALID case (consistently among enums?)
             INVALID,
             NAME_NOT_AVAILABLE,
             ALREADY_SERVING,
