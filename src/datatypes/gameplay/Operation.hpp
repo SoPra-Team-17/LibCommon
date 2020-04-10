@@ -1,6 +1,8 @@
-//
-// Created by jonas on 10.04.20.
-//
+/**
+ * @file   Operation.hpp
+ * @author Jonas
+ * @brief  Generic gameplay operation
+ */
 
 #ifndef LIBCOMMON_OPERATION_HPP
 #define LIBCOMMON_OPERATION_HPP

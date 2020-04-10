@@ -1,6 +1,8 @@
-//
-// Created by jonas on 10.04.20.
-//
+/**
+ * @file   GambleAction.hpp
+ * @author Jonas
+ * @brief  GambleAction operation
+ */
 
 #ifndef LIBCOMMON_GAMBLEACTION_HPP
 #define LIBCOMMON_GAMBLEACTION_HPP

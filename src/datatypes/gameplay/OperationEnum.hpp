@@ -1,6 +1,8 @@
-//
-// Created by jonas on 10.04.20.
-//
+/**
+ * @file   OperationEnum.hpp
+ * @author Jonas
+ * @brief  Gameplay operation types
+ */
 
 #ifndef LIBCOMMON_OPERATIONENUM_HPP
 #define LIBCOMMON_OPERATIONENUM_HPP

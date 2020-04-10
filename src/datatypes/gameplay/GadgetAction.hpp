@@ -1,6 +1,8 @@
-//
-// Created by jonas on 10.04.20.
-//
+/**
+ * @file   GadgetAction.hpp
+ * @author Jonas
+ * @brief  GadgetAction operation
+ */
 
 #ifndef LIBCOMMON_GADGETACTION_HPP
 #define LIBCOMMON_GADGETACTION_HPP

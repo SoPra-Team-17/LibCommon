@@ -1,6 +1,8 @@
-//
-// Created by jonas on 10.04.20.
-//
+/**
+ * @file   Exfiltration.hpp
+ * @author Jonas
+ * @brief  Exfiltration operation
+ */
 
 #ifndef LIBCOMMON_EXFILTRATION_HPP
 #define LIBCOMMON_EXFILTRATION_HPP

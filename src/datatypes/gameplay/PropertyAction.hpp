@@ -1,6 +1,8 @@
-//
-// Created by jonas on 10.04.20.
-//
+/**
+ * @file   PropertyAction.hpp
+ * @author Jonas
+ * @brief  PropertyAction operation
+ */
 
 #ifndef LIBCOMMON_PROPERTYACTION_HPP
 #define LIBCOMMON_PROPERTYACTION_HPP

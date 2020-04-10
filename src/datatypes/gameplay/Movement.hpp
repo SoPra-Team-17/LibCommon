@@ -1,6 +1,8 @@
-//
-// Created by jonas on 10.04.20.
-//
+/**
+ * @file   Movement.hpp
+ * @author Jonas
+ * @brief  Movement operation
+ */
 
 #ifndef LIBCOMMON_MOVEMENT_HPP
 #define LIBCOMMON_MOVEMENT_HPP
