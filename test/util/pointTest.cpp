@@ -69,7 +69,7 @@ TEST(Point, json_decode) {
     EXPECT_TRUE(decodedPoint == point);
 }
 
-TEST(Point, json_dncode) {
+TEST(Point, json_encode) {
     spy::util::Point point(8, 13);
 
     nlohmann::json pointJson = point;
