@@ -12,7 +12,8 @@ set(SOURCES
         datatypes/characterTest.cpp
         datatypes/matchConfigTest.cpp
         util/pointTest.cpp
-        util/uuidTest.cpp)
+        util/uuidTest.cpp
+        util/optionalSerialization.cpp)
 
 add_executable(allTests ${SOURCES})
 
