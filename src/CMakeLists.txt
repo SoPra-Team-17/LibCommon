@@ -35,6 +35,7 @@ set(SOURCE
         network/messages/RequestGameOperation.cpp
         datatypes/gameplay/State.cpp
         network/messages/GameStatus.cpp
+        network/messages/RequestGamePause.cpp
         )
 
 set(INCLUDE
@@ -69,6 +70,7 @@ set(INCLUDE
         network/messages/RequestGameOperation.hpp
         datatypes/gameplay/State.hpp
         network/messages/GameStatus.hpp
+        network/messages/RequestGamePause.hpp
         )
 
 
