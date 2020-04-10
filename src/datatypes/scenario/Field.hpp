@@ -22,14 +22,16 @@ namespace spy::scenario {
         public:
             Field() = default;
 
+            void setFieldState(FieldStateEnum fieldState);
             void setDestroyed(bool isDestroyed);
             void setUpdated(bool isUpdated);
             void setInverted(bool isInverted);
             void setFoggy(bool isFoggy);
             void setGadget(std::optional<Gadget> g);
             void setChipAmount(std::optional<unsigned int> chipAmount);
-            void setSafeIndex(std::optional<unsigned int> safeIndex);
+            void setSafeIndex(std::optional<unsigned int> index);
 
+            [[nodiscard]] FieldStateEnum getFieldState() const;
             [[nodiscard]] bool isDestroyed() const;
             [[nodiscard]] bool isUpdated() const;
             [[nodiscard]] bool isInverted() const;
@@ -43,9 +45,9 @@ namespace spy::scenario {
             std::optional<Gadget> gadget;
             bool destroyed = false;
             bool inverted = false;
-            std::optional<unsigned int> chipAmount = 0;
-            std::optional<unsigned int> safeIndex = 0;
-            bool foggy = 0;
+            std::optional<unsigned int> chipAmount;
+            std::optional<unsigned int> safeIndex;
+            bool foggy = false;
             bool updated = false;
     };
 }

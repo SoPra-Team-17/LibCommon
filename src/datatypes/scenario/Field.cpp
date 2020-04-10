@@ -8,6 +8,10 @@
 #include "Field.hpp"
 
 namespace spy::scenario {
+    void Field::setFieldState(FieldStateEnum fieldState) {
+        Field::state = fieldState;
+    }
+
     void Field::setDestroyed(bool isDestroyed) {
         Field::destroyed = isDestroyed;
     }
@@ -28,12 +32,16 @@ namespace spy::scenario {
         Field::chipAmount = chips;
     }
 
-    void Field::setSafeIndex(std::optional<unsigned int> safeIndex) {
-        Field::safeIndex = safeIndex;
+    void Field::setSafeIndex(std::optional<unsigned int> index) {
+        Field::safeIndex = index;
     }
 
     void Field::setInverted(bool isInverted) {
         Field::inverted = isInverted;
+    }
+
+    FieldStateEnum Field::getFieldState() const {
+        return state;
     }
 
     bool Field::isDestroyed() const {
