@@ -14,7 +14,7 @@ namespace spy::network::messages {
         public:
             RequestMetaInformation();
 
-            RequestMetaInformation(const util::UUID &playerId, const std::vector<std::string> &keys);
+            RequestMetaInformation(const util::UUID &playerId, std::vector<std::string> keys);
 
             [[nodiscard]] const std::vector<std::string> &getKeys() const;
 

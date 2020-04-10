@@ -4,13 +4,15 @@
 
 #include "RequestMetaInformation.hpp"
 
+#include <utility>
+
 namespace spy::network::messages {
 
     RequestMetaInformation::RequestMetaInformation() : MessageContainer{MessageTypeEnum::REQUEST_META_INFORMATION,
                                                                         {}} {}
 
-    RequestMetaInformation::RequestMetaInformation(const util::UUID &playerId, const std::vector<std::string> &keys)
-            : MessageContainer{MessageTypeEnum::REQUEST_META_INFORMATION, playerId}, keys(keys) {}
+    RequestMetaInformation::RequestMetaInformation(const util::UUID &playerId, std::vector<std::string> keys)
+            : MessageContainer{MessageTypeEnum::REQUEST_META_INFORMATION, playerId}, keys(std::move(keys)) {}
 
 
     void to_json(nlohmann::json &j, const RequestMetaInformation &r) {
