@@ -32,6 +32,7 @@ set(SOURCE
         network/messages/RequestItemChoice.cpp
         network/messages/ItemChoice.cpp
         network/messages/RequestEquipmentChoice.cpp
+        network/messages/RequestGameOperation.cpp
         )
 
 set(INCLUDE
@@ -63,6 +64,7 @@ set(INCLUDE
         network/messages/RequestItemChoice.hpp
         network/messages/ItemChoice.hpp
         network/messages/RequestEquipmentChoice.hpp
+        network/messages/RequestGameOperation.hpp
         )
 
 
