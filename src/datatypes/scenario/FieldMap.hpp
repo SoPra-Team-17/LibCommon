@@ -12,11 +12,15 @@
 #include <nlohmann/json.hpp>
 #include "util/Point.hpp"
 #include "Field.hpp"
+#include "Scenario.hpp"
 
 namespace spy::scenario {
+    /**
+     * @brief Represents the field during the game.
+     */
     class FieldMap {
         public:
-            FieldMap() = default;
+            explicit FieldMap(const Scenario &scenario);
 
             void setField(unsigned int x, unsigned int y, Field field);
 

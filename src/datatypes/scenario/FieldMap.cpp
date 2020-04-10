@@ -7,7 +7,19 @@
 
 #include "FieldMap.hpp"
 
+#include <iostream>
+
 namespace spy::scenario {
+
+    FieldMap::FieldMap(const Scenario &scenario) {
+        map.resize(scenario.getNumberOfRows());
+        for (unsigned int y = 0; y < scenario.getNumberOfRows(); y++) {
+            map.at(y).resize(scenario.getRowLength(y));
+            for (unsigned int x = 0; x < scenario.getRowLength(y); x++) {
+                setField(x, y, Field(scenario.getField(x, y)));
+            }
+        }
+    }
 
     void FieldMap::setField(unsigned int x, unsigned int y, Field field) {
         map.at(y).at(x) = field;
@@ -27,7 +39,7 @@ namespace spy::scenario {
 
     bool FieldMap::isInside(util::Point p) const {
         return !(p.getX() < 0 || p.getY() < 0
-                 || map.size() < static_cast<unsigned int>(p.getY())
-                 || map.at(p.getY()).size() < static_cast<unsigned int>(p.getX()));
+                 || map.size() <= static_cast<unsigned int>(p.getY())
+                 || map.at(p.getY()).size() <= static_cast<unsigned int>(p.getX()));
     }
 }
