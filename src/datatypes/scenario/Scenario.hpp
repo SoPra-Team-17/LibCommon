@@ -12,6 +12,7 @@
 #include <nlohmann/json.hpp>
 #include "FieldStateEnum.hpp"
 #include "Field.hpp"
+#include "util/Point.hpp"
 
 namespace spy::scenario {
     class Scenario {
@@ -19,6 +20,8 @@ namespace spy::scenario {
             Scenario() = default;
 
             [[nodiscard]] FieldStateEnum getField(unsigned int x, unsigned int y) const;
+
+            [[nodiscard]] FieldStateEnum getField(util::Point p) const;
 
             friend void from_json(const nlohmann::json &j, Scenario &s);
         private:

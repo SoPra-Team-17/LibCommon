@@ -13,6 +13,10 @@ namespace spy::scenario {
         return scenario.at(y).at(x);
     }
 
+    FieldStateEnum Scenario::getField(util::Point p) const {
+        return getField(p.getX(), p.getY());
+    }
+
     void from_json(const nlohmann::json &j, Scenario &s) {
         j.at("scenario").get_to(s.scenario);
     }
