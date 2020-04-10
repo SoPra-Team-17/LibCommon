@@ -17,6 +17,7 @@ set(SOURCE
         datatypes/matchconfig/MatchConfig.cpp
         datatypes/scenario/Scenario.cpp
         network/messages/EquipmentChoice.cpp
+        network/messages/Error.cpp
         network/messages/GameLeave.cpp
         network/messages/GameLeft.cpp
         network/messages/GameOperation.cpp
@@ -38,6 +39,7 @@ set(INCLUDE
         datatypes/matchconfig/MatchConfig.hpp
         datatypes/scenario/Scenario.hpp
         network/messages/EquipmentChoice.hpp
+        network/messages/Error.hpp
         network/messages/GameLeave.hpp
         network/messages/GameLeft.hpp
         network/messages/GameOperation.hpp
