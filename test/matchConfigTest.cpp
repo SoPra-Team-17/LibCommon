@@ -8,7 +8,7 @@
 #include <gtest/gtest.h>
 #include <matchconfig/MatchConfig.hpp>
 
-TEST(MatchConfigDecodingEncoding, MatchConfig) {
+TEST(MatchConfig, MatchConfigDecodingEncoding) {
     auto input = R"({
     "moledieRange": 1,
     "bowlerBladeRange": 1,
@@ -39,7 +39,7 @@ TEST(MatchConfigDecodingEncoding, MatchConfig) {
     "reconnectLimit": 20
 })"_json;
 
-    spy::MatchConfig decodedMatchConfig;
+    spy::MatchConfig decodedMatchConfig{};
     EXPECT_NO_THROW(decodedMatchConfig = input.get<spy::MatchConfig>());
 
     EXPECT_EQ(decodedMatchConfig.getMoledieRange(), 1);
@@ -70,10 +70,85 @@ TEST(MatchConfigDecodingEncoding, MatchConfig) {
     EXPECT_EQ(decodedMatchConfig.getPauseLimit(), 320);
     EXPECT_EQ(decodedMatchConfig.getReconnectLimit(), 20);
 
-    std::string jsonString;
     nlohmann::json json;
     EXPECT_NO_THROW(json = decodedMatchConfig);
     EXPECT_EQ(json.dump(), input.dump());
+}
+
+TEST(MatchConfig, InfiniteLimits) {
+    auto input = R"({
+    "moledieRange": 1,
+    "bowlerBladeRange": 1,
+    "bowlerBladeHitChance": 0.25,
+    "bowlerBladeDamage": 4,
+    "laserCompactHitChance": 0.125,
+    "rocketPenDamage": 2,
+    "gasGlossDamage": 6,
+    "mothballPouchRange": 2,
+    "mothballPouchDamage": 1,
+    "fogTinRange": 2,
+    "grappleRange": 3,
+    "grappleHitChance": 0.35,
+    "wiretapWithEarplugsFailChance": 0.64,
+    "mirrorSwapChance": 0.35,
+    "cocktailDodgeChance": 0.25,
+    "cocktailHp": 6,
+    "spySuccessChance": 0.65,
+    "babysitterSuccessChance": 0.25,
+    "honeyTrapSuccessChance": 0.35,
+    "observationSuccessChance": 0.12,
+    "chipsToIpFactor": 12,
+    "roundLimit": 15,
+    "turnPhaseLimit": -10,
+    "catIp": 8,
+    "strikeMaximum": 4,
+    "pauseLimit": -5,
+    "reconnectLimit": -1
+})"_json;
+
+    auto expectated = R"({
+    "moledieRange": 1,
+    "bowlerBladeRange": 1,
+    "bowlerBladeHitChance": 0.25,
+    "bowlerBladeDamage": 4,
+    "laserCompactHitChance": 0.125,
+    "rocketPenDamage": 2,
+    "gasGlossDamage": 6,
+    "mothballPouchRange": 2,
+    "mothballPouchDamage": 1,
+    "fogTinRange": 2,
+    "grappleRange": 3,
+    "grappleHitChance": 0.35,
+    "wiretapWithEarplugsFailChance": 0.64,
+    "mirrorSwapChance": 0.35,
+    "cocktailDodgeChance": 0.25,
+    "cocktailHp": 6,
+    "spySuccessChance": 0.65,
+    "babysitterSuccessChance": 0.25,
+    "honeyTrapSuccessChance": 0.35,
+    "observationSuccessChance": 0.12,
+    "chipsToIpFactor": 12,
+    "roundLimit": 15,
+    "turnPhaseLimit": -1,
+    "catIp": 8,
+    "strikeMaximum": 4,
+    "pauseLimit": -1,
+    "reconnectLimit": -1
+})"_json;
+
+    spy::MatchConfig decodedMatchConfig{};
+    EXPECT_NO_THROW(decodedMatchConfig = input.get<spy::MatchConfig>());
+
+    EXPECT_NE(decodedMatchConfig.getTurnPhaseLimit(), -10);
+    EXPECT_NE(decodedMatchConfig.getPauseLimit(), -5);
+    EXPECT_NE(decodedMatchConfig.getReconnectLimit(), -1);
+    EXPECT_FALSE(decodedMatchConfig.getTurnPhaseLimit().has_value());
+    EXPECT_FALSE(decodedMatchConfig.getPauseLimit().has_value());
+    EXPECT_FALSE(decodedMatchConfig.getReconnectLimit().has_value());
+
+    nlohmann::json json;
+    EXPECT_NO_THROW(json = decodedMatchConfig);
+    EXPECT_EQ(json.dump(), expectated.dump());
 }
 
 
