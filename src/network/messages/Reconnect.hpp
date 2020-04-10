@@ -5,10 +5,10 @@
 #ifndef LIBCOMMON_RECONNECT_HPP
 #define LIBCOMMON_RECONNECT_HPP
 
-#include <util/UUID.hpp>
+#include <network/MessageContainer.hpp>
 
 namespace spy::network::messages {
-    class Reconnect : MessageContainer {
+    class Reconnect : public MessageContainer {
         public:
             Reconnect();
 

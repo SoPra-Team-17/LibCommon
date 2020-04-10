@@ -8,7 +8,7 @@
 #include <network/MessageContainer.hpp>
 
 namespace spy::network::messages {
-    class GameStarted : MessageContainer {
+    class GameStarted : public MessageContainer {
         public:
             GameStarted();
 

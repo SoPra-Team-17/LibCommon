@@ -13,15 +13,15 @@ namespace spy::network::messages {
     GameStarted::GameStarted() : MessageContainer{MessageTypeEnum::GAME_STARTED, {}} {}
 
     //todo welche UUID kommt hier an den MessageContainer?
-    GameStarted::GameStarted(const spy::util::UUID &playerOneId, const spy::util::UUID &playerTwoId,
+    GameStarted::GameStarted(const util::UUID &playerOneId, const util::UUID &playerTwoId,
                              std::string playerOneName, std::string playerTwoName,
-                             const spy::util::UUID &sessionId) : MessageContainer{MessageTypeEnum::GAME_STARTED, {}},
-                                                                 playerOneId(playerOneId), playerTwoId(playerTwoId),
-                                                                 playerOneName(std::move(playerOneName)),
-                                                                 playerTwoName(std::move(playerTwoName)),
-                                                                 sessionId(sessionId) {}
+                             const util::UUID &sessionId) : MessageContainer{MessageTypeEnum::GAME_STARTED, {}},
+                                                            playerOneId(playerOneId), playerTwoId(playerTwoId),
+                                                            playerOneName(std::move(playerOneName)),
+                                                            playerTwoName(std::move(playerTwoName)),
+                                                            sessionId(sessionId) {}
 
-    void to_json(nlohmann::json &j, const spy::network::messages::GameStarted &g) {
+    void to_json(nlohmann::json &j, const GameStarted &g) {
         MessageContainer::common_to_json(j, g);
         j["playerOneId"] = g.playerOneId;
         j["playerTwoId"] = g.playerTwoId;
@@ -30,7 +30,7 @@ namespace spy::network::messages {
         j["sessionId"] = g.sessionId;
     }
 
-    void from_json(const nlohmann::json &j, spy::network::messages::GameStarted &g) {
+    void from_json(const nlohmann::json &j, GameStarted &g) {
         MessageContainer::common_from_json(j, g);
         j.at("playerOneId").get_to(g.playerOneId);
         j.at("playerTwoId").get_to(g.playerTwoId);
