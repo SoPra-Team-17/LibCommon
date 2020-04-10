@@ -27,34 +27,13 @@ namespace spy::network {
 
             /**
              * Create json with common message fields
-             * @tparam T Message type deriving from MessageContainer
              */
-            template<typename T>
-            static void common_to_json(nlohmann::json &j, const T &message) {
-                j["playerId"] = message.playerId;
-                j["type"] = message.type;
-                j["creationDate"] = message.creationDate;
-                if (message.debugMessage.has_value()) {
-                    j["debugMessage"] = message.debugMessage.value();
-                }
-            }
+            static void common_to_json(nlohmann::json &j, const MessageContainer &message);
 
             /**
              * Fill common MessageContainer fields from json, to be used by classes deriving from MessageContainer.
-             * @tparam T Message type deriving from MessageContainer
              */
-            template<typename T>
-            static void common_from_json(const nlohmann::json &j, T &message) {
-                j.at("playerId").get_to(message.playerId);
-                j.at("type").get_to(message.type);
-                j.at("creationDate").get_to(message.creationDate);
-                if (j.find("debugMessage") != j.end()) {
-                    // debugMessage present
-                    j.at("debugMessage").get_to(message.debugMessage);
-                } else {
-                    message.debugMessage = std::nullopt;
-                }
-            }
+            static void common_from_json(const nlohmann::json &j, MessageContainer &message);
 
         private:
             spy::util::UUID playerId;
