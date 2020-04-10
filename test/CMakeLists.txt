@@ -11,7 +11,6 @@ set(SOURCES
         datatypes/jsonDecodingTest.cpp
         datatypes/characterTest.cpp
         datatypes/matchConfigTest.cpp
-        gameplay_datatypes
         gameplay/exfiltrationTest.cpp
         gameplay/gadgetActionTest.cpp
         gameplay/gambleActionTest.cpp
