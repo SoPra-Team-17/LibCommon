@@ -20,7 +20,7 @@ namespace spy::character {
         return name;
     }
 
-    const util::Point &Character::getCoordinates() const {
+    const std::optional<util::Point> &Character::getCoordinates() const {
         return coordinates;
     }
 
@@ -68,20 +68,52 @@ namespace spy::character {
         Character::chips = chip;
     }
 
-    const std::list<PropertyEnum> &Character::getProperties() const {
+    const std::vector<PropertyEnum> &Character::getProperties() const {
         return properties;
     }
 
-    void Character::setProperties(const std::list<PropertyEnum> &propertyList) {
+    void Character::setProperties(const std::vector<PropertyEnum> &propertyList) {
         Character::properties = propertyList;
     }
 
-    const std::list<gadget::Gadget> &Character::getGadgets() const {
+    const std::vector<gadget::Gadget> &Character::getGadgets() const {
         return gadgets;
     }
 
-    void Character::setGadgets(const std::list<gadget::Gadget> &gadgetList) {
+    void Character::setGadgets(const std::vector<gadget::Gadget> &gadgetList) {
         Character::gadgets = gadgetList;
+    }
+
+    void to_json(nlohmann::json &j, const spy::character::Character &c) {
+        j["characterId"] = c.characterId;
+        j["name"] = c.name;
+        if (c.coordinates.has_value()) {
+            j["coordinates"] = c.coordinates.value();
+        }
+        j["mp"] = c.movePoints;
+        j["ap"] = c.actionPoints;
+        j["hp"] = c.healthPoints;
+        j["ip"] = c.intelligencePoints;
+        j["chips"] = c.chips;
+        j["features"] = c.properties;
+        j["gadgets"] = c.gadgets;
+    }
+
+    void from_json(const nlohmann::json &j, spy::character::Character &c) {
+        j.at("characterId").get_to(c.characterId);
+        j.at("name").get_to(c.name);
+        if(j.find("coordinates") != j.end()) {
+            util::Point p;
+            j.at("coordinates").get_to(p);
+            c.coordinates = (p.getX() < 0 || p.getY() < 0) ? std::optional<util::Point>() : p;
+        }
+        j.at("mp").get_to(c.movePoints);
+        j.at("ap").get_to(c.actionPoints);
+        j.at("hp").get_to(c.healthPoints);
+        j.at("ip").get_to(c.intelligencePoints);
+        j.at("chips").get_to(c.chips);
+        j.at("features").get_to(c.properties);
+        j.at("gadgets").get_to(c.gadgets);
     }
 
 }  // namespace spy::character

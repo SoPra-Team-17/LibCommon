@@ -6,17 +6,19 @@ include_directories(../src)
 include_directories(../src/datatypes)
 
 set(SOURCES
-        gadgetTest.cpp
-        jsonEncodingTest.cpp
-        jsonDecodingTest.cpp
-        characterTest.cpp
-        matchConfigTest.cpp
-        pointTest.cpp
-        util/uuidTest.cpp
+        datatypes/gadgetTest.cpp
+        datatypes/jsonEncodingTest.cpp
+        datatypes/jsonDecodingTest.cpp
+        datatypes/characterTest.cpp
+        datatypes/matchConfigTest.cpp
+        gameplay_datatypes
         gameplay/exfiltrationTest.cpp
         gameplay/gadgetActionTest.cpp
         gameplay/gambleActionTest.cpp
-        gameplay/movementActionTest.cpp)
+        gameplay/movementActionTest.cpp
+        util/pointTest.cpp
+        util/uuidTest.cpp
+        util/optionalSerialization.cpp)
 
 add_executable(allTests ${SOURCES})
 
