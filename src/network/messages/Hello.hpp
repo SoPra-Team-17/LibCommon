@@ -14,7 +14,7 @@ namespace spy::network::messages {
         public:
             Hello();
 
-            Hello(util::UUID playerId, std::string &name, RoleEnum &role);
+            Hello(util::UUID playerId, std::string name, RoleEnum role);
 
             [[nodiscard]] const std::string &getName() const;
 

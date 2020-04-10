@@ -65,9 +65,12 @@ namespace spy::network::messages {
 
         private:
             util::UUID sessionId;
-            std::string gameStart, gameEnd;
-            util::UUID playerOneId, playerTwoId;
-            std::string playerOneName, playerTwoName;
+            std::string gameStart;
+            std::string gameEnd;
+            util::UUID playerOneId;
+            util::UUID playerTwoId;
+            std::string playerOneName;
+            std::string playerTwoName;
             int rounds;
             spy::scenario::Scenario level;
             spy::MatchConfig settings;

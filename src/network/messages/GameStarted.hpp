@@ -30,8 +30,10 @@ namespace spy::network::messages {
             friend void from_json(const nlohmann::json &j, GameStarted &g);
 
         private:
-            util::UUID playerOneId, playerTwoId;
-            std::string playerOneName, playerTwoName;
+            util::UUID playerOneId;
+            util::UUID playerTwoId;
+            std::string playerOneName;
+            std::string playerTwoName;
             util::UUID sessionId;
     };
 }

@@ -48,8 +48,7 @@ namespace spy::network::messages {
         j["rounds"] = r.rounds;
         j["level"] = r.level;
         j["settings"] = r.settings;
-        //todo needs overlaod
-        //j["characterSettings"] = r.characterSettings;
+        j["characterSettings"] = r.characterSettings;
         j["messages"] = r.messages;
     }
 
@@ -65,8 +64,7 @@ namespace spy::network::messages {
         j.at("rounds").get_to(r.rounds);
         j.at("level").get_to(r.level);
         j.at("settings").get_to(r.settings);
-        //todo needs overload
-        //j.at("characterSettings").get_to(r.characterSettings);
+        j.at("characterSettings").get_to(r.characterSettings);
         j.at("messages").get_to(r.messages);
     }
 
