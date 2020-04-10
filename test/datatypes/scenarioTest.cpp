@@ -8,7 +8,7 @@
 #include <gtest/gtest.h>
 #include <scenario/Scenario.hpp>
 
-TEST(Scenario, ScenarioDecoding) {
+TEST(Scenario, ScenarioDecodingEncoding) {
     auto input = R"({ "scenario": [
 		["WALL", "WALL",      "WALL", "WALL",           "WALL",     "WALL", "WALL"],
 		["WALL", "FIREPLACE", "WALL", "BAR_TABLE",      "BAR_SEAT", "FREE", "WALL"],
@@ -77,4 +77,8 @@ TEST(Scenario, ScenarioDecoding) {
     EXPECT_EQ(decodedScenario.getField(spy::util::Point(4, 6)), spy::scenario::FieldStateEnum::WALL);
     EXPECT_EQ(decodedScenario.getField(spy::util::Point(5, 6)), spy::scenario::FieldStateEnum::WALL);
     EXPECT_EQ(decodedScenario.getField(spy::util::Point(6, 6)), spy::scenario::FieldStateEnum::WALL);
+
+    nlohmann::json json;
+    EXPECT_NO_THROW(json = decodedScenario);
+    EXPECT_EQ(json.dump(), input.dump());
 }

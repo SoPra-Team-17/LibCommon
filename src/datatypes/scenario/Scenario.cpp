@@ -17,6 +17,10 @@ namespace spy::scenario {
         return getField(p.getX(), p.getY());
     }
 
+    void to_json(nlohmann::json &j, const Scenario &s) {
+        j["scenario"] = s.scenario;
+    }
+
     void from_json(const nlohmann::json &j, Scenario &s) {
         j.at("scenario").get_to(s.scenario);
     }
