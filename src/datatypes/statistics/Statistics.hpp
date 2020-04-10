@@ -2,7 +2,7 @@
 // Created by marco on 10.04.20.
 //
 
-#ifndef LIBCOMMON_STATISTICSMESSAGE_HPP
+#ifndef LIBCOMMON_STATISTICS_HPP
 #define LIBCOMMON_STATISTICS_HPP
 
 #include <vector>
@@ -29,4 +29,4 @@ namespace spy::statistics {
 
 }
 
-#endif //LIBCOMMON_STATISTICSMESSAGE_HPP
+#endif //LIBCOMMON_STATISTICS_HPP
