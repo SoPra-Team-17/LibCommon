@@ -9,7 +9,7 @@
 #include <datatypes/gadgets/GadgetEnum.hpp>
 
 namespace spy::gameplay {
-    class GadgetAction : Operation {
+    class GadgetAction : public Operation {
         public:
             GadgetAction() = default;
 

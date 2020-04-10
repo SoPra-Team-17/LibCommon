@@ -8,7 +8,7 @@
 #include "Operation.hpp"
 
 namespace spy::gameplay {
-    class GambleAction : Operation {
+    class GambleAction : public Operation {
         public:
             GambleAction() = default;
 
