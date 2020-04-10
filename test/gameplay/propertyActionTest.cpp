@@ -10,7 +10,6 @@ TEST(PropertyAction, encode) {
                                                  spy::character::PropertyEnum::BANG_AND_BURN);
     nlohmann::json j;
     EXPECT_NO_THROW(j = propertyAction);
-    std::cout << j.dump() << std::endl;
     EXPECT_EQ(j.dump(),
               R"({"characterId":"12345678-1234-1234-1234-1234567890ab","successful":true,"target":{"x":1,"y":2},"type":"PROPERTY_ACTION","usedProperty":"BANG_AND_BURN"})");
 }
