@@ -9,9 +9,7 @@
 
 namespace spy::scenario {
 
-    Field::Field(FieldStateEnum fieldState) {
-        Field::state = fieldState;
-    }
+    Field::Field(FieldStateEnum fieldState) : state(fieldState) {}
 
     void Field::setFieldState(FieldStateEnum fieldState) {
         Field::state = fieldState;
