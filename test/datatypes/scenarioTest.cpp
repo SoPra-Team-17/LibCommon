@@ -187,3 +187,27 @@ TEST(Scenario, FieldInsideTest) {
     }
 }
 
+TEST(Scenario, DimensionTests) {
+    auto input = R"({ "scenario": [
+		["WALL"],
+		["WALL", "FIREPLACE"],
+		["WALL", "FREE",      "FREE"],
+		["WALL", "BAR_TABLE", "FREE", "ROULETTE_TABLE"],
+		["WALL", "BAR_SEAT",  "FREE", "WALL",           "FREE"],
+		["WALL", "FREE",      "FREE", "FREE",           "FREE",     "SAFE"],
+		["WALL", "WALL",      "WALL", "WALL",           "WALL",     "WALL", "WALL"]
+	    ]})"_json;
+
+    spy::scenario::Scenario decodedScenario;
+    EXPECT_NO_THROW(decodedScenario = input.get<spy::scenario::Scenario>());
+
+    EXPECT_EQ(decodedScenario.getNumberOfRows(), 7);
+    EXPECT_EQ(decodedScenario.getRowLength(0), 1);
+    EXPECT_EQ(decodedScenario.getRowLength(1), 2);
+    EXPECT_EQ(decodedScenario.getRowLength(2), 3);
+    EXPECT_EQ(decodedScenario.getRowLength(3), 4);
+    EXPECT_EQ(decodedScenario.getRowLength(4), 5);
+    EXPECT_EQ(decodedScenario.getRowLength(5), 6);
+    EXPECT_EQ(decodedScenario.getRowLength(6), 7);
+}
+
