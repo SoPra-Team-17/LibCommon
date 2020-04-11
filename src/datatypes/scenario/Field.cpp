@@ -13,6 +13,16 @@ namespace spy::scenario {
 
     void Field::setFieldState(FieldStateEnum fieldState) {
         Field::state = fieldState;
+
+        if (fieldState != FieldStateEnum::ROULETTE_TABLE) {
+            Field::inverted.reset();
+            Field::destroyed.reset();
+            Field::chipAmount.reset();
+        }
+
+        if (fieldState != FieldStateEnum::SAFE) {
+            Field::safeIndex.reset();
+        }
     }
 
     /**

@@ -49,7 +49,7 @@ namespace spy::scenario {
             std::optional<unsigned int> chipAmount;
             std::optional<unsigned int> safeIndex;
             bool foggy = false;
-            std::optional<bool> updated = false;
+            std::optional<bool> updated;
     };
 }
 
