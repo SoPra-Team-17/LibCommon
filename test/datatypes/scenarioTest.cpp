@@ -253,7 +253,10 @@ TEST(Scenario, FieldConstruction) {
     EXPECT_NO_THROW(f.setDestroyed(false));
     EXPECT_NO_THROW(f.setInverted(false));
     EXPECT_NO_THROW(f.setChipAmount(0));
+    EXPECT_NO_THROW(f.setGadget(spy::gadget::Gadget()));
     EXPECT_ANY_THROW(f.setSafeIndex(0));
+    EXPECT_NO_THROW(f.setFoggy(false));
+    EXPECT_NO_THROW(f.setUpdated(true));
 
     EXPECT_TRUE(f.isDestroyed().has_value());
     EXPECT_FALSE(f.isDestroyed().value());
@@ -262,6 +265,10 @@ TEST(Scenario, FieldConstruction) {
     EXPECT_TRUE(f.getChipAmount().has_value());
     EXPECT_EQ(f.getChipAmount().value(), 0);
     EXPECT_FALSE(f.getSafeIndex().has_value());
+    EXPECT_TRUE(f.getGadget().has_value());
+    EXPECT_FALSE(f.isFoggy());
+    EXPECT_TRUE(f.isUpdated().has_value());
+    EXPECT_TRUE(f.isUpdated().value());
 
     EXPECT_NO_THROW(f.setFieldState(spy::scenario::FieldStateEnum::SAFE));
     EXPECT_EQ(f.getFieldState(), spy::scenario::FieldStateEnum::SAFE);
