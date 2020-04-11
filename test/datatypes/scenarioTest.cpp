@@ -157,6 +157,26 @@ TEST(Scenario, FieldMapConstruction) {
     EXPECT_EQ(field.getField(spy::util::Point(6, 6)).getFieldState(), spy::scenario::FieldStateEnum::WALL);
 }
 
+TEST(Scenario, FieldMapSetters) {
+    auto input = R"({ "scenario": [
+		["WALL", "WALL",      "WALL", "WALL",           "WALL",     "WALL", "WALL"]
+        ]})"_json;
+
+    spy::scenario::Scenario decodedScenario;
+    EXPECT_NO_THROW(decodedScenario = input.get<spy::scenario::Scenario>());
+
+    spy::scenario::FieldMap field(decodedScenario);
+
+    spy::scenario::Field f(spy::scenario::FieldStateEnum::FREE);
+    EXPECT_NO_THROW(field.setField(0, 0, f));
+    EXPECT_EQ(field.getField(spy::util::Point(0, 0)).getFieldState(), spy::scenario::FieldStateEnum::FREE);
+
+    EXPECT_NO_THROW(field.setField(spy::util::Point(0, 0), f));
+    EXPECT_EQ(field.getField(spy::util::Point(0, 0)).getFieldState(), spy::scenario::FieldStateEnum::FREE);
+
+    EXPECT_ANY_THROW(field.setField(spy::util::Point(-1, 0), f));
+}
+
 TEST(Scenario, FieldInsideTest) {
     auto input = R"({ "scenario": [
 		["WALL", "WALL",      "WALL", "WALL",           "WALL",     "WALL", "WALL"],
@@ -209,5 +229,52 @@ TEST(Scenario, DimensionTests) {
     EXPECT_EQ(decodedScenario.getRowLength(4), 5);
     EXPECT_EQ(decodedScenario.getRowLength(5), 6);
     EXPECT_EQ(decodedScenario.getRowLength(6), 7);
+}
+
+TEST(Scenario, FieldConstruction) {
+    spy::scenario::Field f(spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(f.getFieldState(), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_FALSE(f.isDestroyed().has_value());
+    EXPECT_FALSE(f.isInverted().has_value());
+    EXPECT_FALSE(f.getChipAmount().has_value());
+    EXPECT_FALSE(f.getSafeIndex().has_value());
+    EXPECT_FALSE(f.isUpdated().has_value());
+    EXPECT_FALSE(f.getGadget().has_value());
+    EXPECT_FALSE(f.isFoggy());
+
+    EXPECT_ANY_THROW(f.setDestroyed(false));
+    EXPECT_ANY_THROW(f.setInverted(false));
+    EXPECT_ANY_THROW(f.setChipAmount(0));
+    EXPECT_ANY_THROW(f.setSafeIndex(0));
+
+    EXPECT_NO_THROW(f.setFieldState(spy::scenario::FieldStateEnum::ROULETTE_TABLE));
+    EXPECT_EQ(f.getFieldState(), spy::scenario::FieldStateEnum::ROULETTE_TABLE);
+
+    EXPECT_NO_THROW(f.setDestroyed(false));
+    EXPECT_NO_THROW(f.setInverted(false));
+    EXPECT_NO_THROW(f.setChipAmount(0));
+    EXPECT_ANY_THROW(f.setSafeIndex(0));
+
+    EXPECT_TRUE(f.isDestroyed().has_value());
+    EXPECT_FALSE(f.isDestroyed().value());
+    EXPECT_TRUE(f.isInverted().has_value());
+    EXPECT_FALSE(f.isInverted().value());
+    EXPECT_TRUE(f.getChipAmount().has_value());
+    EXPECT_EQ(f.getChipAmount().value(), 0);
+    EXPECT_FALSE(f.getSafeIndex().has_value());
+
+    EXPECT_NO_THROW(f.setFieldState(spy::scenario::FieldStateEnum::SAFE));
+    EXPECT_EQ(f.getFieldState(), spy::scenario::FieldStateEnum::SAFE);
+
+    EXPECT_ANY_THROW(f.setDestroyed(false));
+    EXPECT_ANY_THROW(f.setInverted(false));
+    EXPECT_ANY_THROW(f.setChipAmount(0));
+    EXPECT_NO_THROW(f.setSafeIndex(0));
+
+    EXPECT_FALSE(f.isDestroyed().has_value());
+    EXPECT_FALSE(f.isInverted().has_value());
+    EXPECT_FALSE(f.getChipAmount().has_value());
+    EXPECT_TRUE(f.getSafeIndex().has_value());
+    EXPECT_EQ(f.getSafeIndex().value(), 0);
 }
 
