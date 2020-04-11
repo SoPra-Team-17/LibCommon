@@ -14,9 +14,9 @@ namespace spy::gameplay {
         public:
             GambleAction() = default;
 
-            GambleAction(bool successful, const util::Point &target, const util::UUID &characterId, int stake);
+            GambleAction(bool successful, const util::Point &target, const util::UUID &characterId, unsigned int stake);
 
-            [[nodiscard]] int getStake() const;
+            [[nodiscard]] unsigned int getStake() const;
 
             bool operator==(const GambleAction &rhs) const;
 
@@ -27,7 +27,7 @@ namespace spy::gameplay {
             friend void from_json(const nlohmann::json &j, GambleAction &g);
 
         private:
-            int stake = 0;
+            unsigned int stake = 0;
     };
 
 }

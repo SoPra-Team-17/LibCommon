@@ -6,11 +6,11 @@
 
 namespace spy::gameplay {
 
-    GambleAction::GambleAction(bool successful, const util::Point &target, const util::UUID &characterId, int stake)
+    GambleAction::GambleAction(bool successful, const util::Point &target, const util::UUID &characterId, unsigned int stake)
             : Operation(OperationEnum::GAMBLE_ACTION, successful, target, characterId),
               stake(stake) {}
 
-    int GambleAction::getStake() const {
+    unsigned int GambleAction::getStake() const {
         return stake;
     }
 
