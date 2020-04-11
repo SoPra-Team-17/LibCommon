@@ -16,7 +16,7 @@ namespace spy::network::messages {
                    const util::UUID &playerTwoId,
                    std::string playerOneName,
                    std::string playerTwoName,
-                   int rounds,
+                   unsigned int rounds,
                    const spy::scenario::Scenario &level,
                    const spy::MatchConfig &settings,
                    spy::character::CharacterDescription characterSettings,
@@ -34,7 +34,7 @@ namespace spy::network::messages {
             level(level),
             settings(settings),
             characterSettings(std::move(characterSettings)),
-            messages(std::move(messages)){}
+            messages(std::move(messages)) {}
 
     void to_json(nlohmann::json &j, const Replay &r) {
         MessageContainer::common_to_json(j, r);
@@ -96,7 +96,7 @@ namespace spy::network::messages {
         return playerTwoName;
     }
 
-    int Replay::getRounds() const {
+    unsigned int Replay::getRounds() const {
         return rounds;
     }
 

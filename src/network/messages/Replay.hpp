@@ -27,7 +27,7 @@ namespace spy::network::messages {
                     const util::UUID &playerTwoId,
                     std::string playerOneName,
                     std::string playerTwoName,
-                    int rounds,
+                    unsigned int rounds,
                     const spy::scenario::Scenario &level,
                     const spy::MatchConfig &settings,
                     spy::character::CharacterDescription characterSettings,
@@ -49,7 +49,7 @@ namespace spy::network::messages {
 
             [[nodiscard]] const std::string &getPlayerTwoName() const;
 
-            [[nodiscard]] int getRounds() const;
+            [[nodiscard]] unsigned int getRounds() const;
 
             [[nodiscard]] const spy::scenario::Scenario &getLevel() const;
 
@@ -71,7 +71,7 @@ namespace spy::network::messages {
             util::UUID playerTwoId;
             std::string playerOneName;
             std::string playerTwoName;
-            int rounds;
+            unsigned int rounds;
             spy::scenario::Scenario level;
             spy::MatchConfig settings;
             spy::character::CharacterDescription characterSettings;
