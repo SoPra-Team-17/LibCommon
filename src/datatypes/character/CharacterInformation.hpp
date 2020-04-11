@@ -26,10 +26,6 @@ namespace spy::character {
 
             [[nodiscard]] const util::UUID &getCharacterId() const;
 
-            friend void to_json(nlohmann::json &j, const CharacterInformation &ci);
-
-            friend void from_json(const nlohmann::json &j, CharacterInformation &ci);
-
             friend void to_json(nlohmann::json &j, const CharacterInformation &c);
 
             friend void from_json(const nlohmann::json &j, CharacterInformation &c);
