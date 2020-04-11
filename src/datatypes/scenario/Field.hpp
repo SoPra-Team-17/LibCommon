@@ -24,18 +24,18 @@ namespace spy::scenario {
             explicit Field(FieldStateEnum fieldState);
 
             void setFieldState(FieldStateEnum fieldState);
-            void setDestroyed(bool isDestroyed);
-            void setUpdated(bool isUpdated);
-            void setInverted(bool isInverted);
+            void setDestroyed(std::optional<bool> isDestroyed);
+            void setUpdated(std::optional<bool> isUpdated);
+            void setInverted(std::optional<bool> isInverted);
             void setFoggy(bool isFoggy);
             void setGadget(std::optional<Gadget> g);
             void setChipAmount(std::optional<unsigned int> chipAmount);
             void setSafeIndex(std::optional<unsigned int> index);
 
             [[nodiscard]] FieldStateEnum getFieldState() const;
-            [[nodiscard]] bool isDestroyed() const;
-            [[nodiscard]] bool isUpdated() const;
-            [[nodiscard]] bool isInverted() const;
+            [[nodiscard]] std::optional<bool> isDestroyed() const;
+            [[nodiscard]] std::optional<bool> isUpdated() const;
+            [[nodiscard]] std::optional<bool> isInverted() const;
             [[nodiscard]] bool isFoggy() const;
             [[nodiscard]] const std::optional<Gadget>& getGadget() const;
             [[nodiscard]] std::optional<unsigned int> getChipAmount() const;
@@ -44,12 +44,12 @@ namespace spy::scenario {
         private:
             FieldStateEnum state = FieldStateEnum::FREE;
             std::optional<Gadget> gadget;
-            bool destroyed = false;
-            bool inverted = false;
+            std::optional<bool> destroyed;
+            std::optional<bool> inverted;
             std::optional<unsigned int> chipAmount;
             std::optional<unsigned int> safeIndex;
             bool foggy = false;
-            bool updated = false;
+            std::optional<bool> updated = false;
     };
 }
 
