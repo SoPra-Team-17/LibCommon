@@ -12,6 +12,11 @@ set(SOURCES
         datatypes/characterTest.cpp
         datatypes/matchConfigTest.cpp
         datatypes/scenarioTest.cpp
+        gameplay/exfiltrationTest.cpp
+        gameplay/gadgetActionTest.cpp
+        gameplay/gambleActionTest.cpp
+        gameplay/movementActionTest.cpp
+        gameplay/propertyActionTest.cpp
         util/pointTest.cpp
         util/uuidTest.cpp
         util/optionalSerialization.cpp)

@@ -10,6 +10,12 @@ set(SOURCE
         datatypes/gadgets/Gadget.cpp
         datatypes/gadgets/WiretapWithEarplugs.cpp
         datatypes/gadgets/Cocktail.cpp
+        datatypes/gameplay/Exfiltration.cpp
+        datatypes/gameplay/GadgetAction.cpp
+        datatypes/gameplay/GambleAction.cpp
+        datatypes/gameplay/Movement.cpp
+        datatypes/gameplay/Operation.cpp
+        datatypes/gameplay/PropertyAction.cpp
         datatypes/character/Character.cpp
         datatypes/character/CharacterInformation.cpp
         datatypes/character/CharacterDescription.cpp
@@ -25,6 +31,13 @@ set(INCLUDE
         datatypes/gadgets/Gadget.hpp
         datatypes/gadgets/WiretapWithEarplugs.hpp
         datatypes/gadgets/Cocktail.hpp
+        datatypes/gameplay/Exfiltration.hpp
+        datatypes/gameplay/GadgetAction.hpp
+        datatypes/gameplay/GambleAction.hpp
+        datatypes/gameplay/Movement.hpp
+        datatypes/gameplay/Operation.hpp
+        datatypes/gameplay/OperationEnum.hpp
+        datatypes/gameplay/PropertyAction.hpp
         datatypes/character/Character.hpp
         datatypes/character/CharacterInformation.hpp
         datatypes/character/CharacterDescription.hpp
