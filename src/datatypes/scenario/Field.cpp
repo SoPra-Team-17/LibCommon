@@ -167,10 +167,8 @@ namespace spy::scenario {
             if (j.find("chipAmount") != j.end()) {
                 j.at("chipAmount").get_to(f.chipAmount);
             }
-        } else if (f.state == FieldStateEnum::SAFE) {
-            if (j.find("safeIndex") != j.end()) {
-                j.at("safeIndex").get_to(f.safeIndex);
-            }
+        } else if (f.state == FieldStateEnum::SAFE && j.find("safeIndex") != j.end()) {
+            j.at("safeIndex").get_to(f.safeIndex);
         }
 
         j.at("isFoggy").get_to(f.foggy);
