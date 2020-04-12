@@ -7,6 +7,7 @@
 #ifndef LIBCOMMON_UUID_HPP
 #define LIBCOMMON_UUID_HPP
 
+
 #include <uuid/uuid.h>
 #include <string>
 #include <nlohmann/json.hpp>
@@ -61,8 +62,7 @@ namespace spy::util {
 
             bool operator>=(const UUID &rhs) const;
 
-            template<typename OStream>
-            friend OStream &operator<<(OStream &stream, const UUID &uuid) {
+            friend std::ostream &operator<<(std::ostream &stream, const UUID &uuid) {
                 return stream << uuid.to_string();
             }
 

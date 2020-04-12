@@ -8,9 +8,14 @@
 
 namespace spy::character {
 
-    CharacterDescription::CharacterDescription(const std::string &name, const std::string &description, GenderEnum gender,
-                                               const std::vector<PropertyEnum> &features)
-            : name(name), description(description), gender(gender), features(features) {}
+    CharacterDescription::CharacterDescription(const std::string &name,
+                                               const std::string &description,
+                                               GenderEnum gender,
+                                               const std::vector<PropertyEnum> &features) :
+            name(name),
+            description(description),
+            gender(gender),
+            features(features) {}
 
     const std::string &CharacterDescription::getName() const {
         return name;

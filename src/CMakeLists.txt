@@ -20,9 +20,35 @@ set(SOURCE
         datatypes/character/CharacterInformation.cpp
         datatypes/character/CharacterDescription.cpp
         datatypes/matchconfig/MatchConfig.cpp
+        datatypes/scenario/Scenario.cpp
+        datatypes/statistics/StatisticsEntry.cpp
+        datatypes/statistics/Statistics.cpp
+        datatypes/gameplay/State.cpp
+        network/messages/EquipmentChoice.cpp
+        network/messages/Error.cpp
+        network/messages/GameLeave.cpp
+        network/messages/GameLeft.cpp
+        network/messages/GameOperation.cpp
+        network/messages/GamePause.cpp
+        network/messages/Hello.cpp
+        network/messages/HelloReply.cpp
+        network/MessageContainer.cpp
         util/UUID.cpp
         util/Point.cpp
-        )
+        network/messages/GameStarted.cpp
+        network/messages/Reconnect.cpp
+        network/messages/RequestItemChoice.cpp
+        network/messages/ItemChoice.cpp
+        network/messages/MetaInformation.cpp
+        network/messages/RequestEquipmentChoice.cpp
+        network/messages/RequestGameOperation.cpp
+        network/messages/GameStatus.cpp
+        network/messages/RequestGamePause.cpp
+        network/messages/RequestMetaInformation.cpp
+        network/messages/Strike.cpp
+        network/messages/RequestReplay.cpp
+        network/messages/Replay.cpp
+        network/messages/StatisticsMessage.cpp)
 
 set(INCLUDE
         datatypes/gadgets/Gadget.hpp
@@ -40,9 +66,40 @@ set(INCLUDE
         datatypes/character/CharacterDescription.hpp
         datatypes/character/PropertyEnum.hpp
         datatypes/matchconfig/MatchConfig.hpp
+        datatypes/scenario/Scenario.hpp
+        datatypes/statistics/StatisticsEntry.hpp
+        datatypes/gameplay/State.hpp
+        datatypes/statistics/Statistics.hpp
+        datatypes/statistics/VictoryEnum.hpp
+        network/messages/EquipmentChoice.hpp
+        network/messages/Error.hpp
+        network/messages/GameLeave.hpp
+        network/messages/GameLeft.hpp
+        network/messages/GameOperation.hpp
+        network/messages/GamePause.hpp
+        network/messages/Hello.hpp
+        network/messages/HelloReply.hpp
+        network/MessageContainer.hpp
+        network/messages/MessageTypeEnum.hpp
+        network/ErrorTypeEnum.hpp
         util/UUID.hpp
         util/Point.hpp
+        network/messages/GameStarted.hpp
+        network/messages/Reconnect.hpp
+        network/messages/RequestItemChoice.hpp
+        network/messages/MetaInformation.hpp
+        network/messages/ItemChoice.hpp
+        network/messages/RequestEquipmentChoice.hpp
+        network/messages/RequestGameOperation.hpp
+        network/messages/GameStatus.hpp
+        network/messages/RequestGamePause.hpp
+        network/messages/RequestMetaInformation.hpp
+        network/messages/Strike.hpp
+        network/messages/RequestReplay.hpp
+        network/messages/Replay.hpp
+        network/messages/StatisticsMessage.hpp
         )
+
 
 include_directories(.)
 include_directories(src)

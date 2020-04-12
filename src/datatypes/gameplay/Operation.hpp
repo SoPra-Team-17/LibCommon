@@ -7,6 +7,7 @@
 #ifndef LIBCOMMON_OPERATION_HPP
 #define LIBCOMMON_OPERATION_HPP
 
+
 #include <datatypes/gameplay/OperationEnum.hpp>
 #include <util/Point.hpp>
 #include <util/UUID.hpp>

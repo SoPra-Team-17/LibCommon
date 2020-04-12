@@ -18,7 +18,10 @@ set(SOURCES
         gameplay/propertyActionTest.cpp
         util/pointTest.cpp
         util/uuidTest.cpp
-        util/optionalSerialization.cpp)
+        util/optionalSerialization.cpp
+        messages/helloMessageTest.cpp
+        messages/itemChoiceMessageTest.cpp
+        messages/metaInformationTest.cpp)
 
 add_executable(allTests ${SOURCES})
 

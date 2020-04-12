@@ -68,5 +68,4 @@ namespace spy::gameplay {
     bool Operation::operator!=(const Operation &rhs) const {
         return !(rhs == *this);
     }
-
 }
