@@ -39,6 +39,7 @@ set(SOURCE
         network/messages/Reconnect.cpp
         network/messages/RequestItemChoice.cpp
         network/messages/ItemChoice.cpp
+        network/messages/MetaInformation.cpp
         network/messages/RequestEquipmentChoice.cpp
         network/messages/RequestGameOperation.cpp
         network/messages/GameStatus.cpp
@@ -86,6 +87,7 @@ set(INCLUDE
         network/messages/GameStarted.hpp
         network/messages/Reconnect.hpp
         network/messages/RequestItemChoice.hpp
+        network/messages/MetaInformation.hpp
         network/messages/ItemChoice.hpp
         network/messages/RequestEquipmentChoice.hpp
         network/messages/RequestGameOperation.hpp
