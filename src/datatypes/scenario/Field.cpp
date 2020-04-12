@@ -136,4 +136,47 @@ namespace spy::scenario {
     std::optional<unsigned int> Field::getSafeIndex() const {
         return safeIndex;
     }
+
+    void to_json(nlohmann::json &j, const Field &f) {
+        j["state"] = f.state;
+        j["gadget"] = f.gadget;
+        j["isDestroyed"] = f.destroyed;
+        j["isInverted"] = f.inverted;
+        j["chipAmount"] = f.chipAmount;
+        j["safeIndex"] = f.safeIndex;
+        j["isFoggy"] = f.foggy;
+        j["isUpdated"] = f.updated;
+    }
+
+    void from_json(const nlohmann::json &j, Field &f) {
+        j.at("state").get_to(f.state);
+
+        if (j.find("gadget") != j.end()) {
+            j.at("gadget").get_to(f.gadget);
+        }
+
+        if (f.state == FieldStateEnum::ROULETTE_TABLE) {
+            if (j.find("isDestroyed") != j.end()) {
+                j.at("isDestroyed").get_to(f.destroyed);
+            }
+
+            if (j.find("isInverted") != j.end()) {
+                j.at("isInverted").get_to(f.inverted);
+            }
+
+            if (j.find("chipAmount") != j.end()) {
+                j.at("chipAmount").get_to(f.chipAmount);
+            }
+        } else if (f.state == FieldStateEnum::SAFE) {
+            if (j.find("safeIndex") != j.end()) {
+                j.at("safeIndex").get_to(f.safeIndex);
+            }
+        }
+
+        j.at("isFoggy").get_to(f.foggy);
+
+        if (j.find("isUpdated") != j.end()) {
+            j.at("isUpdated").get_to(f.updated);
+        }
+    }
 }

@@ -20,6 +20,8 @@ namespace spy::scenario {
      */
     class FieldMap {
         public:
+            FieldMap() = default;
+
             explicit FieldMap(const Scenario &scenario);
 
             void setField(unsigned int x, unsigned int y, Field field);
@@ -31,6 +33,10 @@ namespace spy::scenario {
             [[nodiscard]] const Field &getField(util::Point p) const;
 
             [[nodiscard]] bool isInside(util::Point p) const;
+
+            friend void to_json(nlohmann::json &j, const FieldMap &m);
+
+            friend void from_json(const nlohmann::json &j, FieldMap &m);
 
         private:
             std::vector<std::vector<Field>> map;

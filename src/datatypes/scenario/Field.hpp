@@ -11,6 +11,7 @@
 #include <optional>
 #include "gadgets/Gadget.hpp"
 #include "FieldStateEnum.hpp"
+#include "util/OptionalSerialization.hpp"
 
 namespace spy::scenario {
     /**
@@ -40,6 +41,10 @@ namespace spy::scenario {
             [[nodiscard]] const std::optional<Gadget>& getGadget() const;
             [[nodiscard]] std::optional<unsigned int> getChipAmount() const;
             [[nodiscard]] std::optional<unsigned int> getSafeIndex() const;
+
+            friend void to_json(nlohmann::json &j, const Field &f);
+
+            friend void from_json(const nlohmann::json &j, Field &f);
 
         private:
             FieldStateEnum state = FieldStateEnum::FREE;

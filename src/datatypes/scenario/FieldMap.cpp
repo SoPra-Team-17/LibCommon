@@ -40,4 +40,12 @@ namespace spy::scenario {
                  || map.size() <= static_cast<unsigned int>(p.getY())
                  || map.at(p.getY()).size() <= static_cast<unsigned int>(p.getX()));
     }
+
+    void to_json(nlohmann::json &j, const FieldMap &m) {
+        j["fieldMap"] = m.map;
+    }
+
+    void from_json(const nlohmann::json &j, FieldMap &m) {
+        j.at("fieldMap").get_to(m.map);
+    }
 }
