@@ -35,4 +35,20 @@ namespace spy::network::messages {
         j.at("settings").get_to(h.settings);
         j.at("characterSettings").get_to(h.characterSettings);
     }
+
+    const util::UUID &HelloReply::getSessionId() const {
+        return sessionId;
+    }
+
+    const scenario::Scenario &HelloReply::getLevel() const {
+        return level;
+    }
+
+    const MatchConfig &HelloReply::getSettings() const {
+        return settings;
+    }
+
+    const std::vector<character::CharacterInformation> &HelloReply::getCharacterSettings() const {
+        return characterSettings;
+    }
 }

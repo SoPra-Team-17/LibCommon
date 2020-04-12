@@ -4,13 +4,19 @@
 
 #include "RequestEquipmentChoice.hpp"
 
+#include <utility>
+
 namespace spy::network::messages {
 
     RequestEquipmentChoice::RequestEquipmentChoice() : MessageContainer{MessageTypeEnum::REQUEST_EQUIPMENT_CHOICE,
                                                                         {}} {}
 
-    RequestEquipmentChoice::RequestEquipmentChoice(const util::UUID &playerId) : MessageContainer{
-            MessageTypeEnum::REQUEST_EQUIPMENT_CHOICE, playerId} {}
+    RequestEquipmentChoice::RequestEquipmentChoice(const util::UUID &playerId,
+                                                   std::vector<util::UUID> chosenCharacterIds,
+                                                   std::vector<gadget::GadgetEnum> chosenGadgets) :
+            MessageContainer{MessageTypeEnum::REQUEST_EQUIPMENT_CHOICE, playerId},
+            chosenCharacterIds{std::move(chosenCharacterIds)},
+            chosenGadgets{std::move(chosenGadgets)} {}
 
 
     void to_json(nlohmann::json &j, const RequestEquipmentChoice &r) {

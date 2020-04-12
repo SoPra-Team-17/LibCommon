@@ -16,7 +16,9 @@ namespace spy::network::messages {
 
             RequestItemChoice();
 
-            explicit RequestItemChoice(const util::UUID &playerId);
+            explicit RequestItemChoice(const util::UUID &playerId,
+                                       std::vector<util::UUID> offeredCharacterIds,
+                                       std::vector<spy::gadget::GadgetEnum> offeredGadgets);
 
             friend void to_json(nlohmann::json &j, const RequestItemChoice &r);
 

@@ -22,7 +22,7 @@ namespace spy::network::messages {
             friend void from_json(const nlohmann::json &j, Error &e);
 
         private:
-            ErrorTypeEnum reason = ErrorTypeEnum::INVALID;
+            ErrorTypeEnum reason = ErrorTypeEnum::GENERAL;
     };
 }
 

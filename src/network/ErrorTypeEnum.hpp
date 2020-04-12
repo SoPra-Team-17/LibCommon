@@ -9,7 +9,7 @@
 
 namespace spy::network {
     enum class ErrorTypeEnum {
-            INVALID,
+            GENERAL,
             NAME_NOT_AVAILABLE,
             ALREADY_SERVING,
             SESSION_DOES_NOT_EXIST,
@@ -18,7 +18,7 @@ namespace spy::network {
     };
 
     NLOHMANN_JSON_SERIALIZE_ENUM(ErrorTypeEnum, {
-        { ErrorTypeEnum::INVALID, nullptr },
+        { ErrorTypeEnum::GENERAL, "GENERAL" },
         { ErrorTypeEnum::NAME_NOT_AVAILABLE, "NAME_NOT_AVAILABLE" },
         { ErrorTypeEnum::ALREADY_SERVING, "ALREADY_SERVING" },
         { ErrorTypeEnum::SESSION_DOES_NOT_EXIST, "SESSION_DOES_NOT_EXIST" },

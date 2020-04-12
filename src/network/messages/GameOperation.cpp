@@ -20,4 +20,8 @@ namespace spy::network::messages {
         MessageContainer::common_from_json(j, g);
         j.at("operation").get_to(g.operation);
     }
+
+    const gameplay::Operation &GameOperation::getOperation() const {
+        return operation;
+    }
 }

@@ -39,4 +39,24 @@ namespace spy::network {
             message.debugMessage = std::nullopt;
         }
     }
+
+    const util::UUID &MessageContainer::getPlayerId() const {
+        return playerId;
+    }
+
+    messages::MessageTypeEnum MessageContainer::getType() const {
+        return type;
+    }
+
+    const std::string &MessageContainer::getCreationDate() const {
+        return creationDate;
+    }
+
+    const std::optional<std::string> &MessageContainer::getDebugMessage() const {
+        return debugMessage;
+    }
+
+    void MessageContainer::setDebugMessage(const std::optional<std::string> &newDebugMessage) {
+        MessageContainer::debugMessage = newDebugMessage;
+    }
 }

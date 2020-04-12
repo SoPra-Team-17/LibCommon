@@ -12,9 +12,11 @@ namespace spy::network::messages {
         public:
             GamePause();
 
-            GamePause(util::UUID playerId, bool pause);
+            GamePause(util::UUID playerId, bool pause, bool serverEnforced);
 
             [[nodiscard]] bool isGamePause() const;
+
+            [[nodiscard]] bool isServerEnforced() const;
 
             friend void to_json(nlohmann::json &j, const GamePause &g);
 
@@ -22,6 +24,7 @@ namespace spy::network::messages {
 
         private:
             bool gamePause = false;
+            bool serverEnforced = false;
     };
 }
 

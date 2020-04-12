@@ -16,7 +16,7 @@ namespace spy::network::messages {
 
             EquipmentChoice();
 
-            explicit EquipmentChoice(util::UUID playerId);
+            explicit EquipmentChoice(util::UUID playerId, std::map<util::UUID, std::set<gadget::GadgetEnum>> equipment);
 
             [[nodiscard]] auto getEquipment() const -> const std::map<util::UUID, std::set<gadget::GadgetEnum>> &;
 

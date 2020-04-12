@@ -15,7 +15,9 @@ namespace spy::network::messages {
 
             RequestEquipmentChoice();
 
-            explicit RequestEquipmentChoice(const util::UUID &playerId);
+            RequestEquipmentChoice(const util::UUID &playerId,
+                                   std::vector<util::UUID> chosenCharacterIds,
+                                   std::vector<gadget::GadgetEnum> chosenGadgets);
 
             [[nodiscard]] auto getChosenCharacterIds() const -> const std::vector<util::UUID> &;
 

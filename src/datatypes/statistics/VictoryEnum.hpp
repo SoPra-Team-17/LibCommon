@@ -9,6 +9,7 @@
 
 namespace spy::statistics {
     enum class VictoryEnum {
+            INVALID,
             VICTORY_BY_IP,
             VICTORY_BY_COLLAR,
             VICTORY_BY_DRINKING,
@@ -20,6 +21,7 @@ namespace spy::statistics {
     };
 
     NLOHMANN_JSON_SERIALIZE_ENUM(VictoryEnum, {
+        { VictoryEnum::INVALID, nullptr },
         { VictoryEnum::VICTORY_BY_IP, "VICTORY_BY_IP" },
         { VictoryEnum::VICTORY_BY_COLLAR, "VICTORY_BY_COLLAR" },
         { VictoryEnum::VICTORY_BY_DRINKING, "VICTORY_BY_DRINKING" },

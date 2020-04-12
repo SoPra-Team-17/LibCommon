@@ -4,12 +4,18 @@
 
 #include "RequestItemChoice.hpp"
 
+#include <utility>
+
 namespace spy::network::messages {
 
     RequestItemChoice::RequestItemChoice() : MessageContainer{MessageTypeEnum::REQUEST_ITEM_CHOICE, {}} {}
 
-    RequestItemChoice::RequestItemChoice(const util::UUID &playerId) : MessageContainer{
-            MessageTypeEnum::REQUEST_ITEM_CHOICE, playerId} {}
+    RequestItemChoice::RequestItemChoice(const util::UUID &playerId,
+                                         std::vector<util::UUID> offeredCharacterIds,
+                                         std::vector<spy::gadget::GadgetEnum> offeredGadgets) :
+            MessageContainer{MessageTypeEnum::REQUEST_ITEM_CHOICE, playerId},
+            offeredCharacterIds{std::move(offeredCharacterIds)},
+            offeredGadgets{std::move(offeredGadgets)} {}
 
     void to_json(nlohmann::json &j, const RequestItemChoice &r) {
         MessageContainer::common_to_json(j, r);

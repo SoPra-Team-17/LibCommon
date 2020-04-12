@@ -21,6 +21,16 @@ namespace spy::network {
 
             MessageContainer(messages::MessageTypeEnum messageType, util::UUID playerId);
 
+            [[nodiscard]] const util::UUID &getPlayerId() const;
+
+            [[nodiscard]] messages::MessageTypeEnum getType() const;
+
+            [[nodiscard]] const std::string &getCreationDate() const;
+
+            [[nodiscard]] const std::optional<std::string> &getDebugMessage() const;
+
+            void setDebugMessage(const std::optional<std::string> &newDebugMessage);
+
             friend void to_json(nlohmann::json &j, const MessageContainer &m);
 
             friend void from_json(const nlohmann::json &j, MessageContainer &m);

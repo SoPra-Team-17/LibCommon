@@ -15,6 +15,8 @@ namespace spy::network::messages {
 
             GameOperation(util::UUID playerId, gameplay::Operation operation);
 
+            [[nodiscard]] const gameplay::Operation &getOperation() const;
+
             friend void to_json(nlohmann::json &j, const GameOperation &g);
 
             friend void from_json(const nlohmann::json &j, GameOperation &g);

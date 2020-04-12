@@ -21,6 +21,14 @@ namespace spy::network::messages {
                        const scenario::Scenario &level, const MatchConfig &settings,
                        std::vector<character::CharacterInformation> characterSettings);
 
+            [[nodiscard]] const util::UUID &getSessionId() const;
+
+            [[nodiscard]] const scenario::Scenario &getLevel() const;
+
+            [[nodiscard]] const MatchConfig &getSettings() const;
+
+            [[nodiscard]] const std::vector<character::CharacterInformation> &getCharacterSettings() const;
+
             friend void to_json(nlohmann::json &j, const HelloReply &h);
 
             friend void from_json(const nlohmann::json &j, HelloReply &h);

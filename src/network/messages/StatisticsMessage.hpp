@@ -33,9 +33,9 @@ namespace spy::network::messages {
 
         private:
             util::UUID winner;
-            spy::statistics::VictoryEnum reason;
+            spy::statistics::VictoryEnum reason = spy::statistics::VictoryEnum::INVALID;
             std::optional<spy::statistics::Statistics> statistics;
-            bool hasReplay;
+            bool hasReplay = false;
     };
 
 
