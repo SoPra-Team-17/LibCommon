@@ -55,4 +55,9 @@ namespace spy::network::messages {
             }
         }
     }
+
+    bool MetaInformation::operator==(const MetaInformation &rhs) const {
+        return isEqual(rhs) &&
+               information == rhs.information;
+    }
 }

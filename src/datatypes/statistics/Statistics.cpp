@@ -23,4 +23,8 @@ namespace spy::statistics {
         return entries;
     }
 
+    bool Statistics::operator==(const Statistics &rhs) const {
+        return entries == rhs.entries;
+    }
+
 }

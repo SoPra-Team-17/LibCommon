@@ -18,4 +18,8 @@ namespace spy::network::messages {
     void from_json(const nlohmann::json &j, RequestReplay &r) {
         MessageContainer::common_from_json(j, r);
     }
+
+    bool RequestReplay::operator==(const RequestReplay &rhs) const {
+        return isEqual(rhs);
+    }
 }

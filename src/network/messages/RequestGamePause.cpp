@@ -25,4 +25,9 @@ namespace spy::network::messages {
     bool RequestGamePause::getGamePause() const {
         return gamePause;
     }
+
+    bool RequestGamePause::operator==(const RequestGamePause &rhs) const {
+        return isEqual(rhs) &&
+               gamePause == rhs.gamePause;
+    }
 }

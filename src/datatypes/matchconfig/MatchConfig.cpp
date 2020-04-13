@@ -239,4 +239,20 @@ namespace spy {
         c.reconnectLimit = (reconnectLimit < 0) ? std::optional<unsigned int>() : reconnectLimit;
         c.pauseLimit = (pauseLimit < 0) ? std::optional<unsigned int>() : pauseLimit;
     }
+
+    bool MatchConfig::operator==(const MatchConfig &rhs) const {
+        return std::tie(moledieRange, bowlerBladeRange, bowlerBladeHitChance, bowlerBladeDamage, laserCompactHitChance,
+                        rocketPenDamage, gasGlossDamage, mothballPouchRange, mothballPouchDamage, fogTinRange,
+                        grappleRange, grappleHitChance, wiretapWithEarplugsFailChance, mirrorSwapChance,
+                        cocktailDodgeChance, cocktailHealthPoints, spySuccessChance, babysitterSuccessChance,
+                        honeyTrapSuccessChance, observationSuccessChance, chipsToIpFactor, roundLimit, catIp,
+                        strikeMaximum, turnPhaseLimit, pauseLimit, reconnectLimit) ==
+               std::tie(rhs.moledieRange, rhs.bowlerBladeRange, rhs.bowlerBladeHitChance, rhs.bowlerBladeDamage,
+                        rhs.laserCompactHitChance, rhs.rocketPenDamage, rhs.gasGlossDamage, rhs.mothballPouchRange,
+                        rhs.mothballPouchDamage, rhs.fogTinRange, rhs.grappleRange, rhs.grappleHitChance,
+                        rhs.wiretapWithEarplugsFailChance, rhs.mirrorSwapChance, rhs.cocktailDodgeChance,
+                        rhs.cocktailHealthPoints, rhs.spySuccessChance, rhs.babysitterSuccessChance,
+                        rhs.honeyTrapSuccessChance, rhs.observationSuccessChance, rhs.chipsToIpFactor, rhs.roundLimit,
+                        rhs.catIp, rhs.strikeMaximum, rhs.turnPhaseLimit, rhs.pauseLimit, rhs.reconnectLimit);
+    }
 }

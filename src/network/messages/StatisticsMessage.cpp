@@ -52,4 +52,12 @@ namespace spy::network::messages {
     bool StatisticsMessage::getHasReplay() const {
         return hasReplay;
     }
+
+    bool StatisticsMessage::operator==(const StatisticsMessage &rhs) const {
+        return isEqual(rhs) &&
+               winner == rhs.winner &&
+               reason == rhs.reason &&
+               statistics == rhs.statistics &&
+               hasReplay == rhs.hasReplay;
+    }
 }

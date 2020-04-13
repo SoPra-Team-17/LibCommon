@@ -31,4 +31,10 @@ namespace spy::network::messages {
         j.at("role").get_to(h.role);
         j.at("name").get_to(h.name);
     }
+
+    bool Hello::operator==(const Hello &rhs) const {
+        return isEqual(rhs) &&
+               name == rhs.name &&
+               role == rhs.role;
+    }
 }

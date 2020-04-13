@@ -25,4 +25,9 @@ namespace spy::network::messages {
         MessageContainer::common_from_json(j, e);
         j.at("reason").get_to(e.reason);
     }
+
+    bool Error::operator==(const Error &rhs) const {
+        return isEqual(rhs) &&
+               reason == rhs.reason;
+    }
 }

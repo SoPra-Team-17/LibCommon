@@ -33,6 +33,7 @@ namespace spy::network::messages {
 
             friend void from_json(const nlohmann::json &j, HelloReply &h);
 
+            bool operator==(const HelloReply &rhs) const;
 
         private:
             util::UUID sessionId;

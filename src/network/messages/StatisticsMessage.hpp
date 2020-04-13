@@ -31,6 +31,8 @@ namespace spy::network::messages {
 
             friend void from_json(const nlohmann::json &j, StatisticsMessage &s);
 
+            bool operator==(const StatisticsMessage &rhs) const;
+
         private:
             util::UUID winner;
             spy::statistics::VictoryEnum reason = spy::statistics::VictoryEnum::INVALID;

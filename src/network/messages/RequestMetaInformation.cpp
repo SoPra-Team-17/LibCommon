@@ -28,4 +28,9 @@ namespace spy::network::messages {
     const std::vector<std::string> &RequestMetaInformation::getKeys() const {
         return keys;
     }
+
+    bool RequestMetaInformation::operator==(const RequestMetaInformation &rhs) const {
+        return isEqual(rhs) &&
+               keys == rhs.keys;
+    }
 }

@@ -76,6 +76,8 @@ namespace spy {
 
             friend void from_json(const nlohmann::json &j, MatchConfig &c);
 
+            bool operator==(const MatchConfig &rhs) const;
+
         private:
             unsigned int moledieRange;
 

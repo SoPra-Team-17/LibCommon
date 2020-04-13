@@ -24,4 +24,9 @@ namespace spy::network::messages {
     const gameplay::Operation &GameOperation::getOperation() const {
         return operation;
     }
+
+    bool GameOperation::operator==(const GameOperation &rhs) const {
+        return isEqual(rhs) &&
+               operation == rhs.operation;
+    }
 }

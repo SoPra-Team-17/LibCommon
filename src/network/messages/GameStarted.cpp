@@ -59,5 +59,14 @@ namespace spy::network::messages {
         return sessionId;
     }
 
+    bool GameStarted::operator==(const GameStarted &rhs) const {
+        return isEqual(rhs) &&
+               playerOneId == rhs.playerOneId &&
+               playerTwoId == rhs.playerTwoId &&
+               playerOneName == rhs.playerOneName &&
+               playerTwoName == rhs.playerTwoName &&
+               sessionId == rhs.sessionId;
+    }
+
 
 }

@@ -36,4 +36,9 @@ namespace spy::network::messages {
     const std::variant<util::UUID, gadget::GadgetEnum> &ItemChoice::getChoice() const {
         return choice;
     }
+
+    bool ItemChoice::operator==(const ItemChoice &rhs) const {
+        return isEqual(rhs) &&
+               choice == rhs.choice;
+    }
 }

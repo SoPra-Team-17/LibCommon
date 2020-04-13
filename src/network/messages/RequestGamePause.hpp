@@ -21,6 +21,8 @@ namespace spy::network::messages {
 
             friend void from_json(const nlohmann::json &j, RequestGamePause &r);
 
+            bool operator==(const RequestGamePause &rhs) const;
+
         private:
             bool gamePause;
     };

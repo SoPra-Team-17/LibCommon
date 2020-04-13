@@ -22,7 +22,9 @@ set(SOURCES
         util/optionalSerialization.cpp
         messages/helloMessageTest.cpp
         messages/itemChoiceMessageTest.cpp
-        messages/metaInformationTest.cpp)
+        messages/metaInformationTest.cpp
+        messages/messageEncodeDecode.cpp
+        messages/debugInfoTest.cpp)
 
 add_executable(allTests ${SOURCES})
 

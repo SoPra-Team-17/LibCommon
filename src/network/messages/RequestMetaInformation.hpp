@@ -22,6 +22,8 @@ namespace spy::network::messages {
 
             friend void from_json(const nlohmann::json &j, RequestMetaInformation &r);
 
+            bool operator==(const RequestMetaInformation &rhs) const;
+
         private:
             std::vector<std::string> keys;
     };

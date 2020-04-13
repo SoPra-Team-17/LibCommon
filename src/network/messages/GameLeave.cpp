@@ -16,4 +16,8 @@ namespace spy::network::messages {
     GameLeave::GameLeave() : MessageContainer{MessageTypeEnum::GAME_LEAVE, {}} {}
 
     GameLeave::GameLeave(util::UUID playerId) : MessageContainer{MessageTypeEnum::GAME_LEAVE, playerId} {}
+
+    bool GameLeave::operator==(const GameLeave &rhs) const {
+        return isEqual(rhs);
+    }
 }

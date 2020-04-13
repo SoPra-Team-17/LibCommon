@@ -21,7 +21,8 @@ namespace spy::character {
         public:
             CharacterInformation() = default;
 
-            CharacterInformation(const util::UUID &characterId, const std::string &name, const std::string &description, GenderEnum gender,
+            CharacterInformation(const util::UUID &characterId, const std::string &name, const std::string &description,
+                                 GenderEnum gender,
                                  const std::vector<PropertyEnum> &features);
 
             [[nodiscard]] const util::UUID &getCharacterId() const;
@@ -29,6 +30,8 @@ namespace spy::character {
             friend void to_json(nlohmann::json &j, const CharacterInformation &c);
 
             friend void from_json(const nlohmann::json &j, CharacterInformation &c);
+
+            bool operator==(const CharacterInformation &rhs) const;
 
         private:
             spy::util::UUID characterId;

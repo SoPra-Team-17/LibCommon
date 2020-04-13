@@ -51,4 +51,12 @@ namespace spy::network::messages {
     const std::vector<character::CharacterInformation> &HelloReply::getCharacterSettings() const {
         return characterSettings;
     }
+
+    bool HelloReply::operator==(const HelloReply &rhs) const {
+        return isEqual(rhs) &&
+               sessionId == rhs.sessionId &&
+               level == rhs.level &&
+               settings == rhs.settings &&
+               characterSettings == rhs.characterSettings;
+    }
 }

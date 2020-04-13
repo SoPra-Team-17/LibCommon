@@ -20,4 +20,9 @@ namespace spy::network::messages {
     GameLeft::GameLeft(util::UUID playerId, util::UUID leftUserId) :
             MessageContainer{MessageTypeEnum::GAME_LEFT, playerId},
             leftUserId{leftUserId} {}
+
+    bool GameLeft::operator==(const GameLeft &rhs) const {
+        return isEqual(rhs) &&
+               leftUserId == rhs.leftUserId;
+    }
 }

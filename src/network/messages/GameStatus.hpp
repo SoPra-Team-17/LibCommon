@@ -31,6 +31,8 @@ namespace spy::network::messages {
 
             friend void from_json(const nlohmann::json &j, GameStatus &g);
 
+            bool operator==(const GameStatus &rhs) const;
+
         private:
             util::UUID activeCharacterId;
             std::vector<spy::gameplay::Operation> operations;

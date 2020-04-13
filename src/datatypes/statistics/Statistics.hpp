@@ -23,6 +23,8 @@ namespace spy::statistics {
 
             friend void from_json(const nlohmann::json &j, Statistics &s);
 
+            bool operator==(const Statistics &rhs) const;
+
         private:
             std::vector<StatisticsEntry> entries;
     };

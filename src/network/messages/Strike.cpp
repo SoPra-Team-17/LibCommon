@@ -39,4 +39,11 @@ namespace spy::network::messages {
     const std::string &Strike::getReason() const {
         return reason;
     }
+
+    bool Strike::operator==(const Strike &rhs) const {
+        return isEqual(rhs) &&
+               strikeNr == rhs.strikeNr &&
+               strikeMax == rhs.strikeMax &&
+               reason == rhs.reason;
+    }
 }

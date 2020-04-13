@@ -24,4 +24,9 @@ namespace spy::network::messages {
     const util::UUID &RequestGameOperation::getCharacterId() const {
         return characterId;
     }
+
+    bool RequestGameOperation::operator==(const RequestGameOperation &rhs) const {
+        return isEqual(rhs) &&
+               characterId == rhs.characterId;
+    }
 }

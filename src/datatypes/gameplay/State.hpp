@@ -12,6 +12,10 @@ namespace spy::gameplay {
             friend void to_json(nlohmann::json &j, const State &s);
 
             friend void from_json(const nlohmann::json &j, State &s);
+
+        public:
+            bool operator==(const State &rhs) const;
+
     };
 }
 

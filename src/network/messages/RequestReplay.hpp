@@ -18,6 +18,8 @@ namespace spy::network::messages {
             friend void to_json(nlohmann::json &j, const RequestReplay &r);
 
             friend void from_json(const nlohmann::json &j, RequestReplay &r);
+
+            bool operator==(const RequestReplay &rhs) const;
     };
 
 }

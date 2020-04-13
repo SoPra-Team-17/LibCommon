@@ -43,8 +43,10 @@ namespace spy::scenario {
             friend void to_json(nlohmann::json &j, const Scenario &s);
 
             friend void from_json(const nlohmann::json &j, Scenario &s);
+
         private:
             std::vector<std::vector<FieldStateEnum>> scenario;
+
     };
 }
 
