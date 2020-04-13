@@ -11,10 +11,10 @@
 namespace spy::gadget {
 
     class Gadget {
-    public:
-        Gadget() : type{GadgetEnum::INVALID}, usagesLeft{0} {};
+        public:
+            Gadget() : type{GadgetEnum::INVALID}, usagesLeft{0} {};
 
-        explicit Gadget(GadgetEnum type) : type{type}, usagesLeft{0} {};
+            explicit Gadget(GadgetEnum type) : type{type}, usagesLeft{0} {};
 
             [[nodiscard]] GadgetEnum getType() const;
 
