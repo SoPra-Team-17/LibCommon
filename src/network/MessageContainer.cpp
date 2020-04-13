@@ -19,16 +19,17 @@ namespace spy::network {
             playerId(playerId),
             type(messageType) {
         time_t rawtime = time(nullptr);
-        creationDate = *gmtime(&rawtime);
-        creationDate.tm_hour = (creationDate.tm_hour + 1) % 24;
+        struct tm creationDateTM = *gmtime(&rawtime);
+        creationDateTM.tm_hour = (creationDateTM.tm_hour + 1) % 24;
+        char buffer[20];
+        strptime(buffer, "%d.%m.%Y %H:%M:%S", &creationDateTM);
+        creationDate = std::string(buffer);
     }
 
     void MessageContainer::common_to_json(nlohmann::json &j, const MessageContainer &message) {
         j["playerId"] = message.playerId;
         j["type"] = message.type;
-        char buffer[20];
-        strftime(buffer, 20, "%d.%m.%Y %H:%M:%S", &message.creationDate);
-        j["creationDate"] = std::string(buffer);
+        j["creationDate"] = message.creationDate;
         if (message.debugMessage.has_value()) {
             j["debugMessage"] = message.debugMessage.value();
         }
@@ -37,9 +38,7 @@ namespace spy::network {
     void MessageContainer::common_from_json(const nlohmann::json &j, MessageContainer &message) {
         j.at("playerId").get_to(message.playerId);
         j.at("type").get_to(message.type);
-        char buffer[20];
-        j.at("creationDate").get_to(buffer);
-        strptime(buffer, "%d.%m.%Y %H:%M:%S", &message.creationDate);
+        j.at("creationDate").get_to(message.creationDate);
         if (j.find("debugMessage") != j.end()) {
             // debugMessage present
             j.at("debugMessage").get_to(message.debugMessage);
@@ -56,7 +55,7 @@ namespace spy::network {
         return type;
     }
 
-    const struct tm &MessageContainer::getCreationDate() const {
+    const std::string &MessageContainer::getCreationDate() const {
         return creationDate;
     }
 

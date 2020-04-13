@@ -24,7 +24,7 @@ namespace spy::network {
 
             [[nodiscard]] messages::MessageTypeEnum getType() const;
 
-            [[nodiscard]] const struct tm &getCreationDate() const;
+            [[nodiscard]] const std::string &getCreationDate() const;
 
             [[nodiscard]] const std::optional<std::string> &getDebugMessage() const;
 
@@ -57,7 +57,7 @@ namespace spy::network {
         private:
             spy::util::UUID playerId;
             messages::MessageTypeEnum type = messages::MessageTypeEnum::INVALID;
-            struct tm creationDate;
+            std::string creationDate;
             std::optional<std::string> debugMessage;
 
     };
