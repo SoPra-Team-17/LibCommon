@@ -18,9 +18,9 @@ namespace spy::network {
     MessageContainer::MessageContainer(messages::MessageTypeEnum messageType, util::UUID playerId) :
             playerId(playerId),
             type(messageType) {
+        setenv("TZ", "Africa/Malabo", 1); // UTC+1 the whole year
         std::time_t rawtime = std::time(nullptr);
         struct std::tm *creationDateTM = std::gmtime(&rawtime);
-        creationDateTM->tm_hour = (creationDateTM->tm_hour + 1) % 24;
         char buffer[20];
         std::strftime(buffer, sizeof(buffer), "%d.%m.%Y %H:%M:%S", creationDateTM);
         creationDate = std::string(buffer);
