@@ -45,7 +45,14 @@ namespace spy::network {
              */
             static void common_from_json(const nlohmann::json &j, MessageContainer &message);
 
+            bool operator==(const MessageContainer &rhs) = delete;
 
+            /**
+             * This is equivalent to operator== for MessageContainer.
+             * operator== was explicitly removed here to prevent accidental comparison of specific messages using
+             * the inherited MessageContainer::operator==, which would only compare the common members in
+             * MessageContainer.
+             */
             [[nodiscard]] bool isEqual(const MessageContainer &rhs) const;
 
         private:
