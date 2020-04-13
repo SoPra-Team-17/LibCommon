@@ -38,23 +38,7 @@ namespace spy::scenario {
     }
 
     bool Scenario::operator==(const Scenario &rhs) const {
-        if (scenario.size() != rhs.scenario.size()) {
-            return false;
-        } else {
-            for (unsigned int row = 0; row < scenario.size(); row++) {
-                if (scenario.at(row).size() != rhs.scenario.at(row).size()) {
-                    return false;
-                }
-
-                for (unsigned int col = 0; col < scenario.at(row).size(); col++) {
-                    if (scenario.at(row).at(col) != rhs.scenario.at(row).at(col)) {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-        }
+        return scenario == rhs.scenario;
     }
 
     bool Scenario::operator!=(const Scenario &rhs) const {
