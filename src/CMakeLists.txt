@@ -21,6 +21,9 @@ set(SOURCE
         datatypes/character/CharacterDescription.cpp
         datatypes/matchconfig/MatchConfig.cpp
         datatypes/scenario/Scenario.cpp
+        datatypes/scenario/Scenario.cpp
+        datatypes/scenario/FieldMap.cpp
+        datatypes/scenario/Field.cpp
         datatypes/statistics/StatisticsEntry.cpp
         datatypes/statistics/Statistics.cpp
         datatypes/gameplay/State.cpp
@@ -67,6 +70,9 @@ set(INCLUDE
         datatypes/character/PropertyEnum.hpp
         datatypes/matchconfig/MatchConfig.hpp
         datatypes/scenario/Scenario.hpp
+        datatypes/scenario/FieldMap.hpp
+        datatypes/scenario/Field.hpp
+        datatypes/scenario/FieldStateEnum.hpp
         datatypes/statistics/StatisticsEntry.hpp
         datatypes/gameplay/State.hpp
         datatypes/statistics/Statistics.hpp
@@ -99,7 +105,6 @@ set(INCLUDE
         network/messages/Replay.hpp
         network/messages/StatisticsMessage.hpp
         )
-
 
 include_directories(.)
 include_directories(src)
