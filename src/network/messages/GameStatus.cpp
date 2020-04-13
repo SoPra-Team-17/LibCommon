@@ -49,4 +49,12 @@ namespace spy::network::messages {
         return isGameOver;
     }
 
+    bool GameStatus::operator==(const GameStatus &rhs) const {
+        return isEqual(rhs) &&
+               activeCharacterId == rhs.activeCharacterId &&
+               operations == rhs.operations &&
+               state == rhs.state &&
+               isGameOver == rhs.isGameOver;
+    }
+
 }

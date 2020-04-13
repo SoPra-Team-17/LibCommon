@@ -12,4 +12,8 @@ namespace spy::gameplay {
     void from_json(const nlohmann::json &/*j*/, State &/*s*/) {
 
     }
+
+    bool State::operator==(const State &/*rhs*/) const {
+        return true;
+    }
 }

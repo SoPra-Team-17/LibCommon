@@ -29,4 +29,10 @@ namespace spy::character {
         j.at("characterId").get_to(ci.characterId);
     }
 
+    bool CharacterInformation::operator==(const CharacterInformation &rhs) const {
+        return static_cast<const spy::character::CharacterDescription &>(*this) ==
+               static_cast<const spy::character::CharacterDescription &>(rhs) &&
+               characterId == rhs.characterId;
+    }
+
 }   // namespace spy::character

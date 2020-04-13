@@ -28,6 +28,8 @@ namespace spy::network::messages {
 
             [[nodiscard]] auto getOfferedGadgets() const -> const std::vector<spy::gadget::GadgetEnum> &;
 
+            bool operator==(const RequestItemChoice &rhs) const;
+
         private:
             std::vector<util::UUID> offeredCharacterIds;
             std::vector<spy::gadget::GadgetEnum> offeredGadgets;

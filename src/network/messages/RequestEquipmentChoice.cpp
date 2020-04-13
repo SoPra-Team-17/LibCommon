@@ -39,4 +39,10 @@ namespace spy::network::messages {
         return chosenGadgets;
     }
 
+    bool RequestEquipmentChoice::operator==(const RequestEquipmentChoice &rhs) const {
+        return isEqual(rhs) &&
+               chosenCharacterIds == rhs.chosenCharacterIds &&
+               chosenGadgets == rhs.chosenGadgets;
+    }
+
 }

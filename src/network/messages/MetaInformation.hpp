@@ -37,6 +37,8 @@ namespace spy::network::messages {
 
             [[nodiscard]] const std::map<std::string, Info> &getInformation() const;
 
+            bool operator==(const MetaInformation &rhs) const;
+
         private:
             std::map<std::string, Info> information;
     };

@@ -21,6 +21,8 @@ namespace spy::network::messages {
 
             friend void from_json(const nlohmann::json &j, Error &e);
 
+            bool operator==(const Error &rhs) const;
+
         private:
             ErrorTypeEnum reason = ErrorTypeEnum::GENERAL;
     };

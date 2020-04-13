@@ -74,6 +74,8 @@ namespace spy::character {
                 j.at("features").get_to(cd.features);
             }
 
+            bool operator==(const CharacterDescription &rhs) const;
+
         protected:
             std::string name;
             std::string description;

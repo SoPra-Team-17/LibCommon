@@ -59,4 +59,9 @@ namespace spy::network {
     void MessageContainer::setDebugMessage(const std::optional<std::string> &newDebugMessage) {
         MessageContainer::debugMessage = newDebugMessage;
     }
+
+    bool MessageContainer::isEqual(const MessageContainer &rhs) const {
+        return std::tie(playerId, type, creationDate, debugMessage) ==
+               std::tie(rhs.playerId, rhs.type, rhs.creationDate, rhs.debugMessage);
+    }
 }

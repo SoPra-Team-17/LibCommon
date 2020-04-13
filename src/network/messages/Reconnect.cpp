@@ -24,4 +24,9 @@ namespace spy::network::messages {
     const util::UUID &Reconnect::getSessionId() const {
         return sessionId;
     }
+
+    bool Reconnect::operator==(const Reconnect &rhs) const {
+        return isEqual(rhs) &&
+               sessionId == rhs.sessionId;
+    }
 }

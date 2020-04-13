@@ -27,6 +27,8 @@ namespace spy::network::messages {
 
             friend void from_json(const nlohmann::json &j, RequestEquipmentChoice &r);
 
+            bool operator==(const RequestEquipmentChoice &rhs) const;
+
         private:
             std::vector<util::UUID> chosenCharacterIds;
             std::vector<spy::gadget::GadgetEnum> chosenGadgets;

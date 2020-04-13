@@ -25,6 +25,8 @@ namespace spy::network::messages {
 
             friend void from_json(const nlohmann::json &j, Strike &s);
 
+            bool operator==(const Strike &rhs) const;
+
         private:
             int strikeNr;
             int strikeMax;

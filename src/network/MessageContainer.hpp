@@ -45,6 +45,9 @@ namespace spy::network {
              */
             static void common_from_json(const nlohmann::json &j, MessageContainer &message);
 
+
+            [[nodiscard]] bool isEqual(const MessageContainer &rhs) const;
+
         private:
             spy::util::UUID playerId;
             messages::MessageTypeEnum type = messages::MessageTypeEnum::INVALID;

@@ -20,6 +20,8 @@ namespace spy::network::messages {
 
             friend void from_json(const nlohmann::json &j, Reconnect &r);
 
+            bool operator==(const Reconnect &rhs) const;
+
         private:
             util::UUID sessionId;
     };

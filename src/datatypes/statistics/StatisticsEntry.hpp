@@ -30,6 +30,7 @@ namespace spy::statistics {
 
             [[nodiscard]] const std::string &getValuePlayerTwo() const;
 
+            bool operator==(const StatisticsEntry &rhs) const;
 
         private:
             std::string title;

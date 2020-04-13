@@ -24,6 +24,8 @@ namespace spy::network::messages {
 
             friend void from_json(const nlohmann::json &j, Hello &h);
 
+            bool operator==(const Hello &rhs) const;
+
         private:
             std::string name;
             RoleEnum role = RoleEnum::INVALID;

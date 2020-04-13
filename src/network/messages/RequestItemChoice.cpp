@@ -36,5 +36,11 @@ namespace spy::network::messages {
     auto RequestItemChoice::getOfferedGadgets() const -> const std::vector<spy::gadget::GadgetEnum> & {
         return offeredGadgets;
     }
+
+    bool RequestItemChoice::operator==(const RequestItemChoice &rhs) const {
+        return isEqual(rhs) &&
+               offeredCharacterIds == rhs.offeredCharacterIds &&
+               offeredGadgets == rhs.offeredGadgets;
+    }
 }
 

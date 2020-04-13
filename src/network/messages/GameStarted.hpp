@@ -29,6 +29,8 @@ namespace spy::network::messages {
 
             friend void from_json(const nlohmann::json &j, GameStarted &g);
 
+            bool operator==(const GameStarted &rhs) const;
+
         private:
             util::UUID playerOneId;
             util::UUID playerTwoId;

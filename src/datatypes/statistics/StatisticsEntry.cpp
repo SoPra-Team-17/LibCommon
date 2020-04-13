@@ -45,5 +45,10 @@ namespace spy::statistics {
         return valuePlayerTwo;
     }
 
+    bool StatisticsEntry::operator==(const StatisticsEntry &rhs) const {
+        return std::tie(title, description, valuePlayerOne, valuePlayerTwo) ==
+               std::tie(rhs.title, rhs.description, rhs.valuePlayerOne, rhs.valuePlayerTwo);
+    }
+
 
 }

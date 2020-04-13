@@ -26,4 +26,8 @@ namespace spy::network::messages {
     auto EquipmentChoice::getEquipment() const -> const std::map<util::UUID, std::set<gadget::GadgetEnum>> & {
         return equipment;
     }
+
+    bool EquipmentChoice::operator==(const EquipmentChoice &rhs) const {
+        return isEqual(rhs) && equipment == rhs.equipment;
+    }
 }

@@ -32,4 +32,10 @@ namespace spy::network::messages {
     bool GamePause::isServerEnforced() const {
         return serverEnforced;
     }
+
+    bool GamePause::operator==(const GamePause &rhs) const {
+        return isEqual(rhs) &&
+               gamePause == rhs.gamePause &&
+               serverEnforced == rhs.serverEnforced;
+    }
 }

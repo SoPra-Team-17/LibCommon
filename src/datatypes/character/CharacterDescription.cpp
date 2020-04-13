@@ -41,4 +41,9 @@ namespace spy::character {
         CharacterDescription::common_from_json(j, cd);
     }
 
+    bool CharacterDescription::operator==(const CharacterDescription &rhs) const {
+        return std::tie(name, description, gender, features) ==
+               std::tie(rhs.name, rhs.description, rhs.gender, rhs.features);
+    }
+
 }   // namespace spy::character
