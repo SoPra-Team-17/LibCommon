@@ -8,9 +8,14 @@
 
 namespace spy::character {
 
-    CharacterDescription::CharacterDescription(const std::string &name, const std::string &description, GenderEnum gender,
-                                               const std::vector<PropertyEnum> &features)
-            : name(name), description(description), gender(gender), features(features) {}
+    CharacterDescription::CharacterDescription(const std::string &name,
+                                               const std::string &description,
+                                               GenderEnum gender,
+                                               const std::vector<PropertyEnum> &features) :
+            name(name),
+            description(description),
+            gender(gender),
+            features(features) {}
 
     const std::string &CharacterDescription::getName() const {
         return name;
@@ -34,6 +39,11 @@ namespace spy::character {
 
     void from_json(const nlohmann::json &j, spy::character::CharacterDescription &cd) {
         CharacterDescription::common_from_json(j, cd);
+    }
+
+    bool CharacterDescription::operator==(const CharacterDescription &rhs) const {
+        return std::tie(name, description, gender, features) ==
+               std::tie(rhs.name, rhs.description, rhs.gender, rhs.features);
     }
 
 }   // namespace spy::character
