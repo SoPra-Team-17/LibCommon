@@ -20,9 +20,10 @@ namespace spy::network {
             type(messageType) {
         setenv("TZ", "Africa/Malabo", 1); // UTC+1 the whole year
         std::time_t rawtime = std::time(nullptr);
-        const struct std::tm *creationDateTM = localtime(&rawtime);
+        struct std::tm creationDateTM;
+        localtime_r(&rawtime, &creationDateTM);
         char buffer[20];
-        std::strftime(buffer, sizeof(buffer), "%d.%m.%Y %H:%M:%S", creationDateTM);
+        std::strftime(buffer, sizeof(buffer), "%d.%m.%Y %H:%M:%S", &creationDateTM);
         creationDate = std::string(buffer);
     }
 
