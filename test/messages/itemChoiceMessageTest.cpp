@@ -13,7 +13,8 @@ TEST(messages, ItemChoiceMessage_encode_character) {
     nlohmann::json j;
     EXPECT_NO_THROW(j = characterChoice);
     EXPECT_EQ(j.dump(),
-              R"({"chosenCharacter":"123e4567-e89b-12d3-a456-426655441111","chosenGadget":null,"creationDate":"","playerId":"123e4567-e89b-12d3-a456-426655440000","type":"ITEM_CHOICE"})");
+              R"({"chosenCharacter":"123e4567-e89b-12d3-a456-426655441111","chosenGadget":null,"creationDate":")" +
+              characterChoice.getCreationDate() + R"(","playerId":"123e4567-e89b-12d3-a456-426655440000","type":"ITEM_CHOICE"})");
 }
 
 TEST(messages, ItemChoiceMessage_encode_gadget) {
@@ -24,7 +25,8 @@ TEST(messages, ItemChoiceMessage_encode_gadget) {
     nlohmann::json j;
     EXPECT_NO_THROW(j = gadgetChoice);
     EXPECT_EQ(j.dump(),
-              R"({"chosenCharacter":null,"chosenGadget":"POISON_PILLS","creationDate":"","playerId":"123e4567-e89b-12d3-a456-426655440000","type":"ITEM_CHOICE"})");
+              R"({"chosenCharacter":null,"chosenGadget":"POISON_PILLS","creationDate":")" +
+              gadgetChoice.getCreationDate() + R"(","playerId":"123e4567-e89b-12d3-a456-426655440000","type":"ITEM_CHOICE"})");
 }
 
 TEST(messages, ItemChoiceMessage_decode_character) {
