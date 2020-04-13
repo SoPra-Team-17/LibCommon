@@ -18,11 +18,11 @@ namespace spy::network {
     MessageContainer::MessageContainer(messages::MessageTypeEnum messageType, util::UUID playerId) :
             playerId(playerId),
             type(messageType) {
-        time_t rawtime = time(nullptr);
-        struct tm creationDateTM = *gmtime(&rawtime);
-        creationDateTM.tm_hour = (creationDateTM.tm_hour + 1) % 24;
+        std::time_t rawtime = std::time(nullptr);
+        struct std::tm *creationDateTM = std::gmtime(&rawtime);
+        creationDateTM->tm_hour = (creationDateTM->tm_hour + 1) % 24;
         char buffer[20];
-        strptime(buffer, "%d.%m.%Y %H:%M:%S", &creationDateTM);
+        std::strftime(buffer, sizeof(buffer), "%d.%m.%Y %H:%M:%S", creationDateTM);
         creationDate = std::string(buffer);
     }
 
