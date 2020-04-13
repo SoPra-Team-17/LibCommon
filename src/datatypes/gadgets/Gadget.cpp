@@ -6,6 +6,8 @@
 
 namespace spy::gadget {
 
+    Gadget::Gadget(GadgetEnum type, int usagesLeft) : type(type), usagesLeft(usagesLeft) {}
+
     GadgetEnum Gadget::getType() const {
         return type;
     }

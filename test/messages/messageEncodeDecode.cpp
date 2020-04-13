@@ -37,6 +37,14 @@ nlohmann::json exampleScenarioJson = R"({ "scenario": [
 	    ]})"_json;
 
 class MessageEncodeDecode : public ::testing::Test {
+    public:
+        MessageEncodeDecode() {
+            char1.setGadgets({spy::gadget::Gadget{spy::gadget::GadgetEnum::LASER_COMPACT, 3},
+                              spy::gadget::Gadget{spy::gadget::GadgetEnum::JETPACK, 4}});
+            exampleState = {7, exampleMap, {1337, 420}, {char1, char2}, spy::util::Point{1, 2},
+                            spy::util::Point{5, 1}};
+        }
+
     protected:
         spy::util::UUID exampleUUID1 = spy::util::UUID{"6a1333d0-2317-4044-9d37-047d29205011"};
         spy::util::UUID exampleUUID2 = spy::util::UUID{"6a1333d1-2318-5044-9d37-047d29205012"};
@@ -46,8 +54,7 @@ class MessageEncodeDecode : public ::testing::Test {
         spy::scenario::FieldMap exampleMap = spy::scenario::FieldMap{exampleScenario};
         spy::character::Character char1 = {exampleUUID1, "TestChar1"};
         spy::character::Character char2 = {exampleUUID2, "TestChar2"};
-        spy::gameplay::State exampleState = {7, exampleMap, {1337, 420}, {char1, char2}, spy::util::Point{1, 2},
-                                             spy::util::Point{5, 1}};
+        spy::gameplay::State exampleState;
 };
 
 

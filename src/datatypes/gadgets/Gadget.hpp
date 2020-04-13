@@ -14,7 +14,7 @@ namespace spy::gadget {
         public:
             Gadget() : type{GadgetEnum::INVALID}, usagesLeft{0} {};
 
-            explicit Gadget(GadgetEnum type) : type{type}, usagesLeft{0} {};
+            explicit Gadget(GadgetEnum type, int usagesLeft = 0);
 
             [[nodiscard]] GadgetEnum getType() const;
 
