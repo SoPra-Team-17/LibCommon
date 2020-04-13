@@ -24,6 +24,7 @@
 #include <network/messages/RequestReplay.hpp>
 #include <network/messages/StatisticsMessage.hpp>
 #include <network/messages/Strike.hpp>
+#include <network/messages/MetaInformation.hpp>
 
 auto exampleUUID1 = spy::util::UUID{"6a1333d0-2317-4044-9d37-047d29205011"};
 auto exampleUUID2 = spy::util::UUID{"6a1333d1-2318-5044-9d37-047d29205012"};
@@ -161,5 +162,32 @@ TEST(MessageEncodeDecode, StatisticsMessage) {
 
 TEST(MessageEncodeDecode, Strike) {
     spy::network::messages::Strike testMessage{exampleUUID1, 7, 8, "Stealing cocktails from players"};
+    testEncodeDecode(testMessage);
+}
+
+TEST(MessageEncodeDecode, MetaInformation) {
+    using namespace spy::network::messages;
+
+    MetaInformation testMessage{exampleUUID1, {{"Spectator.Count", 1},
+                                               {"Spectator.Members", std::vector<std::string>{"Jonas"}},
+                                               {"Configuration.Scenario", spy::scenario::Scenario{}},
+                                               {"Configuration.Matchconfig", spy::MatchConfig{}},
+                                               {"Configuration.CharacterInformation",
+                                                std::vector<spy::character::CharacterInformation>{}},
+                                               {"Game.RemainingPauseTime", 7},
+                                               {"Faction.Player1",
+                                                std::vector<spy::util::UUID>{exampleUUID1, exampleUUID2}},
+                                               {"Faction.Player2",
+                                                std::vector<spy::util::UUID>{exampleUUID1, exampleUUID2}},
+                                               {"Faction.Neutral",
+                                                std::vector<spy::util::UUID>{exampleUUID1, exampleUUID2}},
+                                               {"Gadgets.Player1",
+                                                std::vector<spy::gadget::GadgetEnum>{
+                                                        spy::gadget::GadgetEnum::POISON_PILLS,
+                                                        spy::gadget::GadgetEnum::HAIRDRYER}},
+                                               {"Gadgets.Player2",
+                                                std::vector<spy::gadget::GadgetEnum>{
+                                                        spy::gadget::GadgetEnum::POISON_PILLS,
+                                                        spy::gadget::GadgetEnum::HAIRDRYER}}}};
     testEncodeDecode(testMessage);
 }
