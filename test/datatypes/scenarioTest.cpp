@@ -231,6 +231,53 @@ TEST(Scenario, DimensionTests) {
     EXPECT_EQ(decodedScenario.getRowLength(6), 7);
 }
 
+TEST(Scenario, ScenarioSetters) {
+    auto input = R"({ "scenario": [
+		["WALL"],
+		["WALL", "FIREPLACE"],
+		["WALL", "FREE",      "FREE"],
+		["WALL", "BAR_TABLE", "FREE", "ROULETTE_TABLE"],
+		["WALL", "BAR_SEAT",  "FREE", "WALL",           "FREE"],
+		["WALL", "FREE",      "FREE", "FREE",           "FREE",     "SAFE"],
+		["WALL", "WALL",      "WALL", "WALL",           "WALL",     "WALL", "WALL"]
+	    ]})"_json;
+
+    spy::scenario::Scenario decodedScenario;
+    EXPECT_NO_THROW(decodedScenario = input.get<spy::scenario::Scenario>());
+
+    EXPECT_NO_THROW(decodedScenario.setField(0, 0, spy::scenario::FieldStateEnum::FREE));
+    EXPECT_EQ(decodedScenario.getField(0, 0), spy::scenario::FieldStateEnum::FREE);
+
+    EXPECT_NO_THROW(decodedScenario.setField(spy::util::Point(0, 1), spy::scenario::FieldStateEnum::FREE));
+    EXPECT_EQ(decodedScenario.getField(spy::util::Point(0, 1)), spy::scenario::FieldStateEnum::FREE);
+
+    EXPECT_ANY_THROW(decodedScenario.setField(1, 0, spy::scenario::FieldStateEnum::FREE));
+}
+
+TEST(Scenario, EqualityOperator) {
+    auto input = R"({ "scenario": [
+		["WALL"],
+		["WALL", "FIREPLACE"],
+		["WALL", "FREE",      "FREE"],
+		["WALL", "BAR_TABLE", "FREE", "ROULETTE_TABLE"],
+		["WALL", "BAR_SEAT",  "FREE", "WALL",           "FREE"],
+		["WALL", "FREE",      "FREE", "FREE",           "FREE",     "SAFE"],
+		["WALL", "WALL",      "WALL", "WALL",           "WALL",     "WALL", "WALL"]
+	    ]})"_json;
+
+    spy::scenario::Scenario decodedScenario1, decodedScenario2;
+    EXPECT_NO_THROW(decodedScenario1 = input.get<spy::scenario::Scenario>());
+    EXPECT_NO_THROW(decodedScenario2 = input.get<spy::scenario::Scenario>());
+
+    EXPECT_TRUE(decodedScenario1 == decodedScenario2);
+    EXPECT_FALSE(decodedScenario1 != decodedScenario2);
+
+    decodedScenario1.setField(0, 0, spy::scenario::FieldStateEnum::FREE);
+
+    EXPECT_FALSE(decodedScenario1 == decodedScenario2);
+    EXPECT_TRUE(decodedScenario1 != decodedScenario2);
+}
+
 TEST(Scenario, FieldConstruction) {
     spy::scenario::Field f(spy::scenario::FieldStateEnum::FREE);
     EXPECT_EQ(f.getFieldState(), spy::scenario::FieldStateEnum::FREE);
