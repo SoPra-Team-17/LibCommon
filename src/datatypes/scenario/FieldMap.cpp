@@ -56,4 +56,8 @@ namespace spy::scenario {
     void from_json(const nlohmann::json &j, FieldMap &m) {
         j.at("fieldMap").get_to(m.map);
     }
+
+    bool FieldMap::operator==(const FieldMap &rhs) const {
+        return map == rhs.map;
+    }
 }

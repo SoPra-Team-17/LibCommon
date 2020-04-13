@@ -116,4 +116,14 @@ namespace spy::character {
         j.at("gadgets").get_to(c.gadgets);
     }
 
+    bool Character::operator==(const Character &rhs) const {
+        return std::tie(characterId, name, coordinates, movePoints, actionPoints, healthPoints, intelligencePoints,
+                        chips, properties, gadgets) ==
+               std::tie(rhs.characterId, rhs.name, rhs.coordinates, rhs.movePoints, rhs.actionPoints, rhs.healthPoints,
+                        rhs.intelligencePoints, rhs.chips, rhs.properties, rhs.gadgets);
+    }
+
+    bool Character::operator<(const Character &rhs) const {
+        return characterId < rhs.characterId;
+    }
 }  // namespace spy::character

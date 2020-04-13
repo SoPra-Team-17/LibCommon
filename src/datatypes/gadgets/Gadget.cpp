@@ -27,4 +27,8 @@ namespace spy::gadget {
         j.at("GadgetEnum").get_to(g.type);
         j.at("usages").get_to(g.usagesLeft);
     }
+
+    bool Gadget::operator==(const Gadget &rhs) const {
+        return std::tie(type, usagesLeft) == std::tie(rhs.type, rhs.usagesLeft);
+    }
 }  // namespace spy::gadget

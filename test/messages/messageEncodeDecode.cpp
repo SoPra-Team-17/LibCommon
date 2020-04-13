@@ -26,10 +26,29 @@
 #include <network/messages/Strike.hpp>
 #include <network/messages/MetaInformation.hpp>
 
-auto exampleUUID1 = spy::util::UUID{"6a1333d0-2317-4044-9d37-047d29205011"};
-auto exampleUUID2 = spy::util::UUID{"6a1333d1-2318-5044-9d37-047d29205012"};
-auto exampleOperation = spy::gameplay::Operation{spy::gameplay::OperationEnum::MOVEMENT, true, {3, 3}, exampleUUID2};
-auto exampleState = spy::gameplay::State{};
+nlohmann::json exampleScenarioJson = R"({ "scenario": [
+		["WALL", "WALL",      "WALL", "WALL",           "WALL",     "WALL", "WALL"],
+		["WALL", "FIREPLACE", "WALL", "BAR_TABLE",      "BAR_SEAT", "FREE", "WALL"],
+		["WALL", "FREE",      "FREE", "FREE",           "FREE",     "FREE", "WALL"],
+		["WALL", "BAR_TABLE", "FREE", "ROULETTE_TABLE", "FREE",     "FREE", "WALL"],
+		["WALL", "BAR_SEAT",  "FREE", "WALL",           "FREE",     "FREE", "WALL"],
+		["WALL", "FREE",      "FREE", "FREE",           "FREE",     "SAFE", "WALL"],
+		["WALL", "WALL",      "WALL", "WALL",           "WALL",     "WALL", "WALL"]
+	    ]})"_json;
+
+class MessageEncodeDecode : public ::testing::Test {
+    protected:
+        spy::util::UUID exampleUUID1 = spy::util::UUID{"6a1333d0-2317-4044-9d37-047d29205011"};
+        spy::util::UUID exampleUUID2 = spy::util::UUID{"6a1333d1-2318-5044-9d37-047d29205012"};
+        spy::gameplay::Operation exampleOperation = {spy::gameplay::OperationEnum::MOVEMENT, true, {3, 3},
+                                                     exampleUUID2};
+        spy::scenario::Scenario exampleScenario = exampleScenarioJson.get<spy::scenario::Scenario>();
+        spy::scenario::FieldMap exampleMap = spy::scenario::FieldMap{exampleScenario};
+        spy::character::Character char1 = {exampleUUID1, "TestChar1"};
+        spy::character::Character char2 = {exampleUUID2, "TestChar2"};
+        spy::gameplay::State exampleState = {7, exampleMap, {1337, 420}, {char1, char2}, spy::util::Point{1, 2},
+                                             spy::util::Point{5, 1}};
+};
 
 
 template<typename MessageType>
@@ -48,7 +67,7 @@ void testEncodeDecode(const MessageType &message) {
     EXPECT_EQ(message, decodedMessage);
 }
 
-TEST(MessageEncodeDecode, EquipmentChoice) {
+TEST_F(MessageEncodeDecode, EquipmentChoice) {
     using namespace spy::gadget;
     std::set<GadgetEnum> chosenGadgets1 = {GadgetEnum::HAIRDRYER, GadgetEnum::JETPACK};
     std::set<GadgetEnum> chosenGadgets2 = {GadgetEnum::POISON_PILLS, GadgetEnum::FOG_TIN, GadgetEnum::LASER_COMPACT};
@@ -57,102 +76,102 @@ TEST(MessageEncodeDecode, EquipmentChoice) {
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, Error) {
+TEST_F(MessageEncodeDecode, Error) {
     spy::network::messages::Error testMessage{exampleUUID1, spy::network::ErrorTypeEnum::TOO_MANY_STRIKES};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, GameLeave) {
+TEST_F(MessageEncodeDecode, GameLeave) {
     spy::network::messages::GameLeave testMessage{exampleUUID1};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, GameLeft) {
+TEST_F(MessageEncodeDecode, GameLeft) {
     spy::network::messages::GameLeft testMessage{exampleUUID1, exampleUUID2};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, GameOperation) {
+TEST_F(MessageEncodeDecode, GameOperation) {
     spy::network::messages::GameOperation testMessage{exampleUUID1, exampleOperation};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, GamePause) {
+TEST_F(MessageEncodeDecode, GamePause) {
     spy::network::messages::GamePause testMessage{exampleUUID1, true, false};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, GameStarted) {
+TEST_F(MessageEncodeDecode, GameStarted) {
     spy::network::messages::GameStarted testMessage{exampleUUID1, exampleUUID2, exampleUUID1, "P1", "P2", exampleUUID2};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, GameStatus) {
+TEST_F(MessageEncodeDecode, GameStatus) {
     spy::network::messages::GameStatus testMessage{exampleUUID1, exampleUUID2, {exampleOperation, exampleOperation},
                                                    exampleState, false};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, Hello) {
+TEST_F(MessageEncodeDecode, Hello) {
     spy::network::messages::Hello testMessage{exampleUUID1, "Name", spy::network::RoleEnum::PLAYER};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, HelloReply) {
+TEST_F(MessageEncodeDecode, HelloReply) {
     spy::network::messages::HelloReply testMessage{exampleUUID1, exampleUUID2, {}, {}, {{}}};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, ItemChoice) {
+TEST_F(MessageEncodeDecode, ItemChoice) {
     spy::network::messages::ItemChoice testMessage{exampleUUID1, exampleUUID2};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, ItemChoice_Gadget) {
+TEST_F(MessageEncodeDecode, ItemChoice_Gadget) {
     spy::network::messages::ItemChoice testMessage{exampleUUID1, spy::gadget::GadgetEnum::HAIRDRYER};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, Reconnect) {
+TEST_F(MessageEncodeDecode, Reconnect) {
     spy::network::messages::Reconnect testMessage{exampleUUID1, exampleUUID2};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, RequestEquipmentChoice) {
+TEST_F(MessageEncodeDecode, RequestEquipmentChoice) {
     spy::network::messages::RequestEquipmentChoice testMessage{exampleUUID1, {exampleUUID1, exampleUUID2},
                                                                {spy::gadget::GadgetEnum::LASER_COMPACT,
                                                                 spy::gadget::GadgetEnum::FOG_TIN}};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, RequestGameOperation) {
+TEST_F(MessageEncodeDecode, RequestGameOperation) {
     spy::network::messages::RequestGameOperation testMessage{exampleUUID1, exampleUUID2};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, RequestGamePause) {
+TEST_F(MessageEncodeDecode, RequestGamePause) {
     spy::network::messages::RequestGamePause testMessage{exampleUUID1, true};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, RequestItemChoice) {
+TEST_F(MessageEncodeDecode, RequestItemChoice) {
     spy::network::messages::RequestItemChoice testMessage{exampleUUID1, {exampleUUID1, exampleUUID2},
                                                           {spy::gadget::GadgetEnum::LASER_COMPACT,
                                                            spy::gadget::GadgetEnum::FOG_TIN}};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, RequestMetaInformation) {
+TEST_F(MessageEncodeDecode, RequestMetaInformation) {
     spy::network::messages::RequestMetaInformation testMessage{exampleUUID1, {"key1", "key2"}};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, RequestReplay) {
+TEST_F(MessageEncodeDecode, RequestReplay) {
     spy::network::messages::RequestReplay testMessage{exampleUUID1};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, StatisticsMessage) {
+TEST_F(MessageEncodeDecode, StatisticsMessage) {
     spy::network::messages::StatisticsMessage testMessage{exampleUUID1,
                                                           spy::statistics::Statistics{{{"Cocktails", "Who drank the most?", "17", "3"}}},
                                                           exampleUUID1,
@@ -160,12 +179,12 @@ TEST(MessageEncodeDecode, StatisticsMessage) {
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, Strike) {
+TEST_F(MessageEncodeDecode, Strike) {
     spy::network::messages::Strike testMessage{exampleUUID1, 7, 8, "Stealing cocktails from players"};
     testEncodeDecode(testMessage);
 }
 
-TEST(MessageEncodeDecode, MetaInformation) {
+TEST_F(MessageEncodeDecode, MetaInformation) {
     using namespace spy::network::messages;
 
     MetaInformation testMessage{exampleUUID1, {{"Spectator.Count", 1},
