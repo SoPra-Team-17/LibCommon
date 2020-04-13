@@ -24,9 +24,13 @@ namespace spy::scenario {
 
             explicit FieldMap(const Scenario &scenario);
 
+            void setMap(std::vector<std::vector<Field>> fieldMap);
+
             void setField(unsigned int x, unsigned int y, Field field);
 
             void setField(util::Point p, Field field);
+
+            [[nodiscard]] const std::vector<std::vector<Field>> &getMap() const;
 
             [[nodiscard]] const Field &getField(unsigned int x, unsigned int y) const;
 

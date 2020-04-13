@@ -19,12 +19,20 @@ namespace spy::scenario {
         }
     }
 
+    void FieldMap::setMap(std::vector<std::vector<Field>> fieldMap) {
+        FieldMap::map = std::move(fieldMap);
+    }
+
     void FieldMap::setField(unsigned int x, unsigned int y, Field field) {
         map.at(y).at(x) = field;
     }
 
     void FieldMap::setField(spy::util::Point p, spy::scenario::Field field) {
         FieldMap::setField(p.getX(), p.getY(), field);
+    }
+
+    const std::vector<std::vector<Field>> &FieldMap::getMap() const {
+        return map;
     }
 
     const Field &spy::scenario::FieldMap::getField(unsigned int x, unsigned int y) const {

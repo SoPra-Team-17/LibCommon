@@ -22,13 +22,23 @@ namespace spy::scenario {
         public:
             Scenario() = default;
 
+            void setField(unsigned int x, unsigned int y, FieldStateEnum field);
+
+            void setField(util::Point p, FieldStateEnum field);
+
             [[nodiscard]] FieldStateEnum getField(unsigned int x, unsigned int y) const;
 
             [[nodiscard]] FieldStateEnum getField(util::Point p) const;
 
+            [[nodiscard]] const std::vector<std::vector<FieldStateEnum>> &getScenario() const;
+
             [[nodiscard]] unsigned int getNumberOfRows() const;
 
             [[nodiscard]] unsigned int getRowLength(unsigned int row) const;
+
+            bool operator==(const Scenario &rhs) const;
+
+            bool operator!=(const Scenario &rhs) const;
 
             friend void to_json(nlohmann::json &j, const Scenario &s);
 
