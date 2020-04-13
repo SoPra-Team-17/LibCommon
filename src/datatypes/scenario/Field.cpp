@@ -177,4 +177,10 @@ namespace spy::scenario {
             j.at("isUpdated").get_to(f.updated);
         }
     }
+
+    bool Field::operator==(const Field &rhs) const {
+        return std::tie(state, gadget, destroyed, inverted, chipAmount, safeIndex, foggy, updated) ==
+               std::tie(rhs.state, rhs.gadget, rhs.destroyed, rhs.inverted, rhs.chipAmount, rhs.safeIndex, rhs.foggy,
+                        rhs.updated);
+    }
 }

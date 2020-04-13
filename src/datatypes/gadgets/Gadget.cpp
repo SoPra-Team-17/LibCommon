@@ -6,6 +6,8 @@
 
 namespace spy::gadget {
 
+    Gadget::Gadget(GadgetEnum type, int usagesLeft) : type(type), usagesLeft(usagesLeft) {}
+
     GadgetEnum Gadget::getType() const {
         return type;
     }
@@ -26,5 +28,9 @@ namespace spy::gadget {
     void from_json(const nlohmann::json &j, spy::gadget::Gadget &g) {
         j.at("GadgetEnum").get_to(g.type);
         j.at("usages").get_to(g.usagesLeft);
+    }
+
+    bool Gadget::operator==(const Gadget &rhs) const {
+        return std::tie(type, usagesLeft) == std::tie(rhs.type, rhs.usagesLeft);
     }
 }  // namespace spy::gadget

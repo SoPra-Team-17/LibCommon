@@ -42,6 +42,8 @@ namespace spy::scenario {
 
             friend void from_json(const nlohmann::json &j, FieldMap &m);
 
+            bool operator==(const FieldMap &rhs) const;
+
         private:
             std::vector<std::vector<Field>> map;
     };

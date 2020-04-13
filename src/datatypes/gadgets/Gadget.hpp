@@ -11,24 +11,26 @@
 namespace spy::gadget {
 
     class Gadget {
-    public:
-        Gadget() : type{GadgetEnum::INVALID}, usagesLeft{0} {};
+        public:
+            Gadget() : type{GadgetEnum::INVALID}, usagesLeft{0} {};
 
-        explicit Gadget(GadgetEnum type) : type{type}, usagesLeft{0} {};
+            explicit Gadget(GadgetEnum type, int usagesLeft = 0);
 
-        [[nodiscard]] GadgetEnum getType() const;
+            [[nodiscard]] GadgetEnum getType() const;
 
-        [[nodiscard]] int getUsagesLeft() const;
+            [[nodiscard]] int getUsagesLeft() const;
 
-        void setUsagesLeft(int newUsages);
+            void setUsagesLeft(int newUsages);
 
-        friend void to_json(nlohmann::json &j, const Gadget &g);
+            friend void to_json(nlohmann::json &j, const Gadget &g);
 
-        friend void from_json(const nlohmann::json &j, Gadget &g);
+            friend void from_json(const nlohmann::json &j, Gadget &g);
 
-    private:
-        GadgetEnum type;
-        int usagesLeft;
+            bool operator==(const Gadget &rhs) const;
+
+        private:
+            GadgetEnum type;
+            int usagesLeft;
     };
 }
 

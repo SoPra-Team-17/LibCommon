@@ -77,6 +77,13 @@ namespace spy::character {
 
             friend void from_json(const nlohmann::json &j, Character &c);
 
+            bool operator==(const Character &rhs) const;
+
+            /**
+             * Ordering of Character is done using the characterId UUID only.
+             */
+            bool operator<(const Character &rhs) const;
+
         private:
             spy::util::UUID characterId;
             std::string name;
