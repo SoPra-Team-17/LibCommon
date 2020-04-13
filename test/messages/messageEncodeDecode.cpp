@@ -43,6 +43,9 @@ class MessageEncodeDecode : public ::testing::Test {
                               spy::gadget::Gadget{spy::gadget::GadgetEnum::JETPACK, 4}});
             exampleState = {7, exampleMap, {1337, 420}, {char1, char2}, spy::util::Point{1, 2},
                             spy::util::Point{5, 1}};
+            exampleState_noCat_noJanitor = exampleState;
+            exampleState_noCat_noJanitor.setJanitorCoordinates({{-1, -1}});
+            exampleState_noCat_noJanitor.setCatCoordinates(std::nullopt);
         }
 
     protected:
@@ -55,6 +58,7 @@ class MessageEncodeDecode : public ::testing::Test {
         spy::character::Character char1 = {exampleUUID1, "TestChar1"};
         spy::character::Character char2 = {exampleUUID2, "TestChar2"};
         spy::gameplay::State exampleState;
+        spy::gameplay::State exampleState_noCat_noJanitor;
 };
 
 
@@ -116,6 +120,10 @@ TEST_F(MessageEncodeDecode, GameStarted) {
 TEST_F(MessageEncodeDecode, GameStatus) {
     spy::network::messages::GameStatus testMessage{exampleUUID1, exampleUUID2, {exampleOperation, exampleOperation},
                                                    exampleState, false};
+    testEncodeDecode(testMessage);
+
+    testMessage = {exampleUUID1, exampleUUID2, {exampleOperation, exampleOperation},
+                   exampleState_noCat_noJanitor, false};
     testEncodeDecode(testMessage);
 }
 
