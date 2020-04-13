@@ -255,7 +255,7 @@ TEST(Scenario, ScenarioSetters) {
 }
 
 TEST(Scenario, EqualityOperator) {
-    auto input = R"({ "scenario": [
+    auto input1 = R"({ "scenario": [
 		["WALL"],
 		["WALL", "FIREPLACE"],
 		["WALL", "FREE",      "FREE"],
@@ -265,17 +265,32 @@ TEST(Scenario, EqualityOperator) {
 		["WALL", "WALL",      "WALL", "WALL",           "WALL",     "WALL", "WALL"]
 	    ]})"_json;
 
-    spy::scenario::Scenario decodedScenario1, decodedScenario2;
-    EXPECT_NO_THROW(decodedScenario1 = input.get<spy::scenario::Scenario>());
-    EXPECT_NO_THROW(decodedScenario2 = input.get<spy::scenario::Scenario>());
+    auto input2 = R"({ "scenario": [["WALL"]]})"_json;
+
+    auto input3 = R"({ "scenario": [["WALL", "FREE"]]})"_json;
+
+    spy::scenario::Scenario decodedScenario1;
+    spy::scenario::Scenario decodedScenario2;
+    spy::scenario::Scenario decodedScenario3;
+    spy::scenario::Scenario decodedScenario4;
+    EXPECT_NO_THROW(decodedScenario1 = input1.get<spy::scenario::Scenario>());
+    EXPECT_NO_THROW(decodedScenario2 = input1.get<spy::scenario::Scenario>());
+    EXPECT_NO_THROW(decodedScenario3 = input2.get<spy::scenario::Scenario>());
+    EXPECT_NO_THROW(decodedScenario4 = input3.get<spy::scenario::Scenario>());
 
     EXPECT_TRUE(decodedScenario1 == decodedScenario2);
+    EXPECT_FALSE(decodedScenario1 == decodedScenario3);
+    EXPECT_FALSE(decodedScenario1 == decodedScenario4);
     EXPECT_FALSE(decodedScenario1 != decodedScenario2);
+    EXPECT_TRUE(decodedScenario1 != decodedScenario3);
+    EXPECT_TRUE(decodedScenario1 != decodedScenario4);
 
     decodedScenario1.setField(0, 0, spy::scenario::FieldStateEnum::FREE);
 
     EXPECT_FALSE(decodedScenario1 == decodedScenario2);
     EXPECT_TRUE(decodedScenario1 != decodedScenario2);
+
+
 }
 
 TEST(Scenario, FieldConstruction) {
@@ -332,3 +347,23 @@ TEST(Scenario, FieldConstruction) {
     EXPECT_EQ(f.getSafeIndex().value(), 0);
 }
 
+TEST(Scenario, FieldJsonConsistency) {
+    auto input = R"({ "scenario": [["WALL", "FREE", "WALL"]]})"_json;
+
+    spy::scenario::Scenario decodedScenario;
+    EXPECT_NO_THROW(decodedScenario = input.get<spy::scenario::Scenario>());
+
+    spy::scenario::FieldMap field(decodedScenario);
+    nlohmann::json json = field;
+
+    std::string jsonString = json.dump();
+
+    auto parsedField = nlohmann::json::parse(jsonString).get<spy::scenario::FieldMap>();
+
+    std::vector<std::vector<spy::scenario::Field>> map = parsedField.getMap();
+    for (unsigned int y = 0; y < map.size(); y++) {
+        for (unsigned int x = 0; x < map.at(y).size(); x++) {
+            EXPECT_EQ(map.at(y).at(x).getFieldState(), decodedScenario.getField(x, y));
+        }
+    }
+}
