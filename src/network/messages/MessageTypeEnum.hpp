@@ -5,7 +5,6 @@
 #ifndef LIBCOMMON_MESSAGETYPEENUM_HPP
 #define LIBCOMMON_MESSAGETYPEENUM_HPP
 
-#endif //LIBCOMMON_MESSAGETYPEENUM_HPP
 
 #include <nlohmann/json.hpp>
 
@@ -68,3 +67,5 @@ namespace spy::network::messages {
         { MessageTypeEnum::REPLAY, "REPLAY" }
     })
 }
+
+#endif //LIBCOMMON_MESSAGETYPEENUM_HPP
