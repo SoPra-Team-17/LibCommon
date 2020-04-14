@@ -38,11 +38,15 @@ namespace spy::character {
                                  GenderEnum gender,
                                  const std::vector<PropertyEnum> &features);
 
+            CharacterDescription(const std::string &name,
+                                 const std::string &description,
+                                 const std::vector<PropertyEnum> &features);
+
             [[nodiscard]] const std::string &getName() const;
 
             [[nodiscard]] const std::string &getDescription() const;
 
-            [[nodiscard]] GenderEnum getGender() const;
+            [[nodiscard]] std::optional<GenderEnum> getGender() const;
 
             [[nodiscard]] const std::vector<PropertyEnum> &getFeatures() const;
 
@@ -79,7 +83,7 @@ namespace spy::character {
         protected:
             std::string name;
             std::string description;
-            GenderEnum gender = GenderEnum::DIVERSE;
+            std::optional<GenderEnum> gender;
             std::vector<spy::character::PropertyEnum> features;
     };
 }
