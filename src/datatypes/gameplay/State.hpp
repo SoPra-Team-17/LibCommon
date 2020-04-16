@@ -19,7 +19,7 @@ namespace spy::gameplay {
             State() = default;
 
             State(unsigned int currentRound, scenario::FieldMap map, std::set<int> mySafeCombinations,
-                  std::set<character::Character> characters, const std::optional<util::Point> &catCoordinates,
+                  character::Character::Set characters, const std::optional<util::Point> &catCoordinates,
                   const std::optional<util::Point> &janitorCoordinates);
 
             [[nodiscard]] unsigned int getCurrentRound() const;
@@ -28,7 +28,7 @@ namespace spy::gameplay {
 
             [[nodiscard]] const std::set<int> &getMySafeCombinations() const;
 
-            [[nodiscard]] const std::set<spy::character::Character> &getCharacters() const;
+            [[nodiscard]] const character::Character::Set &getCharacters() const;
 
             [[nodiscard]] const std::optional<util::Point> &getCatCoordinates() const;
 
@@ -58,7 +58,7 @@ namespace spy::gameplay {
             unsigned int currentRound = 0;
             scenario::FieldMap map;
             std::set<int> mySafeCombinations;
-            std::set<character::Character> characters;
+            character::Character::Set characters{};
             std::optional<util::Point> catCoordinates;
             std::optional<util::Point> janitorCoordinates;
     };

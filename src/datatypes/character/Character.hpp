@@ -15,6 +15,7 @@
 #include <datatypes/character/PropertyEnum.hpp>
 #include <util/UUID.hpp>
 #include <util/Point.hpp>
+#include <set>
 
 
 namespace spy::character {
@@ -34,12 +35,9 @@ namespace spy::character {
             Character(const util::UUID &characterId,
                       const std::string &name);
 
-
             [[nodiscard]] const util::UUID &getCharacterId() const;
 
-
             [[nodiscard]] const std::string &getName() const;
-
 
             [[nodiscard]] const std::optional<util::Point> &getCoordinates() const;
 
@@ -80,9 +78,15 @@ namespace spy::character {
             bool operator==(const Character &rhs) const;
 
             /**
-             * Ordering of Character is done using the characterId UUID only.
+             * Implements an ordering for Character, while not stating an actual ordering and implying equality by UUID
+             * through operator<.
+             * TODO(C++20): replace with std::strong_ordering strong_order(Character lhs, Character rhs)
              */
-            bool operator<(const Character &rhs) const;
+            struct strong_order_compare {
+                bool operator()(const Character &lhs, const Character &rhs) const;
+            };
+
+            using Set = std::set<character::Character, Character::strong_order_compare>;
 
         private:
             spy::util::UUID characterId;

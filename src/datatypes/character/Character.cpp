@@ -102,7 +102,7 @@ namespace spy::character {
     void from_json(const nlohmann::json &j, spy::character::Character &c) {
         j.at("characterId").get_to(c.characterId);
         j.at("name").get_to(c.name);
-        if(j.find("coordinates") != j.end()) {
+        if (j.find("coordinates") != j.end()) {
             util::Point p;
             j.at("coordinates").get_to(p);
             c.coordinates = (p.getX() < 0 || p.getY() < 0) ? std::optional<util::Point>() : p;
@@ -123,7 +123,7 @@ namespace spy::character {
                         rhs.intelligencePoints, rhs.chips, rhs.properties, rhs.gadgets);
     }
 
-    bool Character::operator<(const Character &rhs) const {
-        return characterId < rhs.characterId;
+    bool Character::strong_order_compare::operator()(const Character &lhs, const Character &rhs) const {
+        return lhs.characterId < rhs.characterId;
     }
 }  // namespace spy::character
