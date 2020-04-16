@@ -8,7 +8,6 @@
 #include <util/UUID.hpp>
 #include <network/messages/MessageTypeEnum.hpp>
 #include <string>
-#include <chrono>
 #include <optional>
 #include <nlohmann/json.hpp>
 #include <util/OptionalSerialization.hpp>
@@ -58,7 +57,6 @@ namespace spy::network {
         private:
             spy::util::UUID playerId;
             messages::MessageTypeEnum type = messages::MessageTypeEnum::INVALID;
-            // TODO: std::chrono::system_clock::time_point creationDate;
             std::string creationDate;
             std::optional<std::string> debugMessage;
 

@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 #include <datatypes/character/Character.hpp>
+#include <util/OptionalSerialization.hpp>
 
 namespace spy::character {
     enum class GenderEnum {
@@ -38,11 +39,15 @@ namespace spy::character {
                                  GenderEnum gender,
                                  const std::vector<PropertyEnum> &features);
 
+            CharacterDescription(const std::string &name,
+                                 const std::string &description,
+                                 const std::vector<PropertyEnum> &features);
+
             [[nodiscard]] const std::string &getName() const;
 
             [[nodiscard]] const std::string &getDescription() const;
 
-            [[nodiscard]] GenderEnum getGender() const;
+            [[nodiscard]] std::optional<GenderEnum> getGender() const;
 
             [[nodiscard]] const std::vector<PropertyEnum> &getFeatures() const;
 
@@ -70,7 +75,9 @@ namespace spy::character {
             static void common_from_json(const nlohmann::json &j, T &cd) {
                 j.at("name").get_to(cd.name);
                 j.find("description") != j.end() ? j.at("description").get_to(cd.description) : cd.description = "";
-                j.at("gender").get_to(cd.gender);
+                if (j.find("gender") != j.end()) {
+                    j.at("gender").get_to(cd.gender);
+                }
                 j.at("features").get_to(cd.features);
             }
 
@@ -79,7 +86,7 @@ namespace spy::character {
         protected:
             std::string name;
             std::string description;
-            GenderEnum gender = GenderEnum::DIVERSE;
+            std::optional<GenderEnum> gender;
             std::vector<spy::character::PropertyEnum> features;
     };
 }
