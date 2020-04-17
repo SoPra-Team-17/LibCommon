@@ -48,7 +48,7 @@ namespace spy::gameplay {
         return mySafeCombinations;
     }
 
-    const std::set<spy::character::Character> &State::getCharacters() const {
+    const character::Character::Set &State::getCharacters() const {
         return characters;
     }
 
@@ -83,7 +83,7 @@ namespace spy::gameplay {
     }
 
     State::State(unsigned int currentRound, scenario::FieldMap map, std::set<int> mySafeCombinations,
-                 std::set<character::Character> characters, const std::optional<util::Point> &catCoordinates,
+                 character::Character::Set characters, const std::optional<util::Point> &catCoordinates,
                  const std::optional<util::Point> &janitorCoordinates) :
             currentRound(currentRound),
             map(std::move(map)),
