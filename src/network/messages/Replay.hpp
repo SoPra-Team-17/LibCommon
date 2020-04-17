@@ -17,7 +17,6 @@ namespace spy::network::messages {
 
             Replay();
 
-            // TODO: std::chrono::system_clock::time_point creationDate;
             Replay(
                     const util::UUID &playerId,
                     const util::UUID &sessionId,
