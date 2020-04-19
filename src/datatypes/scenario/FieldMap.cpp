@@ -7,6 +7,8 @@
 
 #include "FieldMap.hpp"
 
+#include <iostream>
+
 namespace spy::scenario {
 
     FieldMap::FieldMap(const Scenario &scenario) {
@@ -47,6 +49,66 @@ namespace spy::scenario {
         return !(p.getX() < 0 || p.getY() < 0
                  || map.size() <= static_cast<unsigned int>(p.getY())
                  || map.at(p.getY()).size() <= static_cast<unsigned int>(p.getX()));
+    }
+
+
+    /**
+     * @see playtechs.blogspot.com/2007/03/raytracing-on-grid.html for the original implementation
+     */
+    bool FieldMap::isLineOfSightFree(util::Point p1, util::Point p2) const {
+        if (!isInside(p1) || !isInside(p2)) {
+            throw std::invalid_argument("At least one point is outside the field map!");
+        } else if (p1 == p2) {
+            throw std::invalid_argument("Points are identical!");
+        }
+
+        int dx = abs(p1.getX() - p2.getX());
+        int dy = abs(p1.getY() - p2.getY());
+        util::Point curPoint = p1;
+
+        unsigned int fieldsToTraverse = dx + dy;
+        int incX = (p2.getX() > p1.getX()) ? 1 : -1;
+        int incY = (p2.getY() > p1.getY()) ? 1 : -1;
+        int error = dx - dy;
+        dx *= 2;                                            // scaling is needed to make sure the error term is integral
+        dy *= 2;
+
+        for (unsigned int fieldsVisited = 0; fieldsVisited < fieldsToTraverse; fieldsVisited++) {
+            if (curPoint == p2) {
+                break;
+            } else if (curPoint != p1 && blocksSight(curPoint)) {
+                return false;
+            }
+
+            if (error > 0) {
+                curPoint.setX(curPoint.getX() + incX);
+                error -= dy;
+            } else if (error < 0){
+                curPoint.setY(curPoint.getY() + incY);
+                error += dx;
+            } else {
+                int x = curPoint.getX();
+                int y = curPoint.getY();
+
+                if (isInside(p1) && blocksSight(util::Point(x + incX, y))
+                    && isInside(p2) && blocksSight(util::Point(x, y + incY))) {
+                    return false;
+                }
+
+                error -= dy;
+                error += dx;
+                curPoint.setLocation(x + incX, y + incY);
+
+                fieldsVisited++;
+            }
+        }
+
+        return true;
+    }
+
+    bool FieldMap::blocksSight(util::Point p) const {
+        return (getField(p).getFieldState() == FieldStateEnum::WALL
+               || getField(p).getFieldState() == FieldStateEnum::FIREPLACE);
     }
 
     void to_json(nlohmann::json &j, const FieldMap &m) {

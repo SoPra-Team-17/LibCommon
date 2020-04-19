@@ -38,6 +38,14 @@ namespace spy::scenario {
 
             [[nodiscard]] bool isInside(util::Point p) const;
 
+            /**
+             * Checks whether the line of sight between to fields is blocked.
+             * @param p1 First field.
+             * @param p2 Second field.
+             * @return False if the line of sight is blocked (by a fireplace or wall field), otherwise true.
+             */
+            [[nodiscard]] bool isLineOfSightFree(util::Point p1, util::Point p2) const;
+
             friend void to_json(nlohmann::json &j, const FieldMap &m);
 
             friend void from_json(const nlohmann::json &j, FieldMap &m);
@@ -45,6 +53,13 @@ namespace spy::scenario {
             bool operator==(const FieldMap &rhs) const;
 
         private:
+            /**
+             * Checks if a given field blocks the line of sight (thus is a wall or a fireplace).
+             * @param p Coordinate of the field to check.
+             * @return True if it blocks the line of sight, else false.
+             */
+            [[nodiscard]] bool blocksSight(util::Point p) const;
+
             std::vector<std::vector<Field>> map;
     };
 }
