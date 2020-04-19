@@ -90,8 +90,7 @@ namespace spy::scenario {
                 int x = curPoint.getX();
                 int y = curPoint.getY();
 
-                if (isInside(p1) && blocksSight(util::Point(x + incX, y))
-                    && isInside(p2) && blocksSight(util::Point(x, y + incY))) {
+                if (blocksSight(util::Point(x + incX, y)) && blocksSight(util::Point(x, y + incY))) {
                     return false;
                 }
 
