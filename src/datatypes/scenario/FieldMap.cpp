@@ -83,7 +83,7 @@ namespace spy::scenario {
             if (error > 0) {
                 curPoint.setX(curPoint.getX() + incX);
                 error -= dy;
-            } else if (error < 0){
+            } else if (error < 0) {
                 curPoint.setY(curPoint.getY() + incY);
                 error += dx;
             } else {
@@ -107,7 +107,7 @@ namespace spy::scenario {
 
     bool FieldMap::blocksSight(util::Point p) const {
         return (getField(p).getFieldState() == FieldStateEnum::WALL
-               || getField(p).getFieldState() == FieldStateEnum::FIREPLACE);
+                || getField(p).getFieldState() == FieldStateEnum::FIREPLACE);
     }
 
     void to_json(nlohmann::json &j, const FieldMap &m) {
