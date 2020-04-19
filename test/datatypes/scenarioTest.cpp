@@ -55,29 +55,29 @@ TEST(Scenario, ScenarioDecodingEncoding) {
     EXPECT_EQ(decodedScenario.getField(5, 3), spy::scenario::FieldStateEnum::FREE);
     EXPECT_EQ(decodedScenario.getField(6, 3), spy::scenario::FieldStateEnum::WALL);
 
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(0, 4)), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(1, 4)), spy::scenario::FieldStateEnum::BAR_SEAT);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(2, 4)), spy::scenario::FieldStateEnum::FREE);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(3, 4)), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(4, 4)), spy::scenario::FieldStateEnum::FREE);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(5, 4)), spy::scenario::FieldStateEnum::FREE);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(6, 4)), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(decodedScenario.getField({0, 4}), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(decodedScenario.getField({1, 4}), spy::scenario::FieldStateEnum::BAR_SEAT);
+    EXPECT_EQ(decodedScenario.getField({2, 4}), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(decodedScenario.getField({3, 4}), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(decodedScenario.getField({4, 4}), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(decodedScenario.getField({5, 4}), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(decodedScenario.getField({6, 4}), spy::scenario::FieldStateEnum::WALL);
 
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(0, 5)), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(1, 5)), spy::scenario::FieldStateEnum::FREE);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(2, 5)), spy::scenario::FieldStateEnum::FREE);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(3, 5)), spy::scenario::FieldStateEnum::FREE);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(4, 5)), spy::scenario::FieldStateEnum::FREE);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(5, 5)), spy::scenario::FieldStateEnum::SAFE);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(6, 5)), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(decodedScenario.getField({0, 5}), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(decodedScenario.getField({1, 5}), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(decodedScenario.getField({2, 5}), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(decodedScenario.getField({3, 5}), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(decodedScenario.getField({4, 5}), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(decodedScenario.getField({5, 5}), spy::scenario::FieldStateEnum::SAFE);
+    EXPECT_EQ(decodedScenario.getField({6, 5}), spy::scenario::FieldStateEnum::WALL);
 
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(0, 6)), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(1, 6)), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(2, 6)), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(3, 6)), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(4, 6)), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(5, 6)), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(6, 6)), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(decodedScenario.getField({0, 6}), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(decodedScenario.getField({1, 6}), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(decodedScenario.getField({2, 6}), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(decodedScenario.getField({3, 6}), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(decodedScenario.getField({4, 6}), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(decodedScenario.getField({5, 6}), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(decodedScenario.getField({6, 6}), spy::scenario::FieldStateEnum::WALL);
 
     nlohmann::json json;
     EXPECT_NO_THROW(json = decodedScenario);
@@ -132,29 +132,29 @@ TEST(Scenario, FieldMapConstruction) {
     EXPECT_EQ(field.getField(5, 3).getFieldState(), spy::scenario::FieldStateEnum::FREE);
     EXPECT_EQ(field.getField(6, 3).getFieldState(), spy::scenario::FieldStateEnum::WALL);
 
-    EXPECT_EQ(field.getField(spy::util::Point(0, 4)).getFieldState(), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(field.getField(spy::util::Point(1, 4)).getFieldState(), spy::scenario::FieldStateEnum::BAR_SEAT);
-    EXPECT_EQ(field.getField(spy::util::Point(2, 4)).getFieldState(), spy::scenario::FieldStateEnum::FREE);
-    EXPECT_EQ(field.getField(spy::util::Point(3, 4)).getFieldState(), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(field.getField(spy::util::Point(4, 4)).getFieldState(), spy::scenario::FieldStateEnum::FREE);
-    EXPECT_EQ(field.getField(spy::util::Point(5, 4)).getFieldState(), spy::scenario::FieldStateEnum::FREE);
-    EXPECT_EQ(field.getField(spy::util::Point(6, 4)).getFieldState(), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(field.getField({0, 4}).getFieldState(), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(field.getField({1, 4}).getFieldState(), spy::scenario::FieldStateEnum::BAR_SEAT);
+    EXPECT_EQ(field.getField({2, 4}).getFieldState(), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(field.getField({3, 4}).getFieldState(), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(field.getField({4, 4}).getFieldState(), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(field.getField({5, 4}).getFieldState(), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(field.getField({6, 4}).getFieldState(), spy::scenario::FieldStateEnum::WALL);
 
-    EXPECT_EQ(field.getField(spy::util::Point(0, 5)).getFieldState(), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(field.getField(spy::util::Point(1, 5)).getFieldState(), spy::scenario::FieldStateEnum::FREE);
-    EXPECT_EQ(field.getField(spy::util::Point(2, 5)).getFieldState(), spy::scenario::FieldStateEnum::FREE);
-    EXPECT_EQ(field.getField(spy::util::Point(3, 5)).getFieldState(), spy::scenario::FieldStateEnum::FREE);
-    EXPECT_EQ(field.getField(spy::util::Point(4, 5)).getFieldState(), spy::scenario::FieldStateEnum::FREE);
-    EXPECT_EQ(field.getField(spy::util::Point(5, 5)).getFieldState(), spy::scenario::FieldStateEnum::SAFE);
-    EXPECT_EQ(field.getField(spy::util::Point(6, 5)).getFieldState(), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(field.getField({0, 5}).getFieldState(), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(field.getField({1, 5}).getFieldState(), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(field.getField({2, 5}).getFieldState(), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(field.getField({3, 5}).getFieldState(), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(field.getField({4, 5}).getFieldState(), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(field.getField({5, 5}).getFieldState(), spy::scenario::FieldStateEnum::SAFE);
+    EXPECT_EQ(field.getField({6, 5}).getFieldState(), spy::scenario::FieldStateEnum::WALL);
 
-    EXPECT_EQ(field.getField(spy::util::Point(0, 6)).getFieldState(), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(field.getField(spy::util::Point(1, 6)).getFieldState(), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(field.getField(spy::util::Point(2, 6)).getFieldState(), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(field.getField(spy::util::Point(3, 6)).getFieldState(), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(field.getField(spy::util::Point(4, 6)).getFieldState(), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(field.getField(spy::util::Point(5, 6)).getFieldState(), spy::scenario::FieldStateEnum::WALL);
-    EXPECT_EQ(field.getField(spy::util::Point(6, 6)).getFieldState(), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(field.getField({0, 6}).getFieldState(), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(field.getField({1, 6}).getFieldState(), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(field.getField({2, 6}).getFieldState(), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(field.getField({3, 6}).getFieldState(), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(field.getField({4, 6}).getFieldState(), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(field.getField({5, 6}).getFieldState(), spy::scenario::FieldStateEnum::WALL);
+    EXPECT_EQ(field.getField({6, 6}).getFieldState(), spy::scenario::FieldStateEnum::WALL);
 }
 
 TEST(Scenario, FieldMapSetters) {
@@ -169,12 +169,12 @@ TEST(Scenario, FieldMapSetters) {
 
     spy::scenario::Field f(spy::scenario::FieldStateEnum::FREE);
     EXPECT_NO_THROW(field.setField(0, 0, f));
-    EXPECT_EQ(field.getField(spy::util::Point(0, 0)).getFieldState(), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_EQ(field.getField({0, 0}).getFieldState(), spy::scenario::FieldStateEnum::FREE);
 
-    EXPECT_NO_THROW(field.setField(spy::util::Point(0, 0), f));
-    EXPECT_EQ(field.getField(spy::util::Point(0, 0)).getFieldState(), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_NO_THROW(field.setField({0, 0}, f));
+    EXPECT_EQ(field.getField({0, 0}).getFieldState(), spy::scenario::FieldStateEnum::FREE);
 
-    EXPECT_ANY_THROW(field.setField(spy::util::Point(-1, 0), f));
+    EXPECT_ANY_THROW(field.setField({-1, 0}, f));
 }
 
 TEST(Scenario, FieldInsideTest) {
@@ -193,17 +193,17 @@ TEST(Scenario, FieldInsideTest) {
 
     spy::scenario::FieldMap field(decodedScenario);
 
-    for (unsigned int y = 0; y < 7; y++) {
-        for (unsigned int x = 0; x < 7; x++) {
-            EXPECT_TRUE(field.isInside(spy::util::Point(x, y)));
+    for (int y = 0; y < 7; y++) {
+        for (int x = 0; x < 7; x++) {
+            EXPECT_TRUE(field.isInside({x, y}));
         }
     }
 
-    for (unsigned int i = 0; i < 7; i++) {
-        EXPECT_FALSE(field.isInside(spy::util::Point(-1, i)));
-        EXPECT_FALSE(field.isInside(spy::util::Point(7, i)));
-        EXPECT_FALSE(field.isInside(spy::util::Point(i, -1)));
-        EXPECT_FALSE(field.isInside(spy::util::Point(i, 7)));
+    for (int i = 0; i < 7; i++) {
+        EXPECT_FALSE(field.isInside({-1, i}));
+        EXPECT_FALSE(field.isInside({7, i}));
+        EXPECT_FALSE(field.isInside({i, -1}));
+        EXPECT_FALSE(field.isInside({i, 7}));
     }
 }
 
@@ -248,8 +248,8 @@ TEST(Scenario, ScenarioSetters) {
     EXPECT_NO_THROW(decodedScenario.setField(0, 0, spy::scenario::FieldStateEnum::FREE));
     EXPECT_EQ(decodedScenario.getField(0, 0), spy::scenario::FieldStateEnum::FREE);
 
-    EXPECT_NO_THROW(decodedScenario.setField(spy::util::Point(0, 1), spy::scenario::FieldStateEnum::FREE));
-    EXPECT_EQ(decodedScenario.getField(spy::util::Point(0, 1)), spy::scenario::FieldStateEnum::FREE);
+    EXPECT_NO_THROW(decodedScenario.setField({0, 1}, spy::scenario::FieldStateEnum::FREE));
+    EXPECT_EQ(decodedScenario.getField({0, 1}), spy::scenario::FieldStateEnum::FREE);
 
     EXPECT_ANY_THROW(decodedScenario.setField(1, 0, spy::scenario::FieldStateEnum::FREE));
 }

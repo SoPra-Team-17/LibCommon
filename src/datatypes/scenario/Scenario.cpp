@@ -14,7 +14,7 @@ namespace spy::scenario {
     }
 
     void Scenario::setField(util::Point p, FieldStateEnum field) {
-        setField(p.getX(), p.getY(), field);
+        setField(p.x, p.y, field);
     }
 
     FieldStateEnum Scenario::getField(unsigned int x, unsigned int y) const {
@@ -22,7 +22,7 @@ namespace spy::scenario {
     }
 
     FieldStateEnum Scenario::getField(util::Point p) const {
-        return getField(p.getX(), p.getY());
+        return getField(p.x, p.y);
     }
 
     const std::vector<std::vector<FieldStateEnum>> &Scenario::getScenario() const {
