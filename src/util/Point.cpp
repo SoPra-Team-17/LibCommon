@@ -8,43 +8,23 @@
 #include "Point.hpp"
 
 namespace spy::util {
-    Point::Point(int x, int y) : x(x), y(y) {}
-
-    int Point::getX() const {
-        return x;
-    }
-
-    void Point::setX(int xCord) {
-        Point::x = xCord;
-    }
-
-    int Point::getY() const {
-        return y;
-    }
-
-    void Point::setY(int yCord) {
-        Point::y = yCord;
-    }
-
-    void Point::setLocation(int xCoord, int yCoord) {
-        Point::x = xCoord;
-        Point::y = yCoord;
-    }
 
     void Point::operator+=(const Point &rhs) {
-        setLocation(Point::x + rhs.x, Point::y + rhs.y);
+        x += rhs.x;
+        y += rhs.y;
     }
 
     void Point::operator-=(const Point &rhs) {
-        setLocation(Point::x - rhs.x, Point::y - rhs.y);
+        x -= rhs.x;
+        y -= rhs.y;
     }
 
     Point Point::operator+(const Point &rhs) const {
-        return Point(this->x + rhs.x, this->y + rhs.y);
+        return {this->x + rhs.x, this->y + rhs.y};
     }
 
     Point Point::operator-(const Point &rhs) const {
-        return Point(this->x - rhs.x, this->y - rhs.y);
+        return {this->x - rhs.x, this->y - rhs.y};
     }
 
     bool Point::operator==(const Point &other) const {

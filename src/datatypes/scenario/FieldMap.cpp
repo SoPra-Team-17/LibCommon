@@ -30,7 +30,7 @@ namespace spy::scenario {
     }
 
     void FieldMap::setField(spy::util::Point p, spy::scenario::Field field) {
-        FieldMap::setField(p.getX(), p.getY(), field);
+        FieldMap::setField(p.x, p.y, field);
     }
 
     const std::vector<std::vector<Field>> &FieldMap::getMap() const {
@@ -42,13 +42,13 @@ namespace spy::scenario {
     }
 
     const Field &spy::scenario::FieldMap::getField(util::Point p) const {
-        return getField(p.getX(), p.getY());
+        return getField(p.x, p.y);
     }
 
     bool FieldMap::isInside(util::Point p) const {
-        return !(p.getX() < 0 || p.getY() < 0
-                 || map.size() <= static_cast<unsigned int>(p.getY())
-                 || map.at(p.getY()).size() <= static_cast<unsigned int>(p.getX()));
+        return !(p.x < 0 || p.y < 0
+                 || map.size() <= static_cast<unsigned int>(p.y)
+                 || map.at(p.y).size() <= static_cast<unsigned int>(p.x));
     }
 
 
