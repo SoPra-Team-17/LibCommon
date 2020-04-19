@@ -7,8 +7,6 @@
 
 #include "FieldMap.hpp"
 
-#include <iostream>
-
 namespace spy::scenario {
 
     FieldMap::FieldMap(const Scenario &scenario) {
@@ -62,13 +60,13 @@ namespace spy::scenario {
             return true;
         }
 
-        int dx = abs(p1.getX() - p2.getX());
-        int dy = abs(p1.getY() - p2.getY());
+        int dx = abs(p1.x - p2.x);
+        int dy = abs(p1.y - p2.y);
         util::Point curPoint = p1;
 
         unsigned int fieldsToTraverse = dx + dy;
-        int incX = (p2.getX() > p1.getX()) ? 1 : -1;
-        int incY = (p2.getY() > p1.getY()) ? 1 : -1;
+        int incX = (p2.x > p1.x) ? 1 : -1;
+        int incY = (p2.y > p1.y) ? 1 : -1;
         int error = dx - dy;
         dx *= 2;                                            // scaling is needed to make sure the error term is integral
         dy *= 2;
@@ -79,15 +77,16 @@ namespace spy::scenario {
             }
 
             if (error > 0) {
-                curPoint.setX(curPoint.getX() + incX);
+                curPoint.x += incX;
                 error -= dy;
             } else if (error < 0) {
-                curPoint.setY(curPoint.getY() + incY);
+                curPoint.y += incY;
                 error += dx;
             } else {
                 error -= dy;
                 error += dx;
-                curPoint.setLocation(curPoint.getX() + incX, curPoint.getY() + incY);
+                curPoint.x += incX;
+                curPoint.y += incY;
 
                 fieldsVisited++;
             }
