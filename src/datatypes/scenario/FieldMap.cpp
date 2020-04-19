@@ -59,7 +59,7 @@ namespace spy::scenario {
         if (!isInside(p1) || !isInside(p2)) {
             throw std::invalid_argument("At least one point is outside the field map!");
         } else if (p1 == p2) {
-            throw std::invalid_argument("Points are identical!");
+            return true;
         }
 
         int dx = abs(p1.getX() - p2.getX());
@@ -74,9 +74,7 @@ namespace spy::scenario {
         dy *= 2;
 
         for (unsigned int fieldsVisited = 0; fieldsVisited < fieldsToTraverse; fieldsVisited++) {
-            if (curPoint == p2) {
-                break;
-            } else if (curPoint != p1 && blocksSight(curPoint)) {
+            if (curPoint != p2 && curPoint != p1 && blocksSight(curPoint)) {
                 return false;
             }
 
@@ -87,16 +85,9 @@ namespace spy::scenario {
                 curPoint.setY(curPoint.getY() + incY);
                 error += dx;
             } else {
-                int x = curPoint.getX();
-                int y = curPoint.getY();
-
-                if (blocksSight(util::Point(x + incX, y)) && blocksSight(util::Point(x, y + incY))) {
-                    return false;
-                }
-
                 error -= dy;
                 error += dx;
-                curPoint.setLocation(x + incX, y + incY);
+                curPoint.setLocation(curPoint.getX() + incX, curPoint.getY() + incY);
 
                 fieldsVisited++;
             }

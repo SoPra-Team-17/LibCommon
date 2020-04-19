@@ -27,7 +27,7 @@ TEST(LineOfSight, InvalidArguments) {
 
     EXPECT_ANY_THROW(bool _ = field.isLineOfSightFree(spy::util::Point(-1, 0), spy::util::Point(0, 0)));
     EXPECT_ANY_THROW(bool _ = field.isLineOfSightFree(spy::util::Point(0, 0), spy::util::Point(0, 7)));
-    EXPECT_ANY_THROW(bool _ = field.isLineOfSightFree(spy::util::Point(0, 0), spy::util::Point(0, 0)));
+    EXPECT_TRUE(field.isLineOfSightFree(spy::util::Point(0, 0), spy::util::Point(0, 0)));
 }
 
 TEST(LineOfSight, HorizontalLine) {
@@ -111,7 +111,7 @@ TEST(LineOfSight, DiagonalLine) {
     EXPECT_FALSE(field.isLineOfSightFree(spy::util::Point(1, 2), spy::util::Point(5, 6)));
     EXPECT_FALSE(field.isLineOfSightFree(spy::util::Point(1, 2), spy::util::Point(6, 6)));
 
-    EXPECT_FALSE(field.isLineOfSightFree(spy::util::Point(3, 3), spy::util::Point(2, 4)));
+    EXPECT_TRUE(field.isLineOfSightFree(spy::util::Point(3, 3), spy::util::Point(2, 4)));
     EXPECT_TRUE(field.isLineOfSightFree(spy::util::Point(2, 4), spy::util::Point(3, 5)));
 }
 
