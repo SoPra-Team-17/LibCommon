@@ -28,6 +28,12 @@ set(SOURCES
         gameLogic/lineOfSightTests.cpp)
 
 add_executable(allTests ${SOURCES})
-
-target_link_libraries(allTests gtest gmock gtest_main SopraCommon nlohmann_json::nlohmann_json)
+target_compile_options(allTests PRIVATE ${COMMON_CXX_FLAGS})
+target_link_libraries(allTests
+        gtest
+        gmock
+        gtest_main
+        SopraCommon
+        nlohmann_json::nlohmann_json
+        $<$<CONFIG:Debug>:--coverage>)
 gtest_discover_tests(allTests)
