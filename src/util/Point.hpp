@@ -16,25 +16,6 @@ namespace spy::util {
      */
     class Point {
         public:
-            Point() = default;
-
-            Point(int x, int y);
-
-            [[nodiscard]] int getX() const;
-
-            void setX(int xCoord);
-
-            [[nodiscard]] int getY() const;
-
-            void setY(int yCoord);
-
-            /**
-             * Set x and y value of Point
-             * @param xCoord new x value of Point
-             * @param yCoord new y value of Point
-             */
-            void setLocation(int xCoord, int yCoord);
-
             void operator+=(const Point &rhs);
 
             void operator-=(const Point &rhs);
@@ -53,10 +34,8 @@ namespace spy::util {
 
             friend void from_json(const nlohmann::json &j, Point &p);
 
-        private:
             int x = 0;
             int y = 0;
-
     };
 }
 

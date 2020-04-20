@@ -105,7 +105,7 @@ namespace spy::character {
         if (j.find("coordinates") != j.end()) {
             util::Point p;
             j.at("coordinates").get_to(p);
-            c.coordinates = (p.getX() < 0 || p.getY() < 0) ? std::optional<util::Point>() : p;
+            c.coordinates = (p.x < 0 || p.y < 0) ? std::optional<util::Point>() : p;
         }
         j.at("mp").get_to(c.movePoints);
         j.at("ap").get_to(c.actionPoints);
