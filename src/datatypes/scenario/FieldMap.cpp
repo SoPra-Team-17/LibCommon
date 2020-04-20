@@ -62,33 +62,29 @@ namespace spy::scenario {
 
         int dx = abs(p1.x - p2.x);
         int dy = abs(p1.y - p2.y);
-        util::Point curPoint = p1;
 
-        unsigned int fieldsToTraverse = dx + dy;
         int incX = (p2.x > p1.x) ? 1 : -1;
         int incY = (p2.y > p1.y) ? 1 : -1;
         int error = dx - dy;
-        dx *= 2;                                            // scaling is needed to make sure the error term is integral
+        // scaling is needed to make sure the error term is integral
+        dx *= 2;
         dy *= 2;
-
-        for (unsigned int fieldsVisited = 0; fieldsVisited < fieldsToTraverse; fieldsVisited++) {
-            if (curPoint != p2 && curPoint != p1 && blocksSight(curPoint)) {
+        auto currentPoint = p1;
+        while (currentPoint != p2) {
+            if (currentPoint != p1 && blocksSight(currentPoint)) {
                 return false;
             }
 
             if (error > 0) {
-                curPoint.x += incX;
+                currentPoint.x += incX;
                 error -= dy;
             } else if (error < 0) {
-                curPoint.y += incY;
+                currentPoint.y += incY;
                 error += dx;
             } else {
                 error -= dy;
                 error += dx;
-                curPoint.x += incX;
-                curPoint.y += incY;
-
-                fieldsVisited++;
+                currentPoint += {incX, incY};
             }
         }
 
