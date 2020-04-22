@@ -21,8 +21,11 @@ namespace spy::network::messages {
 
             bool operator==(const GameLeft &rhs) const;
 
+            [[nodiscard]] const util::UUID &getLeftUserId() const;
+
         private:
             util::UUID leftUserId;
+
     };
 }
 
