@@ -54,6 +54,8 @@ namespace spy::util {
 
             bool operator==(const UUID &rhs) const;
 
+            bool operator!=(const UUID &rhs) const;
+
             bool operator<(const UUID &rhs) const;
 
             bool operator>(const UUID &rhs) const;

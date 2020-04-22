@@ -42,6 +42,10 @@ namespace spy::util {
         return uuid_compare(uuidData, rhs.uuidData) == 0;
     }
 
+    bool UUID::operator!=(const UUID &rhs) const {
+        return uuidData != rhs.uuidData;
+    }
+
     bool UUID::operator<(const UUID &rhs) const {
         return uuid_compare(uuidData, rhs.uuidData) < 0;
     }
