@@ -25,4 +25,8 @@ namespace spy::network::messages {
         return isEqual(rhs) &&
                leftUserId == rhs.leftUserId;
     }
+
+    const util::UUID &GameLeft::getLeftUserId() const {
+        return leftUserId;
+    }
 }
