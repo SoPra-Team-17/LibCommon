@@ -24,7 +24,7 @@ add_subdirectory(src)
 
 option(LIBCOMMON_TESTS "Build the tests" ON)
 if (LIBCOMMON_TESTS)
-    if (NOT TARGET gtest)
+    if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
         # Download and unpack googletest at configure time
         configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
         execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
