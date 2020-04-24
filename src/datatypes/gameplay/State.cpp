@@ -6,35 +6,17 @@
 
 #include <utility>
 
+
 namespace spy::gameplay {
-    void to_json(nlohmann::json &j, const State &s) {
-        j["currentRound"] = s.currentRound;
-        j["map"] = s.map;
-        j["mySafeCombinations"] = s.mySafeCombinations;
-        j["characters"] = s.characters;
-        j["catCoordinates"] = s.catCoordinates;
-        j["janitorCoordinates"] = s.janitorCoordinates;
-    }
-
-    void from_json(const nlohmann::json &j, State &s) {
-        j.at("currentRound").get_to(s.currentRound);
-        j.at("map").get_to(s.map);
-        j.at("mySafeCombinations").get_to(s.mySafeCombinations);
-        j.at("characters").get_to(s.characters);
-
-        auto catCoordinatesJson = j.find("catCoordinates");
-        if (catCoordinatesJson != j.end()) {
-            // Use setter instead of get_to to properly handle coordinates outside the map
-            s.setCatCoordinates(catCoordinatesJson->get<decltype(s.catCoordinates)>());
-        }
-
-        auto janitorCoordinatesJson = j.find("janitorCoordinates");
-        if (janitorCoordinatesJson != j.end()) {
-            // Use setter instead of get_to to properly handle coordinates outside the map
-            s.setJanitorCoordinates(janitorCoordinatesJson->get<decltype(s.janitorCoordinates)>());
-        }
-    }
-
+    State::State(unsigned int currentRound, scenario::FieldMap map, std::set<int> mySafeCombinations,
+                 character::Character::Set characters, const std::optional<util::Point> &catCoordinates,
+                 const std::optional<util::Point> &janitorCoordinates) :
+            currentRound(currentRound),
+            map(std::move(map)),
+            mySafeCombinations(std::move(mySafeCombinations)),
+            characters(std::move(characters)),
+            catCoordinates(catCoordinates),
+            janitorCoordinates(janitorCoordinates) {}
 
     unsigned int State::getCurrentRound() const {
         return currentRound;
@@ -76,20 +58,64 @@ namespace spy::gameplay {
         }
     }
 
+    bool State::isMovementValid(const gameplay::Movement &op) const {
+        if (getMoveDistance(op.getFrom(), op.getTarget()) > 1) {        // only one step is allowed to avoid ambiguity
+            return false;
+        }
+
+        auto character = std::find_if(characters.begin(), characters.end(), [&](const character::Character &c) {
+            return c.getCharacterId() == op.getCharacterId();
+        });
+
+        if (character == characters.end()) {                            // specified character UUID is not valid
+            return false;
+        }
+
+        return map.isAccessible(op.getTarget());
+    }
+
+    void to_json(nlohmann::json &j, const State &s) {
+        j["currentRound"] = s.currentRound;
+        j["map"] = s.map;
+        j["mySafeCombinations"] = s.mySafeCombinations;
+        j["characters"] = s.characters;
+        j["catCoordinates"] = s.catCoordinates;
+        j["janitorCoordinates"] = s.janitorCoordinates;
+    }
+
+    void from_json(const nlohmann::json &j, State &s) {
+        j.at("currentRound").get_to(s.currentRound);
+        j.at("map").get_to(s.map);
+        j.at("mySafeCombinations").get_to(s.mySafeCombinations);
+        j.at("characters").get_to(s.characters);
+
+        auto catCoordinatesJson = j.find("catCoordinates");
+        if (catCoordinatesJson != j.end()) {
+            // Use setter instead of get_to to properly handle coordinates outside the map
+            s.setCatCoordinates(catCoordinatesJson->get<decltype(s.catCoordinates)>());
+        }
+
+        auto janitorCoordinatesJson = j.find("janitorCoordinates");
+        if (janitorCoordinatesJson != j.end()) {
+            // Use setter instead of get_to to properly handle coordinates outside the map
+            s.setJanitorCoordinates(janitorCoordinatesJson->get<decltype(s.janitorCoordinates)>());
+        }
+    }
+
     bool State::operator==(const State &rhs) const {
         return std::tie(currentRound, map, mySafeCombinations, characters, catCoordinates, janitorCoordinates) ==
                std::tie(rhs.currentRound, rhs.map, rhs.mySafeCombinations, rhs.characters, rhs.catCoordinates,
                         rhs.janitorCoordinates);
     }
 
-    State::State(unsigned int currentRound, scenario::FieldMap map, std::set<int> mySafeCombinations,
-                 character::Character::Set characters, const std::optional<util::Point> &catCoordinates,
-                 const std::optional<util::Point> &janitorCoordinates) :
-            currentRound(currentRound),
-            map(std::move(map)),
-            mySafeCombinations(std::move(mySafeCombinations)),
-            characters(std::move(characters)),
-            catCoordinates(catCoordinates),
-            janitorCoordinates(janitorCoordinates) {}
-
+    /**
+     * Calculates the distance between two points.
+     * @param p1 First point.
+     * @param p2 Second point.
+     * @return Distance between the points.
+     * @note The distance is measured using a "king's move metric".
+     */
+    unsigned int State::getMoveDistance(const util::Point &p1, const util::Point &p2) {
+        return std::max(abs(p1.x - p2.x), abs(p1.y - p2.y));
+    }
 }

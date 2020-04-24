@@ -6,11 +6,13 @@
 #ifndef LIBCOMMON_STATE_HPP
 #define LIBCOMMON_STATE_HPP
 
-#include <nlohmann/json.hpp>
-#include <util/Point.hpp>
 #include <set>
-#include <datatypes/character/Character.hpp>
-#include <datatypes/scenario/FieldMap.hpp>
+#include "nlohmann/json.hpp"
+#include "util/Point.hpp"
+#include "datatypes/character/Character.hpp"
+#include "datatypes/scenario/FieldMap.hpp"
+#include "gameplay/Operation.hpp"
+#include "gameplay/Movement.hpp"
 
 namespace spy::gameplay {
     class State {
@@ -48,6 +50,13 @@ namespace spy::gameplay {
              */
             void setJanitorCoordinates(const std::optional<util::Point> &janitorCoordinates);
 
+            /**
+             * Checks if the given movement operation is valid in the current game state.
+             * @param op Operation to check.
+             * @return True if the operation is valid, otherwise false.
+             */
+            [[nodiscard]] bool isMovementValid(const gameplay::Movement &op) const;
+
             friend void to_json(nlohmann::json &j, const State &s);
 
             friend void from_json(const nlohmann::json &j, State &s);
@@ -55,6 +64,8 @@ namespace spy::gameplay {
             bool operator==(const State &rhs) const;
 
         private:
+            static unsigned int getMoveDistance(const util::Point &p1, const util::Point &p2);
+
             unsigned int currentRound = 0;
             scenario::FieldMap map;
             std::set<int> mySafeCombinations;
