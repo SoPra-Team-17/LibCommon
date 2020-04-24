@@ -6,7 +6,7 @@
 #define LIBCOMMON_STATISTICS_HPP
 
 #include <vector>
-#include <statistics/StatisticsEntry.hpp>
+#include <datatypes/statistics/StatisticsEntry.hpp>
 
 
 namespace spy::statistics {
