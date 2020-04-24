@@ -8,6 +8,7 @@
 #include <network/MessageContainer.hpp>
 #include <datatypes/gadgets/GadgetEnum.hpp>
 #include <variant>
+#include <network/RoleEnum.hpp>
 
 namespace spy::network::messages {
 
@@ -30,6 +31,17 @@ namespace spy::network::messages {
             friend void from_json(const nlohmann::json &j, ItemChoice &i);
 
             bool operator==(const ItemChoice &rhs) const;
+
+            /**
+             * validate message according role and items that were offered
+             * @param playerRole role of the player who sent the message
+             * @param offeredCharacters list of character ids that were offered to player
+             * @param offeredGadgets list of gadget types that were offered to player
+             * @return true if message is valid
+             *         false if message is not valid
+             */
+            [[nodiscard]] bool validate(const RoleEnum &playerRole, const std::vector<util::UUID> &offeredCharacters,
+                                        const std::vector<gadget::GadgetEnum> &offeredGadgets) const;
 
         private:
             std::variant<util::UUID, gadget::GadgetEnum> choice;

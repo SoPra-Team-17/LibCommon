@@ -30,4 +30,34 @@ namespace spy::network::messages {
     bool EquipmentChoice::operator==(const EquipmentChoice &rhs) const {
         return isEqual(rhs) && equipment == rhs.equipment;
     }
+
+    bool EquipmentChoice::validate(const RoleEnum &playerRole, const std::vector<util::UUID> &chosenCharacter,
+                                   const std::vector<gadget::GadgetEnum> &chosenGadget) const {
+        if (playerRole == spy::network::RoleEnum::INVALID ||
+            playerRole == spy::network::RoleEnum::SPECTATOR) {
+            return false;
+        }
+
+        std::vector<util::UUID> mapCharacters;
+        std::vector<gadget::GadgetEnum> mapGadgets;
+
+        for (const auto & iter : equipment)
+        {
+            auto key =  iter.first;
+            auto value = iter.second;
+            mapCharacters.push_back(key);
+            mapGadgets.insert(mapGadgets.end(), value.begin(), value.end());
+        }
+
+        std::sort(chosenCharacter.begin(), chosenCharacter.end());
+        std::sort(mapCharacters.begin(), mapCharacters.end());
+        std::sort(chosenGadget.begin(), chosenGadget.end());
+        std::sort(mapGadgets.begin(), mapGadgets.end());
+
+        if (chosenCharacter != mapCharacters || chosenGadget != mapGadgets) {
+            return false;
+        }
+
+        return true;
+    }
 }
