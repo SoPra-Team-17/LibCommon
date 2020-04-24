@@ -31,9 +31,8 @@ namespace spy::network::messages {
                sessionId == rhs.sessionId;
     }
 
-    bool Reconnect::validate(RoleEnum playerRole, bool isPlayerKnown) const {
+    bool Reconnect::validate(RoleEnum playerRole) const {
         return playerRole != spy::network::RoleEnum::INVALID &&
-               playerRole != spy::network::RoleEnum::SPECTATOR &&
-               isPlayerKnown;
+               playerRole != spy::network::RoleEnum::SPECTATOR;
     }
 }

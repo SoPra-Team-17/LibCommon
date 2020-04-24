@@ -33,4 +33,22 @@ namespace spy::network::messages {
         return isEqual(rhs) &&
                keys == rhs.keys;
     }
+
+    bool RequestMetaInformation::validate(RoleEnum playerRole) const {
+        if (playerRole == RoleEnum::INVALID) {
+            return false;
+        }
+
+        std::vector<std::string> allowedKeys{"Spectator.Count", "Spectator.Members", "Configuration.Scenario",
+                                             "Configuration.MatchConfig", "Configuration.CharacterInformation",
+                                             "Game.RemainingPauseTime", "Fraction.Player1", "Fraction.Player2",
+                                             "Fraction.Neutral", "Gadgets.Player1", "Gadgets.Player2"};
+        for (auto s: keys) {
+            if (std::find(allowedKeys.begin(), allowedKeys.end(), s) == allowedKeys.end()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
