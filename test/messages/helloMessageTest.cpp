@@ -18,6 +18,8 @@ TEST(messages, helloMessage){
     EXPECT_EQ(m.getRole(), role);
     EXPECT_EQ(m.getName(), str);
 
+    EXPECT_TRUE(m.validate());
+
     nlohmann::json json = m;
     std::string serialized = json.dump();
     std::string expected = R"({"creationDate":")" + m.getCreationDate() +

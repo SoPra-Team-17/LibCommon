@@ -5,6 +5,52 @@
 #include <gtest/gtest.h>
 #include <network/messages/ItemChoice.hpp>
 
+TEST(messages, ItemChoiceMessage_validate) {
+    std::vector<spy::util::UUID> offeredCharacters{
+            spy::util::UUID{"123e4567-e89b-12d3-a456-426655440000"},
+            spy::util::UUID{"123e4567-e89b-12d3-a456-426655440001"}};
+    std::vector<spy::gadget::GadgetEnum> offeredGadgets{
+            spy::gadget::GadgetEnum::BOWLER_BLADE,
+            spy::gadget::GadgetEnum::CHICKEN_FEED};
+
+    spy::network::messages::ItemChoice characterChoiceCor1(
+            spy::util::UUID{"123e4567-e89b-12d3-a456-426655444444"},
+            spy::util::UUID{"123e4567-e89b-12d3-a456-426655440000"});
+
+    spy::network::messages::ItemChoice characterChoiceCor2(
+            spy::util::UUID{"123e4567-e89b-12d3-a456-426655444444"},
+            spy::util::UUID{"123e4567-e89b-12d3-a456-426655440001"});
+
+    spy::network::messages::ItemChoice characterChoiceFalse(
+            spy::util::UUID{"123e4567-e89b-12d3-a456-426655444444"},
+            spy::util::UUID{"123e4567-e89b-12d3-a456-426655440011"});
+
+    spy::network::messages::ItemChoice gadgetChoiceCor1(
+            spy::util::UUID{"123e4567-e89b-12d3-a456-426655444444"},
+            spy::gadget::GadgetEnum::BOWLER_BLADE);
+
+    spy::network::messages::ItemChoice gadgetChoiceCor2(
+            spy::util::UUID{"123e4567-e89b-12d3-a456-426655444444"},
+            spy::gadget::GadgetEnum::CHICKEN_FEED);
+
+    spy::network::messages::ItemChoice gadgetChoiceFalse(
+            spy::util::UUID{"123e4567-e89b-12d3-a456-426655444444"},
+            spy::gadget::GadgetEnum::POISON_PILLS);
+
+    EXPECT_TRUE(characterChoiceCor1.validate(spy::network::RoleEnum::PLAYER, offeredCharacters, offeredGadgets));
+    EXPECT_TRUE(characterChoiceCor2.validate(spy::network::RoleEnum::AI, offeredCharacters, offeredGadgets));
+    EXPECT_FALSE(characterChoiceFalse.validate(spy::network::RoleEnum::PLAYER, offeredCharacters, offeredGadgets));
+    EXPECT_FALSE(characterChoiceCor1.validate(spy::network::RoleEnum::INVALID, offeredCharacters, offeredGadgets));
+    EXPECT_FALSE(characterChoiceCor1.validate(spy::network::RoleEnum::SPECTATOR, offeredCharacters, offeredGadgets));
+
+    EXPECT_TRUE(gadgetChoiceCor1.validate(spy::network::RoleEnum::PLAYER, offeredCharacters, offeredGadgets));
+    EXPECT_TRUE(gadgetChoiceCor2.validate(spy::network::RoleEnum::AI, offeredCharacters, offeredGadgets));
+    EXPECT_FALSE(gadgetChoiceFalse.validate(spy::network::RoleEnum::PLAYER, offeredCharacters, offeredGadgets));
+    EXPECT_FALSE(gadgetChoiceCor1.validate(spy::network::RoleEnum::INVALID, offeredCharacters, offeredGadgets));
+    EXPECT_FALSE(gadgetChoiceCor1.validate(spy::network::RoleEnum::SPECTATOR, offeredCharacters, offeredGadgets));
+
+}
+
 TEST(messages, ItemChoiceMessage_encode_character) {
     spy::network::messages::ItemChoice characterChoice(
             spy::util::UUID{"123e4567-e89b-12d3-a456-426655440000"},
