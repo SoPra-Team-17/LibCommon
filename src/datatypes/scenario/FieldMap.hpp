@@ -39,6 +39,20 @@ namespace spy::scenario {
             [[nodiscard]] bool isInside(util::Point p) const;
 
             /**
+             * Checks if a given field blocks the line of sight (thus is a wall or a fireplace).
+             * @param p Coordinate of the field to check.
+             * @return True if it blocks the line of sight, else false.
+             */
+            [[nodiscard]] bool blocksSight(util::Point p) const;
+
+            /**
+             * Checks if a given field is accessible by a character.
+             * @param p Coordinate of the field to check.
+             * @return True if the field is free or a bar seat, otherwise false.
+             */
+            [[nodiscard]] bool isAccessible(util::Point p) const;
+
+            /**
              * Checks whether the line of sight between to fields is blocked.
              * @param p1 First field.
              * @param p2 Second field.
@@ -53,12 +67,6 @@ namespace spy::scenario {
             bool operator==(const FieldMap &rhs) const;
 
         private:
-            /**
-             * Checks if a given field blocks the line of sight (thus is a wall or a fireplace).
-             * @param p Coordinate of the field to check.
-             * @return True if it blocks the line of sight, else false.
-             */
-            [[nodiscard]] bool blocksSight(util::Point p) const;
 
             std::vector<std::vector<Field>> map;
     };

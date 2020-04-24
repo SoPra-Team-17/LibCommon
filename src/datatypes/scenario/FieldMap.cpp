@@ -49,6 +49,16 @@ namespace spy::scenario {
                  || map.at(p.y).size() <= static_cast<unsigned int>(p.x));
     }
 
+    bool FieldMap::blocksSight(util::Point p) const {
+        return (getField(p).getFieldState() == FieldStateEnum::WALL
+                || getField(p).getFieldState() == FieldStateEnum::FIREPLACE);
+    }
+
+    bool FieldMap::isAccessible(util::Point p) const {
+        return (getField(p).getFieldState() == FieldStateEnum::FREE
+                || getField(p).getFieldState() == FieldStateEnum::BAR_SEAT);
+    }
+
 
     /**
      * @see playtechs.blogspot.com/2007/03/raytracing-on-grid.html for the original implementation
@@ -89,11 +99,6 @@ namespace spy::scenario {
         }
 
         return true;
-    }
-
-    bool FieldMap::blocksSight(util::Point p) const {
-        return (getField(p).getFieldState() == FieldStateEnum::WALL
-                || getField(p).getFieldState() == FieldStateEnum::FIREPLACE);
     }
 
     void to_json(nlohmann::json &j, const FieldMap &m) {
