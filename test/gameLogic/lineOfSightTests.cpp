@@ -9,7 +9,7 @@
 #include <scenario/Scenario.hpp>
 #include <scenario/FieldMap.hpp>
 
-auto input = R"({ "scenario": [
+static auto input = R"({ "scenario": [
             ["WALL", "WALL",      "WALL", "WALL",           "WALL",     "WALL", "WALL"],
             ["WALL", "FIREPLACE", "WALL", "BAR_TABLE",      "BAR_SEAT", "FREE", "WALL"],
             ["WALL", "FREE",      "FREE", "FREE",           "FREE",     "FREE", "WALL"],
