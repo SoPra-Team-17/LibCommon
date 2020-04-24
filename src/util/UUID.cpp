@@ -1,13 +1,18 @@
-//
-// Created by jonas on 02.04.20.
-//
+/**
+ * @file   UUID.cpp
+ * @author Jonas Otto
+ * @date   2. April 2020
+ * @brief  C++ wrapper for libuuid.
+ */
 
 #include "UUID.hpp"
 #include <array>
 
 namespace spy::util {
-    bool UUID::isNull() {
-        return uuid_is_null(uuidData);
+    UUID::UUID(const std::string &s) {
+        if (uuid_parse(s.c_str(), uuidData) != 0) {
+            throw std::invalid_argument("Could not parse \"" + s + "\" as a UUID.");
+        }
     }
 
     UUID UUID::generate() {
@@ -18,6 +23,10 @@ namespace spy::util {
 
     void UUID::clear() {
         uuid_clear(uuidData);
+    }
+
+    bool UUID::isNull() const {
+        return uuid_is_null(uuidData);
     }
 
     std::string UUID::to_string() const {
@@ -60,12 +69,6 @@ namespace spy::util {
 
     bool UUID::operator>=(const UUID &rhs) const {
         return !(*this < rhs);
-    }
-
-    UUID::UUID(const std::string &s) {
-        if (uuid_parse(s.c_str(), uuidData) != 0) {
-            throw std::invalid_argument("Could not parse \"" + s + "\" as a UUID.");
-        }
     }
 
     void to_json(nlohmann::json &j, const UUID &c) {
