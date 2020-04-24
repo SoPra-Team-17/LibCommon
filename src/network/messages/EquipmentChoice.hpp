@@ -28,9 +28,9 @@ namespace spy::network::messages {
             bool operator==(const EquipmentChoice &rhs) const;
 
             /**
-             * validate message according role and if player is known
+             * validate message according role and chosen characters and gadgets
              * @param playerRole role of the player who sent the message
-             * @param chosenCharacter list of character ids that were chosen player
+             * @param chosenCharacter list of character ids that were chosen by player
              * @param chosenGadget list of gadget types that were chosen by player
              * @return true if message is valid
              *         false if message is not valid

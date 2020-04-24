@@ -54,10 +54,6 @@ namespace spy::network::messages {
         std::sort(chosenGadget.begin(), chosenGadget.end());
         std::sort(mapGadgets.begin(), mapGadgets.end());
 
-        if (chosenCharacter != mapCharacters || chosenGadget != mapGadgets) {
-            return false;
-        }
-
-        return true;
+        return (chosenCharacter == mapCharacters && chosenGadget == mapGadgets);
     }
 }
