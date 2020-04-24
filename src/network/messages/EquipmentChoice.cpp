@@ -31,8 +31,8 @@ namespace spy::network::messages {
         return isEqual(rhs) && equipment == rhs.equipment;
     }
 
-    bool EquipmentChoice::validate(const RoleEnum &playerRole, const std::vector<util::UUID> &chosenCharacter,
-                                   const std::vector<gadget::GadgetEnum> &chosenGadget) const {
+    bool EquipmentChoice::validate(RoleEnum playerRole, std::vector<util::UUID> chosenCharacter,
+                                   std::vector<gadget::GadgetEnum> chosenGadget) const {
         if (playerRole == spy::network::RoleEnum::INVALID ||
             playerRole == spy::network::RoleEnum::SPECTATOR) {
             return false;

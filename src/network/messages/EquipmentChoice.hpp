@@ -35,8 +35,8 @@ namespace spy::network::messages {
              * @return true if message is valid
              *         false if message is not valid
              */
-            [[nodiscard]] bool validate(const RoleEnum &playerRole, const std::vector<spy::util::UUID> &chosenCharacter,
-                                        const std::vector<spy::gadget::GadgetEnum> &chosenGadget) const;
+            [[nodiscard]] bool validate(RoleEnum playerRole, std::vector<spy::util::UUID> chosenCharacter,
+                                        std::vector<spy::gadget::GadgetEnum> chosenGadget) const;
 
         private:
             std::map<util::UUID, std::set<gadget::GadgetEnum>> equipment;

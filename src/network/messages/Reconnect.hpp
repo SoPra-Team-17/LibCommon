@@ -29,7 +29,7 @@ namespace spy::network::messages {
              * @return true if message is valid
              *         false if message is not valid
              */
-            [[nodiscard]] bool validate(const RoleEnum &playerRole, bool isPlayerKnown) const;
+            [[nodiscard]] bool validate(RoleEnum playerRole, bool isPlayerKnown) const;
 
         private:
             util::UUID sessionId;

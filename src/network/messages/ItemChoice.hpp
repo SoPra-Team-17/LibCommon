@@ -40,8 +40,8 @@ namespace spy::network::messages {
              * @return true if message is valid
              *         false if message is not valid
              */
-            [[nodiscard]] bool validate(const RoleEnum &playerRole, const std::vector<util::UUID> &offeredCharacters,
-                                        const std::vector<gadget::GadgetEnum> &offeredGadgets) const;
+            [[nodiscard]] bool validate(RoleEnum playerRole, std::vector<util::UUID> offeredCharacters,
+                                        std::vector<gadget::GadgetEnum> offeredGadgets) const;
 
         private:
             std::variant<util::UUID, gadget::GadgetEnum> choice;
