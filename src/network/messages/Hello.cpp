@@ -37,4 +37,8 @@ namespace spy::network::messages {
                name == rhs.name &&
                role == rhs.role;
     }
+
+    bool Hello::validate() const {
+        return this->role != spy::network::RoleEnum::INVALID;
+    }
 }

@@ -22,6 +22,15 @@ namespace spy::network::messages {
 
             bool operator==(const Reconnect &rhs) const;
 
+            /**
+             * validate message according role and if player is known
+             * @param playerRole role of the player who sent the message
+             * @param isPlayerKnown whether playerId of message is known or not
+             * @return true if message is valid
+             *         false if message is not valid
+             */
+            [[nodiscard]] bool validate(RoleEnum playerRole, bool isPlayerKnown);
+
         private:
             util::UUID sessionId;
     };
