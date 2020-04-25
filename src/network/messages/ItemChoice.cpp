@@ -49,22 +49,20 @@ namespace spy::network::messages {
             return false;
         }
 
-        switch (choice.index()) {
-            case 0: //character got chosen
-                if (std::find(offeredCharacters.begin(), offeredCharacters.end(), std::get<0>(choice)) ==
-                    offeredCharacters.end()) {
-                    return false;
-                }
-                break;
-            case 1: //gadget got chosen
-                if (std::find(offeredGadgets.begin(), offeredGadgets.end(), std::get<1>(choice)) ==
-                    offeredGadgets.end()) {
-                    return false;
-                }
-                break;
-            default:
+        if (std::holds_alternative<util::UUID>(choice)) {
+            if (std::find(offeredCharacters.begin(), offeredCharacters.end(), std::get<util::UUID>(choice)) ==
+                offeredCharacters.end()) {
                 return false;
+            }
+        } else if (std::holds_alternative<gadget::GadgetEnum>(choice)) {
+            if (std::find(offeredGadgets.begin(), offeredGadgets.end(), std::get<gadget::GadgetEnum>(choice)) ==
+                offeredGadgets.end()) {
+                return false;
+            }
+        } else {
+            return false;
         }
+
         return true;
     }
 }
