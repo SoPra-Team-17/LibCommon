@@ -73,6 +73,10 @@ TEST(messages, ItemChoiceMessage_validate) {
             spy::util::UUID{"123e4567-e89b-12d3-a456-426655444444"},
             spy::gadget::GadgetEnum::POISON_PILLS);
 
+    spy::network::messages::ItemChoice noChoice(
+            spy::util::UUID{"123e4567-e89b-12d3-a456-426655444444"},
+            {});
+
     EXPECT_TRUE(characterChoiceCor1.validate(spy::network::RoleEnum::PLAYER, offeredCharacters, offeredGadgets));
     EXPECT_TRUE(characterChoiceCor2.validate(spy::network::RoleEnum::AI, offeredCharacters, offeredGadgets));
     EXPECT_FALSE(characterChoiceFalse.validate(spy::network::RoleEnum::PLAYER, offeredCharacters, offeredGadgets));
@@ -84,6 +88,8 @@ TEST(messages, ItemChoiceMessage_validate) {
     EXPECT_FALSE(gadgetChoiceFalse.validate(spy::network::RoleEnum::PLAYER, offeredCharacters, offeredGadgets));
     EXPECT_FALSE(gadgetChoiceCor1.validate(spy::network::RoleEnum::INVALID, offeredCharacters, offeredGadgets));
     EXPECT_FALSE(gadgetChoiceCor1.validate(spy::network::RoleEnum::SPECTATOR, offeredCharacters, offeredGadgets));
+
+    EXPECT_FALSE(noChoice.validate(spy::network::RoleEnum::PLAYER, offeredCharacters, offeredGadgets));
 }
 
 TEST(messages, EquipmentChoiceMessage_validate) {
