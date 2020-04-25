@@ -9,6 +9,9 @@
 #include <network/messages/Reconnect.hpp>
 #include <network/messages/EquipmentChoice.hpp>
 #include <network/messages/RequestReplay.hpp>
+#include <network/messages/RequestGamePause.hpp>
+#include <network/messages/GameLeave.hpp>
+#include <network/messages/RequestMetaInformation.hpp>
 
 TEST(messages, helloMessage_validate){
     using namespace spy::network;
@@ -146,4 +149,69 @@ TEST(messages, RequestReplayMessage_validate){
     EXPECT_FALSE(m.validate(RoleEnum::PLAYER, false));
     EXPECT_FALSE(m.validate(RoleEnum::AI, true));
     EXPECT_FALSE(m.validate(RoleEnum::INVALID, true));
+}
+
+
+TEST(messages, RequestGamePauseMessage_validate){
+    using namespace spy::network;
+    using namespace spy::network::messages;
+
+    RequestGamePause mPause(spy::util::UUID{}, true);
+    RequestGamePause mNoPause(spy::util::UUID{}, false);
+
+    EXPECT_TRUE(mPause.validate(RoleEnum::PLAYER, false, false));
+    EXPECT_FALSE(mPause.validate(RoleEnum::SPECTATOR, false, false));
+    EXPECT_FALSE(mPause.validate(RoleEnum::AI, false, false));
+    EXPECT_FALSE(mPause.validate(RoleEnum::INVALID, false, false));
+
+    EXPECT_FALSE(mPause.validate(RoleEnum::PLAYER, true, false));
+    EXPECT_FALSE(mPause.validate(RoleEnum::PLAYER, true, true));
+
+    EXPECT_TRUE(mNoPause.validate(RoleEnum::PLAYER, true, false));
+    EXPECT_FALSE(mNoPause.validate(RoleEnum::SPECTATOR, true, false));
+    EXPECT_FALSE(mNoPause.validate(RoleEnum::AI, true, false));
+    EXPECT_FALSE(mNoPause.validate(RoleEnum::INVALID, true, false));
+
+    EXPECT_FALSE(mNoPause.validate(RoleEnum::PLAYER, true, true));
+    EXPECT_FALSE(mNoPause.validate(RoleEnum::PLAYER, false, false));
+}
+
+TEST(messages, GameLeaveMessage_validate){
+    using namespace spy::network;
+    using namespace spy::network::messages;
+
+    GameLeave m(spy::util::UUID{});
+
+    EXPECT_TRUE(m.validate(RoleEnum::PLAYER));
+    EXPECT_TRUE(m.validate(RoleEnum::AI));
+    EXPECT_TRUE(m.validate(RoleEnum::SPECTATOR));
+    EXPECT_FALSE(m.validate(RoleEnum::INVALID));
+}
+
+TEST(messages, RequestMetaInformationMessage_validate){
+    using namespace spy::network;
+    using namespace spy::network::messages;
+
+    std::vector<std::string> corKeys{"Spectator.Count", "Spectator.Members", "Configuration.Scenario",
+                                         "Configuration.MatchConfig", "Configuration.CharacterInformation",
+                                         "Game.RemainingPauseTime", "Fraction.Player1", "Fraction.Player2",
+                                         "Fraction.Neutral", "Gadgets.Player1", "Gadgets.Player2"};
+
+    std::vector<std::string> falseKeys{"Spectator.Count", "Spectator.Members", "Configuration.Scenario",
+                                         "Configuration.MatchConfig", "Configuration.CharacterInformation",
+                                         "randomKey", "Game.RemainingPauseTime", "Fraction.Player1", "Fraction.Player2",
+                                         "Fraction.Neutral", "Gadgets.Player1", "Gadgets.Player2"};
+
+    RequestMetaInformation mCor(spy::util::UUID{}, corKeys);
+    RequestMetaInformation mFalse(spy::util::UUID{}, falseKeys);
+
+    EXPECT_TRUE(mCor.validate(RoleEnum::PLAYER));
+    EXPECT_TRUE(mCor.validate(RoleEnum::AI));
+    EXPECT_TRUE(mCor.validate(RoleEnum::SPECTATOR));
+    EXPECT_FALSE(mCor.validate(RoleEnum::INVALID));
+
+    EXPECT_FALSE(mFalse.validate(RoleEnum::PLAYER));
+    EXPECT_FALSE(mFalse.validate(RoleEnum::AI));
+    EXPECT_FALSE(mFalse.validate(RoleEnum::SPECTATOR));
+    EXPECT_FALSE(mFalse.validate(RoleEnum::INVALID));
 }
