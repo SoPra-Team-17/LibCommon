@@ -32,9 +32,11 @@ namespace spy::network::messages {
             if (item.key() == "Spectator.Count") {
                 m.information.insert({MetaInformationKey::SPECTATOR_COUNT, item.value().get<int>()});
             } else if (item.key() == "Spectator.Members") {
-                m.information.insert({MetaInformationKey::SPECTATOR_MEMBERS, item.value().get<std::vector<std::string>>()});
+                m.information.insert(
+                        {MetaInformationKey::SPECTATOR_MEMBERS, item.value().get<std::vector<std::string>>()});
             } else if (item.key() == "Configuration.Scenario") {
-                m.information.insert({MetaInformationKey::CONFIGURATION_SCENARIO, item.value().get<scenario::Scenario>()});
+                m.information.insert(
+                        {MetaInformationKey::CONFIGURATION_SCENARIO, item.value().get<scenario::Scenario>()});
             } else if (item.key() == "Configuration.Matchconfig") {
                 m.information.insert({MetaInformationKey::CONFIGURATION_MATCH_CONFIG, item.value().get<MatchConfig>()});
             } else if (item.key() == "Configuration.CharacterInformation") {
@@ -43,15 +45,20 @@ namespace spy::network::messages {
             } else if (item.key() == "Game.RemainingPauseTime") {
                 m.information.insert({MetaInformationKey::GAME_REMAINING_PAUSE_TIME, item.value().get<int>()});
             } else if (item.key() == "Faction.Player1") {
-                m.information.insert({MetaInformationKey::FRACTION_PLAYER1, item.value().get<std::vector<util::UUID>>()});
+                m.information.insert(
+                        {MetaInformationKey::FACTION_PLAYER1, item.value().get<std::vector<util::UUID>>()});
             } else if (item.key() == "Faction.Player2") {
-                m.information.insert({MetaInformationKey::FRACTION_PLAYER2, item.value().get<std::vector<util::UUID>>()});
+                m.information.insert(
+                        {MetaInformationKey::FACTION_PLAYER2, item.value().get<std::vector<util::UUID>>()});
             } else if (item.key() == "Faction.Neutral") {
-                m.information.insert({MetaInformationKey::FRACTION_NEUTRAL, item.value().get<std::vector<util::UUID>>()});
+                m.information.insert(
+                        {MetaInformationKey::FACTION_NEUTRAL, item.value().get<std::vector<util::UUID>>()});
             } else if (item.key() == "Gadgets.Player1") {
-                m.information.insert({MetaInformationKey::GADGETS_PLAYER1, item.value().get<std::vector<gadget::GadgetEnum>>()});
+                m.information.insert(
+                        {MetaInformationKey::GADGETS_PLAYER1, item.value().get<std::vector<gadget::GadgetEnum>>()});
             } else if (item.key() == "Gadgets.Player2") {
-                m.information.insert({MetaInformationKey::GADGETS_PLAYER2, item.value().get<std::vector<gadget::GadgetEnum>>()});
+                m.information.insert(
+                        {MetaInformationKey::GADGETS_PLAYER2, item.value().get<std::vector<gadget::GadgetEnum>>()});
             }
         }
     }

@@ -16,9 +16,9 @@ namespace spy::network::messages {
             CONFIGURATION_MATCH_CONFIG,
             CONFIGURATION_CHARACTER_INFORMATION,
             GAME_REMAINING_PAUSE_TIME,
-            FRACTION_PLAYER1,
-            FRACTION_PLAYER2,
-            FRACTION_NEUTRAL,
+            FACTION_PLAYER1,
+            FACTION_PLAYER2,
+            FACTION_NEUTRAL,
             GADGETS_PLAYER1,
             GADGETS_PLAYER2
     };
@@ -31,9 +31,9 @@ namespace spy::network::messages {
         { MetaInformationKey::CONFIGURATION_MATCH_CONFIG, "Configuration.MatchConfig" },
         { MetaInformationKey::CONFIGURATION_CHARACTER_INFORMATION, "Configuration.CharacterInformation" },
         { MetaInformationKey::GAME_REMAINING_PAUSE_TIME, "Game.RemainingPauseTime" },
-        { MetaInformationKey::FRACTION_PLAYER1, "Fraction.Player1" },
-        { MetaInformationKey::FRACTION_PLAYER2, "Fraction.Player2" },
-        { MetaInformationKey::FRACTION_NEUTRAL, "Fraction.Neutral" },
+        { MetaInformationKey::FACTION_PLAYER1, "Faction.Player1" },
+        { MetaInformationKey::FACTION_PLAYER2, "Faction.Player2" },
+        { MetaInformationKey::FACTION_NEUTRAL, "Faction.Neutral" },
         { MetaInformationKey::GADGETS_PLAYER1, "Gadgets.Player1" },
         { MetaInformationKey::GADGETS_PLAYER2, "Gadgets.Player2" }
     })

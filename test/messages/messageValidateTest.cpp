@@ -208,9 +208,9 @@ TEST(messages, RequestMetaInformationMessage_validate) {
                                             MetaInformationKey::CONFIGURATION_MATCH_CONFIG,
                                             MetaInformationKey::CONFIGURATION_CHARACTER_INFORMATION,
                                             MetaInformationKey::GAME_REMAINING_PAUSE_TIME,
-                                            MetaInformationKey::FRACTION_PLAYER1,
-                                            MetaInformationKey::FRACTION_PLAYER2,
-                                            MetaInformationKey::FRACTION_NEUTRAL,
+                                            MetaInformationKey::FACTION_PLAYER1,
+                                            MetaInformationKey::FACTION_PLAYER2,
+                                            MetaInformationKey::FACTION_NEUTRAL,
                                             MetaInformationKey::GADGETS_PLAYER1,
                                             MetaInformationKey::GADGETS_PLAYER2};
 
@@ -221,9 +221,9 @@ TEST(messages, RequestMetaInformationMessage_validate) {
                                               MetaInformationKey::CONFIGURATION_MATCH_CONFIG,
                                               MetaInformationKey::CONFIGURATION_CHARACTER_INFORMATION,
                                               MetaInformationKey::GAME_REMAINING_PAUSE_TIME,
-                                              MetaInformationKey::FRACTION_PLAYER1,
-                                              MetaInformationKey::FRACTION_PLAYER2,
-                                              MetaInformationKey::FRACTION_NEUTRAL,
+                                              MetaInformationKey::FACTION_PLAYER1,
+                                              MetaInformationKey::FACTION_PLAYER2,
+                                              MetaInformationKey::FACTION_NEUTRAL,
                                               MetaInformationKey::GADGETS_PLAYER1,
                                               MetaInformationKey::GADGETS_PLAYER2};
 
