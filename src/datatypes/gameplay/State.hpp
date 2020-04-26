@@ -13,6 +13,7 @@
 #include "datatypes/character/Character.hpp"
 #include "datatypes/character/CharacterSet.hpp"
 #include "datatypes/scenario/FieldMap.hpp"
+#include "Movement.hpp"
 
 namespace spy::gameplay {
     class State {
@@ -57,6 +58,13 @@ namespace spy::gameplay {
              */
             [[nodiscard]] bool isMovementValid(const gameplay::Movement &op) const;
 
+            /**
+             * Perform the given movement operation.
+             * @param op Operation to perform.
+             * @return True if the operation was successful, otherwise false.
+             */
+            [[nodiscard]] bool performMovement(const Movement &op);
+
             friend void to_json(nlohmann::json &j, const State &s);
 
             friend void from_json(const nlohmann::json &j, State &s);
@@ -64,6 +72,13 @@ namespace spy::gameplay {
             bool operator==(const State &rhs) const;
 
         private:
+            /**
+             * Calculates the distance between two points.
+             * @param p1 First point.
+             * @param p2 Second point.
+             * @return Distance between the points.
+             * @note The distance is measured using a "king's move metric".
+             */
             static unsigned int getMoveDistance(const util::Point &p1, const util::Point &p2);
 
             unsigned int currentRound = 0;

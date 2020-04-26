@@ -66,15 +66,38 @@ namespace spy::gameplay {
             return false;
         }
 
-        auto character = std::find_if(characters.begin(), characters.end(), [&](const character::Character &c) {
-            return c.getCharacterId() == op.getCharacterId();
-        });
-
+        auto character = characters.findByUUID(op.getCharacterId().value());
         if (character == characters.end()) {                            // specified character UUID is not valid
+            return false;
+        } else if (character->getCoordinates() != op.getFrom()) {       // doesn't match characters position
             return false;
         }
 
         return map.isAccessible(op.getTarget());
+    }
+
+    bool State::performMovement(const Movement &op) {
+        if (!isMovementValid(op)) {
+            return false;
+        }
+
+        auto character = characters.getByUUID(op.getCharacterId().value());
+
+        auto charTarget = std::find_if(characters.begin(), characters.end(), [&op](const character::Character &c) {
+            return c.getCoordinates() == op.getTarget();
+        });
+
+        if (charTarget != characters.end()) {                           // characters need to swap places
+            character->setCoordinates(op.getTarget());
+            charTarget->setCoordinates(op.getFrom());
+        }
+
+        auto gadget = map.getField(op.getTarget()).getGadget();
+        if (gadget.has_value()) {                                       // pick up gadget
+            character->addGadget(gadget.value());
+        }
+
+        return true;
     }
 
     bool State::operator==(const State &rhs) const {
@@ -111,13 +134,6 @@ namespace spy::gameplay {
         }
     }
 
-    /**
-     * Calculates the distance between two points.
-     * @param p1 First point.
-     * @param p2 Second point.
-     * @return Distance between the points.
-     * @note The distance is measured using a "king's move metric".
-     */
     unsigned int State::getMoveDistance(const util::Point &p1, const util::Point &p2) {
         return std::max(abs(p1.x - p2.x), abs(p1.y - p2.y));
     }
