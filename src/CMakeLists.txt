@@ -16,6 +16,7 @@ set(SOURCE
         datatypes/character/Character.cpp
         datatypes/character/CharacterInformation.cpp
         datatypes/character/CharacterDescription.cpp
+        datatypes/character/CharacterSet.cpp
         datatypes/matchconfig/MatchConfig.cpp
         datatypes/scenario/Scenario.cpp
         datatypes/scenario/Scenario.cpp
@@ -60,3 +61,10 @@ target_include_directories(${PROJECT_NAME}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/datatypes>)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
+
+include(GNUInstallDirs)
+install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/"
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}
+        FILES_MATCHING PATTERN "*.hpp"
+        )

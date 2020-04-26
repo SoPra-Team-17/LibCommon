@@ -9,7 +9,7 @@
 #define LIBCOMMON_FIELD_HPP
 
 #include <optional>
-#include "gadgets/Gadget.hpp"
+#include "datatypes/gadgets/Gadget.hpp"
 #include "FieldStateEnum.hpp"
 #include "util/OptionalSerialization.hpp"
 

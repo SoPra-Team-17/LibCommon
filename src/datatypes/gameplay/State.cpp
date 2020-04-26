@@ -1,15 +1,17 @@
-//
-// Created by marco on 10.04.20.
-//
+/**
+ * @file   State.cpp
+ * @author Marco
+ * @date   10.04.2020 (creation)
+ * @brief  Entire state of the game.
+ */
 
 #include "State.hpp"
 
 #include <utility>
 
-
 namespace spy::gameplay {
     State::State(unsigned int currentRound, scenario::FieldMap map, std::set<int> mySafeCombinations,
-                 character::Character::Set characters, const std::optional<util::Point> &catCoordinates,
+                 character::CharacterSet characters, const std::optional<util::Point> &catCoordinates,
                  const std::optional<util::Point> &janitorCoordinates) :
             currentRound(currentRound),
             map(std::move(map)),
@@ -17,6 +19,7 @@ namespace spy::gameplay {
             characters(std::move(characters)),
             catCoordinates(catCoordinates),
             janitorCoordinates(janitorCoordinates) {}
+
 
     unsigned int State::getCurrentRound() const {
         return currentRound;
@@ -30,7 +33,7 @@ namespace spy::gameplay {
         return mySafeCombinations;
     }
 
-    const character::Character::Set &State::getCharacters() const {
+    const character::CharacterSet &State::getCharacters() const {
         return characters;
     }
 
@@ -74,6 +77,12 @@ namespace spy::gameplay {
         return map.isAccessible(op.getTarget());
     }
 
+    bool State::operator==(const State &rhs) const {
+        return std::tie(currentRound, map, mySafeCombinations, characters, catCoordinates, janitorCoordinates) ==
+               std::tie(rhs.currentRound, rhs.map, rhs.mySafeCombinations, rhs.characters, rhs.catCoordinates,
+                        rhs.janitorCoordinates);
+    }
+
     void to_json(nlohmann::json &j, const State &s) {
         j["currentRound"] = s.currentRound;
         j["map"] = s.map;
@@ -100,12 +109,6 @@ namespace spy::gameplay {
             // Use setter instead of get_to to properly handle coordinates outside the map
             s.setJanitorCoordinates(janitorCoordinatesJson->get<decltype(s.janitorCoordinates)>());
         }
-    }
-
-    bool State::operator==(const State &rhs) const {
-        return std::tie(currentRound, map, mySafeCombinations, characters, catCoordinates, janitorCoordinates) ==
-               std::tie(rhs.currentRound, rhs.map, rhs.mySafeCombinations, rhs.characters, rhs.catCoordinates,
-                        rhs.janitorCoordinates);
     }
 
     /**

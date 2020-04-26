@@ -77,17 +77,6 @@ namespace spy::character {
 
             bool operator==(const Character &rhs) const;
 
-            /**
-             * Implements an ordering for Character, while not stating an actual ordering and implying equality by UUID
-             * through operator<.
-             * TODO(C++20): replace with std::strong_ordering strong_order(Character lhs, Character rhs)
-             */
-            struct strong_order_compare {
-                bool operator()(const Character &lhs, const Character &rhs) const;
-            };
-
-            using Set = std::set<character::Character, Character::strong_order_compare>;
-
         private:
             spy::util::UUID characterId;
             std::string name;
