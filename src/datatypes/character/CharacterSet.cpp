@@ -82,21 +82,6 @@ namespace spy::character {
         return character;
     }
 
-    CharacterSet::const_iterator CharacterSet::findByLocation(const util::Point &p) const {
-        auto character = std::find_if(characters.begin(), characters.end(), [&p](const character::Character &c) {
-            return c.getCoordinates() == p;
-        });
-
-        return character;
-    }
-
-    CharacterSet::iterator CharacterSet::getByLocation(const util::Point &p) {
-        auto character = findByLocation(p);
-
-        return characters.erase(character, character);                  // converts from const_iterator to iterator
-    }
-
-
     bool CharacterSet::operator==(const CharacterSet &rhs) const {
         return characters == rhs.characters;
     }

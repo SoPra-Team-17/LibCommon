@@ -17,11 +17,12 @@ namespace spy::character {
      * @note
      */
     class CharacterSet {
-        using iterator = std::vector<Character>::iterator;
-        using const_iterator = std::vector<Character>::const_iterator;
+            using iterator = std::vector<Character>::iterator;
+            using const_iterator = std::vector<Character>::const_iterator;
 
         public:
             CharacterSet() = default;
+
             explicit CharacterSet(std::initializer_list<Character> list);
 
             /**
@@ -64,16 +65,14 @@ namespace spy::character {
              */
             [[nodiscard]] size_t size() const noexcept;
 
-            std::pair<iterator, bool> emplace(const util::UUID &characterId,
-                                              const std::string &name);
+            std::pair<iterator, bool> emplace(const util::UUID &characterId, const std::string &name);
 
             [[nodiscard]] const_iterator findByUUID(const util::UUID &uuid) const;
+
             iterator getByUUID(const util::UUID &uuid);
 
-            [[nodiscard]] const_iterator findByLocation(const util::Point &p) const;
-            iterator getByLocation(const util::Point &p);
-
             std::pair<iterator, bool> insert(Character &&c);
+
             std::pair<iterator, bool> insert(const Character &c);
 
             bool operator==(const CharacterSet &rhs) const;
