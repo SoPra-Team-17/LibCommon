@@ -1,39 +1,24 @@
-//
-// Created by marco on 10.04.20.
-//
+/**
+ * @file   State.cpp
+ * @author Marco
+ * @date   10.04.2020 (creation)
+ * @brief  Entire state of the game.
+ */
 
 #include "State.hpp"
 
 #include <utility>
 
 namespace spy::gameplay {
-    void to_json(nlohmann::json &j, const State &s) {
-        j["currentRound"] = s.currentRound;
-        j["map"] = s.map;
-        j["mySafeCombinations"] = s.mySafeCombinations;
-        j["characters"] = s.characters;
-        j["catCoordinates"] = s.catCoordinates;
-        j["janitorCoordinates"] = s.janitorCoordinates;
-    }
-
-    void from_json(const nlohmann::json &j, State &s) {
-        j.at("currentRound").get_to(s.currentRound);
-        j.at("map").get_to(s.map);
-        j.at("mySafeCombinations").get_to(s.mySafeCombinations);
-        j.at("characters").get_to(s.characters);
-
-        auto catCoordinatesJson = j.find("catCoordinates");
-        if (catCoordinatesJson != j.end()) {
-            // Use setter instead of get_to to properly handle coordinates outside the map
-            s.setCatCoordinates(catCoordinatesJson->get<decltype(s.catCoordinates)>());
-        }
-
-        auto janitorCoordinatesJson = j.find("janitorCoordinates");
-        if (janitorCoordinatesJson != j.end()) {
-            // Use setter instead of get_to to properly handle coordinates outside the map
-            s.setJanitorCoordinates(janitorCoordinatesJson->get<decltype(s.janitorCoordinates)>());
-        }
-    }
+    State::State(unsigned int currentRound, scenario::FieldMap map, std::set<int> mySafeCombinations,
+                 character::CharacterSet characters, const std::optional<util::Point> &catCoordinates,
+                 const std::optional<util::Point> &janitorCoordinates) :
+            currentRound(currentRound),
+            map(std::move(map)),
+            mySafeCombinations(std::move(mySafeCombinations)),
+            characters(std::move(characters)),
+            catCoordinates(catCoordinates),
+            janitorCoordinates(janitorCoordinates) {}
 
 
     unsigned int State::getCurrentRound() const {
@@ -48,7 +33,7 @@ namespace spy::gameplay {
         return mySafeCombinations;
     }
 
-    const character::Character::Set &State::getCharacters() const {
+    const character::CharacterSet &State::getCharacters() const {
         return characters;
     }
 
@@ -82,14 +67,33 @@ namespace spy::gameplay {
                         rhs.janitorCoordinates);
     }
 
-    State::State(unsigned int currentRound, scenario::FieldMap map, std::set<int> mySafeCombinations,
-                 character::Character::Set characters, const std::optional<util::Point> &catCoordinates,
-                 const std::optional<util::Point> &janitorCoordinates) :
-            currentRound(currentRound),
-            map(std::move(map)),
-            mySafeCombinations(std::move(mySafeCombinations)),
-            characters(std::move(characters)),
-            catCoordinates(catCoordinates),
-            janitorCoordinates(janitorCoordinates) {}
+    void to_json(nlohmann::json &j, const State &s) {
+        j["currentRound"] = s.currentRound;
+        j["map"] = s.map;
+        j["mySafeCombinations"] = s.mySafeCombinations;
+        j["characters"] = s.characters;
+        j["catCoordinates"] = s.catCoordinates;
+        j["janitorCoordinates"] = s.janitorCoordinates;
+    }
+
+    void from_json(const nlohmann::json &j, State &s) {
+        j.at("currentRound").get_to(s.currentRound);
+        j.at("map").get_to(s.map);
+        j.at("mySafeCombinations").get_to(s.mySafeCombinations);
+        j.at("characters").get_to(s.characters);
+
+        auto catCoordinatesJson = j.find("catCoordinates");
+        if (catCoordinatesJson != j.end()) {
+            // Use setter instead of get_to to properly handle coordinates outside the map
+            s.setCatCoordinates(catCoordinatesJson->get<decltype(s.catCoordinates)>());
+        }
+
+        auto janitorCoordinatesJson = j.find("janitorCoordinates");
+        if (janitorCoordinatesJson != j.end()) {
+            // Use setter instead of get_to to properly handle coordinates outside the map
+            s.setJanitorCoordinates(janitorCoordinatesJson->get<decltype(s.janitorCoordinates)>());
+        }
+    }
+
 
 }

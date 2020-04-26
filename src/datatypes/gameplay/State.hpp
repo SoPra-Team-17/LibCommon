@@ -1,16 +1,18 @@
 /**
+ * @file   State.hpp
  * @author Jonas
- * @brief Entire state of the game
+ * @brief  Entire state of the game.
  */
 
 #ifndef LIBCOMMON_STATE_HPP
 #define LIBCOMMON_STATE_HPP
 
-#include <nlohmann/json.hpp>
-#include <util/Point.hpp>
 #include <set>
-#include <datatypes/character/Character.hpp>
-#include <datatypes/scenario/FieldMap.hpp>
+#include <nlohmann/json.hpp>
+#include "util/Point.hpp"
+#include "datatypes/character/Character.hpp"
+#include "datatypes/character/CharacterSet.hpp"
+#include "datatypes/scenario/FieldMap.hpp"
 
 namespace spy::gameplay {
     class State {
@@ -19,7 +21,7 @@ namespace spy::gameplay {
             State() = default;
 
             State(unsigned int currentRound, scenario::FieldMap map, std::set<int> mySafeCombinations,
-                  character::Character::Set characters, const std::optional<util::Point> &catCoordinates,
+                  character::CharacterSet characters, const std::optional<util::Point> &catCoordinates,
                   const std::optional<util::Point> &janitorCoordinates);
 
             [[nodiscard]] unsigned int getCurrentRound() const;
@@ -28,22 +30,22 @@ namespace spy::gameplay {
 
             [[nodiscard]] const std::set<int> &getMySafeCombinations() const;
 
-            [[nodiscard]] const character::Character::Set &getCharacters() const;
+            [[nodiscard]] const character::CharacterSet &getCharacters() const;
 
             [[nodiscard]] const std::optional<util::Point> &getCatCoordinates() const;
 
             [[nodiscard]] const std::optional<util::Point> &getJanitorCoordinates() const;
 
             /**
-              * Sets the cat coordinates
-              * @brief Standard specifies that absence of cat can be indicated by coordinates outside the map, so this resets
+              * @brief Sets the cat coordinates.
+              * @details Standard specifies that absence of cat can be indicated by coordinates outside the map, so this resets
               * the catCoordinates optional if the coordinates are outside the map.
               */
             void setCatCoordinates(const std::optional<util::Point> &catCoordinates);
 
             /**
-             * Sets the janitor coordinates
-             * @brief Standard specifies that absence of janitor can be indicated by coordinates outside the map, so this resets
+             * @brief Sets the janitor coordinates.
+             * @details Standard specifies that absence of janitor can be indicated by coordinates outside the map, so this resets
              * the janitorCoordinates optional if the coordinates are outside the map.
              */
             void setJanitorCoordinates(const std::optional<util::Point> &janitorCoordinates);
@@ -58,7 +60,7 @@ namespace spy::gameplay {
             unsigned int currentRound = 0;
             scenario::FieldMap map;
             std::set<int> mySafeCombinations;
-            character::Character::Set characters{};
+            character::CharacterSet characters{};
             std::optional<util::Point> catCoordinates;
             std::optional<util::Point> janitorCoordinates;
     };
