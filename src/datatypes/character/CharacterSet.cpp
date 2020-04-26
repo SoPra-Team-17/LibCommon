@@ -75,9 +75,11 @@ namespace spy::character {
     }
 
     CharacterSet::iterator CharacterSet::getByUUID(const util::UUID &uuid) {
-        auto character = findByUUID(uuid);
+        auto character = std::find_if(characters.begin(), characters.end(), [&uuid](const character::Character &c) {
+            return c.getCharacterId() == uuid;
+        });
 
-        return characters.erase(character, character);                  // converts from const_iterator to iterator
+        return character;
     }
 
     CharacterSet::const_iterator CharacterSet::findByLocation(const util::Point &p) const {
