@@ -41,28 +41,28 @@ namespace spy::character {
     std::pair<CharacterSet::iterator, bool> CharacterSet::emplace(const util::UUID &characterId,
                                                                   const std::string &name) {
         if (containsUUID(characterId)) {
-            return std::pair<std::vector<Character>::iterator, bool>(end(), false);
+            return {end(), false};
         } else {
             characters.emplace_back(characterId, name);
-            return std::pair<std::vector<Character>::iterator, bool>(end() - 1, true);
+            return {end() - 1, true};
         }
     }
 
     std::pair<CharacterSet::iterator, bool> CharacterSet::insert(Character &&c) {
         if (containsUUID(c.getCharacterId())) {
-            return std::pair<std::vector<Character>::iterator, bool>(end(), false);
+            return {end(), false};
         } else {
             characters.push_back(std::move(c));
-            return std::pair<std::vector<Character>::iterator, bool>(end() - 1, true);
+            return {end() - 1, true};
         }
     }
 
     std::pair<CharacterSet::iterator, bool> CharacterSet::insert(const Character &c) {
         if (containsUUID(c.getCharacterId())) {
-            return std::pair<std::vector<Character>::iterator, bool>(end(), false);
+            return {end(), false};
         } else {
             characters.push_back(c);
-            return std::pair<std::vector<Character>::iterator, bool>(end() - 1, true);
+            return {end() - 1, true};
         }
     }
 
