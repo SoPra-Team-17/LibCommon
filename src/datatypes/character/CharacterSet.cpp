@@ -8,7 +8,11 @@
 #include "CharacterSet.hpp"
 
 namespace spy::character {
-    CharacterSet::CharacterSet(std::initializer_list<Character> list) : characters(list) {}
+    CharacterSet::CharacterSet(std::initializer_list<Character> list) {
+        for (const auto &c:list) {
+            insert(c);
+        }
+    }
 
     CharacterSet::iterator CharacterSet::begin() noexcept {
         return characters.begin();
@@ -34,8 +38,8 @@ namespace spy::character {
         return characters.size();
     }
 
-    std::pair<CharacterSet::iterator, bool> CharacterSet::emplace(const util::UUID  &characterId,
-                                                                   const std::string &name) {
+    std::pair<CharacterSet::iterator, bool> CharacterSet::emplace(const util::UUID &characterId,
+                                                                  const std::string &name) {
         if (containsUUID(characterId)) {
             return std::pair<std::vector<Character>::iterator, bool>(end(), false);
         } else {
