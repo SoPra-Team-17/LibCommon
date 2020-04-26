@@ -37,7 +37,7 @@ namespace spy::network::messages {
             } else if (item.key() == "Configuration.Scenario") {
                 m.information.insert(
                         {MetaInformationKey::CONFIGURATION_SCENARIO, item.value().get<scenario::Scenario>()});
-            } else if (item.key() == "Configuration.Matchconfig") {
+            } else if (item.key() == "Configuration.MatchConfig") {
                 m.information.insert({MetaInformationKey::CONFIGURATION_MATCH_CONFIG, item.value().get<MatchConfig>()});
             } else if (item.key() == "Configuration.CharacterInformation") {
                 m.information.insert({MetaInformationKey::CONFIGURATION_CHARACTER_INFORMATION,
