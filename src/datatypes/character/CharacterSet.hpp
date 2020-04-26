@@ -14,7 +14,8 @@ namespace spy::character {
     /**
      * @brief   Realizes a specialized set for characters.
      * @details Characters are sorted solely by their UUID.
-     * @note
+     * @note    Because the UUID of a character isn't modifiable, it's perfectly fine to enable the use
+     *          of iterators instead of the const_iterators a normal set would return.
      */
     class CharacterSet {
             using iterator = std::vector<Character>::iterator;
@@ -65,15 +66,46 @@ namespace spy::character {
              */
             [[nodiscard]] size_t size() const noexcept;
 
+            /**
+             * Inserts a new in-place constructed character into the set if the uuid isn't already contained.
+             * @param  characterId UUID of the character.
+             * @param  name        Name of the character.
+             * @return Iterator to the end of the set and false if the uuid was already in the set, otherwise
+             *         an iterator to the added character and true.
+             */
             std::pair<iterator, bool> emplace(const util::UUID &characterId, const std::string &name);
 
-            [[nodiscard]] const_iterator findByUUID(const util::UUID &uuid) const;
-
-            iterator getByUUID(const util::UUID &uuid);
-
+            /**
+             * Inserts a new character into the set if the uuid isn't already contained.
+             * @param  c Character to insert.
+             * @return Iterator to the end of the set and false if the uuid was already in the set, otherwise
+             *         an iterator to the added character and true.
+             */
             std::pair<iterator, bool> insert(Character &&c);
 
+            /**
+             * Inserts a new character into the set if the uuid isn't already contained.
+             * @param  c Character to insert.
+             * @return Iterator to the end of the set and false if the uuid was already in the set, otherwise
+             *         an iterator to the added character and true.
+             */
             std::pair<iterator, bool> insert(const Character &c);
+
+            /**
+             * Searches the set for a character with the given uuid.
+             * @param  uuid UUID to search for.
+             * @return Const iterator to the found character if one with the specified uuid exits, otherwise a
+             *         const iterator to the end of the set.
+             */
+            [[nodiscard]] const_iterator findByUUID(const util::UUID &uuid) const;
+
+            /**
+             * Searches the set for a character with the given uuid.
+             * @param  uuid UUID to search for.
+             * @return Iterator to the found character if one with the specified uuid exits, otherwise an
+             *         iterator to the end of the set.
+             */
+            iterator getByUUID(const util::UUID &uuid);
 
             bool operator==(const CharacterSet &rhs) const;
 
