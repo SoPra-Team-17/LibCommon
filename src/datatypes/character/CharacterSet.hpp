@@ -21,8 +21,8 @@ namespace spy::character {
         using const_iterator = std::vector<Character>::const_iterator;
 
         public:
-            explicit CharacterSet() = default;
-            CharacterSet(std::initializer_list<Character> list);
+            CharacterSet() = default;
+            explicit CharacterSet(std::initializer_list<Character> list);
 
             /**
              * Returns an iterator to the beginning of the set.
@@ -32,6 +32,10 @@ namespace spy::character {
              */
             [[nodiscard]] iterator begin() noexcept;
 
+            /**
+             * Returns an iterator to the beginning of the set.
+             * @return Const iterator to the beginning of the set.
+             */
             [[nodiscard]] const_iterator begin() const noexcept;
 
             /**
@@ -41,9 +45,23 @@ namespace spy::character {
              * @return Non-const iterator to the end of the set.
              */
             [[nodiscard]] iterator end() noexcept;
+
+            /**
+             * Returns an iterator to the end of the set.
+             * @return Const iterator to the end of the set.
+             */
             [[nodiscard]] const_iterator end() const noexcept;
 
+            /**
+             * Test whether the container is empty.
+             * @return True if the container size is 0, false otherwise.
+             */
             [[nodiscard]] bool empty() const noexcept;
+
+            /**
+             * Getter for the number of elements in the container.
+             * @return The number of elements in the container.
+             */
             [[nodiscard]] size_t size() const noexcept;
 
             std::pair<iterator, bool> emplace(const util::UUID &characterId,
@@ -65,7 +83,7 @@ namespace spy::character {
             friend void from_json(const nlohmann::json &j, CharacterSet &c);
 
         private:
-            [[nodiscard]] bool isUUIDIncluded(util::UUID uuid) const;
+            [[nodiscard]] bool containsUUID(util::UUID uuid) const;
 
             std::vector<Character> characters;
     };

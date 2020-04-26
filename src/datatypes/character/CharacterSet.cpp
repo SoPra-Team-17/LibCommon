@@ -36,28 +36,30 @@ namespace spy::character {
 
     std::pair<CharacterSet::iterator, bool> CharacterSet::emplace(const util::UUID  &characterId,
                                                                    const std::string &name) {
-        Character c(characterId, name);
-        return insert(c);
+        if (containsUUID(characterId)) {
+            return std::pair<std::vector<Character>::iterator, bool>(end(), false);
+        } else {
+            characters.emplace_back(characterId, name);
+            return std::pair<std::vector<Character>::iterator, bool>(end() - 1, true);
+        }
     }
 
     std::pair<CharacterSet::iterator, bool> CharacterSet::insert(Character &&c) {
-        for (const auto &character : characters) {
-            if (Character::strong_order_compare()(character, c) && Character::strong_order_compare()(c, character)) {
-                return std::pair<std::vector<Character>::iterator, bool>(end(), false);
-            }
+        if (containsUUID(c.getCharacterId())) {
+            return std::pair<std::vector<Character>::iterator, bool>(end(), false);
+        } else {
+            characters.push_back(std::move(c));
+            return std::pair<std::vector<Character>::iterator, bool>(end() - 1, true);
         }
-        characters.push_back(std::move(c));
-        return std::pair<std::vector<Character>::iterator, bool>(end() - 1, true);
     }
 
     std::pair<CharacterSet::iterator, bool> CharacterSet::insert(const Character &c) {
-        for (const auto &character : characters) {
-            if (Character::strong_order_compare()(character, c) && Character::strong_order_compare()(c, character)) {
-                return std::pair<CharacterSet::iterator, bool>(end(), false);
-            }
+        if (containsUUID(c.getCharacterId())) {
+            return std::pair<std::vector<Character>::iterator, bool>(end(), false);
+        } else {
+            characters.push_back(c);
+            return std::pair<std::vector<Character>::iterator, bool>(end() - 1, true);
         }
-        characters.push_back(c);
-        return std::pair<CharacterSet::iterator, bool>(end() - 1, true);
     }
 
     CharacterSet::const_iterator CharacterSet::findByUUID(const util::UUID &uuid) const {
@@ -71,7 +73,7 @@ namespace spy::character {
     CharacterSet::iterator CharacterSet::getByUUID(const util::UUID &uuid) {
         auto character = findByUUID(uuid);
 
-        return characters.erase(character, character);
+        return characters.erase(character, character);                  // converts from const_iterator to iterator
     }
 
     CharacterSet::const_iterator CharacterSet::findByLocation(const util::Point &p) const {
@@ -85,7 +87,7 @@ namespace spy::character {
     CharacterSet::iterator CharacterSet::getByLocation(const util::Point &p) {
         auto character = findByLocation(p);
 
-        return characters.erase(character, character);
+        return characters.erase(character, character);                  // converts from const_iterator to iterator
     }
 
 
@@ -99,5 +101,14 @@ namespace spy::character {
 
     void from_json(const nlohmann::json &j, CharacterSet &c) {
         j.get_to(c.characters);
+    }
+
+    bool CharacterSet::containsUUID(util::UUID uuid) const {
+        for (const auto &character : characters) {
+            if (character.getCharacterId() == uuid) {
+                return true;
+            }
+        }
+        return false;
     }
 }
