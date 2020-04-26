@@ -122,8 +122,4 @@ namespace spy::character {
                std::tie(rhs.characterId, rhs.name, rhs.coordinates, rhs.movePoints, rhs.actionPoints, rhs.healthPoints,
                         rhs.intelligencePoints, rhs.chips, rhs.properties, rhs.gadgets);
     }
-
-    bool Character::strong_order_compare::operator()(const Character &lhs, const Character &rhs) const {
-        return lhs.characterId < rhs.characterId;
-    }
 }  // namespace spy::character

@@ -16,6 +16,7 @@ set(SOURCE
         datatypes/character/Character.cpp
         datatypes/character/CharacterInformation.cpp
         datatypes/character/CharacterDescription.cpp
+        datatypes/character/CharacterSet.cpp
         datatypes/matchconfig/MatchConfig.cpp
         datatypes/scenario/Scenario.cpp
         datatypes/scenario/Scenario.cpp
