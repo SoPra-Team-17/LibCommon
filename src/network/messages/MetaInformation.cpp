@@ -22,7 +22,11 @@ namespace spy::network::messages {
 
     void to_json(nlohmann::json &j, const MetaInformation &m) {
         MessageContainer::common_to_json(j, m);
-        j["information"] = m.information;
+        for (const auto &i : m.information) {
+            nlohmann::json keyJson = i.first;
+            std::string key = keyJson;
+            j["information"][key] = i.second;
+        }
     }
 
     void from_json(const nlohmann::json &j, MetaInformation &m) {
