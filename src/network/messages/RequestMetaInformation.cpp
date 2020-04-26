@@ -11,7 +11,7 @@ namespace spy::network::messages {
     RequestMetaInformation::RequestMetaInformation() : MessageContainer{MessageTypeEnum::REQUEST_META_INFORMATION,
                                                                         {}} {}
 
-    RequestMetaInformation::RequestMetaInformation(const util::UUID &playerId, std::vector<std::string> keys)
+    RequestMetaInformation::RequestMetaInformation(const util::UUID &playerId, std::vector<MetaInformationKey> keys)
             : MessageContainer{MessageTypeEnum::REQUEST_META_INFORMATION, playerId}, keys(std::move(keys)) {}
 
 
@@ -25,7 +25,7 @@ namespace spy::network::messages {
         j.at("keys").get_to(r.keys);
     }
 
-    const std::vector<std::string> &RequestMetaInformation::getKeys() const {
+    const std::vector<MetaInformationKey> &RequestMetaInformation::getKeys() const {
         return keys;
     }
 
@@ -35,20 +35,7 @@ namespace spy::network::messages {
     }
 
     bool RequestMetaInformation::validate(RoleEnum playerRole) const {
-        if (playerRole == RoleEnum::INVALID) {
-            return false;
-        }
-
-        std::vector<std::string> allowedKeys{"Spectator.Count", "Spectator.Members", "Configuration.Scenario",
-                                             "Configuration.MatchConfig", "Configuration.CharacterInformation",
-                                             "Game.RemainingPauseTime", "Fraction.Player1", "Fraction.Player2",
-                                             "Fraction.Neutral", "Gadgets.Player1", "Gadgets.Player2"};
-        for (auto s: keys) {
-            if (std::find(allowedKeys.begin(), allowedKeys.end(), s) == allowedKeys.end()) {
-                return false;
-            }
-        }
-
-        return true;
+        return playerRole != RoleEnum::INVALID &&
+               std::find(keys.begin(), keys.end(), MetaInformationKey::INVALID) == keys.end();
     }
 }

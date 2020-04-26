@@ -8,6 +8,7 @@
 #include <string>
 #include <network/MessageContainer.hpp>
 #include <network/RoleEnum.hpp>
+#include "MetaInformationKey.hpp"
 
 namespace spy::network::messages {
 
@@ -15,9 +16,9 @@ namespace spy::network::messages {
         public:
             RequestMetaInformation();
 
-            RequestMetaInformation(const util::UUID &playerId, std::vector<std::string> keys);
+            RequestMetaInformation(const util::UUID &playerId, std::vector<MetaInformationKey> keys);
 
-            [[nodiscard]] const std::vector<std::string> &getKeys() const;
+            [[nodiscard]] const std::vector<MetaInformationKey> &getKeys() const;
 
             friend void to_json(nlohmann::json &j, const RequestMetaInformation &r);
 
@@ -34,7 +35,7 @@ namespace spy::network::messages {
             [[nodiscard]] bool validate(RoleEnum playerRole) const;
 
         private:
-            std::vector<std::string> keys;
+            std::vector<MetaInformationKey> keys;
     };
 
 }

@@ -13,6 +13,7 @@
 #include <datatypes/matchconfig/MatchConfig.hpp>
 #include <datatypes/character/CharacterInformation.hpp>
 #include <util/VariantSerialization.hpp>
+#include "MetaInformationKey.hpp"
 
 namespace spy::network::messages {
     class MetaInformation : public MessageContainer {
@@ -29,18 +30,18 @@ namespace spy::network::messages {
             MetaInformation();
 
             MetaInformation(const util::UUID &playerId,
-                            std::map<std::string, Info> information);
+                            std::map<MetaInformationKey, Info> information);
 
             friend void to_json(nlohmann::json &j, const MetaInformation &m);
 
             friend void from_json(const nlohmann::json &j, MetaInformation &m);
 
-            [[nodiscard]] const std::map<std::string, Info> &getInformation() const;
+            [[nodiscard]] const std::map<MetaInformationKey, Info> &getInformation() const;
 
             bool operator==(const MetaInformation &rhs) const;
 
         private:
-            std::map<std::string, Info> information;
+            std::map<MetaInformationKey, Info> information;
     };
 }
 

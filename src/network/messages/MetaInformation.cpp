@@ -11,12 +11,12 @@ namespace spy::network::messages {
 
     MetaInformation::MetaInformation() : MessageContainer{MessageTypeEnum::META_INFORMATION, {}} {}
 
-    const std::map<std::string, MetaInformation::Info> &MetaInformation::getInformation() const {
+    const std::map<MetaInformationKey, MetaInformation::Info> &MetaInformation::getInformation() const {
         return information;
     }
 
     MetaInformation::MetaInformation(const util::UUID &playerId,
-                                     std::map<std::string, Info> information) :
+                                     std::map<MetaInformationKey, Info> information) :
             MessageContainer(MessageTypeEnum::META_INFORMATION, playerId),
             information(std::move(information)) {}
 
@@ -30,28 +30,28 @@ namespace spy::network::messages {
 
         for (const auto &item : j.at("information").items()) {
             if (item.key() == "Spectator.Count") {
-                m.information.insert({"Spectator.Count", item.value().get<int>()});
+                m.information.insert({MetaInformationKey::SPECTATOR_COUNT, item.value().get<int>()});
             } else if (item.key() == "Spectator.Members") {
-                m.information.insert({"Spectator.Members", item.value().get<std::vector<std::string>>()});
+                m.information.insert({MetaInformationKey::SPECTATOR_MEMBERS, item.value().get<std::vector<std::string>>()});
             } else if (item.key() == "Configuration.Scenario") {
-                m.information.insert({"Configuration.Scenario", item.value().get<scenario::Scenario>()});
+                m.information.insert({MetaInformationKey::CONFIGURATION_SCENARIO, item.value().get<scenario::Scenario>()});
             } else if (item.key() == "Configuration.Matchconfig") {
-                m.information.insert({"Configuration.Matchconfig", item.value().get<MatchConfig>()});
+                m.information.insert({MetaInformationKey::CONFIGURATION_MATCH_CONFIG, item.value().get<MatchConfig>()});
             } else if (item.key() == "Configuration.CharacterInformation") {
-                m.information.insert({"Configuration.CharacterInformation",
+                m.information.insert({MetaInformationKey::CONFIGURATION_CHARACTER_INFORMATION,
                                       item.value().get<std::vector<character::CharacterInformation>>()});
             } else if (item.key() == "Game.RemainingPauseTime") {
-                m.information.insert({"Game.RemainingPauseTime", item.value().get<int>()});
+                m.information.insert({MetaInformationKey::GAME_REMAINING_PAUSE_TIME, item.value().get<int>()});
             } else if (item.key() == "Faction.Player1") {
-                m.information.insert({"Faction.Player1", item.value().get<std::vector<util::UUID>>()});
+                m.information.insert({MetaInformationKey::FRACTION_PLAYER1, item.value().get<std::vector<util::UUID>>()});
             } else if (item.key() == "Faction.Player2") {
-                m.information.insert({"Faction.Player2", item.value().get<std::vector<util::UUID>>()});
+                m.information.insert({MetaInformationKey::FRACTION_PLAYER2, item.value().get<std::vector<util::UUID>>()});
             } else if (item.key() == "Faction.Neutral") {
-                m.information.insert({"Faction.Neutral", item.value().get<std::vector<util::UUID>>()});
+                m.information.insert({MetaInformationKey::FRACTION_NEUTRAL, item.value().get<std::vector<util::UUID>>()});
             } else if (item.key() == "Gadgets.Player1") {
-                m.information.insert({"Gadgets.Player1", item.value().get<std::vector<gadget::GadgetEnum>>()});
+                m.information.insert({MetaInformationKey::GADGETS_PLAYER1, item.value().get<std::vector<gadget::GadgetEnum>>()});
             } else if (item.key() == "Gadgets.Player2") {
-                m.information.insert({"Gadgets.Player2", item.value().get<std::vector<gadget::GadgetEnum>>()});
+                m.information.insert({MetaInformationKey::GADGETS_PLAYER2, item.value().get<std::vector<gadget::GadgetEnum>>()});
             }
         }
     }

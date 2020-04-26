@@ -13,7 +13,7 @@
 #include <network/messages/GameLeave.hpp>
 #include <network/messages/RequestMetaInformation.hpp>
 
-TEST(messages, helloMessage_validate){
+TEST(messages, helloMessage_validate) {
     using namespace spy::network;
     using namespace spy::network::messages;
 
@@ -28,7 +28,7 @@ TEST(messages, helloMessage_validate){
     EXPECT_FALSE(mFalse.validate());
 }
 
-TEST(messages, reconnecMessage_validate){
+TEST(messages, reconnecMessage_validate) {
     using namespace spy::network;
     using namespace spy::network::messages;
 
@@ -100,22 +100,26 @@ TEST(messages, EquipmentChoiceMessage_validate) {
             spy::gadget::GadgetEnum::BOWLER_BLADE,
             spy::gadget::GadgetEnum::CHICKEN_FEED};
 
-    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapCor1 {
-            {spy::util::UUID{"123e4567-e89b-12d3-a456-426655440001"}, {spy::gadget::GadgetEnum::BOWLER_BLADE, spy::gadget::GadgetEnum::CHICKEN_FEED}},
+    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapCor1{
+            {spy::util::UUID{
+                    "123e4567-e89b-12d3-a456-426655440001"},          {spy::gadget::GadgetEnum::BOWLER_BLADE, spy::gadget::GadgetEnum::CHICKEN_FEED}},
             {spy::util::UUID{"123e4567-e89b-12d3-a456-426655440000"}, {}}
-    };std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapCor2 {
+    };
+    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapCor2{
             {spy::util::UUID{"123e4567-e89b-12d3-a456-426655440001"}, {spy::gadget::GadgetEnum::BOWLER_BLADE}},
             {spy::util::UUID{"123e4567-e89b-12d3-a456-426655440000"}, {spy::gadget::GadgetEnum::CHICKEN_FEED}}
     };
-    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapFalse1 {
-            {spy::util::UUID{"123e4567-e89b-12d3-a456-426655440001"}, {spy::gadget::GadgetEnum::BOWLER_BLADE, spy::gadget::GadgetEnum::CHICKEN_FEED}}
+    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapFalse1{
+            {spy::util::UUID{
+                    "123e4567-e89b-12d3-a456-426655440001"}, {spy::gadget::GadgetEnum::BOWLER_BLADE, spy::gadget::GadgetEnum::CHICKEN_FEED}}
     };
-    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapFalse2 {
+    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapFalse2{
             {spy::util::UUID{"123e4567-e89b-12d3-a456-426655440001"}, {spy::gadget::GadgetEnum::BOWLER_BLADE}},
             {spy::util::UUID{"123e4567-e89b-12d3-a456-426655440000"}, {}}
     };
-    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapFalse3 {
-            {spy::util::UUID{"123e4567-e89b-12d3-a456-426655440001"}, {spy::gadget::GadgetEnum::BOWLER_BLADE, spy::gadget::GadgetEnum::CHICKEN_FEED}},
+    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapFalse3{
+            {spy::util::UUID{
+                    "123e4567-e89b-12d3-a456-426655440001"},          {spy::gadget::GadgetEnum::BOWLER_BLADE, spy::gadget::GadgetEnum::CHICKEN_FEED}},
             {spy::util::UUID{"123e4567-e89b-12d3-a456-426655440000"}, {spy::gadget::GadgetEnum::BOWLER_BLADE}}
     };
 
@@ -143,7 +147,7 @@ TEST(messages, EquipmentChoiceMessage_validate) {
 }
 
 
-TEST(messages, RequestReplayMessage_validate){
+TEST(messages, RequestReplayMessage_validate) {
     using namespace spy::network;
     using namespace spy::network::messages;
 
@@ -158,7 +162,7 @@ TEST(messages, RequestReplayMessage_validate){
 }
 
 
-TEST(messages, RequestGamePauseMessage_validate){
+TEST(messages, RequestGamePauseMessage_validate) {
     using namespace spy::network;
     using namespace spy::network::messages;
 
@@ -182,7 +186,7 @@ TEST(messages, RequestGamePauseMessage_validate){
     EXPECT_FALSE(mNoPause.validate(RoleEnum::PLAYER, false, false));
 }
 
-TEST(messages, GameLeaveMessage_validate){
+TEST(messages, GameLeaveMessage_validate) {
     using namespace spy::network;
     using namespace spy::network::messages;
 
@@ -194,19 +198,34 @@ TEST(messages, GameLeaveMessage_validate){
     EXPECT_FALSE(m.validate(RoleEnum::INVALID));
 }
 
-TEST(messages, RequestMetaInformationMessage_validate){
+TEST(messages, RequestMetaInformationMessage_validate) {
     using namespace spy::network;
     using namespace spy::network::messages;
 
-    std::vector<std::string> corKeys{"Spectator.Count", "Spectator.Members", "Configuration.Scenario",
-                                         "Configuration.MatchConfig", "Configuration.CharacterInformation",
-                                         "Game.RemainingPauseTime", "Fraction.Player1", "Fraction.Player2",
-                                         "Fraction.Neutral", "Gadgets.Player1", "Gadgets.Player2"};
+    std::vector<MetaInformationKey> corKeys{MetaInformationKey::SPECTATOR_COUNT,
+                                            MetaInformationKey::SPECTATOR_MEMBERS,
+                                            MetaInformationKey::CONFIGURATION_SCENARIO,
+                                            MetaInformationKey::CONFIGURATION_MATCH_CONFIG,
+                                            MetaInformationKey::CONFIGURATION_CHARACTER_INFORMATION,
+                                            MetaInformationKey::GAME_REMAINING_PAUSE_TIME,
+                                            MetaInformationKey::FRACTION_PLAYER1,
+                                            MetaInformationKey::FRACTION_PLAYER2,
+                                            MetaInformationKey::FRACTION_NEUTRAL,
+                                            MetaInformationKey::GADGETS_PLAYER1,
+                                            MetaInformationKey::GADGETS_PLAYER2};
 
-    std::vector<std::string> falseKeys{"Spectator.Count", "Spectator.Members", "Configuration.Scenario",
-                                         "Configuration.MatchConfig", "Configuration.CharacterInformation",
-                                         "randomKey", "Game.RemainingPauseTime", "Fraction.Player1", "Fraction.Player2",
-                                         "Fraction.Neutral", "Gadgets.Player1", "Gadgets.Player2"};
+    std::vector<MetaInformationKey> falseKeys{MetaInformationKey::INVALID,
+                                              MetaInformationKey::SPECTATOR_COUNT,
+                                              MetaInformationKey::SPECTATOR_MEMBERS,
+                                              MetaInformationKey::CONFIGURATION_SCENARIO,
+                                              MetaInformationKey::CONFIGURATION_MATCH_CONFIG,
+                                              MetaInformationKey::CONFIGURATION_CHARACTER_INFORMATION,
+                                              MetaInformationKey::GAME_REMAINING_PAUSE_TIME,
+                                              MetaInformationKey::FRACTION_PLAYER1,
+                                              MetaInformationKey::FRACTION_PLAYER2,
+                                              MetaInformationKey::FRACTION_NEUTRAL,
+                                              MetaInformationKey::GADGETS_PLAYER1,
+                                              MetaInformationKey::GADGETS_PLAYER2};
 
     RequestMetaInformation mCor(spy::util::UUID{}, corKeys);
     RequestMetaInformation mFalse(spy::util::UUID{}, falseKeys);
