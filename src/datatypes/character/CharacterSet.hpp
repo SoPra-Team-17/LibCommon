@@ -23,7 +23,7 @@ namespace spy::character {
         public:
             CharacterSet() = default;
 
-            explicit CharacterSet(std::initializer_list<Character> list);
+            CharacterSet(std::initializer_list<Character> list);
 
             /**
              * Returns an iterator to the beginning of the set.
