@@ -91,3 +91,29 @@ TEST_F(CharacterSet, get_uuid_modify) {
     c->setCoordinates({1, 7});
     EXPECT_EQ(set.findByUUID(c1.getCharacterId())->getCoordinates(), (spy::util::Point{1, 7}));
 }
+
+TEST_F(CharacterSet, iterate_modify) {
+    set.insert(c1);
+    set.insert(c2);
+
+    for (auto &c:set) {
+        c.setChips(1'000'000);
+    }
+
+    EXPECT_EQ(set.findByUUID(c1.getCharacterId())->getChips(), 1'000'000);
+    EXPECT_EQ(set.findByUUID(c2.getCharacterId())->getChips(), 1'000'000);
+}
+
+TEST_F(CharacterSet, iterate_const) {
+    set.insert(c1);
+    set.insert(c2);
+
+    const auto constset = set;
+
+    int i = 0;
+    spy::character::CharacterSet s;
+    for (const auto &c:constset) {
+        s.insert(c);
+    }
+    EXPECT_EQ(set, s);
+}
