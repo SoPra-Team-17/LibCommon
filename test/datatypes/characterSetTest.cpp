@@ -117,3 +117,11 @@ TEST_F(CharacterSet, iterate_const) {
     }
     EXPECT_EQ(set, s);
 }
+
+TEST_F(CharacterSet, empty_set) {
+    EXPECT_TRUE(set.empty());
+
+    set.insert(c1);
+
+    EXPECT_FALSE(set.empty());
+}
