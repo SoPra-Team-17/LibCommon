@@ -67,4 +67,9 @@ namespace spy::network::messages {
         return isEqual(rhs) &&
                information == rhs.information;
     }
+
+    std::ostream &operator<<(std::ostream &os, const MetaInformation &metaInformation) {
+        nlohmann::json j = metaInformation;
+        return os << j;
+    }
 }

@@ -40,6 +40,8 @@ namespace spy::network::messages {
 
             bool operator==(const MetaInformation &rhs) const;
 
+            friend std::ostream &operator<<(std::ostream &os, const MetaInformation &metaInformation);
+
         private:
             std::map<MetaInformationKey, Info> information;
     };
