@@ -9,6 +9,7 @@ set(SOURCES
         datatypes/gadgetTest.cpp
         datatypes/jsonEncodingTest.cpp
         datatypes/jsonDecodingTest.cpp
+        datatypes/characterSetTest.cpp
         datatypes/characterTest.cpp
         datatypes/matchConfigTest.cpp
         datatypes/scenarioTest.cpp
