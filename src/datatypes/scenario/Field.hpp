@@ -30,6 +30,7 @@ namespace spy::scenario {
             void setInverted(std::optional<bool> isInverted);
             void setFoggy(bool isFoggy);
             void setGadget(std::optional<Gadget> g);
+            void removeGadget();
             void setChipAmount(std::optional<unsigned int> chipAmount);
             void setSafeIndex(std::optional<unsigned int> index);
 

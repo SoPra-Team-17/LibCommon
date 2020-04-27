@@ -49,6 +49,10 @@ namespace spy::scenario {
         Field::gadget = g;
     }
 
+    void Field::removeGadget() {
+        Field::gadget = std::nullopt;
+    }
+
     /**
      * Setter for the chip amount of the roulette table on this field.
      * @param chips Chip amount.
