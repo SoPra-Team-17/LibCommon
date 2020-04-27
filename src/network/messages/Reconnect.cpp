@@ -2,6 +2,7 @@
 // Created by marco on 10.04.20.
 //
 
+#include <network/RoleEnum.hpp>
 #include "Reconnect.hpp"
 
 namespace spy::network::messages {
@@ -28,5 +29,10 @@ namespace spy::network::messages {
     bool Reconnect::operator==(const Reconnect &rhs) const {
         return isEqual(rhs) &&
                sessionId == rhs.sessionId;
+    }
+
+    bool Reconnect::validate(RoleEnum playerRole) const {
+        return playerRole != spy::network::RoleEnum::INVALID &&
+               playerRole != spy::network::RoleEnum::SPECTATOR;
     }
 }

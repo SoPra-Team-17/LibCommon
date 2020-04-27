@@ -11,7 +11,7 @@ namespace spy::network::messages {
     RequestMetaInformation::RequestMetaInformation() : MessageContainer{MessageTypeEnum::REQUEST_META_INFORMATION,
                                                                         {}} {}
 
-    RequestMetaInformation::RequestMetaInformation(const util::UUID &playerId, std::vector<std::string> keys)
+    RequestMetaInformation::RequestMetaInformation(const util::UUID &playerId, std::vector<MetaInformationKey> keys)
             : MessageContainer{MessageTypeEnum::REQUEST_META_INFORMATION, playerId}, keys(std::move(keys)) {}
 
 
@@ -25,12 +25,17 @@ namespace spy::network::messages {
         j.at("keys").get_to(r.keys);
     }
 
-    const std::vector<std::string> &RequestMetaInformation::getKeys() const {
+    const std::vector<MetaInformationKey> &RequestMetaInformation::getKeys() const {
         return keys;
     }
 
     bool RequestMetaInformation::operator==(const RequestMetaInformation &rhs) const {
         return isEqual(rhs) &&
                keys == rhs.keys;
+    }
+
+    bool RequestMetaInformation::validate(RoleEnum playerRole) const {
+        return playerRole != RoleEnum::INVALID &&
+               std::find(keys.begin(), keys.end(), MetaInformationKey::INVALID) == keys.end();
     }
 }

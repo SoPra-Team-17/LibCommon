@@ -23,7 +23,10 @@ TEST(messages, MetaInformation) {
     spy::network::messages::MetaInformation metaInformation;
 
     EXPECT_NO_THROW(metaInformation = parsedInput.get<spy::network::messages::MetaInformation>());
-    EXPECT_EQ(std::get<int>(metaInformation.getInformation().at("Spectator.Count")), 2);
+    EXPECT_EQ(std::get<int>(
+            metaInformation.getInformation().at(spy::network::messages::MetaInformationKey::SPECTATOR_COUNT)), 2);
     std::vector<std::string> spectators{"P1", "P2"};
-    EXPECT_EQ(std::get<std::vector<std::string>>(metaInformation.getInformation().at("Spectator.Members")), spectators);
+    EXPECT_EQ(std::get<std::vector<std::string>>(
+            metaInformation.getInformation().at(spy::network::messages::MetaInformationKey::SPECTATOR_MEMBERS)),
+              spectators);
 }

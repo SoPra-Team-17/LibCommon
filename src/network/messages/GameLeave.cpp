@@ -20,4 +20,8 @@ namespace spy::network::messages {
     bool GameLeave::operator==(const GameLeave &rhs) const {
         return isEqual(rhs);
     }
+
+    bool GameLeave::validate(RoleEnum playerRole) const {
+        return playerRole != spy::network::RoleEnum::INVALID;
+    }
 }

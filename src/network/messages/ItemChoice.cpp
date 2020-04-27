@@ -41,4 +41,28 @@ namespace spy::network::messages {
         return isEqual(rhs) &&
                choice == rhs.choice;
     }
+
+    bool ItemChoice::validate(RoleEnum playerRole, std::vector<util::UUID> offeredCharacters,
+                              std::vector<gadget::GadgetEnum> offeredGadgets) const {
+        if (playerRole == spy::network::RoleEnum::INVALID ||
+            playerRole == spy::network::RoleEnum::SPECTATOR) {
+            return false;
+        }
+
+        if (std::holds_alternative<util::UUID>(choice)) {
+            if (std::find(offeredCharacters.begin(), offeredCharacters.end(), std::get<util::UUID>(choice)) ==
+                offeredCharacters.end()) {
+                return false;
+            }
+        } else if (std::holds_alternative<gadget::GadgetEnum>(choice)) {
+            if (std::find(offeredGadgets.begin(), offeredGadgets.end(), std::get<gadget::GadgetEnum>(choice)) ==
+                offeredGadgets.end()) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+        return true;
+    }
 }
