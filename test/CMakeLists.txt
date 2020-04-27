@@ -26,6 +26,7 @@ set(SOURCES
         messages/metaInformationTest.cpp
         messages/messageEncodeDecode.cpp
         messages/debugInfoTest.cpp
+        messages/messageValidateTest.cpp
         gameLogic/lineOfSightTests.cpp)
 
 add_executable(allTests ${SOURCES})

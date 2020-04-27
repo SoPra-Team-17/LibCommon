@@ -30,4 +30,8 @@ namespace spy::network::messages {
         return isEqual(rhs) &&
                gamePause == rhs.gamePause;
     }
+
+    bool RequestGamePause::validate(RoleEnum playerRole, bool isGamePaused, bool isServerEnforced) const {
+        return playerRole == RoleEnum::PLAYER && !isServerEnforced && gamePause == !isGamePaused;
+    }
 }

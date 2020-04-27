@@ -177,7 +177,9 @@ TEST_F(MessageEncodeDecode, RequestItemChoice) {
 }
 
 TEST_F(MessageEncodeDecode, RequestMetaInformation) {
-    spy::network::messages::RequestMetaInformation testMessage{exampleUUID1, {"key1", "key2"}};
+    spy::network::messages::RequestMetaInformation testMessage{exampleUUID1,
+                                                               {spy::network::messages::MetaInformationKey::GADGETS_PLAYER1,
+                                                                spy::network::messages::MetaInformationKey::SPECTATOR_COUNT}};
     testEncodeDecode(testMessage);
 }
 
@@ -202,24 +204,25 @@ TEST_F(MessageEncodeDecode, Strike) {
 TEST_F(MessageEncodeDecode, MetaInformation) {
     using namespace spy::network::messages;
 
-    MetaInformation testMessage{exampleUUID1, {{"Spectator.Count", 1},
-                                               {"Spectator.Members", std::vector<std::string>{"Jonas"}},
-                                               {"Configuration.Scenario", spy::scenario::Scenario{}},
-                                               {"Configuration.Matchconfig", spy::MatchConfig{}},
-                                               {"Configuration.CharacterInformation",
+    MetaInformation testMessage{exampleUUID1, {{MetaInformationKey::SPECTATOR_COUNT, 1},
+                                               {MetaInformationKey::SPECTATOR_MEMBERS,
+                                                std::vector<std::string>{"Jonas"}},
+                                               {MetaInformationKey::CONFIGURATION_SCENARIO, spy::scenario::Scenario{}},
+                                               {MetaInformationKey::CONFIGURATION_MATCH_CONFIG, spy::MatchConfig{}},
+                                               {MetaInformationKey::CONFIGURATION_CHARACTER_INFORMATION,
                                                 std::vector<spy::character::CharacterInformation>{}},
-                                               {"Game.RemainingPauseTime", 7},
-                                               {"Faction.Player1",
+                                               {MetaInformationKey::GAME_REMAINING_PAUSE_TIME, 7},
+                                               {MetaInformationKey::FACTION_PLAYER1,
                                                 std::vector<spy::util::UUID>{exampleUUID1, exampleUUID2}},
-                                               {"Faction.Player2",
+                                               {MetaInformationKey::FACTION_PLAYER2,
                                                 std::vector<spy::util::UUID>{exampleUUID1, exampleUUID2}},
-                                               {"Faction.Neutral",
+                                               {MetaInformationKey::FACTION_NEUTRAL,
                                                 std::vector<spy::util::UUID>{exampleUUID1, exampleUUID2}},
-                                               {"Gadgets.Player1",
+                                               {MetaInformationKey::GADGETS_PLAYER1,
                                                 std::vector<spy::gadget::GadgetEnum>{
                                                         spy::gadget::GadgetEnum::POISON_PILLS,
                                                         spy::gadget::GadgetEnum::HAIRDRYER}},
-                                               {"Gadgets.Player2",
+                                               {MetaInformationKey::GADGETS_PLAYER2,
                                                 std::vector<spy::gadget::GadgetEnum>{
                                                         spy::gadget::GadgetEnum::POISON_PILLS,
                                                         spy::gadget::GadgetEnum::HAIRDRYER}}}};

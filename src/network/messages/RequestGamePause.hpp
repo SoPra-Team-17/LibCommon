@@ -6,6 +6,7 @@
 #define LIBCOMMON_REQUESTGAMEPAUSE_HPP
 
 #include <network/MessageContainer.hpp>
+#include <network/RoleEnum.hpp>
 
 namespace spy::network::messages {
 
@@ -22,6 +23,16 @@ namespace spy::network::messages {
             friend void from_json(const nlohmann::json &j, RequestGamePause &r);
 
             bool operator==(const RequestGamePause &rhs) const;
+
+            /**
+             * validate message according role and if game is currently paused and if paused by server
+             * @param playerRole role of the player who sent the message
+             * @param isGamePaused whether game is paused by player
+             * @param isServerEnforced whether game is paused by server
+             * @return true if message is valid
+             *         false if message is not valid
+             */
+            [[nodiscard]] bool validate(RoleEnum playerRole, bool isGamePaused, bool isServerEnforced) const;
 
         private:
             bool gamePause;

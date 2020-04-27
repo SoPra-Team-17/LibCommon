@@ -6,6 +6,7 @@
 #define LIBCOMMON_REQUESTREPLAY_HPP
 
 #include <network/MessageContainer.hpp>
+#include <network/RoleEnum.hpp>
 
 namespace spy::network::messages {
 
@@ -20,6 +21,14 @@ namespace spy::network::messages {
             friend void from_json(const nlohmann::json &j, RequestReplay &r);
 
             bool operator==(const RequestReplay &rhs) const;
+
+            /**
+             * validate message according role and replay availability
+             * @param isReplayAvailable whether server support replay or not
+             * @return true if message is valid
+             *         false if message is not valid
+             */
+            [[nodiscard]] bool validate(RoleEnum playerRole, bool isReplayAvailable) const;
     };
 
 }

@@ -26,6 +26,13 @@ namespace spy::network::messages {
 
             bool operator==(const Hello &rhs) const;
 
+            /**
+             * validates message according role
+             * @return true if message is valid
+             *         false if message is not valid
+             */
+            [[nodiscard]] bool validate() const;
+
         private:
             std::string name;
             RoleEnum role = RoleEnum::INVALID;

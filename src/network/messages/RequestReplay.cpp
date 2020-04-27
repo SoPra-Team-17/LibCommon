@@ -22,4 +22,10 @@ namespace spy::network::messages {
     bool RequestReplay::operator==(const RequestReplay &rhs) const {
         return isEqual(rhs);
     }
+
+    bool RequestReplay::validate(RoleEnum playerRole, bool isReplayAvailable) const {
+        return playerRole != spy::network::RoleEnum::INVALID &&
+               playerRole != spy::network::RoleEnum::AI &&
+               isReplayAvailable;
+    }
 }
