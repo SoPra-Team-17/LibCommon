@@ -135,22 +135,22 @@ TEST(MovementOperation, Movement) {
     State state(0, field, {}, characters, std::nullopt, std::nullopt);
 
     ASSERT_TRUE(state.performMovement(move1));
-    ASSERT_EQ(state.characters.getByUUID(uuid)->getCoordinates().value(), (spy::util::Point{2, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid)->getCoordinates().value(), (spy::util::Point{2, 2}));
 
     ASSERT_TRUE(state.performMovement(move2));
-    ASSERT_EQ(state.characters.getByUUID(uuid)->getCoordinates().value(), (spy::util::Point{3, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid)->getCoordinates().value(), (spy::util::Point{3, 2}));
 
     ASSERT_TRUE(state.performMovement(move3));
-    ASSERT_EQ(state.characters.getByUUID(uuid)->getCoordinates().value(), (spy::util::Point{4, 3}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid)->getCoordinates().value(), (spy::util::Point{4, 3}));
 
     ASSERT_TRUE(state.performMovement(move4));
-    ASSERT_EQ(state.characters.getByUUID(uuid)->getCoordinates().value(), (spy::util::Point{4, 4}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid)->getCoordinates().value(), (spy::util::Point{4, 4}));
 
     ASSERT_TRUE(state.performMovement(move5));
-    ASSERT_EQ(state.characters.getByUUID(uuid)->getCoordinates().value(), (spy::util::Point{5, 3}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid)->getCoordinates().value(), (spy::util::Point{5, 3}));
 
     ASSERT_FALSE(state.performMovement(move6));
-    ASSERT_EQ(state.characters.getByUUID(uuid)->getCoordinates().value(), (spy::util::Point{5, 3}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid)->getCoordinates().value(), (spy::util::Point{5, 3}));
 }
 
 TEST(MovementOperation, MovementSwap) {
@@ -196,53 +196,53 @@ TEST(MovementOperation, MovementSwap) {
 
     State state(0, field, {}, characters, std::nullopt, std::nullopt);
 
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{1, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid2)->getCoordinates().value(), (spy::util::Point{2, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid3)->getCoordinates().value(), (spy::util::Point{3, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid4)->getCoordinates().value(), (spy::util::Point{4, 3}));
-    ASSERT_EQ(state.characters.getByUUID(uuid5)->getCoordinates().value(), (spy::util::Point{4, 4}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{1, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid2)->getCoordinates().value(), (spy::util::Point{2, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid3)->getCoordinates().value(), (spy::util::Point{3, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid4)->getCoordinates().value(), (spy::util::Point{4, 3}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid5)->getCoordinates().value(), (spy::util::Point{4, 4}));
 
     ASSERT_TRUE(state.performMovement(move1));
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{2, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid2)->getCoordinates().value(), (spy::util::Point{1, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid3)->getCoordinates().value(), (spy::util::Point{3, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid4)->getCoordinates().value(), (spy::util::Point{4, 3}));
-    ASSERT_EQ(state.characters.getByUUID(uuid5)->getCoordinates().value(), (spy::util::Point{4, 4}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{2, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid2)->getCoordinates().value(), (spy::util::Point{1, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid3)->getCoordinates().value(), (spy::util::Point{3, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid4)->getCoordinates().value(), (spy::util::Point{4, 3}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid5)->getCoordinates().value(), (spy::util::Point{4, 4}));
 
     ASSERT_TRUE(state.performMovement(move2));
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{3, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid2)->getCoordinates().value(), (spy::util::Point{1, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid3)->getCoordinates().value(), (spy::util::Point{2, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid4)->getCoordinates().value(), (spy::util::Point{4, 3}));
-    ASSERT_EQ(state.characters.getByUUID(uuid5)->getCoordinates().value(), (spy::util::Point{4, 4}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{3, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid2)->getCoordinates().value(), (spy::util::Point{1, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid3)->getCoordinates().value(), (spy::util::Point{2, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid4)->getCoordinates().value(), (spy::util::Point{4, 3}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid5)->getCoordinates().value(), (spy::util::Point{4, 4}));
 
     ASSERT_TRUE(state.performMovement(move3));
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{4, 3}));
-    ASSERT_EQ(state.characters.getByUUID(uuid2)->getCoordinates().value(), (spy::util::Point{1, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid3)->getCoordinates().value(), (spy::util::Point{2, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid4)->getCoordinates().value(), (spy::util::Point{3, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid5)->getCoordinates().value(), (spy::util::Point{4, 4}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{4, 3}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid2)->getCoordinates().value(), (spy::util::Point{1, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid3)->getCoordinates().value(), (spy::util::Point{2, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid4)->getCoordinates().value(), (spy::util::Point{3, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid5)->getCoordinates().value(), (spy::util::Point{4, 4}));
 
     ASSERT_TRUE(state.performMovement(move4));
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{4, 4}));
-    ASSERT_EQ(state.characters.getByUUID(uuid2)->getCoordinates().value(), (spy::util::Point{1, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid3)->getCoordinates().value(), (spy::util::Point{2, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid4)->getCoordinates().value(), (spy::util::Point{3, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid5)->getCoordinates().value(), (spy::util::Point{4, 3}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{4, 4}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid2)->getCoordinates().value(), (spy::util::Point{1, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid3)->getCoordinates().value(), (spy::util::Point{2, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid4)->getCoordinates().value(), (spy::util::Point{3, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid5)->getCoordinates().value(), (spy::util::Point{4, 3}));
 
     ASSERT_TRUE(state.performMovement(move5));
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{5, 3}));
-    ASSERT_EQ(state.characters.getByUUID(uuid2)->getCoordinates().value(), (spy::util::Point{1, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid3)->getCoordinates().value(), (spy::util::Point{2, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid4)->getCoordinates().value(), (spy::util::Point{3, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid5)->getCoordinates().value(), (spy::util::Point{4, 3}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{5, 3}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid2)->getCoordinates().value(), (spy::util::Point{1, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid3)->getCoordinates().value(), (spy::util::Point{2, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid4)->getCoordinates().value(), (spy::util::Point{3, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid5)->getCoordinates().value(), (spy::util::Point{4, 3}));
 
     ASSERT_FALSE(state.performMovement(move6));
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{5, 3}));
-    ASSERT_EQ(state.characters.getByUUID(uuid2)->getCoordinates().value(), (spy::util::Point{1, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid3)->getCoordinates().value(), (spy::util::Point{2, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid4)->getCoordinates().value(), (spy::util::Point{3, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid5)->getCoordinates().value(), (spy::util::Point{4, 3}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{5, 3}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid2)->getCoordinates().value(), (spy::util::Point{1, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid3)->getCoordinates().value(), (spy::util::Point{2, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid4)->getCoordinates().value(), (spy::util::Point{3, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid5)->getCoordinates().value(), (spy::util::Point{4, 3}));
 }
 
 TEST(MovementOperation, MovementGadget) {
@@ -289,8 +289,8 @@ TEST(MovementOperation, MovementGadget) {
 
     State state(0, field, {}, characters, std::nullopt, std::nullopt);
 
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{1, 2}));
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getGadgets().size(), 0);
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{1, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getGadgets().size(), 0);
     ASSERT_EQ(state.getMap().getField({2, 2}).getGadget()->getType(), spy::gadget::GadgetEnum::BOWLER_BLADE);
     ASSERT_EQ(state.getMap().getField({3, 2}).getGadget()->getType(), spy::gadget::GadgetEnum::CHICKEN_FEED);
     ASSERT_EQ(state.getMap().getField({4, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::FOG_TIN);
@@ -298,70 +298,70 @@ TEST(MovementOperation, MovementGadget) {
     ASSERT_EQ(state.getMap().getField({5, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::DIAMOND_COLLAR);
 
     ASSERT_TRUE(state.performMovement(move1));
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{2, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{2, 2}));
     ASSERT_FALSE(state.getMap().getField({2, 2}).getGadget().has_value());
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getGadgets().size(), 1);
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getGadgets().size(), 1);
 
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g1),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g1),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
     ASSERT_EQ(state.getMap().getField({3, 2}).getGadget()->getType(), spy::gadget::GadgetEnum::CHICKEN_FEED);
     ASSERT_EQ(state.getMap().getField({4, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::FOG_TIN);
     ASSERT_EQ(state.getMap().getField({4, 4}).getGadget()->getType(), spy::gadget::GadgetEnum::GAS_GLOSS);
     ASSERT_EQ(state.getMap().getField({5, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::DIAMOND_COLLAR);
 
     ASSERT_TRUE(state.performMovement(move2));
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{3, 2}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{3, 2}));
     ASSERT_FALSE(state.getMap().getField({2, 2}).getGadget().has_value());
     ASSERT_FALSE(state.getMap().getField({3, 2}).getGadget().has_value());
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getGadgets().size(), 2);
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g1),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g2),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getGadgets().size(), 2);
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g1),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g2),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
     ASSERT_EQ(state.getMap().getField({4, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::FOG_TIN);
     ASSERT_EQ(state.getMap().getField({4, 4}).getGadget()->getType(), spy::gadget::GadgetEnum::GAS_GLOSS);
     ASSERT_EQ(state.getMap().getField({5, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::DIAMOND_COLLAR);
 
     ASSERT_TRUE(state.performMovement(move3));
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{4, 3}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{4, 3}));
     EXPECT_FALSE(state.getMap().getField({2, 2}).getGadget().has_value());
     EXPECT_FALSE(state.getMap().getField({3, 2}).getGadget().has_value());
     EXPECT_FALSE(state.getMap().getField({4, 3}).getGadget().has_value());
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getGadgets().size(), 3);
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g1),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g2),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g3),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getGadgets().size(), 3);
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g1),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g2),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g3),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
     ASSERT_EQ(state.getMap().getField({4, 4}).getGadget()->getType(), spy::gadget::GadgetEnum::GAS_GLOSS);
     ASSERT_EQ(state.getMap().getField({5, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::DIAMOND_COLLAR);
 
     ASSERT_TRUE(state.performMovement(move4));
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{4, 4}));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{4, 4}));
     EXPECT_FALSE(state.getMap().getField({2, 2}).getGadget().has_value());
     EXPECT_FALSE(state.getMap().getField({3, 2}).getGadget().has_value());
     EXPECT_FALSE(state.getMap().getField({4, 3}).getGadget().has_value());
     EXPECT_FALSE(state.getMap().getField({4, 4}).getGadget().has_value());
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getGadgets().size(), 4);
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g1),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g2),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g3),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g4),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getGadgets().size(), 4);
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g1),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g2),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g3),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g4),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
     ASSERT_EQ(state.getMap().getField({5, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::DIAMOND_COLLAR);
 
     ASSERT_TRUE(state.performMovement(move5));
@@ -370,22 +370,22 @@ TEST(MovementOperation, MovementGadget) {
     ASSERT_FALSE(state.getMap().getField({4, 3}).getGadget().has_value());
     ASSERT_FALSE(state.getMap().getField({4, 4}).getGadget().has_value());
     ASSERT_FALSE(state.getMap().getField({5, 3}).getGadget().has_value());
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getGadgets().size(), 5);
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g1),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g2),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g3),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g4),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g5),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getGadgets().size(), 5);
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g1),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g2),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g3),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g4),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g5),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
 
     ASSERT_FALSE(state.performMovement(move6));
     ASSERT_FALSE(state.getMap().getField({2, 2}).getGadget().has_value());
@@ -393,21 +393,21 @@ TEST(MovementOperation, MovementGadget) {
     ASSERT_FALSE(state.getMap().getField({4, 3}).getGadget().has_value());
     ASSERT_FALSE(state.getMap().getField({4, 4}).getGadget().has_value());
     ASSERT_FALSE(state.getMap().getField({5, 3}).getGadget().has_value());
-    ASSERT_EQ(state.characters.getByUUID(uuid1)->getGadgets().size(), 5);
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g1),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g2),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g3),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g4),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
-    ASSERT_NE(std::find(state.characters.getByUUID(uuid1)->getGadgets().begin(),
-                        state.characters.getByUUID(uuid1)->getGadgets().end(), g5),
-              state.characters.getByUUID(uuid1)->getGadgets().end());
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getGadgets().size(), 5);
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g1),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g2),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g3),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g4),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
+    ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
+                        state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g5),
+              state.getCharacters().getByUUID(uuid1)->getGadgets().end());
 }
 

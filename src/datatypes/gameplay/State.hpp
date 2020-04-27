@@ -31,6 +31,10 @@ namespace spy::gameplay {
 
             [[nodiscard]] const std::set<int> &getMySafeCombinations() const;
 
+            [[nodiscard]] const character::CharacterSet &getCharacters() const;
+
+            [[nodiscard]] character::CharacterSet &getCharacters();
+
             [[nodiscard]] const std::optional<util::Point> &getCatCoordinates() const;
 
             [[nodiscard]] const std::optional<util::Point> &getJanitorCoordinates() const;
@@ -69,8 +73,6 @@ namespace spy::gameplay {
 
             bool operator==(const State &rhs) const;
 
-            character::CharacterSet characters{};
-
         private:
             /**
              * Calculates the distance between two points.
@@ -84,6 +86,7 @@ namespace spy::gameplay {
             unsigned int currentRound = 0;
             scenario::FieldMap map;
             std::set<int> mySafeCombinations;
+            character::CharacterSet characters{};
             std::optional<util::Point> catCoordinates;
             std::optional<util::Point> janitorCoordinates;
     };

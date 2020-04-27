@@ -9,16 +9,15 @@
 
 #include <utility>
 
-#include <iostream>
 
 namespace spy::gameplay {
     State::State(unsigned int currentRound, scenario::FieldMap map, std::set<int> mySafeCombinations,
                  character::CharacterSet characters, const std::optional<util::Point> &catCoordinates,
                  const std::optional<util::Point> &janitorCoordinates) :
-            characters(std::move(characters)),
             currentRound(currentRound),
             map(std::move(map)),
             mySafeCombinations(std::move(mySafeCombinations)),
+            characters(std::move(characters)),
             catCoordinates(catCoordinates),
             janitorCoordinates(janitorCoordinates) {}
 
@@ -33,6 +32,14 @@ namespace spy::gameplay {
 
     const std::set<int> &State::getMySafeCombinations() const {
         return mySafeCombinations;
+    }
+
+    const character::CharacterSet &State::getCharacters() const {
+        return characters;
+    }
+
+    character::CharacterSet &State::getCharacters() {
+        return characters;
     }
 
     const std::optional<util::Point> &State::getCatCoordinates() const {
