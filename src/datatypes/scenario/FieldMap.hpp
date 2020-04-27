@@ -34,7 +34,11 @@ namespace spy::scenario {
 
             [[nodiscard]] const Field &getField(unsigned int x, unsigned int y) const;
 
+            [[nodiscard]] Field &getField(unsigned int x, unsigned int y);
+
             [[nodiscard]] const Field &getField(util::Point p) const;
+
+            [[nodiscard]] Field &getField(util::Point p);
 
             [[nodiscard]] bool isInside(util::Point p) const;
 
