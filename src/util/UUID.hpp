@@ -1,7 +1,8 @@
 /**
- * @brief C++ wrapper for libuuid
+ * @file   UUID.hpp
  * @author Jonas Otto
- * @date April 2020
+ * @date   2. April 2020
+ * @brief  C++ wrapper for libuuid.
  */
 
 #ifndef LIBCOMMON_UUID_HPP
@@ -35,7 +36,7 @@ namespace spy::util {
 
             void clear();
 
-            bool isNull();
+            bool isNull() const;
 
             /**
              * Converts the UUID into a string of the form 1b4e28ba-2fa1-11d2-883f-0016d3cca427

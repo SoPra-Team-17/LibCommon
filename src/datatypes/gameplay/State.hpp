@@ -13,6 +13,7 @@
 #include "datatypes/character/Character.hpp"
 #include "datatypes/character/CharacterSet.hpp"
 #include "datatypes/scenario/FieldMap.hpp"
+#include "Movement.hpp"
 
 namespace spy::gameplay {
     class State {
@@ -26,11 +27,13 @@ namespace spy::gameplay {
 
             [[nodiscard]] unsigned int getCurrentRound() const;
 
-            [[nodiscard]] scenario::FieldMap getMap() const;
+            [[nodiscard]] scenario::FieldMap &getMap();
 
             [[nodiscard]] const std::set<int> &getMySafeCombinations() const;
 
             [[nodiscard]] const character::CharacterSet &getCharacters() const;
+
+            [[nodiscard]] character::CharacterSet &getCharacters();
 
             [[nodiscard]] const std::optional<util::Point> &getCatCoordinates() const;
 
@@ -50,6 +53,20 @@ namespace spy::gameplay {
              */
             void setJanitorCoordinates(const std::optional<util::Point> &janitorCoordinates);
 
+            /**
+             * Checks if the given movement operation is valid in the current game state.
+             * @param op Operation to check.
+             * @return True if the operation is valid, otherwise false.
+             */
+            [[nodiscard]] bool isMovementValid(const gameplay::Movement &op) const;
+
+            /**
+             * Perform the given movement operation.
+             * @param op Operation to perform.
+             * @return True if the operation was successful, otherwise false.
+             */
+            [[nodiscard]] bool performMovement(const Movement &op);
+
             friend void to_json(nlohmann::json &j, const State &s);
 
             friend void from_json(const nlohmann::json &j, State &s);
@@ -57,6 +74,7 @@ namespace spy::gameplay {
             bool operator==(const State &rhs) const;
 
         private:
+
             unsigned int currentRound = 0;
             scenario::FieldMap map;
             std::set<int> mySafeCombinations;

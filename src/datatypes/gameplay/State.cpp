@@ -9,6 +9,7 @@
 
 #include <utility>
 
+
 namespace spy::gameplay {
     State::State(unsigned int currentRound, scenario::FieldMap map, std::set<int> mySafeCombinations,
                  character::CharacterSet characters, const std::optional<util::Point> &catCoordinates,
@@ -25,7 +26,7 @@ namespace spy::gameplay {
         return currentRound;
     }
 
-    scenario::FieldMap State::getMap() const {
+    scenario::FieldMap &State::getMap() {
         return map;
     }
 
@@ -34,6 +35,10 @@ namespace spy::gameplay {
     }
 
     const character::CharacterSet &State::getCharacters() const {
+        return characters;
+    }
+
+    character::CharacterSet &State::getCharacters() {
         return characters;
     }
 
@@ -59,6 +64,48 @@ namespace spy::gameplay {
         } else {
             janitorCoordinates.reset();
         }
+    }
+
+    bool State::isMovementValid(const gameplay::Movement &op) const {
+        if (Movement::getMoveDistance(op.getFrom(), op.getTarget()) > 1) {  // only one step is allowed per game rules
+            return false;
+        }
+
+        auto character = characters.findByUUID(op.getCharacterId().value());
+        if (character == characters.end()) {                            // specified character UUID is not valid
+            return false;
+        } else if (character->getCoordinates() != op.getFrom()) {       // doesn't match characters position
+            return false;
+        }
+
+        return map.isAccessible(op.getTarget());
+    }
+
+    bool State::performMovement(const Movement &op) {
+        if (!isMovementValid(op)) {
+            return false;
+        }
+
+        auto character = characters.getByUUID(op.getCharacterId().value());
+
+        // search for character at target position
+        auto charTarget = std::find_if(characters.begin(), characters.end(), [&op](const character::Character &c) {
+            return c.getCoordinates() == op.getTarget();
+        });
+
+        if (charTarget != characters.end()) {                           // characters need to swap places
+            charTarget->setCoordinates(op.getFrom());
+        }
+
+        character->setCoordinates(op.getTarget());
+
+        auto gadget = map.getField(op.getTarget()).getGadget();
+        if (gadget.has_value()) {                                       // pick up gadget
+            character->addGadget(gadget.value());
+            map.getField(op.getTarget()).removeGadget();
+        }
+
+        return true;
     }
 
     bool State::operator==(const State &rhs) const {
@@ -94,6 +141,4 @@ namespace spy::gameplay {
             s.setJanitorCoordinates(janitorCoordinatesJson->get<decltype(s.janitorCoordinates)>());
         }
     }
-
-
 }

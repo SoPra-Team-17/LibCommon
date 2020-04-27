@@ -9,7 +9,9 @@
 #include <scenario/Scenario.hpp>
 #include <scenario/FieldMap.hpp>
 
-auto input = R"({ "scenario": [
+class LineOfSight : public ::testing::Test {
+    protected:
+        nlohmann::json input = R"({ "scenario": [
             ["WALL", "WALL",      "WALL", "WALL",           "WALL",     "WALL", "WALL"],
             ["WALL", "FIREPLACE", "WALL", "BAR_TABLE",      "BAR_SEAT", "FREE", "WALL"],
             ["WALL", "FREE",      "FREE", "FREE",           "FREE",     "FREE", "WALL"],
@@ -19,35 +21,25 @@ auto input = R"({ "scenario": [
             ["WALL", "WALL",      "WALL", "WALL",           "WALL",     "WALL", "WALL"]
             ]})"_json;
 
-TEST(LineOfSight, InvalidArguments) {
-    spy::scenario::Scenario decodedScenario;
-    decodedScenario = input.get<spy::scenario::Scenario>();
+        spy::scenario::Scenario decodedScenario = input.get<spy::scenario::Scenario>();
 
-    spy::scenario::FieldMap field(decodedScenario);
+        spy::scenario::FieldMap field{decodedScenario};
+};
 
+TEST_F(LineOfSight, InvalidArguments) {
     EXPECT_ANY_THROW(bool _ = field.isLineOfSightFree({-1, 0}, {0, 0}));
     EXPECT_ANY_THROW(bool _ = field.isLineOfSightFree({0, 0}, {0, 7}));
     EXPECT_TRUE(field.isLineOfSightFree({0, 0}, {0, 0}));
 }
 
-TEST(LineOfSight, HorizontalLine) {
-    spy::scenario::Scenario decodedScenario;
-    decodedScenario = input.get<spy::scenario::Scenario>();
-
-    spy::scenario::FieldMap field(decodedScenario);
-
+TEST_F(LineOfSight, HorizontalLine) {
     EXPECT_FALSE(field.isLineOfSightFree({0, 0}, {2, 0}));
     EXPECT_TRUE(field.isLineOfSightFree({1, 3}, {1, 5}));
     EXPECT_FALSE(field.isLineOfSightFree({2, 0}, {0, 0}));
     EXPECT_TRUE(field.isLineOfSightFree({1, 5}, {1, 3}));
 }
 
-TEST(LineOfSight, VerticalLine) {
-    spy::scenario::Scenario decodedScenario;
-    decodedScenario = input.get<spy::scenario::Scenario>();
-
-    spy::scenario::FieldMap field(decodedScenario);
-
+TEST_F(LineOfSight, VerticalLine) {
     EXPECT_FALSE(field.isLineOfSightFree({0, 0}, {0, 2}));
     EXPECT_TRUE(field.isLineOfSightFree({4, 1}, {4, 5}));
 
@@ -55,12 +47,7 @@ TEST(LineOfSight, VerticalLine) {
     EXPECT_TRUE(field.isLineOfSightFree({4, 5}, {4, 1}));
 }
 
-TEST(LineOfSight, DiagonalLine) {
-    spy::scenario::Scenario decodedScenario;
-    decodedScenario = input.get<spy::scenario::Scenario>();
-
-    spy::scenario::FieldMap field(decodedScenario);
-
+TEST_F(LineOfSight, DiagonalLine) {
     EXPECT_FALSE(field.isLineOfSightFree({1, 2}, {0, 0}));
     EXPECT_FALSE(field.isLineOfSightFree({1, 2}, {1, 0}));
     EXPECT_FALSE(field.isLineOfSightFree({1, 2}, {2, 0}));

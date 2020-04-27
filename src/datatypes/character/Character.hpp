@@ -71,6 +71,8 @@ namespace spy::character {
 
             void setGadgets(const std::vector<gadget::Gadget> &gadgets);
 
+            void addGadget(gadget::Gadget gadget);
+
             friend void to_json(nlohmann::json &j, const Character &c);
 
             friend void from_json(const nlohmann::json &j, Character &c);

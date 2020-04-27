@@ -84,6 +84,10 @@ namespace spy::character {
         Character::gadgets = gadgetList;
     }
 
+    void Character::addGadget(gadget::Gadget gadget) {
+        Character::gadgets.push_back(std::move(gadget));
+    }
+
     void to_json(nlohmann::json &j, const spy::character::Character &c) {
         j["characterId"] = c.characterId;
         j["name"] = c.name;

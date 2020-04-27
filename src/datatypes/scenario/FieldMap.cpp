@@ -43,10 +43,28 @@ namespace spy::scenario {
         return getField(p.x, p.y);
     }
 
+    Field &spy::scenario::FieldMap::getField(unsigned int x, unsigned int y) {
+        return map.at(y).at(x);
+    }
+
+    Field &spy::scenario::FieldMap::getField(util::Point p) {
+        return getField(p.x, p.y);
+    }
+
     bool FieldMap::isInside(util::Point p) const {
         return !(p.x < 0 || p.y < 0
                  || map.size() <= static_cast<unsigned int>(p.y)
                  || map.at(p.y).size() <= static_cast<unsigned int>(p.x));
+    }
+
+    bool FieldMap::blocksSight(util::Point p) const {
+        return (getField(p).getFieldState() == FieldStateEnum::WALL
+                || getField(p).getFieldState() == FieldStateEnum::FIREPLACE);
+    }
+
+    bool FieldMap::isAccessible(util::Point p) const {
+        return (getField(p).getFieldState() == FieldStateEnum::FREE
+                || getField(p).getFieldState() == FieldStateEnum::BAR_SEAT);
     }
 
 
@@ -89,11 +107,6 @@ namespace spy::scenario {
         }
 
         return true;
-    }
-
-    bool FieldMap::blocksSight(util::Point p) const {
-        return (getField(p).getFieldState() == FieldStateEnum::WALL
-                || getField(p).getFieldState() == FieldStateEnum::FIREPLACE);
     }
 
     void to_json(nlohmann::json &j, const FieldMap &m) {
