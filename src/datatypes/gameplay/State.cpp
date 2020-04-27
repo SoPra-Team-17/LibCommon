@@ -67,7 +67,7 @@ namespace spy::gameplay {
     }
 
     bool State::isMovementValid(const gameplay::Movement &op) const {
-        if (getMoveDistance(op.getFrom(), op.getTarget()) > 1) {        // only one step is allowed to avoid ambiguity
+        if (Movement::getMoveDistance(op.getFrom(), op.getTarget()) > 1) {  // only one step is allowed per game rules
             return false;
         }
 
@@ -88,6 +88,7 @@ namespace spy::gameplay {
 
         auto character = characters.getByUUID(op.getCharacterId().value());
 
+                                                                        // search for character at target position
         auto charTarget = std::find_if(characters.begin(), characters.end(), [&op](const character::Character &c) {
             return c.getCoordinates() == op.getTarget();
         });
@@ -139,9 +140,5 @@ namespace spy::gameplay {
             // Use setter instead of get_to to properly handle coordinates outside the map
             s.setJanitorCoordinates(janitorCoordinatesJson->get<decltype(s.janitorCoordinates)>());
         }
-    }
-
-    unsigned int State::getMoveDistance(const util::Point &p1, const util::Point &p2) {
-        return std::max(abs(p1.x - p2.x), abs(p1.y - p2.y));
     }
 }

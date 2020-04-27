@@ -74,14 +74,6 @@ namespace spy::gameplay {
             bool operator==(const State &rhs) const;
 
         private:
-            /**
-             * Calculates the distance between two points.
-             * @param p1 First point.
-             * @param p2 Second point.
-             * @return Distance between the points.
-             * @note The distance is measured using a "king's move metric".
-             */
-            static unsigned int getMoveDistance(const util::Point &p1, const util::Point &p2);
 
             unsigned int currentRound = 0;
             scenario::FieldMap map;

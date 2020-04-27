@@ -20,6 +20,15 @@ namespace spy::gameplay {
 
             [[nodiscard]] const util::Point &getFrom() const;
 
+            /**
+             * Calculates the distance between two points.
+             * @param p1 First point.
+             * @param p2 Second point.
+             * @return Distance between the points.
+             * @note The distance is measured using a "king's move metric".
+             */
+            static unsigned int getMoveDistance(const util::Point &p1, const util::Point &p2);
+
             friend void to_json(nlohmann::json &j, const Movement &m);
 
             friend void from_json(const nlohmann::json &j, Movement &m);
@@ -27,7 +36,6 @@ namespace spy::gameplay {
             bool operator==(const Movement &rhs) const;
 
             bool operator!=(const Movement &rhs) const;
-
         private:
             util::Point from{};
     };

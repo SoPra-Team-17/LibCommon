@@ -50,7 +50,7 @@ namespace spy::scenario {
     }
 
     void Field::removeGadget() {
-        Field::gadget = std::nullopt;
+        Field::gadget.reset();
     }
 
     /**

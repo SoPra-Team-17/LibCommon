@@ -24,6 +24,12 @@ namespace spy::gameplay {
         return from;
     }
 
+
+
+    unsigned int Movement::getMoveDistance(const util::Point &p1, const util::Point &p2) {
+        return std::max(std::abs(p1.x - p2.x), std::abs(p1.y - p2.y));
+    }
+
     void to_json(nlohmann::json &j, const Movement &m) {
         Operation::common_to_json(j, m);
         j["from"] = m.from;
