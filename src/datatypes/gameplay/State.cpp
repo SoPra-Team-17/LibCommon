@@ -26,7 +26,7 @@ namespace spy::gameplay {
         return currentRound;
     }
 
-    scenario::FieldMap State::getMap() const {
+    scenario::FieldMap &State::getMap() {
         return map;
     }
 
@@ -88,7 +88,7 @@ namespace spy::gameplay {
 
         auto character = characters.getByUUID(op.getCharacterId().value());
 
-                                                                        // search for character at target position
+        // search for character at target position
         auto charTarget = std::find_if(characters.begin(), characters.end(), [&op](const character::Character &c) {
             return c.getCoordinates() == op.getTarget();
         });

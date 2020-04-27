@@ -27,7 +27,7 @@ namespace spy::gameplay {
 
             [[nodiscard]] unsigned int getCurrentRound() const;
 
-            [[nodiscard]] scenario::FieldMap getMap() const;
+            [[nodiscard]] scenario::FieldMap &getMap();
 
             [[nodiscard]] const std::set<int> &getMySafeCombinations() const;
 
