@@ -7,11 +7,8 @@
 
 namespace spy::gameplay {
     bool GadgetExecutor::execute(State /*s*/, GadgetAction action) {
-        // TODO: decide if validation should happen here, or if action is assumed to be valid
         // TODO: implement
         switch (action.getGadget()) {
-            case gadget::GadgetEnum::INVALID:
-                break;
             case gadget::GadgetEnum::HAIRDRYER:
                 break;
             case gadget::GadgetEnum::MOLEDIE:
@@ -52,6 +49,10 @@ namespace spy::gameplay {
                 break;
             case gadget::GadgetEnum::COCKTAIL:
                 break;
+            case gadget::GadgetEnum::INVALID:
+                [[fallthrough]];
+            default:
+                throw std::invalid_argument("Execution of gadget type not implemented");
         }
         return false;
     }

@@ -17,6 +17,9 @@ namespace spy::gameplay {
         public:
             GadgetExecutor() = delete;
 
+            /**
+             * @param action Operation to execute, has to be valid
+             */
             static bool execute(State s, GadgetAction action);
 
         private:
