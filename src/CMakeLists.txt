@@ -38,6 +38,7 @@ set(SOURCE
         datatypes/validation/PropertyValidator.cpp
         datatypes/validation/gadget/GadgetValidator.cpp
         datatypes/validation/gadget/RocketPen.cpp
+        datatypes/validation/gadget/TechnicolourPrism.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp
@@ -62,7 +63,8 @@ set(SOURCE
         network/messages/Strike.cpp
         network/messages/RequestReplay.cpp
         network/messages/Replay.cpp
-        network/messages/StatisticsMessage.cpp)
+        network/messages/StatisticsMessage.cpp
+        )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMMON_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror -mtune=native -march=native)

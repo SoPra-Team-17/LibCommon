@@ -19,6 +19,8 @@ namespace spy::gameplay {
         private:
             // TODO add gadgets
             static bool validateRocketPen(const State &s, GadgetAction a);
+
+            static bool validateTechnicolourPrism(const State &s, GadgetAction a);
     };
 }
 
