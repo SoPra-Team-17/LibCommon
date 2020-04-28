@@ -25,6 +25,13 @@ set(SOURCE
         datatypes/statistics/StatisticsEntry.cpp
         datatypes/statistics/Statistics.cpp
         datatypes/gameplay/State.cpp
+        datatypes/validation/ExfiltrationValidator.cpp
+        datatypes/validation/GadgetSwitch.cpp
+        datatypes/validation/GambleValidator.cpp
+        datatypes/validation/MovementValidator.cpp
+        datatypes/validation/PropertyValidator.cpp
+        datatypes/validation/gadget/GadgetValidator.cpp
+        datatypes/validation/gadget/RocketPen.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp

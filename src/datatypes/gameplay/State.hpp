@@ -29,6 +29,8 @@ namespace spy::gameplay {
 
             [[nodiscard]] scenario::FieldMap &getMap();
 
+            [[nodiscard]] const scenario::FieldMap &getMap() const;
+
             [[nodiscard]] const std::set<int> &getMySafeCombinations() const;
 
             [[nodiscard]] const character::CharacterSet &getCharacters() const;
@@ -52,13 +54,6 @@ namespace spy::gameplay {
              * the janitorCoordinates optional if the coordinates are outside the map.
              */
             void setJanitorCoordinates(const std::optional<util::Point> &janitorCoordinates);
-
-            /**
-             * Checks if the given movement operation is valid in the current game state.
-             * @param op Operation to check.
-             * @return True if the operation is valid, otherwise false.
-             */
-            [[nodiscard]] bool isMovementValid(const gameplay::Movement &op) const;
 
             /**
              * Perform the given movement operation.
