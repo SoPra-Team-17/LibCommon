@@ -2,7 +2,6 @@
 // Created by jonas on 28.04.20.
 //
 
-#include <datatypes/validation/gadget/GadgetValidator.hpp>
 #include "GadgetExecutor.hpp"
 
 namespace spy::gameplay {
