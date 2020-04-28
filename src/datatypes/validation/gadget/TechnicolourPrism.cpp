@@ -16,7 +16,7 @@ namespace spy::gameplay {
 
         auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
         auto gadgets = character->getGadgets();
-        auto gadget = std::find_if(gadgets.begin(), gadgets.end(), [&a](const gadget::Gadget &g) {
+        auto gadget = std::find_if(gadgets.begin(), gadgets.end(), [](const gadget::Gadget &g) {
             return g.getType() == gadget::GadgetEnum::TECHNICOLOUR_PRISM;
         });
 
