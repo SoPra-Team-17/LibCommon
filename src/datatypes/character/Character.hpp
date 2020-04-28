@@ -67,7 +67,7 @@ namespace spy::character {
 
             [[nodiscard]]  std::set<PropertyEnum> &getProperties();
 
-            void setProperties(const std::vector<PropertyEnum> &properties);
+            void setProperties(const std::set<PropertyEnum> &properties);
 
             [[nodiscard]] const std::vector<gadget::Gadget> &getGadgets() const;
 

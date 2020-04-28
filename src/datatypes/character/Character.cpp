@@ -76,7 +76,7 @@ namespace spy::character {
         return properties;
     }
 
-    void Character::setProperties(const std::vector<PropertyEnum> &propertyList) {
+    void Character::setProperties(const std::set<PropertyEnum> &propertyList) {
         Character::properties = propertyList;
     }
 
