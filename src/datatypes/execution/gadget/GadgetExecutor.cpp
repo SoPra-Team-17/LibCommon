@@ -1,0 +1,57 @@
+//
+// Created by jonas on 28.04.20.
+//
+
+#include <datatypes/validation/gadget/GadgetValidator.hpp>
+#include "GadgetExecutor.hpp"
+
+namespace spy::gameplay {
+    bool GadgetExecutor::execute(State s, GadgetAction action) {
+        // TODO: decide if validation should happen here, or if action is assumed to be valid
+        switch (action.getGadget()) {
+            case gadget::GadgetEnum::INVALID:
+                break;
+            case gadget::GadgetEnum::HAIRDRYER:
+                break;
+            case gadget::GadgetEnum::MOLEDIE:
+                break;
+            case gadget::GadgetEnum::TECHNICOLOUR_PRISM:
+                break;
+            case gadget::GadgetEnum::BOWLER_BLADE:
+                break;
+            case gadget::GadgetEnum::MAGNETIC_WATCH:
+                break;
+            case gadget::GadgetEnum::POISON_PILLS:
+                break;
+            case gadget::GadgetEnum::LASER_COMPACT:
+                break;
+            case gadget::GadgetEnum::ROCKET_PEN:
+                break;
+            case gadget::GadgetEnum::GAS_GLOSS:
+                break;
+            case gadget::GadgetEnum::MOTHBALL_POUCH:
+                break;
+            case gadget::GadgetEnum::FOG_TIN:
+                break;
+            case gadget::GadgetEnum::GRAPPLE:
+                break;
+            case gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS:
+                break;
+            case gadget::GadgetEnum::DIAMOND_COLLAR:
+                break;
+            case gadget::GadgetEnum::JETPACK:
+                break;
+            case gadget::GadgetEnum::CHICKEN_FEED:
+                break;
+            case gadget::GadgetEnum::NUGGET:
+                break;
+            case gadget::GadgetEnum::MIRROR_OF_WILDERNESS:
+                break;
+            case gadget::GadgetEnum::POCKET_LITTER:
+                break;
+            case gadget::GadgetEnum::COCKTAIL:
+                break;
+        }
+        return false;
+    }
+}
