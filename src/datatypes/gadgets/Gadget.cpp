@@ -12,11 +12,11 @@ namespace spy::gadget {
         return type;
     }
 
-    int Gadget::getUsagesLeft() const {
+    std::optional<unsigned int> Gadget::getUsagesLeft() const {
         return usagesLeft;
     }
 
-    void Gadget::setUsagesLeft(int newUsages) {
+    void Gadget::setUsagesLeft(std::optional<unsigned int> newUsages) {
         Gadget::usagesLeft = newUsages;
     }
 

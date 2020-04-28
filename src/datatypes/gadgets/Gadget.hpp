@@ -6,7 +6,8 @@
 #define LIBCOMMON_GADGET_HPP
 
 #include <nlohmann/json.hpp>
-#include <datatypes/gadgets/GadgetEnum.hpp>
+#include "datatypes/gadgets/GadgetEnum.hpp"
+#include "util/OptionalSerialization.hpp"
 
 namespace spy::gadget {
 
@@ -18,9 +19,9 @@ namespace spy::gadget {
 
             [[nodiscard]] GadgetEnum getType() const;
 
-            [[nodiscard]] int getUsagesLeft() const;
+            [[nodiscard]] std::optional<unsigned int> getUsagesLeft() const;
 
-            void setUsagesLeft(int newUsages);
+            void setUsagesLeft(std::optional<unsigned int> newUsages);
 
             friend void to_json(nlohmann::json &j, const Gadget &g);
 
@@ -30,7 +31,7 @@ namespace spy::gadget {
 
         private:
             GadgetEnum type;
-            int usagesLeft;
+            std::optional<unsigned int> usagesLeft;
     };
 }
 
