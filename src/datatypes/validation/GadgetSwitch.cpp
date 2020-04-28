@@ -8,13 +8,6 @@
 namespace spy::gameplay {
 
     bool ActionValidator::validate(const State &s, GadgetAction op) {
-        using gadget::GadgetEnum;
-        // TODO implement
-        switch (op.getGadget()) {
-            case GadgetEnum::ROCKET_PEN:
-                return GadgetValidator::validateRocketPen(s, op);
-            default:
-                return false;
-        }
+        return GadgetValidator::validate(s, op);
     }
 }

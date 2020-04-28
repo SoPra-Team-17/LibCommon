@@ -30,6 +30,7 @@ set(SOURCE
         datatypes/validation/GambleValidator.cpp
         datatypes/validation/MovementValidator.cpp
         datatypes/validation/PropertyValidator.cpp
+        datatypes/validation/gadget/GadgetValidator.cpp
         datatypes/validation/gadget/RocketPen.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp

@@ -1,7 +1,3 @@
-//
-// Created by jonas on 28.04.20.
-//
-
 #ifndef LIBCOMMON_GADGETVALIDATOR_HPP
 #define LIBCOMMON_GADGETVALIDATOR_HPP
 
@@ -9,11 +5,18 @@
 #include <datatypes/gameplay/State.hpp>
 
 namespace spy::gameplay {
+
+    /**
+     * @brief Validation for all types of GadgetAction
+     */
     class GadgetValidator {
         public:
             // Static class
             GadgetValidator() = delete;
 
+            static bool validate(const State &s, GadgetAction a);
+
+        private:
             // TODO add gadgets
             static bool validateRocketPen(const State &s, GadgetAction a);
     };
