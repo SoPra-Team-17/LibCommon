@@ -6,8 +6,9 @@
 #include "GadgetExecutor.hpp"
 
 namespace spy::gameplay {
-    bool GadgetExecutor::execute(State s, GadgetAction action) {
+    bool GadgetExecutor::execute(State /*s*/, GadgetAction action) {
         // TODO: decide if validation should happen here, or if action is assumed to be valid
+        // TODO: implement
         switch (action.getGadget()) {
             case gadget::GadgetEnum::INVALID:
                 break;
