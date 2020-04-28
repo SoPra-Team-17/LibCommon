@@ -5,7 +5,7 @@
 #include "GadgetExecutor.hpp"
 
 namespace spy::gameplay {
-    bool GadgetExecutor::execute(State /*s*/, GadgetAction action) {
+    bool GadgetExecutor::execute(State &/*s*/, GadgetAction action) {
         // TODO: implement
         switch (action.getGadget()) {
             case gadget::GadgetEnum::HAIRDRYER:

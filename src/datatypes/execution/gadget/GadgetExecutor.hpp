@@ -20,7 +20,7 @@ namespace spy::gameplay {
             /**
              * @param action Operation to execute, has to be valid
              */
-            static bool execute(State s, GadgetAction action);
+            static bool execute(State &s, GadgetAction action);
 
         private:
             // TODO: Gadget execution methods
