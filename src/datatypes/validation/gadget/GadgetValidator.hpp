@@ -21,6 +21,8 @@ namespace spy::gameplay {
             static bool validateRocketPen(const State &s, GadgetAction a);
 
             static bool validateTechnicolourPrism(const State &s, GadgetAction a);
+
+            static bool validatePoisonPills(const State &s, GadgetAction a);
     };
 }
 
