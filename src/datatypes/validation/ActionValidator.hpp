@@ -4,7 +4,11 @@
 
 
 #include <datatypes/gameplay/State.hpp>
+#include <datatypes/gameplay/Exfiltration.hpp>
+#include <datatypes/gameplay/GadgetAction.hpp>
+#include <datatypes/gameplay/GambleAction.hpp>
 #include <datatypes/gameplay/Movement.hpp>
+#include <datatypes/gameplay/PropertyAction.hpp>
 
 namespace spy::gameplay {
     /**
@@ -15,7 +19,16 @@ namespace spy::gameplay {
             // Static class
             ActionValidator() = delete;
 
-            static bool validate(const State &s, Movement m);
+            static bool validate(const State &s, Exfiltration op);
+
+            static bool validate(const State &s, GadgetAction op);
+
+            static bool validate(const State &s, GambleAction op);
+
+            static bool validate(const State &s, Movement op);
+
+            static bool validate(const State &s, PropertyAction op);
+
     };
 }
 
