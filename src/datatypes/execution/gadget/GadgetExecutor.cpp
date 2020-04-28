@@ -5,11 +5,11 @@
 #include "GadgetExecutor.hpp"
 
 namespace spy::gameplay {
-    bool GadgetExecutor::execute(State &/*s*/, GadgetAction action) {
+    bool GadgetExecutor::execute(State &s, GadgetAction action) {
         // TODO: implement
         switch (action.getGadget()) {
             case gadget::GadgetEnum::HAIRDRYER:
-                break;
+                return executeHairDryer(s, action);
             case gadget::GadgetEnum::MOLEDIE:
                 break;
             case gadget::GadgetEnum::TECHNICOLOUR_PRISM:

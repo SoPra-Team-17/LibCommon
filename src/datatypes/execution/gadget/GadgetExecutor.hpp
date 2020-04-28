@@ -26,6 +26,8 @@ namespace spy::gameplay {
         private:
             // TODO: Gadget execution methods
 
+            static bool executeHairDryer(State s, const GadgetAction &action);
+
     };
 }
 
