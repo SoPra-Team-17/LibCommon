@@ -4,7 +4,7 @@
 #include "GadgetExecutor.hpp"
 
 namespace spy::gameplay {
-    bool GadgetExecutor::executeHairDryer(State s, const GadgetAction &action) {
+    bool GadgetExecutor::executeHairDryer(State &s, const GadgetAction &action) {
         // Search character at target location
         auto charTarget = std::find_if(s.getCharacters().begin(), s.getCharacters().end(),
                                        [&](const character::Character &c) {
