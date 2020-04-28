@@ -1,6 +1,7 @@
-//
-// Created by jonas on 28.04.20.
-//
+/**
+ * @file GadgetExecutor.hpp
+ * @author ottojo
+ */
 
 #ifndef LIBCOMMON_GADGETEXECUTOR_HPP
 #define LIBCOMMON_GADGETEXECUTOR_HPP
