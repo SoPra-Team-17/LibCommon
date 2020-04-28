@@ -1,6 +1,3 @@
-/**
- * @brief validate() functions for all possible Operations
- */
 
 #ifndef LIBCOMMON_ACTIONVALIDATOR_HPP
 #define LIBCOMMON_ACTIONVALIDATOR_HPP
@@ -10,6 +7,9 @@
 #include <datatypes/gameplay/Movement.hpp>
 
 namespace spy::gameplay {
+    /**
+     * @brief validate() functions for all possible Operations
+     */
     class ActionValidator {
         public:
             // Static class
