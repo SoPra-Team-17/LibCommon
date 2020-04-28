@@ -6,6 +6,7 @@
 #define LIBCOMMON_GADGETVALIDATOR_HPP
 
 #include <datatypes/gameplay/GadgetAction.hpp>
+#include <datatypes/gameplay/State.hpp>
 
 namespace spy::gameplay {
     class GadgetValidator {
@@ -14,7 +15,7 @@ namespace spy::gameplay {
             GadgetValidator() = delete;
 
             // TODO add gadgets
-            static bool validateRocketPen(GadgetAction a);
+            static bool validateRocketPen(const State &s, GadgetAction a);
     };
 }
 

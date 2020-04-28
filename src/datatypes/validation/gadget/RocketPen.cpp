@@ -4,7 +4,7 @@
 #include "GadgetValidator.hpp"
 
 namespace spy::gameplay {
-    bool GadgetValidator::validateRocketPen(GadgetAction a) {
+    bool GadgetValidator::validateRocketPen(const State &/*s*/, GadgetAction /*a*/) {
         // TODO implement RocketPen validation
         return true;
     }

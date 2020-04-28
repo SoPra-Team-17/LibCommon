@@ -12,7 +12,7 @@ namespace spy::gameplay {
         // TODO implement
         switch (op.getGadget()) {
             case GadgetEnum::ROCKET_PEN:
-                return GadgetValidator::validateRocketPen(op);
+                return GadgetValidator::validateRocketPen(s, op);
             default:
                 return false;
         }
