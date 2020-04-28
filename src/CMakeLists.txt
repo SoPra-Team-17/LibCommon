@@ -17,6 +17,12 @@ set(SOURCE
         datatypes/character/CharacterInformation.cpp
         datatypes/character/CharacterDescription.cpp
         datatypes/character/CharacterSet.cpp
+        datatypes/execution/ActionExecutor_Exfiltration.cpp
+        datatypes/execution/ActionExecutor_Gadget.cpp
+        datatypes/execution/ActionExecutor_Gamble.cpp
+        datatypes/execution/ActionExecutor_Movement.cpp
+        datatypes/execution/ActionExecutor_Property.cpp
+        datatypes/execution/gadget/GadgetExecutor.cpp
         datatypes/matchconfig/MatchConfig.cpp
         datatypes/scenario/Scenario.cpp
         datatypes/scenario/Scenario.cpp
