@@ -25,6 +25,7 @@ set(SOURCE
         datatypes/statistics/StatisticsEntry.cpp
         datatypes/statistics/Statistics.cpp
         datatypes/gameplay/State.cpp
+        datatypes/validation/MovementValidator.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp

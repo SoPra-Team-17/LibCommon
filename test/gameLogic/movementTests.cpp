@@ -11,6 +11,7 @@
 #include "gameplay/State.hpp"
 #include "character/Character.hpp"
 #include "util/Point.hpp"
+#include "datatypes/validation/ActionValidator.hpp"
 
 class MovementOperation : public ::testing::Test {
     protected:
@@ -53,6 +54,7 @@ class MovementOperation : public ::testing::Test {
 
 TEST_F(MovementOperation, isMovementValid) {
     using spy::util::UUID;
+    using spy::gameplay::ActionValidator;
     using spy::gameplay::Movement;
 
     state.getCharacters().getByUUID(uuid1)->setCoordinates({1, 2});
@@ -63,11 +65,11 @@ TEST_F(MovementOperation, isMovementValid) {
     Movement move4(false, {1, 1}, UUID(), {1, 2});
     Movement move5(false, {2, 2}, uuid1, {1, 3});
 
-    EXPECT_FALSE(state.isMovementValid(move1));
-    EXPECT_TRUE(state.isMovementValid(move2));
-    EXPECT_FALSE(state.isMovementValid(move3));
-    EXPECT_FALSE(state.isMovementValid(move4));
-    EXPECT_FALSE(state.isMovementValid(move5));
+    EXPECT_FALSE(ActionValidator::validate(state, move1));
+    EXPECT_TRUE(ActionValidator::validate(state, move2));
+    EXPECT_FALSE(ActionValidator::validate(state, move3));
+    EXPECT_FALSE(ActionValidator::validate(state, move4));
+    EXPECT_FALSE(ActionValidator::validate(state, move5));
 }
 
 TEST_F(MovementOperation, PerformValidate) {

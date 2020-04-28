@@ -6,6 +6,7 @@
  */
 
 #include "State.hpp"
+#include <datatypes/validation/ActionValidator.hpp>
 
 #include <utility>
 
@@ -27,6 +28,10 @@ namespace spy::gameplay {
     }
 
     scenario::FieldMap &State::getMap() {
+        return map;
+    }
+
+    const scenario::FieldMap &State::getMap() const {
         return map;
     }
 
@@ -66,23 +71,8 @@ namespace spy::gameplay {
         }
     }
 
-    bool State::isMovementValid(const gameplay::Movement &op) const {
-        if (Movement::getMoveDistance(op.getFrom(), op.getTarget()) > 1) {  // only one step is allowed per game rules
-            return false;
-        }
-
-        auto character = characters.findByUUID(op.getCharacterId().value());
-        if (character == characters.end()) {                            // specified character UUID is not valid
-            return false;
-        } else if (character->getCoordinates() != op.getFrom()) {       // doesn't match characters position
-            return false;
-        }
-
-        return map.isAccessible(op.getTarget());
-    }
-
     bool State::performMovement(const Movement &op) {
-        if (!isMovementValid(op)) {
+        if (!ActionValidator::validate(*this, op)) {
             return false;
         }
 
