@@ -20,6 +20,16 @@ namespace spy::gameplay {
         public:
             ActionExecutor() = delete;
 
+            static bool execute(State &s, const std::shared_ptr<Operation>& op);
+
+        private:
+            /**
+             * Execute Operation (CAT_ACTION, JANITOR_ACTION, RETIRE, SPY_ACTION)
+             * @param op Operation to execute, has to be valid
+             * @return true, if Operation was successful
+             */
+            static bool execute(State &s, const Operation &op);
+
             /**
              * Execute Exfiltration
              * @param op Operation to execute, has to be valid

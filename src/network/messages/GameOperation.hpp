@@ -7,15 +7,17 @@
 
 #include <network/MessageContainer.hpp>
 #include <datatypes/gameplay/Operation.hpp>
+#include <network/RoleEnum.hpp>
+#include <datatypes/gameplay/State.hpp>
 
 namespace spy::network::messages {
     class GameOperation : public MessageContainer {
         public:
             GameOperation();
 
-            GameOperation(util::UUID playerId, gameplay::Operation operation);
+            GameOperation(util::UUID playerId, std::shared_ptr<gameplay::Operation> operation);
 
-            [[nodiscard]] const gameplay::Operation &getOperation() const;
+            [[nodiscard]] const std::shared_ptr<gameplay::Operation> &getOperation() const;
 
             friend void to_json(nlohmann::json &j, const GameOperation &g);
 
@@ -23,8 +25,17 @@ namespace spy::network::messages {
 
             bool operator==(const GameOperation &rhs) const;
 
+            /**
+             * validate message according role and operation type and if operation is allowed in current state
+             * @param playerRole role of the player who sent the message
+             * @param state current state of the game
+             * @return true if message is valid
+             *         false if message is not valid
+             */
+            [[nodiscard]] bool validate(RoleEnum playerRole, spy::gameplay::State &state) const;
+
         private:
-            gameplay::Operation operation;
+            std::shared_ptr<gameplay::Operation> operation;
     };
 }
 

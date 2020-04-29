@@ -23,6 +23,8 @@ set(SOURCE
         datatypes/execution/ActionExecutor_Movement.cpp
         datatypes/execution/ActionExecutor_Property.cpp
         datatypes/execution/gadget/GadgetExecutor.cpp
+        datatypes/execution/ActionExecutor.cpp
+        datatypes/execution/ActionExecutor_Operation.cpp
         datatypes/matchconfig/MatchConfig.cpp
         datatypes/scenario/Scenario.cpp
         datatypes/scenario/Scenario.cpp
@@ -38,6 +40,8 @@ set(SOURCE
         datatypes/validation/PropertyValidator.cpp
         datatypes/validation/gadget/GadgetValidator.cpp
         datatypes/validation/gadget/RocketPen.cpp
+        datatypes/validation/ActionValidator.cpp
+        datatypes/validation/OperationValidator.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp
