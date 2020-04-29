@@ -18,7 +18,7 @@ namespace spy::gameplay {
                                            return c.getCoordinates() == op.getTarget();
                                        });
 
-        return (charTarget == characters.end());
+        return (charTarget != characters.end());
     }
 }
 
