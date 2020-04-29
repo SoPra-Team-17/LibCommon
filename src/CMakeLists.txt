@@ -54,7 +54,7 @@ set(SOURCE
         datatypes/validation/gadget/MirrorOfWilderness.cpp
         datatypes/validation/gadget/PocketLitter.cpp
         datatypes/validation/gadget/DiamondCollar.cpp
-        datatypes/validation/gadget/Cockttail.cpp
+        datatypes/validation/gadget/Cocktail.cpp
         datatypes/validation/gadget/BowlerBlade.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
