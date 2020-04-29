@@ -72,7 +72,7 @@ namespace spy::gameplay {
     }
 
     bool State::performMovement(const Movement &op) {
-        if (!ActionValidator::validate(*this, std::make_shared<Operation>(op))) {
+        if (!ActionValidator::validate(*this, std::make_shared<Movement>(op))) {
             return false;
         }
 

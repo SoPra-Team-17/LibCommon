@@ -56,7 +56,6 @@ TEST_F(MovementOperation, isMovementValid) {
     using spy::util::UUID;
     using spy::gameplay::ActionValidator;
     using spy::gameplay::Movement;
-    using spy::gameplay::Operation;
 
     state.getCharacters().getByUUID(uuid1)->setCoordinates({1, 2});
 
@@ -66,11 +65,11 @@ TEST_F(MovementOperation, isMovementValid) {
     Movement move4(false, {1, 1}, UUID(), {1, 2});
     Movement move5(false, {2, 2}, uuid1, {1, 3});
 
-    EXPECT_FALSE(ActionValidator::validate(state, std::make_shared<Operation>(move1)));
-    EXPECT_TRUE(ActionValidator::validate(state, std::make_shared<Operation>(move2)));
-    EXPECT_FALSE(ActionValidator::validate(state, std::make_shared<Operation>(move3)));
-    EXPECT_FALSE(ActionValidator::validate(state, std::make_shared<Operation>(move4)));
-    EXPECT_FALSE(ActionValidator::validate(state, std::make_shared<Operation>(move5)));
+    EXPECT_FALSE(ActionValidator::validate(state, std::make_shared<Movement>(move1)));
+    EXPECT_TRUE(ActionValidator::validate(state, std::make_shared<Movement>(move2)));
+    EXPECT_FALSE(ActionValidator::validate(state, std::make_shared<Movement>(move3)));
+    EXPECT_FALSE(ActionValidator::validate(state, std::make_shared<Movement>(move4)));
+    EXPECT_FALSE(ActionValidator::validate(state, std::make_shared<Movement>(move5)));
 }
 
 TEST_F(MovementOperation, PerformValidate) {
