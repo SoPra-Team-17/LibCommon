@@ -5,7 +5,6 @@
  * @brief  Implemenation of laser compact gadget validation.
  */
 
-#include "datatypes/gameplay/Movement.hpp"
 #include "util/GadgetUtils.hpp"
 #include "GadgetValidator.hpp"
 
