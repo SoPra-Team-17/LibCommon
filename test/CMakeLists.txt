@@ -31,7 +31,8 @@ set(SOURCES
         datatypes/validation/movementTests.cpp
         datatypes/validation/gadget/hairdryerTests.cpp
         datatypes/validation/gadget/technicolourPrismTests.cpp
-        datatypes/validation/gadget/cocktailTests.cpp)
+        datatypes/validation/gadget/cocktailTests.cpp
+        datatypes/validation/gadget/chickenFeedTests.cpp)
 
 add_executable(allTests ${SOURCES})
 target_compile_options(allTests PRIVATE ${COMMON_CXX_FLAGS})
