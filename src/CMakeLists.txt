@@ -52,6 +52,7 @@ set(SOURCE
         datatypes/validation/gadget/ChickenFeed.cpp
         datatypes/validation/gadget/Nugget.cpp
         datatypes/validation/gadget/MirrorOfWilderness.cpp
+        datatypes/validation/gadget/PocketLitter.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp

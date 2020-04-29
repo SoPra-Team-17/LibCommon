@@ -47,6 +47,8 @@ namespace spy::gameplay {
             static bool validateNugget(const State &s, GadgetAction a);
 
             static bool validateMirrorOfWilderness(const State &s, GadgetAction a);
+
+            static bool validatePocketLitter(const State &s, GadgetAction a);
     };
 }
 
