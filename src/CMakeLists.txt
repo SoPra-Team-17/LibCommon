@@ -42,6 +42,7 @@ set(SOURCE
         datatypes/validation/gadget/PoisonPills.cpp
         datatypes/validation/gadget/LaserCompact.cpp
         datatypes/validation/gadget/MoleDie.cpp
+        datatypes/validation/gadget/GasGloss.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp
@@ -68,7 +69,7 @@ set(SOURCE
         network/messages/RequestReplay.cpp
         network/messages/Replay.cpp
         network/messages/StatisticsMessage.cpp
-       )
+        )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMMON_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror -mtune=native -march=native)

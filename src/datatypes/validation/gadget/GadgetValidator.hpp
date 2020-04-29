@@ -27,6 +27,8 @@ namespace spy::gameplay {
             static bool validateLaserCompact(const State &s, GadgetAction a);
 
             static bool validateMoleDie(const State &s, GadgetAction a);
+
+            static bool validateGasGloss(const State &s, GadgetAction a);
     };
 }
 

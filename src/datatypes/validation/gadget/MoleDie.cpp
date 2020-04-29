@@ -35,9 +35,11 @@ namespace spy::gameplay {
         auto gadgets = character->getGadgets();
         auto distance = Movement::getMoveDistance(a.getTarget(), character->getCoordinates().value());
         // todo check if distance <= moleDieRange (not included in state)
+        unsigned int moleDieRange = 10;
+
 
         bool lineOfSightFree = s.getMap().isLineOfSightFree(a.getTarget(), character->getCoordinates().value());
 
-        return lineOfSightFree /*&& distance <= moleDieRange*/;
+        return lineOfSightFree && distance <= moleDieRange;
     }
 }
