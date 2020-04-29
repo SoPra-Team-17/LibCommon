@@ -39,7 +39,7 @@ namespace spy::gameplay{
             auto cocktail = std::find_if(person->getGadgets().begin(), person->getGadgets().end(), [](const gadget::Gadget &g){
                 return g.getType() == GadgetEnum::COCKTAIL;
             });
-            targetHasCocktail = cocktail != person->getGadgets().end();
+            targetHasCocktail = (cocktail != person->getGadgets().end());
         }
 
         // check if target is in line of sight of character
