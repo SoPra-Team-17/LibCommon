@@ -55,6 +55,7 @@ set(SOURCE
         datatypes/validation/gadget/PocketLitter.cpp
         datatypes/validation/gadget/DiamondCollar.cpp
         datatypes/validation/gadget/Cockttail.cpp
+        datatypes/validation/gadget/BowlerBlade.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp
@@ -81,7 +82,7 @@ set(SOURCE
         network/messages/RequestReplay.cpp
         network/messages/Replay.cpp
         network/messages/StatisticsMessage.cpp
-       )
+        )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMMON_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror -mtune=native -march=native)
