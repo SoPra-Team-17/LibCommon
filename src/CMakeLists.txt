@@ -37,6 +37,7 @@ set(SOURCE
         datatypes/validation/MovementValidator.cpp
         datatypes/validation/PropertyValidator.cpp
         datatypes/validation/gadget/GadgetValidator.cpp
+        datatypes/validation/gadget/Hairdryer.cpp
         datatypes/validation/gadget/RocketPen.cpp
         datatypes/validation/gadget/TechnicolourPrism.cpp
         datatypes/validation/gadget/PoisonPills.cpp

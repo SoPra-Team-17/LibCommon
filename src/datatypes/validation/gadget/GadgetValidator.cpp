@@ -12,6 +12,10 @@ namespace spy::gameplay {
         switch (op.getGadget()) {
             case GadgetEnum::ROCKET_PEN:
                 return GadgetValidator::validateRocketPen(s, op);
+
+            case GadgetEnum::HAIRDRYER:
+                return GadgetValidator::validateHairdryer(s, op);
+
             default:
                 return false;
         }
