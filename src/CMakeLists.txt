@@ -43,6 +43,7 @@ set(SOURCE
         datatypes/validation/gadget/LaserCompact.cpp
         datatypes/validation/gadget/MoleDie.cpp
         datatypes/validation/gadget/GasGloss.cpp
+        datatypes/validation/gadget/MothballPouch.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp

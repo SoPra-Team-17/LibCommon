@@ -1,5 +1,5 @@
 /**
- * @file   LaserCompact.cpp
+ * @file   RocketPen.cpp
  * @author Marco Deuscher
  * @date   28.04.2020 (creation)
  * @brief  Implemenation of rocket pen gadget validation.
@@ -17,7 +17,7 @@ namespace spy::gameplay {
             return false;
         }
 
-        // check if character has laser compact
+        // check if character has rocket pen
         bool hasRocketPen = spy::util::GadgetUtils::characterHasGadget(s, a.getCharacterId().value(),
                                                                        GadgetEnum::ROCKET_PEN);
         if (!hasRocketPen) {

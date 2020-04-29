@@ -19,7 +19,7 @@ namespace spy::gameplay {
             return false;
         }
 
-        // check if character has laser compact
+        // check if character has gas gloss
         bool hasGasGloss = spy::util::GadgetUtils::characterHasGadget(s, a.getCharacterId().value(),
                                                                       GadgetEnum::GAS_GLOSS);
         if (!hasGasGloss) {

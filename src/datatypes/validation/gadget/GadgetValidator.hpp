@@ -29,6 +29,8 @@ namespace spy::gameplay {
             static bool validateMoleDie(const State &s, GadgetAction a);
 
             static bool validateGasGloss(const State &s, GadgetAction a);
+
+            static bool validateMothballPouch(const State &s, GadgetAction a);
     };
 }
 

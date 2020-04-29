@@ -18,7 +18,7 @@ namespace spy::gameplay {
             return false;
         }
 
-        // check if character has laser compact
+        // check if character has mole die
         bool hasMoleDie = spy::util::GadgetUtils::characterHasGadget(s, a.getCharacterId().value(),
                                                                      GadgetEnum::MOLEDIE);
         if (!hasMoleDie) {
