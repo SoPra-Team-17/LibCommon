@@ -19,6 +19,8 @@ namespace spy::gameplay {
 
             Operation() = default;
 
+            virtual ~Operation() = default;
+
             Operation(OperationEnum type, bool successful, const util::Point &target);
 
             Operation(OperationEnum type, bool successful, const util::Point &target, util::UUID characterId);

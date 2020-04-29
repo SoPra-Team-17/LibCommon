@@ -103,7 +103,7 @@ TEST_F(MessageEncodeDecode, GameLeft) {
 }
 
 TEST_F(MessageEncodeDecode, GameOperation) {
-    spy::network::messages::GameOperation testMessage{exampleUUID1, exampleOperation};
+    spy::network::messages::GameOperation testMessage{exampleUUID1, std::make_shared<spy::gameplay::Operation>(exampleOperation)};
     testEncodeDecode(testMessage);
 }
 
