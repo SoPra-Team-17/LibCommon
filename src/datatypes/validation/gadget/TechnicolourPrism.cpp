@@ -11,22 +11,11 @@
 
 namespace spy::gameplay {
     bool GadgetValidator::validateTechnicolourPrism(const State &s, GadgetAction a) {
-        using spy::gadget::GadgetEnum;
-
-        if (!s.getMap().isInside(a.getTarget())) {
-            return false;
-        }
-
-        bool hasPrism = spy::util::GadgetUtils::characterHasGadget(s, a.getCharacterId().value(),
-                                                                   GadgetEnum::TECHNICOLOUR_PRISM);
-
         auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
         auto distance = gameplay::Movement::getMoveDistance(a.getTarget(), character->getCoordinates().value());
         bool targetIsRouletteTable = (s.getMap().getField(a.getTarget()).getFieldState() ==
                                       scenario::FieldStateEnum::ROULETTE_TABLE);
 
-        return distance == 1 &&
-               targetIsRouletteTable &&
-               hasPrism;
+        return distance == 1 && targetIsRouletteTable;
     }
 }

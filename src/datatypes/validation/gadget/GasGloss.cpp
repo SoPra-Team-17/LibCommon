@@ -12,20 +12,6 @@
 
 namespace spy::gameplay {
     bool GadgetValidator::validateGasGloss(const State &s, GadgetAction a) {
-        using spy::gadget::GadgetEnum;
-
-        // check if target inside map
-        if (!s.getMap().isInside(a.getTarget())) {
-            return false;
-        }
-
-        // check if character has gas gloss
-        bool hasGasGloss = spy::util::GadgetUtils::characterHasGadget(s, a.getCharacterId().value(),
-                                                                      GadgetEnum::GAS_GLOSS);
-        if (!hasGasGloss) {
-            return false;
-        }
-
         auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
         auto distance = Movement::getMoveDistance(character->getCoordinates().value(), a.getTarget());
         if (distance > 1) {

@@ -12,20 +12,6 @@
 namespace spy::gameplay {
 
     bool GadgetValidator::validateMothballPouch(const State &s, GadgetAction a) {
-        using spy::gadget::GadgetEnum;
-
-        // check if target inside map
-        if (!s.getMap().isInside(a.getTarget())) {
-            return false;
-        }
-
-        // check if character has mothball
-        bool hasMothball = spy::util::GadgetUtils::characterHasGadget(s, a.getCharacterId().value(),
-                                                                      GadgetEnum::MOTHBALL_POUCH);
-        if (!hasMothball) {
-            return false;
-        }
-
         // check if target field is fireplace
         bool targetIsFireplace = (s.getMap().getField(a.getTarget()).getFieldState() == scenario::FieldStateEnum::FIREPLACE);
         if (!targetIsFireplace){

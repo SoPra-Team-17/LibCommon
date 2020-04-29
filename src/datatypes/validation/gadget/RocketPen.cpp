@@ -10,20 +10,6 @@
 
 namespace spy::gameplay {
     bool GadgetValidator::validateRocketPen(const State &s, GadgetAction a) {
-        using spy::gadget::GadgetEnum;
-
-        // check if target inside map
-        if (!s.getMap().isInside(a.getTarget())) {
-            return false;
-        }
-
-        // check if character has rocket pen
-        bool hasRocketPen = spy::util::GadgetUtils::characterHasGadget(s, a.getCharacterId().value(),
-                                                                       GadgetEnum::ROCKET_PEN);
-        if (!hasRocketPen) {
-            return false;
-        }
-
         // check if target is in line of sight of character
         auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
         bool lineOfSightFree = s.getMap().isLineOfSightFree(character->getCoordinates().value(), a.getTarget());

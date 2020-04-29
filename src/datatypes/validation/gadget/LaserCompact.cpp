@@ -10,17 +10,6 @@
 
 namespace spy::gameplay {
     bool GadgetValidator::validateLaserCompact(const State &s, GadgetAction a) {
-        using spy::gadget::GadgetEnum;
-
-        // check if target inside map
-        if (!s.getMap().isInside(a.getTarget())) {
-            return false;
-        }
-
-        // check if character has laser compact
-        bool hasLaserCompact = spy::util::GadgetUtils::characterHasGadget(s, a.getCharacterId().value(),
-                                                                          GadgetEnum::LASER_COMPACT);
-
         // check if target contains cocktail
         bool targetHasCocktail = spy::util::GadgetUtils::hasCocktail(s, a.getTarget());
 
