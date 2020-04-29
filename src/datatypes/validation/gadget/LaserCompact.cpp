@@ -6,6 +6,7 @@
  */
 
 #include "datatypes/gameplay/Movement.hpp"
+#include "util/GadgetUtils.hpp"
 #include "GadgetValidator.hpp"
 
 namespace spy::gameplay{
@@ -25,22 +26,7 @@ namespace spy::gameplay{
         });
 
         // check if target contains cocktail
-        bool targetHasCocktail = false;
-        auto targetFieldGadget = s.getMap().getField(a.getTarget()).getGadget();
-        if (targetFieldGadget.has_value()) {
-            targetHasCocktail = targetFieldGadget->getType() == GadgetEnum::COCKTAIL;
-        }
-        if(!targetHasCocktail){
-            // find person on target coords
-            auto person = std::find_if(s.getCharacters().begin(), s.getCharacters().end(), [&a](const character::Character &c){
-                return c.getCoordinates() == a.getTarget();
-            });
-            // check if person has cocktail
-            auto cocktail = std::find_if(person->getGadgets().begin(), person->getGadgets().end(), [](const gadget::Gadget &g){
-                return g.getType() == GadgetEnum::COCKTAIL;
-            });
-            targetHasCocktail = (cocktail != person->getGadgets().end());
-        }
+        bool targetHasCocktail = spy::util::GadgetUtils::hasCocktail(s, a.getTarget());
 
         // check if target is in line of sight of character
         bool lineOfSightFree = s.getMap().isLineOfSightFree(a.getTarget(), character->getCoordinates().value());
