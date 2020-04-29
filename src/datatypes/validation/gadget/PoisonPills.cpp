@@ -28,7 +28,7 @@ namespace spy::gameplay {
         bool targetHasCocktail = false;
         auto targetFieldGadget = s.getMap().getField(a.getTarget()).getGadget();
         if (targetFieldGadget.has_value()) {
-            targetHasCocktail = targetFieldGadget->getType() == GadgetEnum::COCKTAIL;
+            targetHasCocktail = (targetFieldGadget->getType() == GadgetEnum::COCKTAIL);
         }
         if(!targetHasCocktail){
             // find person on target coords
