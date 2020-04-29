@@ -6,7 +6,6 @@
  */
 
 #include "GadgetValidator.hpp"
-#include "util/GadgetUtils.hpp"
 
 namespace spy::gameplay {
     bool GadgetValidator::validateRocketPen(const State &s, GadgetAction a) {

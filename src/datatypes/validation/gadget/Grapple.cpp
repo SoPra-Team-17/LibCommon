@@ -5,7 +5,6 @@
 * @brief  Implemenation of grapple gadget validation.
 */
 
-#include "util/GadgetUtils.hpp"
 #include "GadgetValidator.hpp"
 
 namespace spy::gameplay {

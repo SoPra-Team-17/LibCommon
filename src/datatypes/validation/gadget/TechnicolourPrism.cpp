@@ -6,7 +6,6 @@
  */
 
 #include "datatypes/gameplay/Movement.hpp"
-#include "util/GadgetUtils.hpp"
 #include "GadgetValidator.hpp"
 
 namespace spy::gameplay {

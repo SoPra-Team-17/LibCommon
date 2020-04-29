@@ -5,7 +5,6 @@
 * @brief  Implemenation of jetpack gadget validation.
 */
 
-#include "util/GadgetUtils.hpp"
 #include "GadgetValidator.hpp"
 
 namespace spy::gameplay {

@@ -6,7 +6,6 @@
  */
 
 
-#include "util/GadgetUtils.hpp"
 #include "datatypes/gameplay/Movement.hpp"
 #include "GadgetValidator.hpp"
 

@@ -5,7 +5,6 @@
  * @brief  Implemenation of mothball pouch gadget validation.
  */
 
-#include "util/GadgetUtils.hpp"
 #include "datatypes/gameplay/Movement.hpp"
 #include "GadgetValidator.hpp"
 
