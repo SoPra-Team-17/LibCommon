@@ -17,6 +17,6 @@ namespace spy::gameplay {
         auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
         bool lineOfSightFree = s.getMap().isLineOfSightFree(a.getTarget(), character->getCoordinates().value());
 
-        return lineOfSightFree && targetHasCocktail && hasLaserCompact;
+        return lineOfSightFree && targetHasCocktail;
     }
 }

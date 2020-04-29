@@ -17,7 +17,6 @@ namespace spy::gameplay {
         }
 
         // check if character has gadget
-        auto gadget = op.getGadget();
         bool hasGadget = spy::util::GadgetUtils::characterHasGadget(s, op.getCharacterId().value(),
                                                                     op.getGadget());
         if (!hasGadget) {
