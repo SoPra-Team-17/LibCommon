@@ -28,7 +28,7 @@ set(SOURCES
         messages/debugInfoTest.cpp
         messages/messageValidateTest.cpp
         gameLogic/lineOfSightTests.cpp
-        gameLogic/movementTests.cpp)
+        datatypes/validation/movementTests.cpp)
 
 add_executable(allTests ${SOURCES})
 target_compile_options(allTests PRIVATE ${COMMON_CXX_FLAGS})
