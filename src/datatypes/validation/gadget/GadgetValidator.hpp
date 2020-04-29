@@ -51,6 +51,8 @@ namespace spy::gameplay {
             static bool validatePocketLitter(const State &s, GadgetAction a);
 
             static bool validateDiamondCollar(const State &s, GadgetAction a);
+
+            static bool validateCocktail(const State &s, GadgetAction a);
     };
 }
 
