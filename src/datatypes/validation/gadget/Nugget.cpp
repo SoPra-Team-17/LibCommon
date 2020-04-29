@@ -1,8 +1,8 @@
 /**
-* @file   WiretapWithEarplugs.cpp
+* @file   Nugget.cpp
 * @author Marco Deuscher
 * @date   28.04.2020 (creation)
-* @brief  Implemenation of wiretap with earplugs gadget validation.
+* @brief  Implemenation of nugget gadget validation.
 */
 
 #include "GadgetValidator.hpp"
@@ -10,7 +10,7 @@
 
 namespace spy::gameplay {
 
-    bool GadgetValidator::validateWiretapWithEarplugs(const State &s, GadgetAction a) {
+    bool GadgetValidator::validateNugget(const State &s, GadgetAction a) {
         auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
         return spy::util::GadgetUtils::personOnNeighboringField(s, a.getTarget(), character->getCoordinates().value());
     }

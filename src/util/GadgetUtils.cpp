@@ -6,6 +6,7 @@
  */
 
 #include "GadgetUtils.hpp"
+#include "gameplay/Movement.hpp"
 
 namespace spy::util {
     bool GadgetUtils::hasCocktail(const spy::gameplay::State &s, const Point &pt) {
@@ -47,5 +48,20 @@ namespace spy::util {
         });
 
         return gadget != gadgets.end();
+    }
+
+    bool GadgetUtils::personOnNeighboringField(const gameplay::State &s, const Point &target, const Point &charCoord) {
+        // check distance
+        auto distance = gameplay::Movement::getMoveDistance(charCoord, target);
+        if (distance != 1) {
+            return false;
+        }
+
+        // check if person on target field
+        auto person = std::find_if(s.getCharacters().begin(), s.getCharacters().end(),
+                                   [target](const character::Character &c) {
+                                       return c.getCoordinates() == target;
+                                   });
+        return !(person == s.getCharacters().end());
     }
 }

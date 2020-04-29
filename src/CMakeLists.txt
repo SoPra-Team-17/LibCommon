@@ -50,6 +50,7 @@ set(SOURCE
         datatypes/validation/gadget/MagneticWatch.cpp
         datatypes/validation/gadget/WiretapWithEarplugs.cpp
         datatypes/validation/gadget/ChickenFeed.cpp
+        datatypes/validation/gadget/Nugget.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp

@@ -25,6 +25,7 @@ namespace spy::util {
 
             static bool characterHasGadget(const spy::gameplay::State &s, const UUID &id, spy::gadget::GadgetEnum type);
 
+            static bool personOnNeighboringField(const spy::gameplay::State &s, const Point &target, const Point &charCoord);
     };
 }
 
