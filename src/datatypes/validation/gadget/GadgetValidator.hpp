@@ -41,6 +41,8 @@ namespace spy::gameplay {
             static bool validateMagneticWatch(const State &s, GadgetAction a);
 
             static bool validateWiretapWithEarplugs(const State &s, GadgetAction a);
+
+            static bool validateChickenFeed(const State &s, GadgetAction a);
     };
 }
 
