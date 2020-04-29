@@ -45,6 +45,7 @@ set(SOURCE
         datatypes/validation/gadget/GasGloss.cpp
         datatypes/validation/gadget/MothballPouch.cpp
         datatypes/validation/gadget/FogTin.cpp
+        datatypes/validation/gadget/Grapple.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp

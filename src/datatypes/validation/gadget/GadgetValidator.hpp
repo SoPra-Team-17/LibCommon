@@ -33,6 +33,8 @@ namespace spy::gameplay {
             static bool validateMothballPouch(const State &s, GadgetAction a);
 
             static bool validateFogTin(const State &s, GadgetAction a);
+
+            static bool validateGrapple(const State &s, GadgetAction a);
     };
 }
 
