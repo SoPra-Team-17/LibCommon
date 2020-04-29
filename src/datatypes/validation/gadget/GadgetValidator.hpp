@@ -37,6 +37,8 @@ namespace spy::gameplay {
             static bool validateGrapple(const State &s, GadgetAction a);
 
             static bool validateJetpack(const State &s, GadgetAction a);
+
+            static bool validateMagneticWatch(const State &s, GadgetAction a);
     };
 }
 
