@@ -23,6 +23,8 @@ namespace spy::util {
              */
             static bool hasCocktail(const spy::gameplay::State &s, const Point &pt);
 
+            static bool characterHasGadget(const spy::gameplay::State &s, const UUID &id, spy::gadget::GadgetEnum type);
+
     };
 }
 

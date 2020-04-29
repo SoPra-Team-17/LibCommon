@@ -6,26 +6,27 @@
  */
 
 #include "datatypes/gameplay/Movement.hpp"
+#include "util/GadgetUtils.hpp"
 #include "GadgetValidator.hpp"
 
 namespace spy::gameplay {
     bool GadgetValidator::validateTechnicolourPrism(const State &s, GadgetAction a) {
+        using spy::gadget::GadgetEnum;
+
         if (!s.getMap().isInside(a.getTarget())) {
             return false;
         }
 
-        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
-        auto gadgets = character->getGadgets();
-        auto gadget = std::find_if(gadgets.begin(), gadgets.end(), [](const gadget::Gadget &g) {
-            return g.getType() == gadget::GadgetEnum::TECHNICOLOUR_PRISM;
-        });
+        bool hasPrism = spy::util::GadgetUtils::characterHasGadget(s, a.getCharacterId().value(),
+                                                                   GadgetEnum::TECHNICOLOUR_PRISM);
 
+        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
         auto distance = gameplay::Movement::getMoveDistance(a.getTarget(), character->getCoordinates().value());
         bool targetIsRouletteTable = (s.getMap().getField(a.getTarget()).getFieldState() ==
                                       scenario::FieldStateEnum::ROULETTE_TABLE);
 
         return distance == 1 &&
                targetIsRouletteTable &&
-               gadget != gadgets.end();
+               hasPrism;
     }
 }

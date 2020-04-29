@@ -19,17 +19,15 @@ namespace spy::gameplay {
         }
 
         // check if character has poisonous pills
-        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
-        auto gadgets = character->getGadgets();
-        auto gadget = std::find_if(gadgets.begin(), gadgets.end(), [](const gadget::Gadget &g) {
-            return g.getType() == GadgetEnum::POISON_PILLS;
-        });
+        bool characterHasPills = spy::util::GadgetUtils::characterHasGadget(s, a.getCharacterId().value(),
+                                                                            GadgetEnum::POISON_PILLS);
 
         // check if target contains cocktail
         bool targetHasCocktail = spy::util::GadgetUtils::hasCocktail(s, a.getTarget());
         // check if target is adjacent field
+        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
         auto distance = gameplay::Movement::getMoveDistance(a.getTarget(), character->getCoordinates().value());
 
-        return targetHasCocktail && distance == 1 && gadget != gadgets.end();
+        return targetHasCocktail && distance == 1 && characterHasPills;
     }
 }
