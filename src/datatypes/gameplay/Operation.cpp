@@ -8,14 +8,10 @@
 namespace spy::gameplay {
 
     Operation::Operation(OperationEnum type, bool successful, const util::Point &target) :
-            type{type},
-            successful{successful},
-            target{target} {}
+            BaseOperation(type, successful, target) {}
 
     Operation::Operation(OperationEnum type, bool successful, const util::Point &target, util::UUID characterId) :
-            type{type},
-            successful{successful},
-            target{target},
+            BaseOperation(type, successful, target),
             characterId{characterId} {}
 
     void Operation::common_to_json(nlohmann::json &j, const Operation &op) {
@@ -42,18 +38,6 @@ namespace spy::gameplay {
 
     void from_json(const nlohmann::json &j, Operation &o) {
         Operation::common_from_json(j, o);
-    }
-
-    OperationEnum Operation::getType() const {
-        return type;
-    }
-
-    bool Operation::isSuccessful() const {
-        return successful;
-    }
-
-    const util::Point &Operation::getTarget() const {
-        return target;
     }
 
     const std::optional<util::UUID> &Operation::getCharacterId() const {

@@ -12,24 +12,17 @@
 #include <util/Point.hpp>
 #include <util/UUID.hpp>
 #include <util/OptionalSerialization.hpp>
+#include "BaseOperation.hpp"
 
 namespace spy::gameplay {
-    class Operation {
+    class Operation : public BaseOperation {
         public:
 
             Operation() = default;
 
-            virtual ~Operation() = default;
-
             Operation(OperationEnum type, bool successful, const util::Point &target);
 
             Operation(OperationEnum type, bool successful, const util::Point &target, util::UUID characterId);
-
-            [[nodiscard]] OperationEnum getType() const;
-
-            [[nodiscard]] bool isSuccessful() const;
-
-            [[nodiscard]] const util::Point &getTarget() const;
 
             [[nodiscard]] const std::optional<util::UUID> &getCharacterId() const;
 
@@ -46,9 +39,6 @@ namespace spy::gameplay {
             friend void from_json(const nlohmann::json &j, Operation &o);
 
         private:
-            OperationEnum type = OperationEnum::INVALID;
-            bool successful;
-            util::Point target;
             std::optional<util::UUID> characterId;
     };
 }

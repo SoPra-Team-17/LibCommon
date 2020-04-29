@@ -4,6 +4,7 @@ project(SopraCommon)
 find_package(nlohmann_json REQUIRED)
 
 set(SOURCE
+        datatypes/gameplay/BaseOperation.cpp
         datatypes/gadgets/Gadget.cpp
         datatypes/gadgets/WiretapWithEarplugs.cpp
         datatypes/gadgets/Cocktail.cpp
