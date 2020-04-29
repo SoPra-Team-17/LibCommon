@@ -30,7 +30,8 @@ set(SOURCES
         gameLogic/lineOfSightTests.cpp
         datatypes/validation/movementTests.cpp
         datatypes/validation/gadget/hairdryerTests.cpp
-        datatypes/validation/gadget/technicolourPrismTests.cpp)
+        datatypes/validation/gadget/technicolourPrismTests.cpp
+        datatypes/validation/gadget/cocktailTests.cpp)
 
 add_executable(allTests ${SOURCES})
 target_compile_options(allTests PRIVATE ${COMMON_CXX_FLAGS})
