@@ -27,6 +27,7 @@ set(SOURCES
         messages/messageEncodeDecode.cpp
         messages/debugInfoTest.cpp
         messages/messageValidateTest.cpp
+        gameLogic/gadgets.cpp
         gameLogic/lineOfSightTests.cpp
         datatypes/validation/movementTests.cpp
         datatypes/validation/gadget/hairdryerTests.cpp
