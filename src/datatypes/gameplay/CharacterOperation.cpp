@@ -32,9 +32,7 @@ namespace spy::gameplay {
     }
 
     bool CharacterOperation::isCharacterEqual(const CharacterOperation &rhs) const {
-        bool r = std::tie(type, successful, target, characterId) ==
-                 std::tie(rhs.type, rhs.successful, rhs.target, rhs.characterId);
-        std::cout << "Compared (utility) CharacterOperation: " << r << std::endl;
-        return r;
+        return std::tie(type, successful, target, characterId) ==
+               std::tie(rhs.type, rhs.successful, rhs.target, rhs.characterId);
     }
 }

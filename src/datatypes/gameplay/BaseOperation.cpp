@@ -37,10 +37,7 @@ namespace spy::gameplay {
     }
 
     bool BaseOperation::operator==(const BaseOperation &rhs) const {
-        std::cout << "Comparing BaseOperation" << std::endl;
-        bool r = typeid(*this) == typeid(rhs) && isEqual(rhs);
-        std::cout << "Comparing BaseOperation resulted in " << r << std::endl;
-        return r;
+        return typeid(*this) == typeid(rhs) && isEqual(rhs);
     }
 
     bool BaseOperation::operator!=(const BaseOperation &rhs) const {

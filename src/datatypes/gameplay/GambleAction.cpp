@@ -26,7 +26,7 @@ namespace spy::gameplay {
     }
 
     bool GambleAction::isEqual(const BaseOperation &rhs_b) const {
-        auto rhs = static_cast<const GambleAction &>(rhs_b);
+        auto rhs = dynamic_cast<const GambleAction &>(rhs_b);
         return isCharacterEqual(rhs) && stake == rhs.stake;
     }
 }

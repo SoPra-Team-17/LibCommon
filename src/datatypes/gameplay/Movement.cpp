@@ -32,8 +32,7 @@ namespace spy::gameplay {
     }
 
     bool Movement::isEqual(const BaseOperation &rhs_b) const {
-        auto rhs = static_cast<const Movement &>(rhs_b);
-        std::cout << "Comparing Movement" << std::endl;
+        auto rhs = dynamic_cast<const Movement &>(rhs_b);
         return isCharacterEqual(rhs) && from == rhs.from;
     }
 }

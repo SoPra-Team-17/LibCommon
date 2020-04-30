@@ -27,7 +27,7 @@ namespace spy::gameplay {
         private:
             util::Point from{};
 
-            bool isEqual(const BaseOperation &rhs) const override;
+            [[nodiscard]] bool isEqual(const BaseOperation &rhs) const override;
     };
 
 }

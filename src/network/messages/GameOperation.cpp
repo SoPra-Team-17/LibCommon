@@ -30,9 +30,7 @@ namespace spy::network::messages {
     }
 
     bool GameOperation::operator==(const GameOperation &rhs) const {
-        auto r = isEqual(rhs) && (operation->operator==(*(rhs.operation)));
-        std::cout << "Compared GameOperation: " << r << std::endl;
-        return r;
+        return isEqual(rhs) && (operation->operator==(*(rhs.operation)));
     }
 
     bool GameOperation::validate(RoleEnum playerRole, spy::gameplay::State &state) const {

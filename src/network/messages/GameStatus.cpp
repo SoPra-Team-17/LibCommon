@@ -54,7 +54,6 @@ namespace spy::network::messages {
     }
 
     bool GameStatus::operator==(const GameStatus &rhs) const {
-        std::cout << "Comparing GameStatus" << std::endl;
         if (operations.size() != rhs.operations.size()) {
             return false;
         }

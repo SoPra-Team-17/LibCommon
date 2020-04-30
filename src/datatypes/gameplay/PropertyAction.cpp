@@ -25,7 +25,7 @@ namespace spy::gameplay {
     }
 
     bool PropertyAction::isEqual(const BaseOperation &rhs_b) const {
-        auto rhs = static_cast<const PropertyAction &>(rhs_b);
+        auto rhs = dynamic_cast<const PropertyAction &>(rhs_b);
         return isCharacterEqual(rhs) && usedProperty == rhs.usedProperty;
     }
 }

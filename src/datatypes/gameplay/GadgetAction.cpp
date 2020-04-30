@@ -26,7 +26,7 @@ namespace spy::gameplay {
     }
 
     bool GadgetAction::isEqual(const BaseOperation &rhs_b) const {
-        auto rhs = static_cast<const GadgetAction &>(rhs_b);
+        auto rhs = dynamic_cast<const GadgetAction &>(rhs_b);
         return isCharacterEqual(rhs) && gadget == rhs.gadget;
     }
 }

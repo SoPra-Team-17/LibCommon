@@ -27,7 +27,7 @@ namespace spy::gameplay {
         private:
             character::PropertyEnum usedProperty;
 
-            bool isEqual(const BaseOperation &rhs) const override;
+            [[nodiscard]] bool isEqual(const BaseOperation &rhs) const override;
     };
 }
 #endif //LIBCOMMON_PROPERTYACTION_HPP

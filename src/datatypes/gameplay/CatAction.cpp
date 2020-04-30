@@ -16,6 +16,7 @@ namespace spy::gameplay {
     }
 
     bool CatAction::isEqual(const BaseOperation &) const {
+        // This class does not add members
         return true;
     }
 }

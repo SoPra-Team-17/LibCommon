@@ -39,12 +39,13 @@ namespace spy::gameplay {
             util::Point target;
 
         private:
+
             /**
-             * Shall only be called with the same derived class
-             * @param rhs
-             * @return
+             * This method shall be overridden by deriving classes to perform equality check.
+             * The deriving class can assume that the parameter rhs is of the same type as the class.
+             * This method shall only be called from BaseOperation::operator==.
              */
-            virtual bool isEqual(const BaseOperation &rhs) const = 0;
+            [[nodiscard]] virtual bool isEqual(const BaseOperation &rhs) const = 0;
     };
 }
 

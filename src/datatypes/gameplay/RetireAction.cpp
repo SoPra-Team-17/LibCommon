@@ -16,8 +16,7 @@ namespace spy::gameplay {
         BaseOperation::common_from_json(j, e);
     }
 
-    bool RetireAction::isEqual(const BaseOperation &) const {
-        //TODO equality of character-operation members
-        return true;
+    bool RetireAction::isEqual(const BaseOperation &rhs) const {
+        return isCharacterEqual(dynamic_cast<const CharacterOperation &>(rhs));
     }
 }

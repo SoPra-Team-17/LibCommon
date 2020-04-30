@@ -70,9 +70,7 @@ namespace spy::network {
     }
 
     bool MessageContainer::isEqual(const MessageContainer &rhs) const {
-        auto r = std::tie(playerId, type, creationDate, debugMessage) ==
-                 std::tie(rhs.playerId, rhs.type, rhs.creationDate, rhs.debugMessage);
-        std::cout << "Compared MessageContainer (helper): " << r << std::endl;
-        return r;
+        return std::tie(playerId, type, creationDate, debugMessage) ==
+               std::tie(rhs.playerId, rhs.type, rhs.creationDate, rhs.debugMessage);
     }
 }

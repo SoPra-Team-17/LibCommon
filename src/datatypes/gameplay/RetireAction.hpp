@@ -17,7 +17,7 @@ namespace spy::gameplay {
             friend void from_json(const nlohmann::json &j, RetireAction &e);
 
         private:
-            bool isEqual(const BaseOperation &rhs) const override;
+            [[nodiscard]] bool isEqual(const BaseOperation &rhs) const override;
     };
 }
 

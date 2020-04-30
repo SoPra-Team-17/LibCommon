@@ -36,10 +36,16 @@ namespace spy::gameplay {
 
             util::UUID characterId;
 
-            bool isCharacterEqual(const CharacterOperation &rhs) const;
+            /**
+             * Compare the common elements of CharacterOperation, excluding inherited members.
+             * This is intentionally not in operator== to prevent overriding.
+             * This is intended to be used in operator== of deriving classes.
+             */
+            [[nodiscard]] bool isCharacterEqual(const CharacterOperation &rhs) const;
 
         private:
-            virtual bool isEqual(const BaseOperation &rhs) const override = 0;
+
+            [[nodiscard]] bool isEqual(const BaseOperation &rhs) const override = 0;
     };
 }
 
