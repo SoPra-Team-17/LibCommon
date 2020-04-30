@@ -7,27 +7,33 @@
 
 #include <util/Point.hpp>
 #include <util/UUID.hpp>
+#include <iostream>
 #include "OperationEnum.hpp"
 
 namespace spy::gameplay {
     class BaseOperation {
         public:
-
-            BaseOperation() = default;
-
-            virtual ~BaseOperation() = default;
-
-            BaseOperation(OperationEnum type, bool successful, const util::Point &target);
-
             [[nodiscard]] OperationEnum getType() const;
 
             [[nodiscard]] bool isSuccessful() const;
 
             [[nodiscard]] const util::Point &getTarget() const;
 
+            static void common_to_json(nlohmann::json &j, const BaseOperation &op);
+
+            static void common_from_json(const nlohmann::json &j, BaseOperation &op);
+
+            virtual ~BaseOperation() = default;
+
+            virtual bool operator==(const BaseOperation &rhs);
+
         protected:
+            BaseOperation() = default;
+
+            BaseOperation(OperationEnum type, bool successful, const util::Point &target);
+
             OperationEnum type = OperationEnum::INVALID;
-            bool successful;
+            bool successful = false;
             util::Point target;
     };
 }

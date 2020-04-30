@@ -7,10 +7,10 @@
 #ifndef LIBCOMMON_EXFILTRATION_HPP
 #define LIBCOMMON_EXFILTRATION_HPP
 
-#include "Operation.hpp"
+#include "CharacterOperation.hpp"
 
 namespace spy::gameplay {
-    class Exfiltration : public Operation {
+    class Exfiltration : public CharacterOperation {
         public:
 
             Exfiltration() = default;

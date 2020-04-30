@@ -7,11 +7,11 @@
 #ifndef LIBCOMMON_MOVEMENT_HPP
 #define LIBCOMMON_MOVEMENT_HPP
 
-#include "Operation.hpp"
+#include "CharacterOperation.hpp"
 #include <util/Point.hpp>
 
 namespace spy::gameplay {
-    class Movement : public Operation {
+    class Movement : public CharacterOperation {
         public:
             Movement() = default;
 

@@ -76,7 +76,7 @@ namespace spy::gameplay {
             return false;
         }
 
-        auto character = characters.getByUUID(op.getCharacterId().value());
+        auto character = characters.getByUUID(op.getCharacterId());
 
         // search for character at target position
         auto charTarget = std::find_if(characters.begin(), characters.end(), [&op](const character::Character &c) {

@@ -6,20 +6,37 @@
 
 namespace spy::gameplay {
 
-    bool ActionValidator::validate(const State &s, const std::shared_ptr<Operation>& op) {
+    bool ActionValidator::validate(const State &s, std::shared_ptr<const BaseOperation> op) {
         switch (op->getType()) {
             case spy::gameplay::OperationEnum::MOVEMENT:
-                return ActionValidator::validate(s, *std::dynamic_pointer_cast<gameplay::Movement>(op));
+                return ActionValidator::validateMovement(s, *std::dynamic_pointer_cast<const gameplay::Movement>(op));
             case gameplay::OperationEnum::GADGET_ACTION:
-                return ActionValidator::validate(s, *std::dynamic_pointer_cast<gameplay::GadgetAction>(op));
+                return ActionValidator::validateGadgetAction(s,
+                                                             *std::dynamic_pointer_cast<const gameplay::GadgetAction>(
+                                                                     op));
             case gameplay::OperationEnum::GAMBLE_ACTION:
-                return ActionValidator::validate(s, *std::dynamic_pointer_cast<gameplay::GambleAction>(op));
+                return ActionValidator::validateGambleAction(s,
+                                                             *std::dynamic_pointer_cast<const gameplay::GambleAction>(
+                                                                     op));
             case gameplay::OperationEnum::PROPERTY_ACTION:
-                return ActionValidator::validate(s, *std::dynamic_pointer_cast<gameplay::PropertyAction>(op));
+                return ActionValidator::validatePropertyAction(s,
+                                                               *std::dynamic_pointer_cast<const gameplay::PropertyAction>(
+                                                                       op));
             case gameplay::OperationEnum::EXFILTRATION:
-                return ActionValidator::validate(s, *std::dynamic_pointer_cast<gameplay::Exfiltration>(op));
-            default:
-                return ActionValidator::validate(s, *op);
+                return ActionValidator::validateExfiltration(s,
+                                                             *std::dynamic_pointer_cast<const gameplay::Exfiltration>(
+                                                                     op));
+            case OperationEnum::SPY_ACTION:
+                break;
+            case OperationEnum::CAT_ACTION:
+                break;
+            case OperationEnum::JANITOR_ACTION:
+                break;
+            case OperationEnum::RETIRE:
+                break;
+            case OperationEnum::INVALID:
+                break;
         }
+        return false;
     }
 }

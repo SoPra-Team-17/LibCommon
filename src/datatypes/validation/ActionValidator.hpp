@@ -19,21 +19,19 @@ namespace spy::gameplay {
             // Static class
             ActionValidator() = delete;
 
-            static bool validate(const State &s, const std::shared_ptr<Operation>& op);
+            static bool validate(const State &s, std::shared_ptr<const BaseOperation> op);
 
         private:
 
-            static bool validate(const State &s, Operation op);
+            static bool validateExfiltration(const State &s, Exfiltration op);
 
-            static bool validate(const State &s, Exfiltration op);
+            static bool validateGadgetAction(const State &s, GadgetAction op);
 
-            static bool validate(const State &s, GadgetAction op);
+            static bool validateGambleAction(const State &s, GambleAction op);
 
-            static bool validate(const State &s, GambleAction op);
+            static bool validateMovement(const State &s, Movement op);
 
-            static bool validate(const State &s, Movement op);
-
-            static bool validate(const State &s, PropertyAction op);
+            static bool validatePropertyAction(const State &s, PropertyAction op);
 
     };
 }

@@ -23,4 +23,21 @@ namespace spy::gameplay {
     const util::Point &BaseOperation::getTarget() const {
         return target;
     }
+
+    void BaseOperation::common_to_json(nlohmann::json &j, const BaseOperation &op) {
+        j["type"] = op.type;
+        j["successful"] = op.successful;
+        j["target"] = op.target;
+    }
+
+    void BaseOperation::common_from_json(const nlohmann::json &j, BaseOperation &op) {
+        j.at("type").get_to(op.type);
+        j.at("successful").get_to(op.successful);
+        j.at("target").get_to(op.target);
+    }
+
+    bool BaseOperation::operator==(const BaseOperation &/*rhs*/) {
+        std::cout << "Comparing BaseOperation (false)" << std::endl;
+        return false;
+    }
 }

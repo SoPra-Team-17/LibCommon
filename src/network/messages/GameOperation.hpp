@@ -6,7 +6,7 @@
 #define LIBCOMMON_GAMEOPERATION_HPP
 
 #include <network/MessageContainer.hpp>
-#include <datatypes/gameplay/Operation.hpp>
+#include <datatypes/gameplay/CharacterOperation.hpp>
 #include <network/RoleEnum.hpp>
 #include <datatypes/gameplay/State.hpp>
 
@@ -15,9 +15,9 @@ namespace spy::network::messages {
         public:
             GameOperation();
 
-            GameOperation(util::UUID playerId, std::shared_ptr<gameplay::Operation> operation);
+            GameOperation(util::UUID playerId, std::shared_ptr<gameplay::BaseOperation> operation);
 
-            [[nodiscard]] const std::shared_ptr<gameplay::Operation> &getOperation() const;
+            [[nodiscard]] const std::shared_ptr<gameplay::BaseOperation> &getOperation() const;
 
             friend void to_json(nlohmann::json &j, const GameOperation &g);
 
@@ -34,8 +34,11 @@ namespace spy::network::messages {
              */
             [[nodiscard]] bool validate(RoleEnum playerRole, spy::gameplay::State &state) const;
 
+            friend std::ostream &operator<<(std::ostream &os, const GameOperation &metaInformation);
+
+
         private:
-            std::shared_ptr<gameplay::Operation> operation;
+            std::shared_ptr<gameplay::BaseOperation> operation;
     };
 }
 

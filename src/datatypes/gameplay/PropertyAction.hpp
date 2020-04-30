@@ -7,11 +7,11 @@
 #ifndef LIBCOMMON_PROPERTYACTION_HPP
 #define LIBCOMMON_PROPERTYACTION_HPP
 
-#include "Operation.hpp"
+#include "CharacterOperation.hpp"
 #include <datatypes/character/PropertyEnum.hpp>
 
 namespace spy::gameplay {
-    class PropertyAction : public Operation {
+    class PropertyAction : public CharacterOperation {
         public:
             PropertyAction() = default;
 

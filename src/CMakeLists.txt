@@ -12,7 +12,7 @@ set(SOURCE
         datatypes/gameplay/GadgetAction.cpp
         datatypes/gameplay/GambleAction.cpp
         datatypes/gameplay/Movement.cpp
-        datatypes/gameplay/Operation.cpp
+        datatypes/gameplay/CharacterOperation.cpp
         datatypes/gameplay/PropertyAction.cpp
         datatypes/character/Character.cpp
         datatypes/character/CharacterInformation.cpp
@@ -25,7 +25,6 @@ set(SOURCE
         datatypes/execution/ActionExecutor_Property.cpp
         datatypes/execution/gadget/GadgetExecutor.cpp
         datatypes/execution/ActionExecutor.cpp
-        datatypes/execution/ActionExecutor_Operation.cpp
         datatypes/matchconfig/MatchConfig.cpp
         datatypes/scenario/Scenario.cpp
         datatypes/scenario/Scenario.cpp
@@ -42,7 +41,6 @@ set(SOURCE
         datatypes/validation/gadget/GadgetValidator.cpp
         datatypes/validation/gadget/RocketPen.cpp
         datatypes/validation/ActionValidator.cpp
-        datatypes/validation/OperationValidator.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp
@@ -67,7 +65,7 @@ set(SOURCE
         network/messages/Strike.cpp
         network/messages/RequestReplay.cpp
         network/messages/Replay.cpp
-        network/messages/StatisticsMessage.cpp)
+        network/messages/StatisticsMessage.cpp datatypes/gameplay/CatAction.cpp datatypes/gameplay/CatAction.hpp datatypes/gameplay/JanitorAction.cpp datatypes/gameplay/JanitorAction.hpp datatypes/gameplay/SpyAction.cpp datatypes/gameplay/SpyAction.hpp datatypes/gameplay/RetireAction.cpp datatypes/gameplay/RetireAction.hpp datatypes/gameplay/OperationJson.cpp datatypes/gameplay/OperationJson.hpp)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMMON_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror -mtune=native -march=native)

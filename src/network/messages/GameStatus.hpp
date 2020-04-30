@@ -5,7 +5,7 @@
 #ifndef LIBCOMMON_GAMESTATUS_HPP
 #define LIBCOMMON_GAMESTATUS_HPP
 
-#include <datatypes/gameplay/Operation.hpp>
+#include <datatypes/gameplay/CharacterOperation.hpp>
 #include <datatypes/gameplay/State.hpp>
 #include <network/MessageContainer.hpp>
 
@@ -16,12 +16,13 @@ namespace spy::network::messages {
             GameStatus();
 
             GameStatus(const util::UUID &playerId, const util::UUID &activeCharacterId,
-                       const std::vector<spy::gameplay::Operation> &operations, const spy::gameplay::State &state,
+                       std::vector<std::shared_ptr<spy::gameplay::BaseOperation>> operations,
+                       const spy::gameplay::State &state,
                        bool isGameOver);
 
             [[nodiscard]] const util::UUID &getActiveCharacterId() const;
 
-            [[nodiscard]] const std::vector<spy::gameplay::Operation> &getOperations() const;
+            [[nodiscard]] const std::vector<std::shared_ptr<spy::gameplay::BaseOperation>> &getOperations() const;
 
             [[nodiscard]] const spy::gameplay::State &getState() const;
 
@@ -35,7 +36,7 @@ namespace spy::network::messages {
 
         private:
             util::UUID activeCharacterId;
-            std::vector<spy::gameplay::Operation> operations;
+            std::vector<std::shared_ptr<spy::gameplay::BaseOperation>> operations;
             spy::gameplay::State state;
             bool isGameOver;
 

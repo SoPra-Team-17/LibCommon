@@ -6,20 +6,31 @@
 
 namespace spy::gameplay {
 
-    bool ActionExecutor::execute(State &s, const std::shared_ptr<Operation> &op) {
+    bool ActionExecutor::execute(State &s, const std::shared_ptr<const BaseOperation> op) {
         switch (op->getType()) {
             case spy::gameplay::OperationEnum::MOVEMENT:
-                return ActionExecutor::execute(s, *std::dynamic_pointer_cast<gameplay::Movement>(op));
+                return ActionExecutor::executeMovement(s, *std::dynamic_pointer_cast<const gameplay::Movement>(op));
             case gameplay::OperationEnum::GADGET_ACTION:
-                return ActionExecutor::execute(s, *std::dynamic_pointer_cast<gameplay::GadgetAction>(op));
+                return ActionExecutor::executeGadget(s, *std::dynamic_pointer_cast<const gameplay::GadgetAction>(op));
             case gameplay::OperationEnum::GAMBLE_ACTION:
-                return ActionExecutor::execute(s, *std::dynamic_pointer_cast<gameplay::GambleAction>(op));
+                return ActionExecutor::executeGamble(s, *std::dynamic_pointer_cast<const gameplay::GambleAction>(op));
             case gameplay::OperationEnum::PROPERTY_ACTION:
-                return ActionExecutor::execute(s, *std::dynamic_pointer_cast<gameplay::PropertyAction>(op));
+                return ActionExecutor::executeProperty(s,
+                                                       *std::dynamic_pointer_cast<const gameplay::PropertyAction>(op));
             case gameplay::OperationEnum::EXFILTRATION:
-                return ActionExecutor::execute(s, *std::dynamic_pointer_cast<gameplay::Exfiltration>(op));
-            default:
-                return ActionExecutor::execute(s, *op);
+                return ActionExecutor::executeExfiltration(s, *std::dynamic_pointer_cast<const gameplay::Exfiltration>(
+                        op));
+            case OperationEnum::INVALID:
+                break;
+            case OperationEnum::SPY_ACTION:
+                break;
+            case OperationEnum::CAT_ACTION:
+                break;
+            case OperationEnum::JANITOR_ACTION:
+                break;
+            case OperationEnum::RETIRE:
+                break;
         }
+        return false;
     }
 }

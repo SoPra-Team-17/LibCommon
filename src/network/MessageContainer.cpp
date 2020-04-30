@@ -5,6 +5,7 @@
 #include "MessageContainer.hpp"
 #include <util/OptionalSerialization.hpp>
 #include <ctime>
+#include <iostream>
 
 namespace spy::network {
     void to_json(nlohmann::json &j, const MessageContainer &m) {
@@ -69,7 +70,9 @@ namespace spy::network {
     }
 
     bool MessageContainer::isEqual(const MessageContainer &rhs) const {
-        return std::tie(playerId, type, creationDate, debugMessage) ==
-               std::tie(rhs.playerId, rhs.type, rhs.creationDate, rhs.debugMessage);
+        auto r = std::tie(playerId, type, creationDate, debugMessage) ==
+                 std::tie(rhs.playerId, rhs.type, rhs.creationDate, rhs.debugMessage);
+        std::cout << "Compared MessageContainer (helper): " << r << std::endl;
+        return r;
     }
 }

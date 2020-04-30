@@ -7,11 +7,11 @@
 #ifndef LIBCOMMON_GADGETACTION_HPP
 #define LIBCOMMON_GADGETACTION_HPP
 
-#include "Operation.hpp"
+#include "CharacterOperation.hpp"
 #include <datatypes/gadgets/GadgetEnum.hpp>
 
 namespace spy::gameplay {
-    class GadgetAction : public Operation {
+    class GadgetAction : public CharacterOperation {
         public:
             GadgetAction() = default;
 

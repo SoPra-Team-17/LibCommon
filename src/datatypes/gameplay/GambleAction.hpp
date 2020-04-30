@@ -7,10 +7,10 @@
 #ifndef LIBCOMMON_GAMBLEACTION_HPP
 #define LIBCOMMON_GAMBLEACTION_HPP
 
-#include "Operation.hpp"
+#include "CharacterOperation.hpp"
 
 namespace spy::gameplay {
-    class GambleAction : public Operation {
+    class GambleAction : public CharacterOperation {
         public:
             GambleAction() = default;
 
