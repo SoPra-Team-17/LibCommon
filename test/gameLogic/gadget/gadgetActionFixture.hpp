@@ -22,6 +22,7 @@ class GadgetActionTests : public ::testing::Test {
         spy::util::UUID uuid4 = spy::util::UUID::generate();
         spy::util::UUID uuid5 = spy::util::UUID::generate();
         spy::util::UUID uuid6 = spy::util::UUID::generate();
+        spy::util::UUID uuid7 = spy::util::UUID::generate();
 
         nlohmann::json input = R"({ "scenario": [
             ["WALL", "WALL",      "WALL", "WALL",           "WALL",     "WALL", "WALL"],
@@ -39,7 +40,8 @@ class GadgetActionTests : public ::testing::Test {
 
         spy::character::CharacterSet characters = {{uuid1, "dummy"}, {uuid2, "dummy"},
                                                    {uuid3, "dummy"}, {uuid4, "dummy"},
-                                                   {uuid5, "dummy"}, {uuid6, "dummy"}};
+                                                   {uuid5, "dummy"}, {uuid6, "dummy"},
+                                                   {uuid7, "dummy"}};
 
         spy::gameplay::State state{0, field, {}, characters, std::nullopt, std::nullopt};
 };
