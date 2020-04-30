@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 #include <datatypes/gameplay/PropertyAction.hpp>
-#include <datatypes/gameplay/OperationJson.hpp>
+#include <util/OperationSerialization.hpp>
 
 
 TEST(PropertyAction, encode) {
@@ -22,7 +22,7 @@ TEST(PropertyAction, decode) {
     std::string input = R"({"characterId":"12345678-1234-1234-1234-1234567890ab","successful":true,"target":{"x":1,"y":2},"type":"PROPERTY_ACTION","usedProperty":"BANG_AND_BURN"})";
 
     auto j = nlohmann::json::parse(input);
-    auto operation = spy::gameplay::OperationJson::fromJson(j);
+    auto operation = j.get<std::shared_ptr<spy::gameplay::BaseOperation>>();
     EXPECT_EQ(operation->getType(), spy::gameplay::OperationEnum::PROPERTY_ACTION);
     spy::gameplay::PropertyAction decodedAction{};
     EXPECT_NO_THROW(decodedAction = j.get<spy::gameplay::PropertyAction>());

@@ -65,7 +65,7 @@ set(SOURCE
         network/messages/Strike.cpp
         network/messages/RequestReplay.cpp
         network/messages/Replay.cpp
-        network/messages/StatisticsMessage.cpp datatypes/gameplay/CatAction.cpp datatypes/gameplay/CatAction.hpp datatypes/gameplay/JanitorAction.cpp datatypes/gameplay/JanitorAction.hpp datatypes/gameplay/SpyAction.cpp datatypes/gameplay/SpyAction.hpp datatypes/gameplay/RetireAction.cpp datatypes/gameplay/RetireAction.hpp datatypes/gameplay/OperationJson.cpp datatypes/gameplay/OperationJson.hpp)
+        network/messages/StatisticsMessage.cpp datatypes/gameplay/CatAction.cpp datatypes/gameplay/CatAction.hpp datatypes/gameplay/JanitorAction.cpp datatypes/gameplay/JanitorAction.hpp datatypes/gameplay/SpyAction.cpp datatypes/gameplay/SpyAction.hpp datatypes/gameplay/RetireAction.cpp datatypes/gameplay/RetireAction.hpp)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMMON_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror -mtune=native -march=native)

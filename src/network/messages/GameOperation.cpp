@@ -4,10 +4,9 @@
 
 #include <datatypes/validation/ActionValidator.hpp>
 #include <utility>
-#include <datatypes/gameplay/OperationJson.hpp>
+#include <util/OperationSerialization.hpp>
 #include "GameOperation.hpp"
 #include <iostream>
-#include <openssl/ossl_typ.h>
 
 namespace spy::network::messages {
     GameOperation::GameOperation() : MessageContainer{MessageTypeEnum::GAME_OPERATION, {}} {}
@@ -18,12 +17,12 @@ namespace spy::network::messages {
 
     void to_json(nlohmann::json &j, const GameOperation &g) {
         MessageContainer::common_to_json(j, g);
-        j["operation"] = gameplay::OperationJson::toJson(g.operation);
+        j["operation"] = g.operation;
     }
 
     void from_json(const nlohmann::json &j, GameOperation &g) {
         MessageContainer::common_from_json(j, g);
-        g.operation = gameplay::OperationJson::fromJson(j.at("operation"));
+        j.at("operation").get_to(g.operation);
     }
 
     const std::shared_ptr<gameplay::BaseOperation> &GameOperation::getOperation() const {

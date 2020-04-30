@@ -3,7 +3,7 @@
 //
 
 #include "GameStatus.hpp"
-#include <gameplay/OperationJson.hpp>
+#include <util/OperationSerialization.hpp>
 #include <utility>
 #include <iostream>
 
@@ -24,10 +24,7 @@ namespace spy::network::messages {
     void to_json(nlohmann::json &j, const GameStatus &g) {
         MessageContainer::common_to_json(j, g);
         j["activeCharacter"] = g.activeCharacterId;
-        j["operations"] = nlohmann::json::array();
-        for (const auto &op: g.operations) {
-            j["operations"].push_back(gameplay::OperationJson::toJson(op));
-        }
+        j["operations"] = g.operations;
         j["state"] = g.state;
         j["isGameOver"] = g.isGameOver;
     }
@@ -35,9 +32,7 @@ namespace spy::network::messages {
     void from_json(const nlohmann::json &j, GameStatus &g) {
         MessageContainer::common_from_json(j, g);
         j.at("activeCharacter").get_to(g.activeCharacterId);
-        for (const auto &op: j.at("operations")) {
-            g.operations.push_back(gameplay::OperationJson::fromJson(op));
-        }
+        j.at("operations").get_to(g.operations);
         j.at("state").get_to(g.state);
         j.at("isGameOver").get_to(g.isGameOver);
     }

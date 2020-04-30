@@ -4,7 +4,7 @@
 
 #include<gtest/gtest.h>
 #include <datatypes/gameplay/GadgetAction.hpp>
-#include <datatypes/gameplay/OperationJson.hpp>
+#include <util/OperationSerialization.hpp>
 
 
 TEST(GadgetAction, encode) {
@@ -22,7 +22,7 @@ TEST(GadgetAction, decode) {
     std::string input = R"({"characterId":"12345678-1234-1234-1234-1234567890ab","gadget":"JETPACK","successful":true,"target":{"x":1,"y":2},"type":"GADGET_ACTION"})";
 
     auto j = nlohmann::json::parse(input);
-    auto operation = spy::gameplay::OperationJson::fromJson(j);
+    auto operation = j.get<std::shared_ptr<spy::gameplay::BaseOperation>>();
     EXPECT_EQ(operation->getType(), spy::gameplay::OperationEnum::GADGET_ACTION);
     spy::gameplay::GadgetAction decodedAction{};
     EXPECT_NO_THROW(decodedAction = j.get<spy::gameplay::GadgetAction>());
