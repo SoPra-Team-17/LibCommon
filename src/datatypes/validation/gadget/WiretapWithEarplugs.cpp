@@ -2,7 +2,7 @@
 * @file   WiretapWithEarplugs.cpp
 * @author Marco Deuscher
 * @date   28.04.2020 (creation)
-* @brief  Implemenation of wiretap with earplugs gadget validation.
+* @brief  Implementation of wiretap with earplugs gadget validation.
 */
 
 #include "GadgetValidator.hpp"

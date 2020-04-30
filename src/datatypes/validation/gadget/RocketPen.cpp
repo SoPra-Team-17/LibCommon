@@ -2,7 +2,7 @@
  * @file   RocketPen.cpp
  * @author Marco Deuscher
  * @date   28.04.2020 (creation)
- * @brief  Implemenation of rocket pen gadget validation.
+ * @brief  Implementation of rocket pen gadget validation.
  */
 
 #include "GadgetValidator.hpp"

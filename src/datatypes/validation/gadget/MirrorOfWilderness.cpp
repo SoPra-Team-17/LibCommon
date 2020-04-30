@@ -2,7 +2,7 @@
  * @file   MirrorOfWilderness.cpp
  * @author Marco Deuscher
  * @date   29.04.2020 (creation)
- * @brief  Implemenation of mirror of wilerness gadget validation.
+ * @brief  Implementation of mirror of wilerness gadget validation.
  */
 
 #include "GadgetValidator.hpp"

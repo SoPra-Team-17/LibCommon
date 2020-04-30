@@ -2,7 +2,7 @@
  * @file   ChickenFeed.cpp
  * @author Marco Deuscher
  * @date   29.04.2020 (creation)
- * @brief  Implemenation of chicken feed gadget validation.
+ * @brief  Implementation of chicken feed gadget validation.
  */
 
 

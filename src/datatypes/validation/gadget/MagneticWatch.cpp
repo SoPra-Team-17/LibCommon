@@ -2,7 +2,7 @@
  * @file   MagneticWatch.cpp
  * @author Marco Deuscher
  * @date   29.04.2020 (creation)
- * @brief  Implemenation of magnetic watch gadget validation.
+ * @brief  Implementation of magnetic watch gadget validation.
  */
 
 

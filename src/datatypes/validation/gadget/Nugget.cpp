@@ -2,7 +2,7 @@
 * @file   Nugget.cpp
 * @author Marco Deuscher
 * @date   28.04.2020 (creation)
-* @brief  Implemenation of nugget gadget validation.
+* @brief  Implementation of nugget gadget validation.
 */
 
 #include "GadgetValidator.hpp"

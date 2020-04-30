@@ -2,7 +2,7 @@
  * @file   FogTin.cpp
  * @author Marco Deuscher
  * @date   29.04.2020 (creation)
- * @brief  Implemenation of fog tin gadget validation.
+ * @brief  Implementation of fog tin gadget validation.
  */
 
 #include "datatypes/gameplay/Movement.hpp"

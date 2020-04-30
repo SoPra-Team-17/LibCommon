@@ -2,7 +2,7 @@
  * @file   TechnicolourPrism.cpp
  * @author Marco Deuscher
  * @date   28.04.2020 (creation)
- * @brief  Implemenation of Technicolour prism gadget validation.
+ * @brief  Implementation of Technicolour prism gadget validation.
  */
 
 #include "datatypes/gameplay/Movement.hpp"

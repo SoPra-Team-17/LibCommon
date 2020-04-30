@@ -2,7 +2,7 @@
 * @file   Jetpack.cpp
 * @author Marco Deuscher
 * @date   28.04.2020 (creation)
-* @brief  Implemenation of jetpack gadget validation.
+* @brief  Implementation of jetpack gadget validation.
 */
 
 #include "GadgetValidator.hpp"

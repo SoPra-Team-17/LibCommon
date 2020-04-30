@@ -2,7 +2,7 @@
  * @file   LaserCompact.cpp
  * @author Marco Deuscher
  * @date   29.04.2020 (creation)
- * @brief  Implemenation of mole die gadget validation.
+ * @brief  Implementation of mole die gadget validation.
  */
 
 #include "datatypes/gameplay/Movement.hpp"

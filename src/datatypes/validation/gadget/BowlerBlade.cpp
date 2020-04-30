@@ -2,7 +2,7 @@
 * @file   BowlerBlade.cpp
 * @author Marco Deuscher
 * @date   28.04.2020 (creation)
-* @brief  Implemenation of bowler blade gadget validation.
+* @brief  Implementation of bowler blade gadget validation.
 */
 
 #include "GadgetValidator.hpp"

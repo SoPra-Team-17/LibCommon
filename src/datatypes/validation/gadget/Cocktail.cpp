@@ -2,7 +2,7 @@
  * @file   Cocktail.cpp
  * @author Marco Deuscher
  * @date   29.04.2020 (creation)
- * @brief  Implemenation of cocktail gadget validation.
+ * @brief  Implementation of cocktail gadget validation.
  */
 
 

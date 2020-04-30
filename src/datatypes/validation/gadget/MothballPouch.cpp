@@ -2,7 +2,7 @@
  * @file   MothballPouch.cpp
  * @author Marco Deuscher
  * @date   29.04.2020 (creation)
- * @brief  Implemenation of mothball pouch gadget validation.
+ * @brief  Implementation of mothball pouch gadget validation.
  */
 
 #include "datatypes/gameplay/Movement.hpp"

@@ -2,7 +2,7 @@
  * @file   LaserCompact.cpp
  * @author Marco Deuscher
  * @date   28.04.2020 (creation)
- * @brief  Implemenation of laser compact gadget validation.
+ * @brief  Implementation of laser compact gadget validation.
  */
 
 #include "util/GadgetUtils.hpp"

@@ -2,7 +2,7 @@
 * @file   Grapple.cpp
 * @author Marco Deuscher
 * @date   28.04.2020 (creation)
-* @brief  Implemenation of grapple gadget validation.
+* @brief  Implementation of grapple gadget validation.
 */
 
 #include "GadgetValidator.hpp"

@@ -2,7 +2,7 @@
  * @file   GasGloss.cpp
  * @author Marco Deuscher
  * @date   29.04.2020 (creation)
- * @brief  Implemenation of gas gloss gadget validation.
+ * @brief  Implementation of gas gloss gadget validation.
  */
 
 
