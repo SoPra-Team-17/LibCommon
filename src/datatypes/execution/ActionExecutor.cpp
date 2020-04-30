@@ -15,11 +15,12 @@ namespace spy::gameplay {
             case gameplay::OperationEnum::GAMBLE_ACTION:
                 return ActionExecutor::executeGamble(s, *std::dynamic_pointer_cast<const gameplay::GambleAction>(op));
             case gameplay::OperationEnum::PROPERTY_ACTION:
-                return ActionExecutor::executeProperty(s,
-                                                       *std::dynamic_pointer_cast<const gameplay::PropertyAction>(op));
+                return ActionExecutor::executeProperty(
+                        s,
+                        *std::dynamic_pointer_cast<const gameplay::PropertyAction>(op));
             case gameplay::OperationEnum::EXFILTRATION:
-                return ActionExecutor::executeExfiltration(s, *std::dynamic_pointer_cast<const gameplay::Exfiltration>(
-                        op));
+                return ActionExecutor::executeExfiltration(
+                        s, *std::dynamic_pointer_cast<const gameplay::Exfiltration>(op));
             case OperationEnum::INVALID:
                 break;
             case OperationEnum::SPY_ACTION:
@@ -31,6 +32,6 @@ namespace spy::gameplay {
             case OperationEnum::RETIRE:
                 break;
         }
-        return false;
+        throw std::runtime_error("Execute for this action has not been implemented");
     }
 }
