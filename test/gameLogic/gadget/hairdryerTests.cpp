@@ -7,6 +7,8 @@
 
 #include <gtest/gtest.h>
 #include "gadgetActionFixture.hpp"
+#include "datatypes/validation/ActionValidator.hpp"
+#include "datatypes/execution/ActionExecutor.hpp"
 
 TEST_F(GadgetActionTests, Hairdryer_Validate) {
     using spy::gameplay::ActionValidator;
@@ -39,7 +41,7 @@ TEST_F(GadgetActionTests, Hairdryer_Validate) {
     EXPECT_FALSE(ActionValidator::validate(state, g2));     // execution on a field outside is invalid
     EXPECT_TRUE(ActionValidator::validate(state, g3));      // execution on oneself without CLAMMY_CLOTHES is valid
 
-    std::vector<PropertyEnum> properties = {PropertyEnum::CLAMMY_CLOTHES};
+    std::set<PropertyEnum> properties = {PropertyEnum::CLAMMY_CLOTHES};
     state.getCharacters().getByUUID(uuid5)->setProperties(properties);
     state.getCharacters().getByUUID(uuid3)->setProperties(properties);
 
@@ -49,6 +51,27 @@ TEST_F(GadgetActionTests, Hairdryer_Validate) {
     EXPECT_FALSE(ActionValidator::validate(state, g6));     // execution on empty field is invalid
     EXPECT_TRUE(ActionValidator::validate(state, g7));      // execution on character without CLAMMY_CLOTHES is valid
     EXPECT_TRUE(ActionValidator::validate(state, g8));      // execution on character with CLAMMY_CLOTHES is valid
+}
+
+TEST_F(GadgetActionTests, HairDryer_Execute) {
+    using spy::character::PropertyEnum;
+    using spy::gameplay::ActionExecutor;
+    using spy::gameplay::GadgetAction;
+
+    state.getCharacters().getByUUID(uuid1)->setCoordinates({1, 2});
+    state.getCharacters().getByUUID(uuid2)->setCoordinates({2, 2});
+
+    auto c1 = state.getCharacters().getByUUID(uuid1);
+    auto c2 = state.getCharacters().getByUUID(uuid2);
+
+    c2->setProperties({PropertyEnum::CLAMMY_CLOTHES});
+    ASSERT_TRUE(c2->getProperties().find(PropertyEnum::CLAMMY_CLOTHES) != c2->getProperties().end());
+
+    GadgetAction a{false, c2->getCoordinates().value(), uuid1, spy::gadget::GadgetEnum::HAIRDRYER};
+    ActionExecutor::execute(state, a);
+
+    // Expect CLAMMY_CLOTHES to be removed from character 2
+    EXPECT_TRUE(c2->getProperties().find(PropertyEnum::CLAMMY_CLOTHES) == c2->getProperties().end());
 }
 
 

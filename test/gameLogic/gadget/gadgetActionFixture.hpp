@@ -13,7 +13,6 @@
 #include "gameplay/State.hpp"
 #include "character/Character.hpp"
 #include "util/Point.hpp"
-#include "datatypes/validation/ActionValidator.hpp"
 
 class GadgetActionTests : public ::testing::Test {
     protected:

@@ -7,6 +7,7 @@
 
 #include <gtest/gtest.h>
 #include "gadgetActionFixture.hpp"
+#include "datatypes/validation/ActionValidator.hpp"
 
 TEST_F(GadgetActionTests, TechnicolourPrism_Validate) {
     using spy::gameplay::ActionValidator;
