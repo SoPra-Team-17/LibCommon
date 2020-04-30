@@ -20,6 +20,7 @@ TEST_F(GadgetActionTests, ChickenFeed_Validate) {
     state.getCharacters().getByUUID(uuid1)->setCoordinates({4, 3});
     state.getCharacters().getByUUID(uuid2)->setCoordinates({5, 3});
     state.getCharacters().getByUUID(uuid3)->setCoordinates({4, 2});
+    state.getCharacters().getByUUID(uuid4)->setCoordinates({4, 5});
     state.getCharacters().getByUUID(uuid5)->setCoordinates({6, 6});
 
     state.getCharacters().getByUUID(uuid1)->addGadget(chickenFeed);
@@ -30,12 +31,14 @@ TEST_F(GadgetActionTests, ChickenFeed_Validate) {
     GadgetAction g3(false, {4, 4}, uuid1, GadgetEnum::CHICKEN_FEED);
     GadgetAction g4(false, {4, 2}, uuid1, GadgetEnum::CHICKEN_FEED);
     GadgetAction g5(false, {6, 7}, uuid5, GadgetEnum::CHICKEN_FEED);
+    GadgetAction g6(false, {4, 5}, uuid5, GadgetEnum::CHICKEN_FEED);
 
     EXPECT_FALSE(ActionValidator::validate(state, g1));     // character doesn't posses gadget --> invalid
     EXPECT_FALSE(ActionValidator::validate(state, g2));     // apply to oneself --> invalid
     EXPECT_FALSE(ActionValidator::validate(state, g3));     // apply to empty field --> invalid
     EXPECT_TRUE(ActionValidator::validate(state, g4));      // apply to character --> valid
     EXPECT_FALSE(ActionValidator::validate(state, g5));     // target outside map --> invalid
+    EXPECT_FALSE(ActionValidator::validate(state, g6));     // target out of range --> invalid
 }
 
 
