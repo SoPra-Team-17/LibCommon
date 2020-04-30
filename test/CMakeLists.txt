@@ -35,7 +35,8 @@ set(SOURCES
         gameLogic/gadget/chickenFeedTests.cpp
         gameLogic/gadget/jetpackTests.cpp
         gameLogic/gadget/gasGlossTests.cpp
-        gameLogic/gadget/poisonPillTests.cpp)
+        gameLogic/gadget/poisonPillTests.cpp
+        gameLogic/gadget/nuggetTests.cpp)
 
 add_executable(allTests ${SOURCES})
 target_compile_options(allTests PRIVATE ${COMMON_CXX_FLAGS})
