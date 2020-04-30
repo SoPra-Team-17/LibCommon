@@ -29,6 +29,7 @@ set(SOURCE
         datatypes/execution/ActionExecutor_Property.cpp
         datatypes/execution/gadget/GadgetExecutor.cpp
         datatypes/execution/ActionExecutor.cpp
+        datatypes/execution/gadget/HairDryer.cpp
         datatypes/matchconfig/MatchConfig.cpp
         datatypes/scenario/Scenario.cpp
         datatypes/scenario/Scenario.cpp

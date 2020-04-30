@@ -32,7 +32,7 @@ TEST(Character, json_encode) {
     nlohmann::json characterJson = character;
 
     std::string serialized = characterJson.dump();
-    std::string expected = R"({"ap":0,"characterId":"00000000-0000-0000-0000-000000000000","chips":10,"coordinates":{"x":0,"y":0},"features":["SPRYNESS","TOUGHNESS","ROBUST_STOMACH","LUCKY_DEVIL","TRADECRAFT"],"gadgets":[],"hp":100,"ip":0,"mp":0,"name":"James Bond"})";
+    std::string expected = R"({"ap":0,"characterId":"00000000-0000-0000-0000-000000000000","chips":10,"coordinates":{"x":0,"y":0},"features":["SPRYNESS","LUCKY_DEVIL","ROBUST_STOMACH","TOUGHNESS","TRADECRAFT"],"gadgets":[],"hp":100,"ip":0,"mp":0,"name":"James Bond"})";
     EXPECT_EQ(expected, serialized);
 }
 
