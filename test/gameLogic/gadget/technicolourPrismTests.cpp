@@ -31,11 +31,11 @@ TEST_F(GadgetActionTests, TechnicolourPrism_Validate) {
     GadgetAction g4(false, {3, 3}, uuid3, GadgetEnum::TECHNICOLOUR_PRISM);
     GadgetAction g5(false, {6, 7}, uuid5, GadgetEnum::TECHNICOLOUR_PRISM);
 
-    EXPECT_TRUE(ActionValidator::validate(state, g1));      // roulette table out of range --> invalid
-    EXPECT_FALSE(ActionValidator::validate(state, g2));     // roulette table is target in range --> valid
-    EXPECT_FALSE(ActionValidator::validate(state, g3));     // target is no roulette table --> invalid
-    EXPECT_FALSE(ActionValidator::validate(state, g4));     // character has no prism --> invalid
-    EXPECT_FALSE(ActionValidator::validate(state, g5));     // target field is outside --> invalid
+    EXPECT_TRUE(ActionValidator::validate(state, g1)) << "roulette table is target in range --> valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g2)) << "roulette table out of range --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g3)) << "target is no roulette table --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g4)) << "character has no prism --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g5)) << "target field is outside --> invalid";
 }
 
 

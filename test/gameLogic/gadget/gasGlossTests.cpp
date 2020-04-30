@@ -33,10 +33,10 @@ TEST_F(GadgetActionTests, GasGloss_Validate) {
     GadgetAction g5(false, {6, 7}, uuid5, GadgetEnum::GAS_GLOSS);
     GadgetAction g6(false, {4, 5}, uuid1, GadgetEnum::GAS_GLOSS);
 
-    EXPECT_FALSE(ActionValidator::validate(state, g1));     // character has no gas gloss --> invalid
-    EXPECT_TRUE(ActionValidator::validate(state, g2));      // hurt oneself --> stupid, but valid
-    EXPECT_FALSE(ActionValidator::validate(state, g3));     // aim on field without a character --> invalid
-    EXPECT_TRUE(ActionValidator::validate(state, g4));      // aim on character --> valid
-    EXPECT_FALSE(ActionValidator::validate(state, g5));     // target outside map --> invalid
-    EXPECT_FALSE(ActionValidator::validate(state, g6));     // target outside range --> invalid
+    EXPECT_FALSE(ActionValidator::validate(state, g1)) << "character has no gas gloss --> invalid";
+    EXPECT_TRUE(ActionValidator::validate(state, g2)) << "hurt oneself --> stupid, but valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g3)) << "aim on field without a character --> invalid";
+    EXPECT_TRUE(ActionValidator::validate(state, g4)) << "aim on character --> valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g5)) << "target outside map --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g6)) << "target outside range --> invalid";
 }

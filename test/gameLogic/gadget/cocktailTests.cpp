@@ -33,12 +33,12 @@ TEST_F(GadgetActionTests, Cocktail_Validate) {
     GadgetAction g5(false, {6, 7}, uuid5, GadgetEnum::COCKTAIL);
     GadgetAction g6(false, {4, 5}, uuid1, GadgetEnum::COCKTAIL);
 
-    EXPECT_FALSE(ActionValidator::validate(state, g1));     // character has no cocktail --> invalid
-    EXPECT_TRUE(ActionValidator::validate(state, g2));      // drink cocktail --> valid
-    EXPECT_FALSE(ActionValidator::validate(state, g3));     // spill on empty field --> invalid
-    EXPECT_TRUE(ActionValidator::validate(state, g4));      // spill on character --> valid
-    EXPECT_FALSE(ActionValidator::validate(state, g5));     // target outside map --> invalid
-    EXPECT_FALSE(ActionValidator::validate(state, g6));     // target out of range --> invalid
+    EXPECT_FALSE(ActionValidator::validate(state, g1)) << "character has no cocktail --> invalid";
+    EXPECT_TRUE(ActionValidator::validate(state, g2)) << "drink cocktail --> valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g3)) << "spill on empty field --> invalid";
+    EXPECT_TRUE(ActionValidator::validate(state, g4)) << "spill on character --> valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g5)) << "target outside map --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g6)) << "target out of range --> invalid";
 }
 
 
