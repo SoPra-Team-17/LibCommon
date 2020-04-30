@@ -20,16 +20,14 @@ namespace spy::gameplay {
 
             [[nodiscard]] character::PropertyEnum getUsedProperty() const;
 
-            bool operator==(const PropertyAction &rhs) const;
-
-            bool operator!=(const PropertyAction &rhs) const;
-
             friend void to_json(nlohmann::json &j, const PropertyAction &p);
 
             friend void from_json(const nlohmann::json &j, PropertyAction &p);
 
         private:
             character::PropertyEnum usedProperty;
+
+            bool isEqual(const BaseOperation &rhs) const override;
     };
 }
 #endif //LIBCOMMON_PROPERTYACTION_HPP

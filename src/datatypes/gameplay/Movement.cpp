@@ -12,16 +12,6 @@ namespace spy::gameplay {
             CharacterOperation(OperationEnum::MOVEMENT, successful, target, characterId),
             from(from) {}
 
-    bool Movement::operator==(const Movement &rhs) const {
-        std::cout << "Comparing Movement" << std::endl;
-        return std::tie(static_cast<const spy::gameplay::CharacterOperation &>(*this), from) ==
-               std::tie(static_cast<const spy::gameplay::CharacterOperation &>(rhs), rhs.from);
-    }
-
-    bool Movement::operator!=(const Movement &rhs) const {
-        return !(rhs == *this);
-    }
-
     const util::Point &Movement::getFrom() const {
         return from;
     }
@@ -39,5 +29,11 @@ namespace spy::gameplay {
     void from_json(const nlohmann::json &j, Movement &m) {
         CharacterOperation::common_from_json(j, m);
         j.at("from").get_to(m.from);
+    }
+
+    bool Movement::isEqual(const BaseOperation &rhs_b) const {
+        auto rhs = static_cast<const Movement &>(rhs_b);
+        std::cout << "Comparing Movement" << std::endl;
+        return isCharacterEqual(rhs) && from == rhs.from;
     }
 }

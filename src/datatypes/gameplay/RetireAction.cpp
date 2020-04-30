@@ -5,7 +5,7 @@
 #include "RetireAction.hpp"
 
 namespace spy::gameplay {
-    RetireAction::RetireAction() : BaseOperation(OperationEnum::RETIRE, false, {}) {}
+    RetireAction::RetireAction() : CharacterOperation(OperationEnum::RETIRE, false, {}) {}
 
     void to_json(nlohmann::json &j, const RetireAction &e) {
         BaseOperation::common_to_json(j, e);
@@ -14,5 +14,10 @@ namespace spy::gameplay {
 
     void from_json(const nlohmann::json &j, RetireAction &e) {
         BaseOperation::common_from_json(j, e);
+    }
+
+    bool RetireAction::isEqual(const BaseOperation &) const {
+        //TODO equality of character-operation members
+        return true;
     }
 }

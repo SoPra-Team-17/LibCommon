@@ -21,17 +21,11 @@ namespace spy::gameplay {
 
             [[nodiscard]] const util::UUID &getCharacterId() const;
 
-            bool operator==(const CharacterOperation &rhs) const;
-
-            bool operator!=(const CharacterOperation &rhs) const;
-
             static void common_to_json(nlohmann::json &j, const CharacterOperation &op);
 
             static void common_from_json(const nlohmann::json &j, CharacterOperation &op);
 
-            ~CharacterOperation() override = default;
-
-            virtual bool operator==(const CharacterOperation &rhs);
+            virtual ~CharacterOperation() override = default;
 
         protected:
             CharacterOperation() = default;
@@ -41,6 +35,11 @@ namespace spy::gameplay {
             CharacterOperation(OperationEnum type, bool successful, const util::Point &target, util::UUID characterId);
 
             util::UUID characterId;
+
+            bool isCharacterEqual(const CharacterOperation &rhs) const;
+
+        private:
+            virtual bool isEqual(const BaseOperation &rhs) const override = 0;
     };
 }
 

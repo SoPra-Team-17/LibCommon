@@ -18,16 +18,14 @@ namespace spy::gameplay {
 
             [[nodiscard]] unsigned int getStake() const;
 
-            bool operator==(const GambleAction &rhs) const;
-
-            bool operator!=(const GambleAction &rhs) const;
-
             friend void to_json(nlohmann::json &j, const GambleAction &g);
 
             friend void from_json(const nlohmann::json &j, GambleAction &g);
 
         private:
             unsigned int stake = 0;
+
+            bool isEqual(const BaseOperation &rhs) const override;
     };
 
 }

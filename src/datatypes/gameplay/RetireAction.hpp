@@ -5,16 +5,19 @@
 #ifndef LIBCOMMON_RETIREACTION_HPP
 #define LIBCOMMON_RETIREACTION_HPP
 
-#include "BaseOperation.hpp"
+#include "CharacterOperation.hpp"
 
 namespace spy::gameplay {
-    class RetireAction : public BaseOperation {
+    class RetireAction : public CharacterOperation {
         public:
             RetireAction();
 
             friend void to_json(nlohmann::json &j, const RetireAction &e);
 
             friend void from_json(const nlohmann::json &j, RetireAction &e);
+
+        private:
+            bool isEqual(const BaseOperation &rhs) const override;
     };
 }
 

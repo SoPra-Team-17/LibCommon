@@ -25,12 +25,8 @@ namespace spy::gameplay {
         return from;
     }
 
-    bool Exfiltration::operator==(const Exfiltration &rhs) const {
-        return std::tie(static_cast<const spy::gameplay::CharacterOperation &>(*this), from) ==
-               std::tie(static_cast<const spy::gameplay::CharacterOperation &>(rhs), rhs.from);
-    }
-
-    bool Exfiltration::operator!=(const Exfiltration &rhs) const {
-        return !(rhs == *this);
+    bool Exfiltration::isEqual(const BaseOperation &rhs_b) const {
+        auto rhs = static_cast<const Exfiltration &>(rhs_b);
+        return from == rhs.from;
     }
 }

@@ -25,12 +25,8 @@ namespace spy::gameplay {
         j.at("gadget").get_to(g.gadget);
     }
 
-    bool GadgetAction::operator==(const GadgetAction &rhs) const {
-        return std::tie(static_cast<const spy::gameplay::CharacterOperation &>(*this), gadget) ==
-               std::tie(static_cast<const spy::gameplay::CharacterOperation &>(rhs), rhs.gadget);
-    }
-
-    bool GadgetAction::operator!=(const GadgetAction &rhs) const {
-        return !(rhs == *this);
+    bool GadgetAction::isEqual(const BaseOperation &rhs_b) const {
+        auto rhs = static_cast<const GadgetAction &>(rhs_b);
+        return isCharacterEqual(rhs) && gadget == rhs.gadget;
     }
 }

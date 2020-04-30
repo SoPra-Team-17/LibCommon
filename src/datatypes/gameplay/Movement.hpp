@@ -33,11 +33,10 @@ namespace spy::gameplay {
 
             friend void from_json(const nlohmann::json &j, Movement &m);
 
-            bool operator==(const Movement &rhs) const;
-
-            bool operator!=(const Movement &rhs) const;
         private:
             util::Point from{};
+
+            bool isEqual(const BaseOperation &rhs) const override;
     };
 
 }

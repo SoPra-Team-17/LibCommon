@@ -19,18 +19,14 @@ namespace spy::gameplay {
         CharacterOperation::common_to_json(j, g);
         j["stake"] = g.stake;
     }
-    
+
     void from_json(const nlohmann::json &j, GambleAction &g) {
         CharacterOperation::common_from_json(j, g);
         j.at("stake").get_to(g.stake);
     }
-    
-    bool GambleAction::operator==(const GambleAction &rhs) const {
-        return std::tie(static_cast<const spy::gameplay::CharacterOperation &>(*this), stake) ==
-               std::tie(static_cast<const spy::gameplay::CharacterOperation &>(rhs), rhs.stake);
-    }
 
-    bool GambleAction::operator!=(const GambleAction &rhs) const {
-        return !(rhs == *this);
+    bool GambleAction::isEqual(const BaseOperation &rhs_b) const {
+        auto rhs = static_cast<const GambleAction &>(rhs_b);
+        return isCharacterEqual(rhs) && stake == rhs.stake;
     }
 }

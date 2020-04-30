@@ -25,7 +25,9 @@ namespace spy::gameplay {
 
             virtual ~BaseOperation() = default;
 
-            virtual bool operator==(const BaseOperation &rhs);
+            bool operator==(const BaseOperation &rhs) const;
+
+            bool operator!=(const BaseOperation &rhs) const;
 
         protected:
             BaseOperation() = default;
@@ -35,6 +37,14 @@ namespace spy::gameplay {
             OperationEnum type = OperationEnum::INVALID;
             bool successful = false;
             util::Point target;
+
+        private:
+            /**
+             * Shall only be called with the same derived class
+             * @param rhs
+             * @return
+             */
+            virtual bool isEqual(const BaseOperation &rhs) const = 0;
     };
 }
 

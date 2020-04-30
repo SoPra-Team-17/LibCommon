@@ -14,4 +14,8 @@ namespace spy::gameplay {
     void from_json(const nlohmann::json &j, SpyAction &e) {
         BaseOperation::common_from_json(j, e);
     }
+
+    bool SpyAction::isEqual(const BaseOperation &) const {
+        return true;
+    }
 }

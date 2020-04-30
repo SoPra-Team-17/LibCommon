@@ -64,7 +64,7 @@ namespace spy::network::messages {
             return false;
         }
         for (unsigned int i = 0; i < operations.size(); i++) {
-            if (operations.at(i) != rhs.operations.at(i)) {
+            if (*operations.at(i) != *rhs.operations.at(i)) {
                 return false;
             }
         }

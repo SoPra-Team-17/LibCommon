@@ -70,7 +70,7 @@ void testEncodeDecode(const MessageType &message) {
 
     nlohmann::json jsonMessage = message;
     std::string encodedMessage = jsonMessage.dump();
-    std::cout << "Encoded Message to: " << std::endl << jsonMessage.dump(4) << std::endl;
+    std::cout << "Encoded Message to: " << std::endl << jsonMessage.dump() << std::endl;
     nlohmann::json parsedJson = nlohmann::json::parse(encodedMessage);
     auto genericMessage = parsedJson.get<spy::network::MessageContainer>();
     ASSERT_EQ(genericMessage.getType(), message.getType());
@@ -122,9 +122,11 @@ TEST_F(MessageEncodeDecode, GameStatus) {
     spy::network::messages::GameStatus testMessage{exampleUUID1, exampleUUID2, {exampleOperation, exampleOperation},
                                                    exampleState, false};
     testEncodeDecode(testMessage);
+}
 
-    testMessage = {exampleUUID1, exampleUUID2, {exampleOperation, exampleOperation},
-                   exampleState_noCat_noJanitor, false};
+TEST_F(MessageEncodeDecode, GameStatus2) {
+    spy::network::messages::GameStatus testMessage = {exampleUUID1, exampleUUID2, {exampleOperation, exampleOperation},
+                                                      exampleState_noCat_noJanitor, false};
     testEncodeDecode(testMessage);
 }
 

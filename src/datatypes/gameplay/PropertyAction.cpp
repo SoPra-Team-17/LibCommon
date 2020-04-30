@@ -24,12 +24,8 @@ namespace spy::gameplay {
         j.at("usedProperty").get_to(p.usedProperty);
     }
 
-    bool PropertyAction::operator==(const PropertyAction &rhs) const {
-        return std::tie(static_cast<const spy::gameplay::CharacterOperation &>(*this), usedProperty) ==
-               std::tie(static_cast<const spy::gameplay::CharacterOperation &>(rhs), rhs.usedProperty);
-    }
-
-    bool PropertyAction::operator!=(const PropertyAction &rhs) const {
-        return !(rhs == *this);
+    bool PropertyAction::isEqual(const BaseOperation &rhs_b) const {
+        auto rhs = static_cast<const PropertyAction &>(rhs_b);
+        return isCharacterEqual(rhs) && usedProperty == rhs.usedProperty;
     }
 }

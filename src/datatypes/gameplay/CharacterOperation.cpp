@@ -31,19 +31,10 @@ namespace spy::gameplay {
         return characterId;
     }
 
-    bool CharacterOperation::operator==(const CharacterOperation &rhs) const {
+    bool CharacterOperation::isCharacterEqual(const CharacterOperation &rhs) const {
         bool r = std::tie(type, successful, target, characterId) ==
                  std::tie(rhs.type, rhs.successful, rhs.target, rhs.characterId);
-        std::cout << "Compared CharacterOperation: " << r << std::endl;
+        std::cout << "Compared (utility) CharacterOperation: " << r << std::endl;
         return r;
-    }
-
-    bool CharacterOperation::operator!=(const CharacterOperation &rhs) const {
-        return !(rhs == *this);
-    }
-
-    bool CharacterOperation::operator==(const CharacterOperation &/*rhs*/) {
-        std::cout << "Comparing BaseOperation (false)" << std::endl;
-        return false;
     }
 }

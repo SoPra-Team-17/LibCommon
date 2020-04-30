@@ -36,8 +36,14 @@ namespace spy::gameplay {
         j.at("target").get_to(op.target);
     }
 
-    bool BaseOperation::operator==(const BaseOperation &/*rhs*/) {
-        std::cout << "Comparing BaseOperation (false)" << std::endl;
-        return false;
+    bool BaseOperation::operator==(const BaseOperation &rhs) const {
+        std::cout << "Comparing BaseOperation" << std::endl;
+        bool r = typeid(*this) == typeid(rhs) && isEqual(rhs);
+        std::cout << "Comparing BaseOperation resulted in " << r << std::endl;
+        return r;
+    }
+
+    bool BaseOperation::operator!=(const BaseOperation &rhs) const {
+        return !(*this == rhs);
     }
 }
