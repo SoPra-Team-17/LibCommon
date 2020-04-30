@@ -17,6 +17,6 @@ namespace spy::gameplay {
         auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
         auto distance = gameplay::Movement::getMoveDistance(a.getTarget(), character->getCoordinates().value());
 
-        return targetHasCocktail && distance == 1;
+        return (targetHasCocktail && distance <= 1);
     }
 }
