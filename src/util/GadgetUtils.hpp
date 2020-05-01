@@ -33,6 +33,14 @@ namespace spy::util {
             static bool characterHasGadget(const spy::gameplay::State &s, const UUID &id, spy::gadget::GadgetEnum type);
 
             /**
+             * @brief           Checks if a person is at the specified location
+             * @param s         current state
+             * @param target    coordinate to check for a person
+             * @return          true if a person is at the specified location, false otherwise
+             */
+            static bool isPersonOnField(const gameplay::State &s, const Point &target);
+
+            /**
              * @brief               checks if a other person is on a neighboring field
              * @param s             current state
              * @param target        input target

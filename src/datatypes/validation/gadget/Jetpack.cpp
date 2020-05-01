@@ -5,6 +5,7 @@
 * @brief  Implementation of jetpack gadget validation.
 */
 
+#include <util/GadgetUtils.hpp>
 #include "GadgetValidator.hpp"
 
 namespace spy::gameplay {
@@ -21,11 +22,7 @@ namespace spy::gameplay {
         }
 
         //check if any character is occupying the field
-        auto person = std::find_if(s.getCharacters().begin(), s.getCharacters().end(),
-                                   [&a](const character::Character &c) {
-                                       return c.getCoordinates() == a.getTarget();
-                                   });
-        return (person == s.getCharacters().end());
+        return !util::GadgetUtils::isPersonOnField(s, a.getTarget());
     }
 
 }

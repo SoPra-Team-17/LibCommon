@@ -51,6 +51,14 @@ namespace spy::util {
         return gadget != gadgets.end();
     }
 
+    bool GadgetUtils::isPersonOnField(const gameplay::State &s, const Point &target) {
+        auto person = std::find_if(s.getCharacters().begin(), s.getCharacters().end(),
+                                   [target](const character::Character &c) {
+                                       return c.getCoordinates() == target;
+                                   });
+        return !(person == s.getCharacters().end());
+    }
+
     bool GadgetUtils::personOnNeighboringField(const gameplay::State &s, const Point &target, const Point &charCoord) {
         // check distance
         auto distance = gameplay::Movement::getMoveDistance(charCoord, target);
@@ -59,11 +67,7 @@ namespace spy::util {
         }
 
         // check if person on target field
-        auto person = std::find_if(s.getCharacters().begin(), s.getCharacters().end(),
-                                   [target](const character::Character &c) {
-                                       return c.getCoordinates() == target;
-                                   });
-        return !(person == s.getCharacters().end());
+        return isPersonOnField(s, target);
     }
 
     bool GadgetUtils::bowlerBladeLineOfSight(const spy::gameplay::State &s, const Point &p1, const Point &p2) {
