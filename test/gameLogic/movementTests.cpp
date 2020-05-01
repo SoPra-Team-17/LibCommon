@@ -65,11 +65,11 @@ TEST_F(MovementOperation, isMovementValid) {
     Movement move4(false, {1, 1}, UUID(), {1, 2});
     Movement move5(false, {2, 2}, uuid1, {1, 3});
 
-    EXPECT_FALSE(ActionValidator::validate(state, move1));
-    EXPECT_TRUE(ActionValidator::validate(state, move2));
-    EXPECT_FALSE(ActionValidator::validate(state, move3));
-    EXPECT_FALSE(ActionValidator::validate(state, move4));
-    EXPECT_FALSE(ActionValidator::validate(state, move5));
+    EXPECT_FALSE(ActionValidator::validate(state, std::make_shared<Movement>(move1)));
+    EXPECT_TRUE(ActionValidator::validate(state, std::make_shared<Movement>(move2)));
+    EXPECT_FALSE(ActionValidator::validate(state, std::make_shared<Movement>(move3)));
+    EXPECT_FALSE(ActionValidator::validate(state, std::make_shared<Movement>(move4)));
+    EXPECT_FALSE(ActionValidator::validate(state, std::make_shared<Movement>(move5)));
 }
 
 TEST_F(MovementOperation, PerformValidate) {

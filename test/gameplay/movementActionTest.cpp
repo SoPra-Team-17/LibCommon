@@ -4,6 +4,7 @@
 
 #include <gtest/gtest.h>
 #include <datatypes/gameplay/Movement.hpp>
+#include <util/OperationSerialization.hpp>
 
 
 TEST(Movement, encode) {
@@ -19,8 +20,8 @@ TEST(Movement, decode) {
     std::string input = R"({"characterId":"12345678-1234-1234-1234-1234567890ab","from":{"x":3,"y":4},"successful":true,"target":{"x":1,"y":2},"type":"MOVEMENT"})";
 
     auto j = nlohmann::json::parse(input);
-    auto operation = j.get<spy::gameplay::Operation>();
-    EXPECT_EQ(operation.getType(), spy::gameplay::OperationEnum::MOVEMENT);
+    auto operation = j.get<std::shared_ptr<spy::gameplay::BaseOperation>>();
+    EXPECT_EQ(operation->getType(), spy::gameplay::OperationEnum::MOVEMENT);
     spy::gameplay::Movement decodedAction{};
     EXPECT_NO_THROW(decodedAction = j.get<spy::gameplay::Movement>());
     EXPECT_EQ(decodedAction, expected);

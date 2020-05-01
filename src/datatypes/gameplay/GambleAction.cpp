@@ -6,8 +6,9 @@
 
 namespace spy::gameplay {
 
-    GambleAction::GambleAction(bool successful, const util::Point &target, const util::UUID &characterId, unsigned int stake)
-            : Operation(OperationEnum::GAMBLE_ACTION, successful, target, characterId),
+    GambleAction::GambleAction(bool successful, const util::Point &target, const util::UUID &characterId,
+                               unsigned int stake)
+            : CharacterOperation(OperationEnum::GAMBLE_ACTION, successful, target, characterId),
               stake(stake) {}
 
     unsigned int GambleAction::getStake() const {
@@ -15,21 +16,17 @@ namespace spy::gameplay {
     }
 
     void to_json(nlohmann::json &j, const GambleAction &g) {
-        Operation::common_to_json(j, g);
+        CharacterOperation::common_to_json(j, g);
         j["stake"] = g.stake;
     }
-    
+
     void from_json(const nlohmann::json &j, GambleAction &g) {
-        Operation::common_from_json(j, g);
+        CharacterOperation::common_from_json(j, g);
         j.at("stake").get_to(g.stake);
     }
-    
-    bool GambleAction::operator==(const GambleAction &rhs) const {
-        return std::tie(static_cast<const spy::gameplay::Operation &>(*this), stake) ==
-               std::tie(static_cast<const spy::gameplay::Operation &>(rhs), rhs.stake);
-    }
 
-    bool GambleAction::operator!=(const GambleAction &rhs) const {
-        return !(rhs == *this);
+    bool GambleAction::isEqual(const BaseOperation &rhs_b) const {
+        auto rhs = dynamic_cast<const GambleAction &>(rhs_b);
+        return isCharacterEqual(rhs) && stake == rhs.stake;
     }
 }

@@ -4,7 +4,7 @@
 #include "ActionExecutor.hpp"
 
 namespace spy::gameplay {
-    bool ActionExecutor::execute(State &/*s*/, const Exfiltration &/*op*/) {
+    bool ActionExecutor::executeExfiltration(State &/*s*/, const Exfiltration &/*op*/) {
         // TODO: implement
         return false;
     }

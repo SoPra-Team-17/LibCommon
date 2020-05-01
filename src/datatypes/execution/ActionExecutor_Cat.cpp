@@ -4,7 +4,7 @@
 #include "ActionExecutor.hpp"
 
 namespace spy::gameplay {
-    bool ActionExecutor::executeProperty(State &/*s*/, const PropertyAction &/*op*/) {
+    bool ActionExecutor::executeCat(State &/*s*/, const CatAction &/*op*/) {
         // TODO: implement
         return false;
     }

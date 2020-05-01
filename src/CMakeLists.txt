@@ -7,22 +7,32 @@ set(SOURCE
         datatypes/gadgets/Gadget.cpp
         datatypes/gadgets/WiretapWithEarplugs.cpp
         datatypes/gadgets/Cocktail.cpp
+        datatypes/gameplay/CharacterOperation.cpp
+        datatypes/gameplay/BaseOperation.cpp
         datatypes/gameplay/Exfiltration.cpp
         datatypes/gameplay/GadgetAction.cpp
         datatypes/gameplay/GambleAction.cpp
         datatypes/gameplay/Movement.cpp
-        datatypes/gameplay/Operation.cpp
         datatypes/gameplay/PropertyAction.cpp
+        datatypes/gameplay/CatAction.cpp
+        datatypes/gameplay/JanitorAction.cpp
+        datatypes/gameplay/SpyAction.cpp
+        datatypes/gameplay/RetireAction.cpp
         datatypes/character/Character.cpp
         datatypes/character/CharacterInformation.cpp
         datatypes/character/CharacterDescription.cpp
         datatypes/character/CharacterSet.cpp
+        datatypes/execution/ActionExecutor_Cat.cpp
         datatypes/execution/ActionExecutor_Exfiltration.cpp
         datatypes/execution/ActionExecutor_Gadget.cpp
         datatypes/execution/ActionExecutor_Gamble.cpp
+        datatypes/execution/ActionExecutor_Janitor.cpp
         datatypes/execution/ActionExecutor_Movement.cpp
         datatypes/execution/ActionExecutor_Property.cpp
+        datatypes/execution/ActionExecutor_Retire.cpp
+        datatypes/execution/ActionExecutor_Spy.cpp
         datatypes/execution/gadget/GadgetExecutor.cpp
+        datatypes/execution/ActionExecutor.cpp
         datatypes/execution/gadget/HairDryer.cpp
         datatypes/matchconfig/MatchConfig.cpp
         datatypes/scenario/Scenario.cpp
@@ -37,6 +47,11 @@ set(SOURCE
         datatypes/validation/GambleValidator.cpp
         datatypes/validation/MovementValidator.cpp
         datatypes/validation/PropertyValidator.cpp
+        datatypes/validation/ActionValidator.cpp
+        datatypes/validation/ActionValidator_Cat.cpp
+        datatypes/validation/ActionValidator_Janitor.cpp
+        datatypes/validation/ActionValidator_Retire.cpp
+        datatypes/validation/ActionValidator_Spy.cpp
         datatypes/validation/gadget/GadgetValidator.cpp
         datatypes/validation/gadget/Hairdryer.cpp
         datatypes/validation/gadget/RocketPen.cpp
@@ -83,8 +98,7 @@ set(SOURCE
         network/messages/Strike.cpp
         network/messages/RequestReplay.cpp
         network/messages/Replay.cpp
-        network/messages/StatisticsMessage.cpp
-        )
+        network/messages/StatisticsMessage.cpp)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMMON_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror -mtune=native -march=native)

@@ -8,7 +8,7 @@
 
 namespace spy::gameplay {
 
-    bool ActionValidator::validate(const State &s, GadgetAction op) {
+    bool ActionValidator::validateGadgetAction(const State &s, GadgetAction op) {
         using spy::gadget::GadgetEnum;
 
         // check if target inside map

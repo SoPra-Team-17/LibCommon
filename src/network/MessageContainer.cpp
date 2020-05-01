@@ -5,6 +5,7 @@
 #include "MessageContainer.hpp"
 #include <util/OptionalSerialization.hpp>
 #include <ctime>
+#include <iostream>
 
 namespace spy::network {
     void to_json(nlohmann::json &j, const MessageContainer &m) {
