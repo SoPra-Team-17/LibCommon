@@ -19,7 +19,8 @@ namespace spy::gameplay {
         // check if character has gadget
         bool hasGadget = spy::util::GadgetUtils::characterHasGadget(s, op.getCharacterId().value(),
                                                                     op.getGadget());
-        if (!hasGadget) {
+        // picking up a cocktail is the only action that can be performed without having the gadget
+        if (op.getGadget() != GadgetEnum::COCKTAIL && !hasGadget) {
             return false;
         }
 
