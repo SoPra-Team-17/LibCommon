@@ -7,6 +7,8 @@
 namespace spy::gameplay {
     CatAction::CatAction() : BaseOperation(OperationEnum::CAT_ACTION, false, {}) {}
 
+    CatAction::CatAction(util::Point target) : BaseOperation(OperationEnum::CAT_ACTION, false, target) {}
+
     void to_json(nlohmann::json &j, const CatAction &e) {
         BaseOperation::common_to_json(j, e);
     }

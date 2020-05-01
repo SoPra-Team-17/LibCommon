@@ -12,6 +12,8 @@ namespace spy::gameplay {
         public:
             CatAction();
 
+            explicit CatAction(util::Point target);
+
             friend void to_json(nlohmann::json &j, const CatAction &e);
 
             friend void from_json(const nlohmann::json &j, CatAction &e);
