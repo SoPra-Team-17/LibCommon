@@ -39,7 +39,7 @@ namespace spy::gameplay {
                                                              *std::dynamic_pointer_cast<const gameplay::RetireAction>(
                                                                      op));
             default:
-                throw std::runtime_error("Validate for this action has not been implemented");
+                throw std::invalid_argument("Validate for this action has not been implemented");
 
         }
     }

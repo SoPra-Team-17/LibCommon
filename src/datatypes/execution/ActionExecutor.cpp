@@ -30,7 +30,7 @@ namespace spy::gameplay {
             case OperationEnum::RETIRE:
                 return ActionExecutor::executeRetire(s, *std::dynamic_pointer_cast<const gameplay::RetireAction>(op));
             default:
-                throw std::runtime_error("Execute for this action has not been implemented");
+                throw std::invalid_argument("Execute for this action has not been implemented");
         }
     }
 }
