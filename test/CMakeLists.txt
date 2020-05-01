@@ -37,7 +37,8 @@ set(SOURCES
         gameLogic/gadget/gasGlossTests.cpp
         gameLogic/gadget/poisonPillTests.cpp
         gameLogic/gadget/nuggetTests.cpp
-        gameLogic/gadget/wiretapWithEarplugsTests.cpp)
+        gameLogic/gadget/wiretapWithEarplugsTests.cpp
+        gameLogic/gadget/diamondCollarTests.cpp)
 
 add_executable(allTests ${SOURCES})
 target_compile_options(allTests PRIVATE ${COMMON_CXX_FLAGS})
