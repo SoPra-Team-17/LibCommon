@@ -67,11 +67,15 @@ namespace spy::scenario {
                 || getField(p).getFieldState() == FieldStateEnum::BAR_SEAT);
     }
 
+    bool FieldMap::isLineOfSightFree(util::Point p1, util::Point p2) const {
+        return isLineOfSightFree(p1, p2, [this](util::Point currentPoint) { return blocksSight(currentPoint); });
+    }
 
     /**
      * @see playtechs.blogspot.com/2007/03/raytracing-on-grid.html for the original implementation
      */
-    bool FieldMap::isLineOfSightFree(util::Point p1, util::Point p2) const {
+    bool FieldMap::isLineOfSightFree(util::Point p1, util::Point p2,
+                                     const std::function<bool(util::Point)> &blocksLine) const {
         if (!isInside(p1) || !isInside(p2)) {
             throw std::invalid_argument("At least one point is outside the field map!");
         } else if (p1 == p2) {
@@ -89,7 +93,7 @@ namespace spy::scenario {
         dy *= 2;
         auto currentPoint = p1;
         while (currentPoint != p2) {
-            if (currentPoint != p1 && blocksSight(currentPoint)) {
+            if (currentPoint != p1 && blocksLine(currentPoint)) {
                 return false;
             }
 

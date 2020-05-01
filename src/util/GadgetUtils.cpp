@@ -67,48 +67,13 @@ namespace spy::util {
     }
 
     bool GadgetUtils::bowlerBladeLineOfSight(const spy::gameplay::State &s, const Point &p1, const Point &p2) {
-
-        if (!s.getMap().isInside(p1) || !s.getMap().isInside(p2)) {
-            throw std::invalid_argument("At least one point is outside the field map!");
-        } else if (p1 == p2) {
-            return true;
-        }
-
-        int dx = abs(p1.x - p2.x);
-        int dy = abs(p1.y - p2.y);
-
-        int incX = (p2.x > p1.x) ? 1 : -1;
-        int incY = (p2.y > p1.y) ? 1 : -1;
-        int error = dx - dy;
-        // scaling is needed to make sure the error term is integral
-        dx *= 2;
-        dy *= 2;
-        auto currentPoint = p1;
-        while (currentPoint != p2) {
-            // check if character on current point
-            auto person = std::find_if(s.getCharacters().begin(), s.getCharacters().end(),
-                                       [currentPoint](const character::Character &c) {
-                                           return c.getCoordinates() == currentPoint;
-                                       });
-            bool personOnField = !(person == s.getCharacters().end());
-
-            if (currentPoint != p1 && (s.getMap().blocksSight(currentPoint) || personOnField)) {
-                return false;
+        return s.getMap().isLineOfSightFree(p1, p2, [&](util::Point currentPoint) {
+            // check if point is conventionally blocked
+            if (s.getMap().blocksSight(currentPoint)) {
+                return true;
             }
-
-            if (error > 0) {
-                currentPoint.x += incX;
-                error -= dy;
-            } else if (error < 0) {
-                currentPoint.y += incY;
-                error += dx;
-            } else {
-                error -= dy;
-                error += dx;
-                currentPoint += {incX, incY};
-            }
-        }
-
-        return true;
+            // check if character blocks point
+            return isPersonOnField(s, currentPoint);
+        });
     }
 }

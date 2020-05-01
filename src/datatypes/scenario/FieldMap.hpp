@@ -64,6 +64,16 @@ namespace spy::scenario {
              */
             [[nodiscard]] bool isLineOfSightFree(util::Point p1, util::Point p2) const;
 
+            /**
+             * Checks whether the line of sight between to fields is blocked.
+             * @param p1 First field.
+             * @param p2 Second field.
+             * @param blocksLine function returning true for points blocking the sight line
+             * @return False if the line of sight is blocked, otherwise true.
+             */
+            [[nodiscard]] bool isLineOfSightFree(util::Point p1, util::Point p2,
+                                                 const std::function<bool(util::Point)> &blocksLine) const;
+
             friend void to_json(nlohmann::json &j, const FieldMap &m);
 
             friend void from_json(const nlohmann::json &j, FieldMap &m);
