@@ -32,6 +32,7 @@ TEST_F(GadgetActionTests, Cocktail_Validate) {
     GadgetAction g4(false, {4, 2}, uuid1, GadgetEnum::COCKTAIL);
     GadgetAction g5(false, {6, 7}, uuid5, GadgetEnum::COCKTAIL);
     GadgetAction g6(false, {4, 5}, uuid1, GadgetEnum::COCKTAIL);
+    GadgetAction g7(false, {3, 1}, uuid3, GadgetEnum::COCKTAIL);
 
     EXPECT_FALSE(ActionValidator::validate(state, g1)) << "character has no cocktail --> invalid";
     EXPECT_TRUE(ActionValidator::validate(state, g2)) << "drink cocktail --> valid";
@@ -39,6 +40,13 @@ TEST_F(GadgetActionTests, Cocktail_Validate) {
     EXPECT_TRUE(ActionValidator::validate(state, g4)) << "spill on character --> valid";
     EXPECT_FALSE(ActionValidator::validate(state, g5)) << "target outside map --> invalid";
     EXPECT_FALSE(ActionValidator::validate(state, g6)) << "target out of range --> invalid";
+
+    state.getMap().getField(3, 1).setGadget(std::nullopt);
+    ASSERT_FALSE(ActionValidator::validate(state, g7)) << "pickup cocktail from emtpy bar table --> invalid";
+    state.getMap().getField(3, 1).setGadget(cocktail);
+    ASSERT_TRUE(ActionValidator::validate(state, g7)) << "pickup cocktail --> valid";
+    state.getCharacters().getByUUID(uuid3)->addGadget(cocktail);
+    ASSERT_FALSE(ActionValidator::validate(state, g7)) << "pickup when holding a cocktail --> invalid";
 }
 
 
