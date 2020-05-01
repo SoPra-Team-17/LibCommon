@@ -71,10 +71,6 @@ namespace spy::scenario {
         return isLineOfSightFree(p1, p2, [this](util::Point currentPoint) { return blocksSight(currentPoint); });
     }
 
-    /**
-     */
-
-
     void to_json(nlohmann::json &j, const FieldMap &m) {
         j["fieldMap"] = m.map;
     }
