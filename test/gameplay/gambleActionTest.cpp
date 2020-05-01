@@ -4,6 +4,7 @@
 
 #include <gtest/gtest.h>
 #include <datatypes/gameplay/GambleAction.hpp>
+#include <util/OperationSerialization.hpp>
 
 
 TEST(GambleAction, encode) {
@@ -20,8 +21,8 @@ TEST(GambleAction, decode) {
     std::string input = R"({"characterId":"12345678-1234-1234-1234-1234567890ab","stake":3,"successful":true,"target":{"x":1,"y":2},"type":"GAMBLE_ACTION"})";
 
     auto j = nlohmann::json::parse(input);
-    auto operation = j.get<spy::gameplay::Operation>();
-    EXPECT_EQ(operation.getType(), spy::gameplay::OperationEnum::GAMBLE_ACTION);
+    auto operation = j.get<std::shared_ptr<spy::gameplay::BaseOperation>>();
+    EXPECT_EQ(operation->getType(), spy::gameplay::OperationEnum::GAMBLE_ACTION);
     spy::gameplay::GambleAction decodedAction{};
     EXPECT_NO_THROW(decodedAction = j.get<spy::gameplay::GambleAction>());
     EXPECT_EQ(decodedAction, expected);

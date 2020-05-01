@@ -7,10 +7,10 @@
 #ifndef LIBCOMMON_GAMBLEACTION_HPP
 #define LIBCOMMON_GAMBLEACTION_HPP
 
-#include "Operation.hpp"
+#include "CharacterOperation.hpp"
 
 namespace spy::gameplay {
-    class GambleAction : public Operation {
+    class GambleAction : public CharacterOperation {
         public:
             GambleAction() = default;
 
@@ -18,16 +18,14 @@ namespace spy::gameplay {
 
             [[nodiscard]] unsigned int getStake() const;
 
-            bool operator==(const GambleAction &rhs) const;
-
-            bool operator!=(const GambleAction &rhs) const;
-
             friend void to_json(nlohmann::json &j, const GambleAction &g);
 
             friend void from_json(const nlohmann::json &j, GambleAction &g);
 
         private:
             unsigned int stake = 0;
+
+            [[nodiscard]] bool isEqual(const BaseOperation &rhs) const override;
     };
 
 }

@@ -6,7 +6,7 @@
 
 namespace spy::gameplay {
 
-    bool ActionValidator::validatePropertyAction(const State &/*s*/, spy::gameplay::PropertyAction /*op*/) {
+    bool ActionValidator::validateCatAction(const State &/*s*/, spy::gameplay::CatAction /*op*/) {
         // TODO implement
         return false;
     }

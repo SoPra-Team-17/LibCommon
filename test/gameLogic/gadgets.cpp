@@ -46,7 +46,7 @@ TEST_F(GadgetTest, HairDryer_Execute) {
     ASSERT_TRUE(c2->getProperties().find(PropertyEnum::CLAMMY_CLOTHES) != c2->getProperties().end());
 
     spy::gameplay::GadgetAction a{false, c2->getCoordinates().value(), u1, spy::gadget::GadgetEnum::HAIRDRYER};
-    spy::gameplay::ActionExecutor::execute(state, a);
+    spy::gameplay::ActionExecutor::execute(state, std::make_shared<spy::gameplay::GadgetAction>(a));
 
     // Expect CLAMMY_CLOTHES to be removed from character 2
     EXPECT_TRUE(c2->getProperties().find(PropertyEnum::CLAMMY_CLOTHES) == c2->getProperties().end());

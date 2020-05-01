@@ -7,11 +7,11 @@
 #ifndef LIBCOMMON_GADGETACTION_HPP
 #define LIBCOMMON_GADGETACTION_HPP
 
-#include "Operation.hpp"
+#include "CharacterOperation.hpp"
 #include <datatypes/gadgets/GadgetEnum.hpp>
 
 namespace spy::gameplay {
-    class GadgetAction : public Operation {
+    class GadgetAction : public CharacterOperation {
         public:
             GadgetAction() = default;
 
@@ -20,16 +20,14 @@ namespace spy::gameplay {
 
             [[nodiscard]] gadget::GadgetEnum getGadget() const;
 
-            bool operator==(const GadgetAction &rhs) const;
-
-            bool operator!=(const GadgetAction &rhs) const;
-
             friend void to_json(nlohmann::json &j, const GadgetAction &g);
 
             friend void from_json(const nlohmann::json &j, GadgetAction &g);
 
         private:
             gadget::GadgetEnum gadget = gadget::GadgetEnum::INVALID;
+
+            bool isEqual(const BaseOperation &rhs) const override;
     };
 }
 

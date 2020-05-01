@@ -2,8 +2,10 @@
 // Created by jonas on 10.04.20.
 //
 
-#include <gtest/gtest.h>
+#include<gtest/gtest.h>
 #include <datatypes/gameplay/GadgetAction.hpp>
+#include <util/OperationSerialization.hpp>
+
 
 TEST(GadgetAction, encode) {
     spy::gameplay::GadgetAction ga(true, {1, 2}, spy::util::UUID("12345678-1234-1234-1234-1234567890AB"),
@@ -20,8 +22,8 @@ TEST(GadgetAction, decode) {
     std::string input = R"({"characterId":"12345678-1234-1234-1234-1234567890ab","gadget":"JETPACK","successful":true,"target":{"x":1,"y":2},"type":"GADGET_ACTION"})";
 
     auto j = nlohmann::json::parse(input);
-    auto operation = j.get<spy::gameplay::Operation>();
-    EXPECT_EQ(operation.getType(), spy::gameplay::OperationEnum::GADGET_ACTION);
+    auto operation = j.get<std::shared_ptr<spy::gameplay::BaseOperation>>();
+    EXPECT_EQ(operation->getType(), spy::gameplay::OperationEnum::GADGET_ACTION);
     spy::gameplay::GadgetAction decodedAction{};
     EXPECT_NO_THROW(decodedAction = j.get<spy::gameplay::GadgetAction>());
     EXPECT_EQ(decodedAction, expected);

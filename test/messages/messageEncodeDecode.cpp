@@ -51,8 +51,8 @@ class MessageEncodeDecode : public ::testing::Test {
     protected:
         spy::util::UUID exampleUUID1 = spy::util::UUID{"6a1333d0-2317-4044-9d37-047d29205011"};
         spy::util::UUID exampleUUID2 = spy::util::UUID{"6a1333d1-2318-5044-9d37-047d29205012"};
-        spy::gameplay::Operation exampleOperation = {spy::gameplay::OperationEnum::MOVEMENT, true, {3, 3},
-                                                     exampleUUID2};
+        std::shared_ptr<spy::gameplay::BaseOperation> exampleOperation = std::make_shared<spy::gameplay::Movement>(
+                spy::gameplay::Movement{true, {3, 3}, exampleUUID2, spy::util::Point{0, 0}});
         spy::scenario::Scenario exampleScenario = exampleScenarioJson.get<spy::scenario::Scenario>();
         spy::scenario::FieldMap exampleMap = spy::scenario::FieldMap{exampleScenario};
         spy::character::Character char1 = {exampleUUID1, "TestChar1"};
@@ -70,6 +70,7 @@ void testEncodeDecode(const MessageType &message) {
 
     nlohmann::json jsonMessage = message;
     std::string encodedMessage = jsonMessage.dump();
+    std::cout << "Encoded Message to: " << std::endl << jsonMessage.dump() << std::endl;
     nlohmann::json parsedJson = nlohmann::json::parse(encodedMessage);
     auto genericMessage = parsedJson.get<spy::network::MessageContainer>();
     ASSERT_EQ(genericMessage.getType(), message.getType());
@@ -121,9 +122,11 @@ TEST_F(MessageEncodeDecode, GameStatus) {
     spy::network::messages::GameStatus testMessage{exampleUUID1, exampleUUID2, {exampleOperation, exampleOperation},
                                                    exampleState, false};
     testEncodeDecode(testMessage);
+}
 
-    testMessage = {exampleUUID1, exampleUUID2, {exampleOperation, exampleOperation},
-                   exampleState_noCat_noJanitor, false};
+TEST_F(MessageEncodeDecode, GameStatus2) {
+    spy::network::messages::GameStatus testMessage = {exampleUUID1, exampleUUID2, {exampleOperation, exampleOperation},
+                                                      exampleState_noCat_noJanitor, false};
     testEncodeDecode(testMessage);
 }
 

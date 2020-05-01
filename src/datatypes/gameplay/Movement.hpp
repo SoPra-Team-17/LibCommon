@@ -7,11 +7,11 @@
 #ifndef LIBCOMMON_MOVEMENT_HPP
 #define LIBCOMMON_MOVEMENT_HPP
 
-#include "Operation.hpp"
+#include "CharacterOperation.hpp"
 #include <util/Point.hpp>
 
 namespace spy::gameplay {
-    class Movement : public Operation {
+    class Movement : public CharacterOperation {
         public:
             Movement() = default;
 
@@ -33,11 +33,10 @@ namespace spy::gameplay {
 
             friend void from_json(const nlohmann::json &j, Movement &m);
 
-            bool operator==(const Movement &rhs) const;
-
-            bool operator!=(const Movement &rhs) const;
         private:
             util::Point from{};
+
+            [[nodiscard]] bool isEqual(const BaseOperation &rhs) const override;
     };
 
 }

@@ -6,16 +6,18 @@
 #define LIBCOMMON_GAMEOPERATION_HPP
 
 #include <network/MessageContainer.hpp>
-#include <datatypes/gameplay/Operation.hpp>
+#include <datatypes/gameplay/CharacterOperation.hpp>
+#include <network/RoleEnum.hpp>
+#include <datatypes/gameplay/State.hpp>
 
 namespace spy::network::messages {
     class GameOperation : public MessageContainer {
         public:
             GameOperation();
 
-            GameOperation(util::UUID playerId, gameplay::Operation operation);
+            GameOperation(util::UUID playerId, std::shared_ptr<gameplay::BaseOperation> operation);
 
-            [[nodiscard]] const gameplay::Operation &getOperation() const;
+            [[nodiscard]] const std::shared_ptr<gameplay::BaseOperation> &getOperation() const;
 
             friend void to_json(nlohmann::json &j, const GameOperation &g);
 
@@ -23,8 +25,21 @@ namespace spy::network::messages {
 
             bool operator==(const GameOperation &rhs) const;
 
+            /**
+             * validate message according role and operation type and if operation is allowed in current state
+             * @param playerRole role of the player who sent the message
+             * @param state current state of the game
+             * @param activeCharacter character that move was requested from
+             * @return true if message is valid
+             *         false if message is not valid
+             */
+            [[nodiscard]] bool validate(RoleEnum playerRole, gameplay::State &state, util::UUID activeCharacter) const;
+
+            friend std::ostream &operator<<(std::ostream &os, const GameOperation &metaInformation);
+
+
         private:
-            gameplay::Operation operation;
+            std::shared_ptr<gameplay::BaseOperation> operation;
     };
 }
 

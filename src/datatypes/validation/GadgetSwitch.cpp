@@ -7,7 +7,7 @@
 
 namespace spy::gameplay {
 
-    bool ActionValidator::validate(const State &s, GadgetAction op) {
+    bool ActionValidator::validateGadgetAction(const State &s, GadgetAction op) {
         return GadgetValidator::validate(s, op);
     }
 }
