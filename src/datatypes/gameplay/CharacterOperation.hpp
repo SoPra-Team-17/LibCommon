@@ -34,8 +34,6 @@ namespace spy::gameplay {
 
             CharacterOperation(OperationEnum type, bool successful, const util::Point &target, util::UUID characterId);
 
-            util::UUID characterId;
-
             /**
              * Compare the common elements of CharacterOperation, excluding inherited members.
              * This is intentionally not in operator== to prevent overriding.
@@ -46,6 +44,8 @@ namespace spy::gameplay {
         private:
 
             [[nodiscard]] bool isEqual(const BaseOperation &rhs) const override = 0;
+
+            util::UUID characterId;
     };
 }
 
