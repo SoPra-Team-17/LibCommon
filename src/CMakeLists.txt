@@ -50,6 +50,10 @@ set(SOURCE
         datatypes/validation/gadget/GadgetValidator.cpp
         datatypes/validation/gadget/RocketPen.cpp
         datatypes/validation/ActionValidator.cpp
+        datatypes/validation/ActionValidator_Cat.cpp
+        datatypes/validation/ActionValidator_Janitor.cpp
+        datatypes/validation/ActionValidator_Retire.cpp
+        datatypes/validation/ActionValidator_Spy.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp

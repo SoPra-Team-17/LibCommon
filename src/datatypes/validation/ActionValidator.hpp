@@ -9,6 +9,10 @@
 #include <datatypes/gameplay/GambleAction.hpp>
 #include <datatypes/gameplay/Movement.hpp>
 #include <datatypes/gameplay/PropertyAction.hpp>
+#include <datatypes/gameplay/SpyAction.hpp>
+#include <datatypes/gameplay/CatAction.hpp>
+#include <datatypes/gameplay/JanitorAction.hpp>
+#include <datatypes/gameplay/RetireAction.hpp>
 
 namespace spy::gameplay {
     /**
@@ -32,6 +36,14 @@ namespace spy::gameplay {
             static bool validateMovement(const State &s, Movement op);
 
             static bool validatePropertyAction(const State &s, PropertyAction op);
+
+            static bool validateSpyAction(const State &s, SpyAction op);
+
+            static bool validateCatAction(const State &s, CatAction op);
+
+            static bool validateJanitorAction(const State &s, JanitorAction op);
+
+            static bool validateRetireAction(const State &s, RetireAction op);
 
     };
 }

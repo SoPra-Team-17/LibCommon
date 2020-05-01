@@ -27,16 +27,20 @@ namespace spy::gameplay {
                                                              *std::dynamic_pointer_cast<const gameplay::Exfiltration>(
                                                                      op));
             case OperationEnum::SPY_ACTION:
-                break;
+                return ActionValidator::validateSpyAction(s, *std::dynamic_pointer_cast<const gameplay::SpyAction>(op));
             case OperationEnum::CAT_ACTION:
-                break;
+                return ActionValidator::validateCatAction(s, *std::dynamic_pointer_cast<const gameplay::CatAction>(op));
             case OperationEnum::JANITOR_ACTION:
-                break;
+                return ActionValidator::validateJanitorAction(s,
+                                                              *std::dynamic_pointer_cast<const gameplay::JanitorAction>(
+                                                                      op));
             case OperationEnum::RETIRE:
-                break;
-            case OperationEnum::INVALID:
-                break;
+                return ActionValidator::validateRetireAction(s,
+                                                             *std::dynamic_pointer_cast<const gameplay::RetireAction>(
+                                                                     op));
+            default:
+                throw std::runtime_error("Validate for this action has not been implemented");
+
         }
-        return false;
     }
 }
