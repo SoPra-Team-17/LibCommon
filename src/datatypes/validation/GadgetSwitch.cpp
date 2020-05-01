@@ -16,6 +16,13 @@ namespace spy::gameplay {
             return false;
         }
 
+        // check if selected character exits and stands within the game field
+        auto character = s.getCharacters().findByUUID(op.getCharacterId().value());
+        if (character == s.getCharacters().end()
+            || !character->getCoordinates().has_value()) {
+            return false;
+        }
+
         // check if character has gadget
         bool hasGadget = spy::util::GadgetUtils::characterHasGadget(s, op.getCharacterId().value(),
                                                                     op.getGadget());
