@@ -35,16 +35,16 @@ TEST_F(GadgetActionTests, PoisonPills_Validate) {
 
     state.getMap().getField(1, 3).setGadget(cocktail);
 
-    GadgetAction g1(false, {5, 3}, uuid2, GadgetEnum::POISON_PILLS);
-    GadgetAction g2(false, {4, 3}, uuid1, GadgetEnum::POISON_PILLS);
-    GadgetAction g3(false, {4, 4}, uuid1, GadgetEnum::POISON_PILLS);
-    GadgetAction g4(false, {4, 2}, uuid1, GadgetEnum::POISON_PILLS);
-    GadgetAction g5(false, {6, 7}, uuid5, GadgetEnum::POISON_PILLS);
-    GadgetAction g6(false, {4, 5}, uuid1, GadgetEnum::POISON_PILLS);
-    GadgetAction g7(false, {6, 6}, uuid5, GadgetEnum::POISON_PILLS);
-    GadgetAction g8(false, {5, 3}, uuid1, GadgetEnum::POISON_PILLS);
-    GadgetAction g9(false, {1, 3}, uuid6, GadgetEnum::POISON_PILLS);
-    GadgetAction g10(false, {3, 1}, uuid7, GadgetEnum::POISON_PILLS);
+    auto g1  = std::make_shared<GadgetAction>(GadgetAction(false, {5, 3}, uuid2, GadgetEnum::POISON_PILLS));
+    auto g2  = std::make_shared<GadgetAction>(GadgetAction(false, {4, 3}, uuid1, GadgetEnum::POISON_PILLS));
+    auto g3  = std::make_shared<GadgetAction>(GadgetAction(false, {4, 4}, uuid1, GadgetEnum::POISON_PILLS));
+    auto g4  = std::make_shared<GadgetAction>(GadgetAction(false, {4, 2}, uuid1, GadgetEnum::POISON_PILLS));
+    auto g5  = std::make_shared<GadgetAction>(GadgetAction(false, {6, 7}, uuid5, GadgetEnum::POISON_PILLS));
+    auto g6  = std::make_shared<GadgetAction>(GadgetAction(false, {4, 5}, uuid1, GadgetEnum::POISON_PILLS));
+    auto g7  = std::make_shared<GadgetAction>(GadgetAction(false, {6, 6}, uuid5, GadgetEnum::POISON_PILLS));
+    auto g8  = std::make_shared<GadgetAction>(GadgetAction(false, {5, 3}, uuid1, GadgetEnum::POISON_PILLS));
+    auto g9  = std::make_shared<GadgetAction>(GadgetAction(false, {1, 3}, uuid6, GadgetEnum::POISON_PILLS));
+    auto g10 = std::make_shared<GadgetAction>(GadgetAction(false, {3, 1}, uuid7, GadgetEnum::POISON_PILLS));
 
     EXPECT_FALSE(ActionValidator::validate(state, g1)) << "character has no pills --> invalid";
     EXPECT_TRUE(ActionValidator::validate(state, g2)) << "aim on own cocktail --> valid";

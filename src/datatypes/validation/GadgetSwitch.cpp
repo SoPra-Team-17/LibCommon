@@ -17,14 +17,15 @@ namespace spy::gameplay {
         }
 
         // check if selected character exits and stands within the game field
-        auto character = s.getCharacters().findByUUID(op.getCharacterId().value());
+        auto character = s.getCharacters().findByUUID(op.getCharacterId());
         if (character == s.getCharacters().end()
-            || !character->getCoordinates().has_value()) {
+            || !character->getCoordinates().has_value()
+            || !s.getMap().isInside(character->getCoordinates().value())) {
             return false;
         }
 
         // check if character has gadget
-        bool hasGadget = spy::util::GadgetUtils::characterHasGadget(s, op.getCharacterId().value(),
+        bool hasGadget = spy::util::GadgetUtils::characterHasGadget(s, op.getCharacterId(),
                                                                     op.getGadget());
         // picking up a cocktail is the only action that can be performed without having the gadget
         if (op.getGadget() != GadgetEnum::COCKTAIL && !hasGadget) {

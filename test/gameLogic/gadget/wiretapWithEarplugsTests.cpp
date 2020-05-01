@@ -26,12 +26,12 @@ TEST_F(GadgetActionTests, WiretapWithEarplugs_Validate) {
     state.getCharacters().getByUUID(uuid1)->addGadget(earplugs);
     state.getCharacters().getByUUID(uuid5)->addGadget(earplugs);
 
-    GadgetAction g1(false, {5, 3}, uuid2, GadgetEnum::WIRETAP_WITH_EARPLUGS);
-    GadgetAction g2(false, {4, 3}, uuid1, GadgetEnum::WIRETAP_WITH_EARPLUGS);
-    GadgetAction g3(false, {4, 4}, uuid1, GadgetEnum::WIRETAP_WITH_EARPLUGS);
-    GadgetAction g4(false, {4, 2}, uuid1, GadgetEnum::WIRETAP_WITH_EARPLUGS);
-    GadgetAction g5(false, {6, 7}, uuid5, GadgetEnum::WIRETAP_WITH_EARPLUGS);
-    GadgetAction g6(false, {4, 5}, uuid1, GadgetEnum::WIRETAP_WITH_EARPLUGS);
+    auto g1 = std::make_shared<GadgetAction>(GadgetAction(false, {5, 3}, uuid2, GadgetEnum::WIRETAP_WITH_EARPLUGS));
+    auto g2 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 3}, uuid1, GadgetEnum::WIRETAP_WITH_EARPLUGS));
+    auto g3 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 4}, uuid1, GadgetEnum::WIRETAP_WITH_EARPLUGS));
+    auto g4 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 2}, uuid1, GadgetEnum::WIRETAP_WITH_EARPLUGS));
+    auto g5 = std::make_shared<GadgetAction>(GadgetAction(false, {6, 7}, uuid5, GadgetEnum::WIRETAP_WITH_EARPLUGS));
+    auto g6 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 5}, uuid1, GadgetEnum::WIRETAP_WITH_EARPLUGS));
 
     EXPECT_FALSE(ActionValidator::validate(state, g1)) << "character has no gadget --> invalid";
     EXPECT_FALSE(ActionValidator::validate(state, g2)) << "aim on oneself --> invalid";

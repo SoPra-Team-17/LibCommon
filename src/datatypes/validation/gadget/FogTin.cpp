@@ -18,7 +18,7 @@ namespace spy::gameplay {
         }
 
         // check range and LoS
-        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
+        auto character = s.getCharacters().findByUUID(a.getCharacterId());
         auto distance = Movement::getMoveDistance(character->getCoordinates().value(), a.getTarget());
         // todo hard coded range
         unsigned int fogTinRange = 10;

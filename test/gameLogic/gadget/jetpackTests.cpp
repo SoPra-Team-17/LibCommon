@@ -25,18 +25,18 @@ TEST_F(GadgetActionTests, Jetpack_Validate) {
     state.getCharacters().getByUUID(uuid1)->addGadget(jetpack);
     state.getCharacters().getByUUID(uuid5)->addGadget(jetpack);
 
-    GadgetAction g1(false, {5, 3}, uuid2, GadgetEnum::JETPACK);
-    GadgetAction g2(false, {4, 3}, uuid1, GadgetEnum::JETPACK);
-    GadgetAction g3(false, {4, 4}, uuid1, GadgetEnum::JETPACK);
-    GadgetAction g4(false, {4, 2}, uuid1, GadgetEnum::JETPACK);
-    GadgetAction g5(false, {6, 7}, uuid5, GadgetEnum::JETPACK);
-    GadgetAction g6(false, {4, 1}, uuid1, GadgetEnum::JETPACK);
-    GadgetAction g7(false, {0, 0}, uuid1, GadgetEnum::JETPACK);
-    GadgetAction g8(false, {1, 1}, uuid1, GadgetEnum::JETPACK);
-    GadgetAction g9(false, {3, 1}, uuid1, GadgetEnum::JETPACK);
-    GadgetAction g10(false, {3, 3}, uuid1, GadgetEnum::JETPACK);
-    GadgetAction g11(false, {5, 5}, uuid1, GadgetEnum::JETPACK);
-    GadgetAction g12(false, {0, 4}, uuid1, GadgetEnum::JETPACK);
+    auto g1  = std::make_shared<GadgetAction>(GadgetAction(false, {5, 3}, uuid2, GadgetEnum::JETPACK));
+    auto g2  = std::make_shared<GadgetAction>(GadgetAction(false, {4, 3}, uuid1, GadgetEnum::JETPACK));
+    auto g3  = std::make_shared<GadgetAction>(GadgetAction(false, {4, 4}, uuid1, GadgetEnum::JETPACK));
+    auto g4  = std::make_shared<GadgetAction>(GadgetAction(false, {4, 2}, uuid1, GadgetEnum::JETPACK));
+    auto g5  = std::make_shared<GadgetAction>(GadgetAction(false, {6, 7}, uuid5, GadgetEnum::JETPACK));
+    auto g6  = std::make_shared<GadgetAction>(GadgetAction(false, {4, 1}, uuid1, GadgetEnum::JETPACK));
+    auto g7  = std::make_shared<GadgetAction>(GadgetAction(false, {0, 0}, uuid1, GadgetEnum::JETPACK));
+    auto g8  = std::make_shared<GadgetAction>(GadgetAction(false, {1, 1}, uuid1, GadgetEnum::JETPACK));
+    auto g9  = std::make_shared<GadgetAction>(GadgetAction(false, {3, 1}, uuid1, GadgetEnum::JETPACK));
+    auto g10 = std::make_shared<GadgetAction>(GadgetAction(false, {3, 3}, uuid1, GadgetEnum::JETPACK));
+    auto g11 = std::make_shared<GadgetAction>(GadgetAction(false, {5, 5}, uuid1, GadgetEnum::JETPACK));
+    auto g12 = std::make_shared<GadgetAction>(GadgetAction(false, {0, 4}, uuid1, GadgetEnum::JETPACK));
 
     EXPECT_FALSE(ActionValidator::validate(state, g1)) << "character has no jetpack --> invalid";
     EXPECT_TRUE(ActionValidator::validate(state, g2)) << "no move --> useless, but valid";

@@ -26,14 +26,14 @@ TEST_F(GadgetActionTests, Cocktail_Validate) {
     state.getCharacters().getByUUID(uuid1)->addGadget(cocktail);
     state.getCharacters().getByUUID(uuid5)->addGadget(cocktail);
 
-    GadgetAction g1(false, {5, 3}, uuid2, GadgetEnum::COCKTAIL);
-    GadgetAction g2(false, {4, 3}, uuid1, GadgetEnum::COCKTAIL);
-    GadgetAction g3(false, {4, 4}, uuid1, GadgetEnum::COCKTAIL);
-    GadgetAction g4(false, {4, 2}, uuid1, GadgetEnum::COCKTAIL);
-    GadgetAction g5(false, {6, 7}, uuid5, GadgetEnum::COCKTAIL);
-    GadgetAction g6(false, {4, 5}, uuid1, GadgetEnum::COCKTAIL);
-    GadgetAction g7(false, {3, 1}, uuid3, GadgetEnum::COCKTAIL);
-    GadgetAction g8(false, {3, 1}, uuid2, GadgetEnum::COCKTAIL);
+    auto g1 = std::make_shared<GadgetAction>(GadgetAction(false, {5, 3}, uuid2, GadgetEnum::COCKTAIL));
+    auto g2 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 3}, uuid1, GadgetEnum::COCKTAIL));
+    auto g3 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 4}, uuid1, GadgetEnum::COCKTAIL));
+    auto g4 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 2}, uuid1, GadgetEnum::COCKTAIL));
+    auto g5 = std::make_shared<GadgetAction>(GadgetAction(false, {6, 7}, uuid5, GadgetEnum::COCKTAIL));
+    auto g6 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 5}, uuid1, GadgetEnum::COCKTAIL));
+    auto g7 = std::make_shared<GadgetAction>(GadgetAction(false, {3, 1}, uuid3, GadgetEnum::COCKTAIL));
+    auto g8 = std::make_shared<GadgetAction>(GadgetAction(false, {3, 1}, uuid2, GadgetEnum::COCKTAIL));
 
     EXPECT_FALSE(ActionValidator::validate(state, g1)) << "character has no cocktail --> invalid";
     EXPECT_TRUE(ActionValidator::validate(state, g2)) << "drink cocktail --> valid";

@@ -13,9 +13,9 @@ namespace spy::gameplay {
 
     bool GadgetValidator::validateCocktail(const State &s, GadgetAction a) {
 
-        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
+        auto character = s.getCharacters().findByUUID(a.getCharacterId());
 
-        auto hasCocktail = spy::util::GadgetUtils::characterHasGadget(s, a.getCharacterId().value(),
+        auto hasCocktail = spy::util::GadgetUtils::characterHasGadget(s, a.getCharacterId(),
                                                                  spy::gadget::GadgetEnum::COCKTAIL);
 
         if (Movement::getMoveDistance(a.getTarget(), character->getCoordinates().value()) > 1) {

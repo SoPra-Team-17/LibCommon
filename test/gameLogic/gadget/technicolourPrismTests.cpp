@@ -25,11 +25,11 @@ TEST_F(GadgetActionTests, TechnicolourPrism_Validate) {
     state.getCharacters().getByUUID(uuid1)->addGadget(prism);
     state.getCharacters().getByUUID(uuid5)->addGadget(prism);
 
-    GadgetAction g1(false, {3, 3}, uuid1, GadgetEnum::TECHNICOLOUR_PRISM);
-    GadgetAction g2(false, {3, 3}, uuid2, GadgetEnum::TECHNICOLOUR_PRISM);
-    GadgetAction g3(false, {4, 2}, uuid1, GadgetEnum::TECHNICOLOUR_PRISM);
-    GadgetAction g4(false, {3, 3}, uuid3, GadgetEnum::TECHNICOLOUR_PRISM);
-    GadgetAction g5(false, {6, 7}, uuid5, GadgetEnum::TECHNICOLOUR_PRISM);
+    auto g1 = std::make_shared<GadgetAction>(GadgetAction(false, {3, 3}, uuid1, GadgetEnum::TECHNICOLOUR_PRISM));
+    auto g2 = std::make_shared<GadgetAction>(GadgetAction(false, {3, 3}, uuid2, GadgetEnum::TECHNICOLOUR_PRISM));
+    auto g3 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 2}, uuid1, GadgetEnum::TECHNICOLOUR_PRISM));
+    auto g4 = std::make_shared<GadgetAction>(GadgetAction(false, {3, 3}, uuid3, GadgetEnum::TECHNICOLOUR_PRISM));
+    auto g5 = std::make_shared<GadgetAction>(GadgetAction(false, {6, 7}, uuid5, GadgetEnum::TECHNICOLOUR_PRISM));
 
     EXPECT_TRUE(ActionValidator::validate(state, g1)) << "roulette table is target in range --> valid";
     EXPECT_FALSE(ActionValidator::validate(state, g2)) << "roulette table out of range --> invalid";

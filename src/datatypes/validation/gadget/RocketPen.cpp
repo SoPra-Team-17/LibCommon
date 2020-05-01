@@ -10,7 +10,7 @@
 namespace spy::gameplay {
     bool GadgetValidator::validateRocketPen(const State &s, GadgetAction a) {
         // check if target is in line of sight of character
-        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
+        auto character = s.getCharacters().findByUUID(a.getCharacterId());
         bool lineOfSightFree = s.getMap().isLineOfSightFree(character->getCoordinates().value(), a.getTarget());
         return lineOfSightFree;
     }

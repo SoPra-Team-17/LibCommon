@@ -12,7 +12,7 @@
 namespace spy::gameplay {
 
     bool GadgetValidator::validateChickenFeed(const State &s, GadgetAction a) {
-        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
+        auto character = s.getCharacters().findByUUID(a.getCharacterId());
         return spy::util::GadgetUtils::personOnNeighboringField(s, a.getTarget(), character->getCoordinates().value());
     }
 }

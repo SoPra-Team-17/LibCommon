@@ -9,7 +9,7 @@
 
 namespace spy::gameplay {
     bool GadgetValidator::validateHairdryer(const State &s, GadgetAction a) {
-        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
+        auto character = s.getCharacters().findByUUID(a.getCharacterId());
 
         // check range
         if (Movement::getMoveDistance(character->getCoordinates().value(), a.getTarget()) > 1) {

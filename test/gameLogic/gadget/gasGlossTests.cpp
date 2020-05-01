@@ -26,12 +26,12 @@ TEST_F(GadgetActionTests, GasGloss_Validate) {
     state.getCharacters().getByUUID(uuid1)->addGadget(gloss);
     state.getCharacters().getByUUID(uuid5)->addGadget(gloss);
 
-    GadgetAction g1(false, {5, 3}, uuid2, GadgetEnum::GAS_GLOSS);
-    GadgetAction g2(false, {4, 3}, uuid1, GadgetEnum::GAS_GLOSS);
-    GadgetAction g3(false, {4, 4}, uuid1, GadgetEnum::GAS_GLOSS);
-    GadgetAction g4(false, {4, 2}, uuid1, GadgetEnum::GAS_GLOSS);
-    GadgetAction g5(false, {6, 7}, uuid5, GadgetEnum::GAS_GLOSS);
-    GadgetAction g6(false, {4, 5}, uuid1, GadgetEnum::GAS_GLOSS);
+    auto g1 = std::make_shared<GadgetAction>(GadgetAction(false, {5, 3}, uuid2, GadgetEnum::GAS_GLOSS));
+    auto g2 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 3}, uuid1, GadgetEnum::GAS_GLOSS));
+    auto g3 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 4}, uuid1, GadgetEnum::GAS_GLOSS));
+    auto g4 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 2}, uuid1, GadgetEnum::GAS_GLOSS));
+    auto g5 = std::make_shared<GadgetAction>(GadgetAction(false, {6, 7}, uuid5, GadgetEnum::GAS_GLOSS));
+    auto g6 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 5}, uuid1, GadgetEnum::GAS_GLOSS));
 
     EXPECT_FALSE(ActionValidator::validate(state, g1)) << "character has no gas gloss --> invalid";
     EXPECT_TRUE(ActionValidator::validate(state, g2)) << "hurt oneself --> stupid, but valid";

@@ -12,7 +12,7 @@ namespace spy::gameplay {
 
     bool GadgetValidator::validateDiamondCollar(const State &s, GadgetAction a) {
         // check if cat is on neighboring field
-        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
+        auto character = s.getCharacters().findByUUID(a.getCharacterId());
         auto distance = Movement::getMoveDistance(character->getCoordinates().value(), a.getTarget());
 
         return distance == 1 && a.getTarget() == s.getCatCoordinates();

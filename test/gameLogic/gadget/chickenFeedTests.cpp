@@ -26,12 +26,12 @@ TEST_F(GadgetActionTests, ChickenFeed_Validate) {
     state.getCharacters().getByUUID(uuid1)->addGadget(chickenFeed);
     state.getCharacters().getByUUID(uuid5)->addGadget(chickenFeed);
 
-    GadgetAction g1(false, {5, 3}, uuid2, GadgetEnum::CHICKEN_FEED);
-    GadgetAction g2(false, {4, 3}, uuid1, GadgetEnum::CHICKEN_FEED);
-    GadgetAction g3(false, {4, 4}, uuid1, GadgetEnum::CHICKEN_FEED);
-    GadgetAction g4(false, {4, 2}, uuid1, GadgetEnum::CHICKEN_FEED);
-    GadgetAction g5(false, {6, 7}, uuid5, GadgetEnum::CHICKEN_FEED);
-    GadgetAction g6(false, {4, 5}, uuid5, GadgetEnum::CHICKEN_FEED);
+    auto g1 = std::make_shared<GadgetAction>(GadgetAction(false, {5, 3}, uuid2, GadgetEnum::CHICKEN_FEED));
+    auto g2 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 3}, uuid1, GadgetEnum::CHICKEN_FEED));
+    auto g3 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 4}, uuid1, GadgetEnum::CHICKEN_FEED));
+    auto g4 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 2}, uuid1, GadgetEnum::CHICKEN_FEED));
+    auto g5 = std::make_shared<GadgetAction>(GadgetAction(false, {6, 7}, uuid5, GadgetEnum::CHICKEN_FEED));
+    auto g6 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 5}, uuid5, GadgetEnum::CHICKEN_FEED));
 
     EXPECT_FALSE(ActionValidator::validate(state, g1)) << "character doesn't posses gadget --> invalid";
     EXPECT_FALSE(ActionValidator::validate(state, g2)) << "apply to oneself --> invalid";

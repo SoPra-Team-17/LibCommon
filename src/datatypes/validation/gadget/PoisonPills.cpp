@@ -14,7 +14,7 @@ namespace spy::gameplay {
         // check if target contains cocktail
         bool targetHasCocktail = spy::util::GadgetUtils::hasCocktail(s, a.getTarget());
         // check if target is adjacent field
-        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
+        auto character = s.getCharacters().findByUUID(a.getCharacterId());
         auto distance = gameplay::Movement::getMoveDistance(a.getTarget(), character->getCoordinates().value());
 
         return (targetHasCocktail && distance <= 1);

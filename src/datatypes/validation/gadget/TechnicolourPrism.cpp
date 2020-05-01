@@ -10,7 +10,7 @@
 
 namespace spy::gameplay {
     bool GadgetValidator::validateTechnicolourPrism(const State &s, GadgetAction a) {
-        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
+        auto character = s.getCharacters().findByUUID(a.getCharacterId());
         auto distance = gameplay::Movement::getMoveDistance(a.getTarget(), character->getCoordinates().value());
         bool targetIsRouletteTable = (s.getMap().getField(a.getTarget()).getFieldState() ==
                                       scenario::FieldStateEnum::ROULETTE_TABLE);

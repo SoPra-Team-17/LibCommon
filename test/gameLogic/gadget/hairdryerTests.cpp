@@ -28,14 +28,14 @@ TEST_F(GadgetActionTests, Hairdryer_Validate) {
     state.getCharacters().getByUUID(uuid1)->addGadget(hairdryer);
     state.getCharacters().getByUUID(uuid5)->addGadget(hairdryer);
 
-    GadgetAction g1(false, {4, 3}, uuid2, GadgetEnum::HAIRDRYER);
-    GadgetAction g2(false, {6, 7}, uuid5, GadgetEnum::HAIRDRYER);
-    GadgetAction g3(false, {4, 3}, uuid1, GadgetEnum::HAIRDRYER);
-    GadgetAction g4(false, {4, 3}, uuid1, GadgetEnum::HAIRDRYER);
-    GadgetAction g5(false, {2, 3}, uuid1, GadgetEnum::HAIRDRYER);
-    GadgetAction g6(false, {3, 3}, uuid1, GadgetEnum::HAIRDRYER);
-    GadgetAction g7(false, {4, 2}, uuid1, GadgetEnum::HAIRDRYER);
-    GadgetAction g8(false, {4, 4}, uuid1, GadgetEnum::HAIRDRYER);
+    auto g1 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 3}, uuid2, GadgetEnum::HAIRDRYER));
+    auto g2 = std::make_shared<GadgetAction>(GadgetAction(false, {6, 7}, uuid5, GadgetEnum::HAIRDRYER));
+    auto g3 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 3}, uuid1, GadgetEnum::HAIRDRYER));
+    auto g4 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 3}, uuid1, GadgetEnum::HAIRDRYER));
+    auto g5 = std::make_shared<GadgetAction>(GadgetAction(false, {2, 3}, uuid1, GadgetEnum::HAIRDRYER));
+    auto g6 = std::make_shared<GadgetAction>(GadgetAction(false, {3, 3}, uuid1, GadgetEnum::HAIRDRYER));
+    auto g7 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 2}, uuid1, GadgetEnum::HAIRDRYER));
+    auto g8 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 4}, uuid1, GadgetEnum::HAIRDRYER));
 
     EXPECT_FALSE(ActionValidator::validate(state, g1)) << "execution without owning a hairdryer is invalid";
     EXPECT_FALSE(ActionValidator::validate(state, g2)) << "execution on a field outside is invalid";
@@ -67,7 +67,7 @@ TEST_F(GadgetActionTests, HairDryer_Execute) {
     c2->setProperties({PropertyEnum::CLAMMY_CLOTHES});
     ASSERT_TRUE(c2->getProperties().find(PropertyEnum::CLAMMY_CLOTHES) != c2->getProperties().end());
 
-    GadgetAction a{false, c2->getCoordinates().value(), uuid1, spy::gadget::GadgetEnum::HAIRDRYER};
+    auto a = std::make_shared<GadgetAction>(GadgetAction{false, c2->getCoordinates().value(), uuid1, spy::gadget::GadgetEnum::HAIRDRYER});
     ActionExecutor::execute(state, a);
 
     EXPECT_TRUE(c2->getProperties().find(PropertyEnum::CLAMMY_CLOTHES) == c2->getProperties().end())

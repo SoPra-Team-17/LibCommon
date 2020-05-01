@@ -12,7 +12,7 @@ namespace spy::gameplay {
 
     bool GadgetValidator::validateJetpack(const State &s, GadgetAction a) {
         // flying to the field the character is currently standing on is useless, but valid
-        if (s.getCharacters().findByUUID(a.getCharacterId().value())->getCoordinates() == a.getTarget()) {
+        if (s.getCharacters().findByUUID(a.getCharacterId())->getCoordinates() == a.getTarget()) {
             return true;
         }
 

@@ -12,7 +12,7 @@ namespace spy::gameplay {
 
     bool GadgetValidator::validateBowlerBlade(const State &s, GadgetAction a) {
         // check LoS
-        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
+        auto character = s.getCharacters().findByUUID(a.getCharacterId());
         bool lineOfSightFree = spy::util::GadgetUtils::bowlerBladeLineOfSight(s, character->getCoordinates().value(),
                                                                               a.getTarget());
         // check range

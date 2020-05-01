@@ -14,7 +14,7 @@ namespace spy::gameplay {
         bool targetHasCocktail = spy::util::GadgetUtils::hasCocktail(s, a.getTarget());
 
         // check if target is in line of sight of character
-        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
+        auto character = s.getCharacters().findByUUID(a.getCharacterId());
         bool lineOfSightFree = s.getMap().isLineOfSightFree(a.getTarget(), character->getCoordinates().value());
 
         return lineOfSightFree && targetHasCocktail;

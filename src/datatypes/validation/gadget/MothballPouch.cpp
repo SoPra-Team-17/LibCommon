@@ -18,7 +18,7 @@ namespace spy::gameplay {
         }
 
         // check distance and line of sight
-        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
+        auto character = s.getCharacters().findByUUID(a.getCharacterId());
         auto distance = Movement::getMoveDistance(character->getCoordinates().value(), a.getTarget());
         // todo range hardcoded
         unsigned int mothballRange = 10;

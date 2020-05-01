@@ -11,7 +11,7 @@ namespace spy::gameplay {
 
     bool GadgetValidator::validateGrapple(const State &s, GadgetAction a) {
         // check range and LoS
-        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
+        auto character = s.getCharacters().findByUUID(a.getCharacterId());
         auto distance = Movement::getMoveDistance(character->getCoordinates().value(), a.getTarget());
         //todo grapple range hardcoded
         unsigned int grappleRange = 10;

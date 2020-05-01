@@ -28,12 +28,12 @@ TEST_F(GadgetActionTests, DiamondCollar_Validate) {
     state.getCharacters().getByUUID(uuid3)->addGadget(collar);
     state.getCharacters().getByUUID(uuid5)->addGadget(collar);
 
-    GadgetAction g1(false, {4, 4}, uuid2, GadgetEnum::DIAMOND_COLLAR);
-    GadgetAction g2(false, {4, 3}, uuid1, GadgetEnum::DIAMOND_COLLAR);
-    GadgetAction g3(false, {4, 2}, uuid1, GadgetEnum::DIAMOND_COLLAR);
-    GadgetAction g4(false, {4, 4}, uuid1, GadgetEnum::DIAMOND_COLLAR);
-    GadgetAction g5(false, {6, 7}, uuid5, GadgetEnum::DIAMOND_COLLAR);
-    GadgetAction g6(false, {4, 4}, uuid3, GadgetEnum::DIAMOND_COLLAR);
+    auto g1 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 4}, uuid2, GadgetEnum::DIAMOND_COLLAR));
+    auto g2 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 3}, uuid1, GadgetEnum::DIAMOND_COLLAR));
+    auto g3 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 2}, uuid1, GadgetEnum::DIAMOND_COLLAR));
+    auto g4 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 4}, uuid1, GadgetEnum::DIAMOND_COLLAR));
+    auto g5 = std::make_shared<GadgetAction>(GadgetAction(false, {6, 7}, uuid5, GadgetEnum::DIAMOND_COLLAR));
+    auto g6 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 4}, uuid3, GadgetEnum::DIAMOND_COLLAR));
 
     EXPECT_FALSE(ActionValidator::validate(state, g1)) << "character has no diamond collar --> invalid";
     EXPECT_FALSE(ActionValidator::validate(state, g2)) << "give oneself --> invalid";

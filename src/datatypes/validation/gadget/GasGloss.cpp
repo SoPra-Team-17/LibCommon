@@ -12,7 +12,7 @@
 
 namespace spy::gameplay {
     bool GadgetValidator::validateGasGloss(const State &s, GadgetAction a) {
-        auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
+        auto character = s.getCharacters().findByUUID(a.getCharacterId());
         auto distance = Movement::getMoveDistance(character->getCoordinates().value(), a.getTarget());
         if (distance > 1) {
             return false;
