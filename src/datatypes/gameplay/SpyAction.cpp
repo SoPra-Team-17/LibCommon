@@ -5,17 +5,20 @@
 #include "SpyAction.hpp"
 
 namespace spy::gameplay {
-    SpyAction::SpyAction() : BaseOperation(OperationEnum::SPY_ACTION, false, {}) {}
+    SpyAction::SpyAction() : CharacterOperation(OperationEnum::SPY_ACTION, false, {}) {}
+
+    SpyAction::SpyAction(util::UUID character, util::Point target) :
+            CharacterOperation(OperationEnum::SPY_ACTION, false, target, character) {}
 
     void to_json(nlohmann::json &j, const SpyAction &e) {
-        BaseOperation::common_to_json(j, e);
+        CharacterOperation::common_to_json(j, e);
     }
 
     void from_json(const nlohmann::json &j, SpyAction &e) {
-        BaseOperation::common_from_json(j, e);
+        CharacterOperation::common_from_json(j, e);
     }
 
-    bool SpyAction::isEqual(const BaseOperation &) const {
-        return true;
+    bool SpyAction::isEqual(const BaseOperation &rhs) const {
+        return isCharacterEqual(dynamic_cast<const SpyAction &>(rhs));
     }
 }

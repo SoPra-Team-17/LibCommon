@@ -5,12 +5,14 @@
 #ifndef LIBCOMMON_SPYACTION_HPP
 #define LIBCOMMON_SPYACTION_HPP
 
-#include "BaseOperation.hpp"
+#include "CharacterOperation.hpp"
 
 namespace spy::gameplay {
-    class SpyAction : public BaseOperation {
+    class SpyAction : public CharacterOperation {
         public:
             SpyAction();
+
+            SpyAction(util::UUID character, util::Point target);
 
             friend void to_json(nlohmann::json &j, const SpyAction &e);
 
