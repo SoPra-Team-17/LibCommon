@@ -68,8 +68,10 @@ TEST_F(GadgetActionTests, HairDryer_Execute) {
     ASSERT_TRUE(c2->getProperties().find(PropertyEnum::CLAMMY_CLOTHES) != c2->getProperties().end());
 
     GadgetAction a{false, c2->getCoordinates().value(), uuid1, spy::gadget::GadgetEnum::HAIRDRYER};
-    ActionExecutor::execute(state, a) << "Expect CLAMMY_CLOTHES to be removed from character 2";
-    EXPECT_TRUE(c2->getProperties().find(PropertyEnum::CLAMMY_CLOTHES) == c2->getProperties().end());
+    ActionExecutor::execute(state, a);
+
+    EXPECT_TRUE(c2->getProperties().find(PropertyEnum::CLAMMY_CLOTHES) == c2->getProperties().end())
+                        << "Expect CLAMMY_CLOTHES to be removed from character 2";
 }
 
 
