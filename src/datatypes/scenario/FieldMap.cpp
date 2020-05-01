@@ -67,46 +67,8 @@ namespace spy::scenario {
                 || getField(p).getFieldState() == FieldStateEnum::BAR_SEAT);
     }
 
-
-    /**
-     * @see playtechs.blogspot.com/2007/03/raytracing-on-grid.html for the original implementation
-     */
     bool FieldMap::isLineOfSightFree(util::Point p1, util::Point p2) const {
-        if (!isInside(p1) || !isInside(p2)) {
-            throw std::invalid_argument("At least one point is outside the field map!");
-        } else if (p1 == p2) {
-            return true;
-        }
-
-        int dx = abs(p1.x - p2.x);
-        int dy = abs(p1.y - p2.y);
-
-        int incX = (p2.x > p1.x) ? 1 : -1;
-        int incY = (p2.y > p1.y) ? 1 : -1;
-        int error = dx - dy;
-        // scaling is needed to make sure the error term is integral
-        dx *= 2;
-        dy *= 2;
-        auto currentPoint = p1;
-        while (currentPoint != p2) {
-            if (currentPoint != p1 && blocksSight(currentPoint)) {
-                return false;
-            }
-
-            if (error > 0) {
-                currentPoint.x += incX;
-                error -= dy;
-            } else if (error < 0) {
-                currentPoint.y += incY;
-                error += dx;
-            } else {
-                error -= dy;
-                error += dx;
-                currentPoint += {incX, incY};
-            }
-        }
-
-        return true;
+        return isLineOfSightFree(p1, p2, [this](util::Point currentPoint) { return blocksSight(currentPoint); });
     }
 
     void to_json(nlohmann::json &j, const FieldMap &m) {

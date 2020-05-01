@@ -27,9 +27,18 @@ set(SOURCES
         messages/messageEncodeDecode.cpp
         messages/debugInfoTest.cpp
         messages/messageValidateTest.cpp
-        gameLogic/gadgets.cpp
         gameLogic/lineOfSightTests.cpp
-        gameLogic/movementTests.cpp)
+        gameLogic/movementTests.cpp
+        gameLogic/gadget/hairdryerTests.cpp
+        gameLogic/gadget/technicolourPrismTests.cpp
+        gameLogic/gadget/cocktailTests.cpp
+        gameLogic/gadget/chickenFeedTests.cpp
+        gameLogic/gadget/jetpackTests.cpp
+        gameLogic/gadget/gasGlossTests.cpp
+        gameLogic/gadget/poisonPillTests.cpp
+        gameLogic/gadget/nuggetTests.cpp
+        gameLogic/gadget/wiretapWithEarplugsTests.cpp
+        gameLogic/gadget/diamondCollarTests.cpp)
 
 add_executable(allTests ${SOURCES})
 target_compile_options(allTests PRIVATE ${COMMON_CXX_FLAGS})

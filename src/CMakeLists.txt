@@ -47,13 +47,32 @@ set(SOURCE
         datatypes/validation/GambleValidator.cpp
         datatypes/validation/MovementValidator.cpp
         datatypes/validation/PropertyValidator.cpp
-        datatypes/validation/gadget/GadgetValidator.cpp
-        datatypes/validation/gadget/RocketPen.cpp
         datatypes/validation/ActionValidator.cpp
         datatypes/validation/ActionValidator_Cat.cpp
         datatypes/validation/ActionValidator_Janitor.cpp
         datatypes/validation/ActionValidator_Retire.cpp
         datatypes/validation/ActionValidator_Spy.cpp
+        datatypes/validation/gadget/GadgetValidator.cpp
+        datatypes/validation/gadget/Hairdryer.cpp
+        datatypes/validation/gadget/RocketPen.cpp
+        datatypes/validation/gadget/TechnicolourPrism.cpp
+        datatypes/validation/gadget/PoisonPills.cpp
+        datatypes/validation/gadget/LaserCompact.cpp
+        datatypes/validation/gadget/MoleDie.cpp
+        datatypes/validation/gadget/GasGloss.cpp
+        datatypes/validation/gadget/MothballPouch.cpp
+        datatypes/validation/gadget/FogTin.cpp
+        datatypes/validation/gadget/Grapple.cpp
+        datatypes/validation/gadget/Jetpack.cpp
+        datatypes/validation/gadget/MagneticWatch.cpp
+        datatypes/validation/gadget/WiretapWithEarplugs.cpp
+        datatypes/validation/gadget/ChickenFeed.cpp
+        datatypes/validation/gadget/Nugget.cpp
+        datatypes/validation/gadget/MirrorOfWilderness.cpp
+        datatypes/validation/gadget/PocketLitter.cpp
+        datatypes/validation/gadget/DiamondCollar.cpp
+        datatypes/validation/gadget/Cocktail.cpp
+        datatypes/validation/gadget/BowlerBlade.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp
@@ -65,6 +84,7 @@ set(SOURCE
         network/MessageContainer.cpp
         util/UUID.cpp
         util/Point.cpp
+        util/GadgetUtils.cpp
         network/messages/GameStarted.cpp
         network/messages/Reconnect.cpp
         network/messages/RequestItemChoice.cpp
