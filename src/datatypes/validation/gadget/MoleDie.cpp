@@ -17,7 +17,6 @@ namespace spy::gameplay {
         }
 
         auto character = s.getCharacters().findByUUID(a.getCharacterId().value());
-        auto gadgets = character->getGadgets();
         auto distance = Movement::getMoveDistance(a.getTarget(), character->getCoordinates().value());
         // todo check if distance <= moleDieRange (not included in state)
         unsigned int moleDieRange = 10;
