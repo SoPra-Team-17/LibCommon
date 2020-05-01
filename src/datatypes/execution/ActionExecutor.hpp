@@ -6,11 +6,15 @@
 #define LIBCOMMON_ACTIONEXECUTOR_HPP
 
 #include <datatypes/gameplay/State.hpp>
+#include <datatypes/gameplay/CatAction.hpp>
 #include <datatypes/gameplay/Exfiltration.hpp>
 #include <datatypes/gameplay/GadgetAction.hpp>
 #include <datatypes/gameplay/GambleAction.hpp>
+#include <datatypes/gameplay/JanitorAction.hpp>
 #include <datatypes/gameplay/Movement.hpp>
 #include <datatypes/gameplay/PropertyAction.hpp>
+#include <datatypes/gameplay/RetireAction.hpp>
+#include <datatypes/gameplay/SpyAction.hpp>
 
 namespace spy::gameplay {
     /**
@@ -59,6 +63,36 @@ namespace spy::gameplay {
              * @return true, if PropertyAction was successful
              */
             static bool executeProperty(State &s, const PropertyAction &op);
+
+            /**
+             * Execute SpyAction
+             * @param op Operation to execute, has to be valid
+             * @return true, if SpyAction was successful
+             */
+            static bool executeSpy(State &s, const SpyAction &op);
+
+            /**
+             * Execute CatAction
+             * @param op Operation to execute, has to be valid
+             * @return true, if CatAction was successful
+             */
+            static bool executeCat(State &s, const CatAction &op);
+
+            /**
+             * Execute JanitorAction
+             * @param op Operation to execute, has to be valid
+             * @return true, if JanitorAction was successful
+             */
+            static bool executeJanitor(State &s, const JanitorAction &op);
+
+            /**
+             * Execute RetireAction
+             * @param op Operation to execute, has to be valid
+             * @return true, if RetireAction was successful
+             */
+            static bool executeRetire(State &s, const RetireAction &op);
+
+
     };
 }
 

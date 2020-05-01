@@ -22,11 +22,15 @@ set(SOURCE
         datatypes/character/CharacterInformation.cpp
         datatypes/character/CharacterDescription.cpp
         datatypes/character/CharacterSet.cpp
+        datatypes/execution/ActionExecutor_Cat.cpp
         datatypes/execution/ActionExecutor_Exfiltration.cpp
         datatypes/execution/ActionExecutor_Gadget.cpp
         datatypes/execution/ActionExecutor_Gamble.cpp
+        datatypes/execution/ActionExecutor_Janitor.cpp
         datatypes/execution/ActionExecutor_Movement.cpp
         datatypes/execution/ActionExecutor_Property.cpp
+        datatypes/execution/ActionExecutor_Retire.cpp
+        datatypes/execution/ActionExecutor_Spy.cpp
         datatypes/execution/gadget/GadgetExecutor.cpp
         datatypes/execution/ActionExecutor.cpp
         datatypes/execution/gadget/HairDryer.cpp
