@@ -2,7 +2,7 @@
  * @file OperationSerialization.hpp
  * @author Jonas
  * @date 10.04.2020
- * @brief Adds serialization and deserialization for std::optional<T> if T is serializable
+ * @brief Adds serialization and deserialization for std::shared_ptr<spy::gameplay::BaseOperation>
  */
 
 #ifndef LIBCOMMON_OPERATIONSERIALIZATION_HPP
@@ -29,40 +29,31 @@ namespace nlohmann {
                 case OperationEnum::GADGET_ACTION:
                     j = *std::dynamic_pointer_cast<const GadgetAction>(op);
                     break;
-
                 case OperationEnum::SPY_ACTION:
                     j = *std::dynamic_pointer_cast<const SpyAction>(op);
                     break;
-
                 case OperationEnum::GAMBLE_ACTION:
                     j = *std::dynamic_pointer_cast<const GambleAction>(op);
                     break;
-
                 case OperationEnum::PROPERTY_ACTION:
                     j = *std::dynamic_pointer_cast<const PropertyAction>(op);
                     break;
-
                 case OperationEnum::MOVEMENT:
                     j = *std::dynamic_pointer_cast<const Movement>(op);
                     break;
-
                 case OperationEnum::CAT_ACTION:
                     j = *std::dynamic_pointer_cast<const CatAction>(op);
                     break;
-
                 case OperationEnum::JANITOR_ACTION:
                     j = *std::dynamic_pointer_cast<const JanitorAction>(op);
                     break;
-
                 case OperationEnum::EXFILTRATION:
                     j = *std::dynamic_pointer_cast<const Exfiltration>(op);
                     break;
-
                 case OperationEnum::RETIRE:
                     j = *std::dynamic_pointer_cast<const RetireAction>(op);
                     break;
-
-                case OperationEnum::INVALID:
+                default:
                     throw std::invalid_argument("Operation type not valid");
             }
         }
@@ -110,7 +101,7 @@ namespace nlohmann {
                     opt = std::make_shared<RetireAction>();
                     *std::static_pointer_cast<RetireAction>(opt) = j.get<RetireAction>();
                     break;
-                case OperationEnum::INVALID:
+                default:
                     throw std::invalid_argument("Operation type not valid");
 
             }
