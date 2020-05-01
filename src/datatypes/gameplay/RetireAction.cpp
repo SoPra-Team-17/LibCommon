@@ -7,6 +7,9 @@
 namespace spy::gameplay {
     RetireAction::RetireAction() : CharacterOperation(OperationEnum::RETIRE, false, {}) {}
 
+    RetireAction::RetireAction(util::UUID character) :
+            CharacterOperation(OperationEnum::RETIRE, false, {}, character) {}
+
     void to_json(nlohmann::json &j, const RetireAction &e) {
         CharacterOperation::common_to_json(j, e);
     }

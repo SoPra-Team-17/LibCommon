@@ -12,6 +12,8 @@ namespace spy::gameplay {
         public:
             RetireAction();
 
+            explicit RetireAction(util::UUID character);
+
             friend void to_json(nlohmann::json &j, const RetireAction &e);
 
             friend void from_json(const nlohmann::json &j, RetireAction &e);
