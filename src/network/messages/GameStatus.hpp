@@ -5,7 +5,7 @@
 #ifndef LIBCOMMON_GAMESTATUS_HPP
 #define LIBCOMMON_GAMESTATUS_HPP
 
-#include <datatypes/gameplay/CharacterOperation.hpp>
+#include <datatypes/gameplay/BaseOperation.hpp>
 #include <datatypes/gameplay/State.hpp>
 #include <network/MessageContainer.hpp>
 
