@@ -29,10 +29,11 @@ namespace spy::network::messages {
              * validate message according role and operation type and if operation is allowed in current state
              * @param playerRole role of the player who sent the message
              * @param state current state of the game
+             * @param activeCharacter character that move was requested from
              * @return true if message is valid
              *         false if message is not valid
              */
-            [[nodiscard]] bool validate(RoleEnum playerRole, spy::gameplay::State &state) const;
+            [[nodiscard]] bool validate(RoleEnum playerRole, gameplay::State &state, util::UUID activeCharacter) const;
 
             friend std::ostream &operator<<(std::ostream &os, const GameOperation &metaInformation);
 

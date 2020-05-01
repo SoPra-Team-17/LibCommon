@@ -33,7 +33,7 @@ namespace spy::network::messages {
         return isEqual(rhs) && (operation->operator==(*(rhs.operation)));
     }
 
-    bool GameOperation::validate(RoleEnum playerRole, spy::gameplay::State &state) const {
+    bool GameOperation::validate(RoleEnum playerRole, spy::gameplay::State &state, util::UUID activeCharacter) const {
         if (playerRole == spy::network::RoleEnum::INVALID ||
             playerRole == spy::network::RoleEnum::SPECTATOR) {
             return false;
@@ -44,6 +44,10 @@ namespace spy::network::messages {
             operationType == spy::gameplay::OperationEnum::EXFILTRATION ||
             operationType == spy::gameplay::OperationEnum::CAT_ACTION ||
             operationType == spy::gameplay::OperationEnum::JANITOR_ACTION) {
+            return false;
+        }
+
+        if (std::dynamic_pointer_cast<const gameplay::CharacterOperation>(operation)->getCharacterId() != activeCharacter) {
             return false;
         }
 
