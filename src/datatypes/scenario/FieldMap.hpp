@@ -70,9 +70,46 @@ namespace spy::scenario {
              * @param p2 Second field.
              * @param blocksLine function returning true for points blocking the sight line
              * @return False if the line of sight is blocked, otherwise true.
+             * @see playtechs.blogspot.com/2007/03/raytracing-on-grid.html for the original implementation
              */
-            [[nodiscard]] bool isLineOfSightFree(util::Point p1, util::Point p2,
-                                                 const std::function<bool(util::Point)> &blocksLine) const;
+            template<typename T>
+            [[nodiscard]] bool isLineOfSightFree(util::Point p1, util::Point p2, T blocksLine) const {
+                if (!isInside(p1) || !isInside(p2)) {
+                    throw std::invalid_argument("At least one point is outside the field map!");
+                } else if (p1 == p2) {
+                    return true;
+                }
+
+                int dx = abs(p1.x - p2.x);
+                int dy = abs(p1.y - p2.y);
+
+                int incX = (p2.x > p1.x) ? 1 : -1;
+                int incY = (p2.y > p1.y) ? 1 : -1;
+                int error = dx - dy;
+                // scaling is needed to make sure the error term is integral
+                dx *= 2;
+                dy *= 2;
+                auto currentPoint = p1;
+                while (currentPoint != p2) {
+                    if (currentPoint != p1 && blocksLine(currentPoint)) {
+                        return false;
+                    }
+
+                    if (error > 0) {
+                        currentPoint.x += incX;
+                        error -= dy;
+                    } else if (error < 0) {
+                        currentPoint.y += incY;
+                        error += dx;
+                    } else {
+                        error -= dy;
+                        error += dx;
+                        currentPoint += {incX, incY};
+                    }
+                }
+
+                return true;
+            }
 
             friend void to_json(nlohmann::json &j, const FieldMap &m);
 
