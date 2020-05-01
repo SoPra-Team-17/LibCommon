@@ -71,7 +71,7 @@ namespace spy::util {
     }
 
     bool GadgetUtils::bowlerBladeLineOfSight(const spy::gameplay::State &s, const Point &p1, const Point &p2) {
-        return s.getMap().isLineOfSightFree(p1, p2, [&](util::Point currentPoint) {
+        return s.getMap().isLineOfSightFree(p1, p2, [&s](util::Point currentPoint) {
             // check if point is conventionally blocked
             if (s.getMap().blocksSight(currentPoint)) {
                 return true;
