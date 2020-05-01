@@ -7,6 +7,8 @@
 namespace spy::gameplay {
     JanitorAction::JanitorAction() : BaseOperation(OperationEnum::JANITOR_ACTION, false, {}) {}
 
+    JanitorAction::JanitorAction(util::Point target) : BaseOperation(OperationEnum::JANITOR_ACTION, false, target) {}
+
     void to_json(nlohmann::json &j, const JanitorAction &e) {
         BaseOperation::common_to_json(j, e);
     }
