@@ -43,4 +43,9 @@ namespace spy::gameplay {
     bool BaseOperation::operator!=(const BaseOperation &rhs) const {
         return !(*this == rhs);
     }
+
+    bool BaseOperation::isBaseEqual(const BaseOperation &rhs) const {
+        return std::tie(type, successful, target) ==
+               std::tie(rhs.type, rhs.successful, rhs.target);
+    }
 }

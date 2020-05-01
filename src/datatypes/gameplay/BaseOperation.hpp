@@ -34,11 +34,13 @@ namespace spy::gameplay {
 
             BaseOperation(OperationEnum type, bool successful, const util::Point &target);
 
+            bool isBaseEqual(const BaseOperation &rhs) const;
+
+        private:
+
             OperationEnum type = OperationEnum::INVALID;
             bool successful = false;
             util::Point target;
-
-        private:
 
             /**
              * This method shall be overridden by deriving classes to perform equality check.
