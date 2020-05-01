@@ -27,6 +27,6 @@ namespace spy::gameplay {
 
     bool Exfiltration::isEqual(const BaseOperation &rhs_b) const {
         auto rhs = dynamic_cast<const Exfiltration &>(rhs_b);
-        return from == rhs.from;
+        return isCharacterEqual(rhs) and from == rhs.from;
     }
 }
