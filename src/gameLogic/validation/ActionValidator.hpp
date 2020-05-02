@@ -36,7 +36,7 @@ namespace spy::gameplay {
 
             static bool validateGadgetAction(const State &s, GadgetAction op, const MatchConfig &config);
 
-            static bool validateGambleAction(const State &s, GambleAction op);
+            static bool validateGambleAction(const State &s, const GambleAction& op);
 
             static bool validateMovement(const State &s, Movement op);
 
