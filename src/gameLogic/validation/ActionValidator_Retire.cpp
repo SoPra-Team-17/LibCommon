@@ -6,8 +6,8 @@
 
 namespace spy::gameplay {
 
-    bool ActionValidator::validateRetireAction(const State &/*s*/, spy::gameplay::RetireAction /*op*/) {
-        // TODO implement
-        return false;
+    bool ActionValidator::validateRetireAction(const State &/*s*/, const spy::gameplay::RetireAction & /*op*/) {
+        // retire action is always valid if it is turn of op->getCharacterId() which is validated in GameOperation message
+        return true;
     }
 }
