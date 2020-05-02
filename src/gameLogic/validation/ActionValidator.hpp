@@ -42,7 +42,7 @@ namespace spy::gameplay {
 
             static bool validatePropertyAction(const State &s, PropertyAction op);
 
-            static bool validateSpyAction(const State &s, SpyAction op);
+            static bool validateSpyAction(const State &s, const SpyAction& op);
 
             static bool validateRetireAction(const State &s, const RetireAction& op);
 
