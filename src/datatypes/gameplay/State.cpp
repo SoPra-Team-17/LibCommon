@@ -6,7 +6,6 @@
  */
 
 #include "State.hpp"
-#include <datatypes/validation/ActionValidator.hpp>
 
 #include <utility>
 
@@ -69,33 +68,6 @@ namespace spy::gameplay {
         } else {
             janitorCoordinates.reset();
         }
-    }
-
-    bool State::performMovement(const Movement &op) {
-        if (!ActionValidator::validate(*this, std::make_shared<Movement>(op))) {
-            return false;
-        }
-
-        auto character = characters.getByUUID(op.getCharacterId());
-
-        // search for character at target position
-        auto charTarget = std::find_if(characters.begin(), characters.end(), [&op](const character::Character &c) {
-            return c.getCoordinates() == op.getTarget();
-        });
-
-        if (charTarget != characters.end()) {                           // characters need to swap places
-            charTarget->setCoordinates(op.getFrom());
-        }
-
-        character->setCoordinates(op.getTarget());
-
-        auto gadget = map.getField(op.getTarget()).getGadget();
-        if (gadget.has_value()) {                                       // pick up gadget
-            character->addGadget(gadget.value());
-            map.getField(op.getTarget()).removeGadget();
-        }
-
-        return true;
     }
 
     bool State::operator==(const State &rhs) const {

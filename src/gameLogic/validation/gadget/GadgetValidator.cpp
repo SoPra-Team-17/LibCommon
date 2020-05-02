@@ -9,9 +9,8 @@
 
 namespace spy::gameplay {
 
-    bool GadgetValidator::validate(const State &s, GadgetAction op) {
+    bool GadgetValidator::validate(const State &s, GadgetAction op, const MatchConfig &config) {
         using gadget::GadgetEnum;
-        // TODO implement
         switch (op.getGadget()) {
             case GadgetEnum::ROCKET_PEN:
                 return GadgetValidator::validateRocketPen(s, op);
@@ -23,16 +22,16 @@ namespace spy::gameplay {
                 return GadgetValidator::validateGasGloss(s, op);
 
             case GadgetEnum::FOG_TIN:
-                return GadgetValidator::validateFogTin(s, op);
+                return GadgetValidator::validateFogTin(s, op, config);
 
             case GadgetEnum::CHICKEN_FEED:
                 return GadgetValidator::validateChickenFeed(s, op);
 
             case GadgetEnum::BOWLER_BLADE:
-                return GadgetValidator::validateBowlerBlade(s, op);
+                return GadgetValidator::validateBowlerBlade(s, op, config);
 
             case GadgetEnum::MOLEDIE:
-                return GadgetValidator::validateMoleDie(s, op);
+                return GadgetValidator::validateMoleDie(s, op, config);
 
             case GadgetEnum::TECHNICOLOUR_PRISM:
                 return GadgetValidator::validateTechnicolourPrism(s, op);
@@ -47,10 +46,10 @@ namespace spy::gameplay {
                 return GadgetValidator::validateLaserCompact(s, op);
 
             case GadgetEnum::MOTHBALL_POUCH:
-                return GadgetValidator::validateMothballPouch(s, op);
+                return GadgetValidator::validateMothballPouch(s, op, config);
 
             case GadgetEnum::GRAPPLE:
-                return GadgetValidator::validateGrapple(s, op);
+                return GadgetValidator::validateGrapple(s, op, config);
 
             case GadgetEnum::WIRETAP_WITH_EARPLUGS:
                 return GadgetValidator::validateWiretapWithEarplugs(s, op);

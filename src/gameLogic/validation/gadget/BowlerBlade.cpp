@@ -10,20 +10,18 @@
 
 namespace spy::gameplay {
 
-    bool GadgetValidator::validateBowlerBlade(const State &s, GadgetAction a) {
+    bool GadgetValidator::validateBowlerBlade(const State &s, GadgetAction a, const MatchConfig &config) {
         // check LoS
         auto character = s.getCharacters().findByUUID(a.getCharacterId());
         bool lineOfSightFree = spy::util::GadgetUtils::bowlerBladeLineOfSight(s, character->getCoordinates().value(),
                                                                               a.getTarget());
         // check range
         auto distance = Movement::getMoveDistance(character->getCoordinates().value(), a.getTarget());
-        // todo distance is hardcoded
-        unsigned int bowlerBladeDistance = 10;
 
         // check if there is a person on target field
         bool personOnField = util::GadgetUtils::isPersonOnField(s, a.getTarget());
 
-        return personOnField && lineOfSightFree && distance <= bowlerBladeDistance;
+        return personOnField && lineOfSightFree && distance <= config.getBowlerBladeRange();
     }
 }
 

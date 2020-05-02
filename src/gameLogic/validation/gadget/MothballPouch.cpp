@@ -10,7 +10,7 @@
 
 namespace spy::gameplay {
 
-    bool GadgetValidator::validateMothballPouch(const State &s, GadgetAction a) {
+    bool GadgetValidator::validateMothballPouch(const State &s, GadgetAction a, const MatchConfig &config) {
         // check if target field is fireplace
         bool targetIsFireplace = (s.getMap().getField(a.getTarget()).getFieldState() == scenario::FieldStateEnum::FIREPLACE);
         if (!targetIsFireplace){
@@ -20,11 +20,9 @@ namespace spy::gameplay {
         // check distance and line of sight
         auto character = s.getCharacters().findByUUID(a.getCharacterId());
         auto distance = Movement::getMoveDistance(character->getCoordinates().value(), a.getTarget());
-        // todo range hardcoded
-        unsigned int mothballRange = 10;
 
         bool lineOfSightFree = s.getMap().isLineOfSightFree(character->getCoordinates().value(), a.getTarget());
 
-        return lineOfSightFree && distance <= mothballRange;
+        return lineOfSightFree && distance <= config.getMothballPouchRange();
     }
 }

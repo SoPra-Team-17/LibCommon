@@ -7,7 +7,7 @@
 
 #include <gtest/gtest.h>
 #include "gadgetActionFixture.hpp"
-#include "datatypes/validation/ActionValidator.hpp"
+#include "gameLogic/validation/ActionValidator.hpp"
 
 TEST_F(GadgetActionTests, DiamondCollar_Validate) {
     using spy::gameplay::ActionValidator;
@@ -35,10 +35,10 @@ TEST_F(GadgetActionTests, DiamondCollar_Validate) {
     auto g5 = std::make_shared<GadgetAction>(GadgetAction(false, {6, 7}, uuid5, GadgetEnum::DIAMOND_COLLAR));
     auto g6 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 4}, uuid3, GadgetEnum::DIAMOND_COLLAR));
 
-    EXPECT_FALSE(ActionValidator::validate(state, g1)) << "character has no diamond collar --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g2)) << "give oneself --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g3)) << "aim on field without cat --> invalid";
-    EXPECT_TRUE(ActionValidator::validate(state, g4))  << "aim on cat --> valid";
-    EXPECT_FALSE(ActionValidator::validate(state, g5)) << "target outside map --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g6)) << "target outside range --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g1, config)) << "character has no diamond collar --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g2, config)) << "give oneself --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g3, config)) << "aim on field without cat --> invalid";
+    EXPECT_TRUE(ActionValidator::validate(state, g4, config))  << "aim on cat --> valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g5, config)) << "target outside map --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g6, config)) << "target outside range --> invalid";
 }

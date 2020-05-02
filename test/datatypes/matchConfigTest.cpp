@@ -106,7 +106,7 @@ TEST(MatchConfig, InfiniteLimits) {
     "reconnectLimit": -1
 })"_json;
 
-    auto expectated = R"({
+    auto expected = R"({
     "moledieRange": 1,
     "bowlerBladeRange": 1,
     "bowlerBladeHitChance": 0.25,
@@ -148,7 +148,7 @@ TEST(MatchConfig, InfiniteLimits) {
 
     nlohmann::json json;
     EXPECT_NO_THROW(json = decodedMatchConfig);
-    EXPECT_EQ(json.dump(), expectated.dump());
+    EXPECT_EQ(json.dump(), expected.dump());
 }
 
 

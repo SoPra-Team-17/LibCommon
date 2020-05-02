@@ -7,7 +7,7 @@
 
 #include <gtest/gtest.h>
 #include "gadgetActionFixture.hpp"
-#include "datatypes/validation/ActionValidator.hpp"
+#include "gameLogic/validation/ActionValidator.hpp"
 
 TEST_F(GadgetActionTests, ChickenFeed_Validate) {
     using spy::gameplay::ActionValidator;
@@ -33,12 +33,12 @@ TEST_F(GadgetActionTests, ChickenFeed_Validate) {
     auto g5 = std::make_shared<GadgetAction>(GadgetAction(false, {6, 7}, uuid5, GadgetEnum::CHICKEN_FEED));
     auto g6 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 5}, uuid5, GadgetEnum::CHICKEN_FEED));
 
-    EXPECT_FALSE(ActionValidator::validate(state, g1)) << "character doesn't posses gadget --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g2)) << "apply to oneself --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g3)) << "apply to empty field --> invalid";
-    EXPECT_TRUE(ActionValidator::validate(state, g4)) << "apply to character --> valid";
-    EXPECT_FALSE(ActionValidator::validate(state, g5)) << "target outside map --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g6)) << "target out of range --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g1, config)) << "character doesn't posses gadget --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g2, config)) << "apply to oneself --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g3, config)) << "apply to empty field --> invalid";
+    EXPECT_TRUE(ActionValidator::validate(state, g4, config)) << "apply to character --> valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g5, config)) << "target outside map --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g6, config)) << "target out of range --> invalid";
 }
 
 

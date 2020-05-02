@@ -7,7 +7,7 @@
 
 #include <gtest/gtest.h>
 #include "gadgetActionFixture.hpp"
-#include "datatypes/validation/ActionValidator.hpp"
+#include "gameLogic/validation/ActionValidator.hpp"
 
 TEST_F(GadgetActionTests, Jetpack_Validate) {
     using spy::gameplay::ActionValidator;
@@ -38,16 +38,16 @@ TEST_F(GadgetActionTests, Jetpack_Validate) {
     auto g11 = std::make_shared<GadgetAction>(GadgetAction(false, {5, 5}, uuid1, GadgetEnum::JETPACK));
     auto g12 = std::make_shared<GadgetAction>(GadgetAction(false, {0, 4}, uuid1, GadgetEnum::JETPACK));
 
-    EXPECT_FALSE(ActionValidator::validate(state, g1)) << "character has no jetpack --> invalid";
-    EXPECT_TRUE(ActionValidator::validate(state, g2)) << "no move --> useless, but valid";
-    EXPECT_TRUE(ActionValidator::validate(state, g3)) << "target: free field --> valid";
-    EXPECT_FALSE(ActionValidator::validate(state, g4)) << "target: character --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g5)) << "target outside map --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g6)) << "target: character --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g7)) << "target: wall --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g8)) << "target: fireplace --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g9)) << "target: bar table --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g10)) << "target: roulette table --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g11)) << "target: safe --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g12)) << "target: bar seat --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g1, config)) << "character has no jetpack --> invalid";
+    EXPECT_TRUE(ActionValidator::validate(state, g2, config)) << "no move --> useless, but valid";
+    EXPECT_TRUE(ActionValidator::validate(state, g3, config)) << "target: free field --> valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g4, config)) << "target: character --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g5, config)) << "target outside map --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g6, config)) << "target: character --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g7, config)) << "target: wall --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g8, config)) << "target: fireplace --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g9, config)) << "target: bar table --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g10, config)) << "target: roulette table --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g11, config)) << "target: safe --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g12, config)) << "target: bar seat --> invalid";
 }

@@ -7,7 +7,7 @@
 
 #include <gtest/gtest.h>
 #include "gadgetActionFixture.hpp"
-#include "datatypes/validation/ActionValidator.hpp"
+#include "gameLogic/validation/ActionValidator.hpp"
 
 TEST_F(GadgetActionTests, Cocktail_Validate) {
     using spy::gameplay::ActionValidator;
@@ -35,22 +35,22 @@ TEST_F(GadgetActionTests, Cocktail_Validate) {
     auto g7 = std::make_shared<GadgetAction>(GadgetAction(false, {3, 1}, uuid3, GadgetEnum::COCKTAIL));
     auto g8 = std::make_shared<GadgetAction>(GadgetAction(false, {3, 1}, uuid2, GadgetEnum::COCKTAIL));
 
-    EXPECT_FALSE(ActionValidator::validate(state, g1)) << "character has no cocktail --> invalid";
-    EXPECT_TRUE(ActionValidator::validate(state, g2)) << "drink cocktail --> valid";
-    EXPECT_FALSE(ActionValidator::validate(state, g3)) << "spill on empty field --> invalid";
-    EXPECT_TRUE(ActionValidator::validate(state, g4)) << "spill on character --> valid";
-    EXPECT_FALSE(ActionValidator::validate(state, g5)) << "target outside map --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g6)) << "target out of range --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g1, config)) << "character has no cocktail --> invalid";
+    EXPECT_TRUE(ActionValidator::validate(state, g2, config)) << "drink cocktail --> valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g3, config)) << "spill on empty field --> invalid";
+    EXPECT_TRUE(ActionValidator::validate(state, g4, config)) << "spill on character --> valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g5, config)) << "target outside map --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g6, config)) << "target out of range --> invalid";
 
     state.getMap().getField(3, 1).setGadget(std::nullopt);
-    ASSERT_FALSE(ActionValidator::validate(state, g7)) << "pickup cocktail from emtpy bar table --> invalid";
+    ASSERT_FALSE(ActionValidator::validate(state, g7, config)) << "pickup cocktail from emtpy bar table --> invalid";
     state.getMap().getField(3, 1).setGadget(cocktail);
-    ASSERT_TRUE(ActionValidator::validate(state, g7)) << "pickup cocktail --> valid";
+    ASSERT_TRUE(ActionValidator::validate(state, g7, config)) << "pickup cocktail --> valid";
     state.getCharacters().getByUUID(uuid3)->addGadget(cocktail);
-    ASSERT_FALSE(ActionValidator::validate(state, g7)) << "pickup when holding a cocktail --> invalid";
+    ASSERT_FALSE(ActionValidator::validate(state, g7, config)) << "pickup when holding a cocktail --> invalid";
 
     state.getMap().getField(2, 3).setGadget(cocktail);
-    EXPECT_FALSE(ActionValidator::validate(state, g7)) << "bar table with cocktail out of range --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g7, config)) << "bar table with cocktail out of range --> invalid";
 }
 
 

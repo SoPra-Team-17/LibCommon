@@ -1,8 +1,9 @@
 #ifndef LIBCOMMON_GADGETVALIDATOR_HPP
 #define LIBCOMMON_GADGETVALIDATOR_HPP
 
-#include <datatypes/gameplay/GadgetAction.hpp>
-#include <datatypes/gameplay/State.hpp>
+#include "datatypes/gameplay/GadgetAction.hpp"
+#include "datatypes/gameplay/State.hpp"
+#include "datatypes/matchconfig/MatchConfig.hpp"
 
 namespace spy::gameplay {
 
@@ -14,10 +15,9 @@ namespace spy::gameplay {
             // Static class
             GadgetValidator() = delete;
 
-            static bool validate(const State &s, GadgetAction a);
+            static bool validate(const State &s, GadgetAction a, const MatchConfig &config);
 
         private:
-            // TODO add gadgets
             static bool validateHairdryer(const State &s, GadgetAction a);
 
             static bool validateRocketPen(const State &s, GadgetAction a);
@@ -28,15 +28,15 @@ namespace spy::gameplay {
 
             static bool validateLaserCompact(const State &s, GadgetAction a);
 
-            static bool validateMoleDie(const State &s, GadgetAction a);
+            static bool validateMoleDie(const State &s, GadgetAction a, const MatchConfig &config);
 
             static bool validateGasGloss(const State &s, GadgetAction a);
 
-            static bool validateMothballPouch(const State &s, GadgetAction a);
+            static bool validateMothballPouch(const State &s, GadgetAction a, const MatchConfig &config);
 
-            static bool validateFogTin(const State &s, GadgetAction a);
+            static bool validateFogTin(const State &s, GadgetAction a, const MatchConfig &config);
 
-            static bool validateGrapple(const State &s, GadgetAction a);
+            static bool validateGrapple(const State &s, GadgetAction a, const MatchConfig &config);
 
             static bool validateJetpack(const State &s, GadgetAction a);
 
@@ -56,7 +56,7 @@ namespace spy::gameplay {
 
             static bool validateCocktail(const State &s, GadgetAction a);
 
-            static bool validateBowlerBlade(const State &s, GadgetAction a);
+            static bool validateBowlerBlade(const State &s, GadgetAction a, const MatchConfig &config);
     };
 }
 

@@ -22,18 +22,18 @@ set(SOURCE
         datatypes/character/CharacterInformation.cpp
         datatypes/character/CharacterDescription.cpp
         datatypes/character/CharacterSet.cpp
-        datatypes/execution/ActionExecutor_Cat.cpp
-        datatypes/execution/ActionExecutor_Exfiltration.cpp
-        datatypes/execution/ActionExecutor_Gadget.cpp
-        datatypes/execution/ActionExecutor_Gamble.cpp
-        datatypes/execution/ActionExecutor_Janitor.cpp
-        datatypes/execution/ActionExecutor_Movement.cpp
-        datatypes/execution/ActionExecutor_Property.cpp
-        datatypes/execution/ActionExecutor_Retire.cpp
-        datatypes/execution/ActionExecutor_Spy.cpp
-        datatypes/execution/gadget/GadgetExecutor.cpp
-        datatypes/execution/ActionExecutor.cpp
-        datatypes/execution/gadget/HairDryer.cpp
+        gameLogic/execution/ActionExecutor_Cat.cpp
+        gameLogic/execution/ActionExecutor_Exfiltration.cpp
+        gameLogic/execution/ActionExecutor_Gadget.cpp
+        gameLogic/execution/ActionExecutor_Gamble.cpp
+        gameLogic/execution/ActionExecutor_Janitor.cpp
+        gameLogic/execution/ActionExecutor_Movement.cpp
+        gameLogic/execution/ActionExecutor_Property.cpp
+        gameLogic/execution/ActionExecutor_Retire.cpp
+        gameLogic/execution/ActionExecutor_Spy.cpp
+        gameLogic/execution/gadget/GadgetExecutor.cpp
+        gameLogic/execution/ActionExecutor.cpp
+        gameLogic/execution/gadget/HairDryer.cpp
         datatypes/matchconfig/MatchConfig.cpp
         datatypes/scenario/Scenario.cpp
         datatypes/scenario/Scenario.cpp
@@ -42,37 +42,34 @@ set(SOURCE
         datatypes/statistics/StatisticsEntry.cpp
         datatypes/statistics/Statistics.cpp
         datatypes/gameplay/State.cpp
-        datatypes/validation/ExfiltrationValidator.cpp
-        datatypes/validation/GadgetSwitch.cpp
-        datatypes/validation/GambleValidator.cpp
-        datatypes/validation/MovementValidator.cpp
-        datatypes/validation/PropertyValidator.cpp
-        datatypes/validation/ActionValidator.cpp
-        datatypes/validation/ActionValidator_Cat.cpp
-        datatypes/validation/ActionValidator_Janitor.cpp
-        datatypes/validation/ActionValidator_Retire.cpp
-        datatypes/validation/ActionValidator_Spy.cpp
-        datatypes/validation/gadget/GadgetValidator.cpp
-        datatypes/validation/gadget/Hairdryer.cpp
-        datatypes/validation/gadget/RocketPen.cpp
-        datatypes/validation/gadget/TechnicolourPrism.cpp
-        datatypes/validation/gadget/PoisonPills.cpp
-        datatypes/validation/gadget/LaserCompact.cpp
-        datatypes/validation/gadget/MoleDie.cpp
-        datatypes/validation/gadget/GasGloss.cpp
-        datatypes/validation/gadget/MothballPouch.cpp
-        datatypes/validation/gadget/FogTin.cpp
-        datatypes/validation/gadget/Grapple.cpp
-        datatypes/validation/gadget/Jetpack.cpp
-        datatypes/validation/gadget/MagneticWatch.cpp
-        datatypes/validation/gadget/WiretapWithEarplugs.cpp
-        datatypes/validation/gadget/ChickenFeed.cpp
-        datatypes/validation/gadget/Nugget.cpp
-        datatypes/validation/gadget/MirrorOfWilderness.cpp
-        datatypes/validation/gadget/PocketLitter.cpp
-        datatypes/validation/gadget/DiamondCollar.cpp
-        datatypes/validation/gadget/Cocktail.cpp
-        datatypes/validation/gadget/BowlerBlade.cpp
+        gameLogic/validation/ActionValidator_Gadget.cpp
+        gameLogic/validation/ActionValidator_Gamble.cpp
+        gameLogic/validation/ActionValidator_Movement.cpp
+        gameLogic/validation/ActionValidator_Property.cpp
+        gameLogic/validation/ActionValidator.cpp
+        gameLogic/validation/ActionValidator_Retire.cpp
+        gameLogic/validation/ActionValidator_Spy.cpp
+        gameLogic/validation/gadget/GadgetValidator.cpp
+        gameLogic/validation/gadget/Hairdryer.cpp
+        gameLogic/validation/gadget/RocketPen.cpp
+        gameLogic/validation/gadget/TechnicolourPrism.cpp
+        gameLogic/validation/gadget/PoisonPills.cpp
+        gameLogic/validation/gadget/LaserCompact.cpp
+        gameLogic/validation/gadget/MoleDie.cpp
+        gameLogic/validation/gadget/GasGloss.cpp
+        gameLogic/validation/gadget/MothballPouch.cpp
+        gameLogic/validation/gadget/FogTin.cpp
+        gameLogic/validation/gadget/Grapple.cpp
+        gameLogic/validation/gadget/Jetpack.cpp
+        gameLogic/validation/gadget/MagneticWatch.cpp
+        gameLogic/validation/gadget/WiretapWithEarplugs.cpp
+        gameLogic/validation/gadget/ChickenFeed.cpp
+        gameLogic/validation/gadget/Nugget.cpp
+        gameLogic/validation/gadget/MirrorOfWilderness.cpp
+        gameLogic/validation/gadget/PocketLitter.cpp
+        gameLogic/validation/gadget/DiamondCollar.cpp
+        gameLogic/validation/gadget/Cocktail.cpp
+        gameLogic/validation/gadget/BowlerBlade.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp

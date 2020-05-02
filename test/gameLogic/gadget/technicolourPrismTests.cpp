@@ -7,7 +7,7 @@
 
 #include <gtest/gtest.h>
 #include "gadgetActionFixture.hpp"
-#include "datatypes/validation/ActionValidator.hpp"
+#include "gameLogic/validation/ActionValidator.hpp"
 
 TEST_F(GadgetActionTests, TechnicolourPrism_Validate) {
     using spy::gameplay::ActionValidator;
@@ -31,11 +31,11 @@ TEST_F(GadgetActionTests, TechnicolourPrism_Validate) {
     auto g4 = std::make_shared<GadgetAction>(GadgetAction(false, {3, 3}, uuid3, GadgetEnum::TECHNICOLOUR_PRISM));
     auto g5 = std::make_shared<GadgetAction>(GadgetAction(false, {6, 7}, uuid5, GadgetEnum::TECHNICOLOUR_PRISM));
 
-    EXPECT_TRUE(ActionValidator::validate(state, g1)) << "roulette table is target in range --> valid";
-    EXPECT_FALSE(ActionValidator::validate(state, g2)) << "roulette table out of range --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g3)) << "target is no roulette table --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g4)) << "character has no prism --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g5)) << "target field is outside --> invalid";
+    EXPECT_TRUE(ActionValidator::validate(state, g1, config)) << "roulette table is target in range --> valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g2, config)) << "roulette table out of range --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g3, config)) << "target is no roulette table --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g4, config)) << "character has no prism --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g5, config)) << "target field is outside --> invalid";
 }
 
 

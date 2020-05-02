@@ -1,14 +1,18 @@
-//
-// Created by jonas on 07.04.20.
-//
+/**
+ * @file   GameOperation.cpp
+ * @author Jonas
+ * @date   07.04.2020 (creation)
+ * @brief  Definition of a game operation message.
+ */
 
 #ifndef LIBCOMMON_GAMEOPERATION_HPP
 #define LIBCOMMON_GAMEOPERATION_HPP
 
-#include <network/MessageContainer.hpp>
-#include <datatypes/gameplay/CharacterOperation.hpp>
-#include <network/RoleEnum.hpp>
-#include <datatypes/gameplay/State.hpp>
+#include "network/MessageContainer.hpp"
+#include "network/RoleEnum.hpp"
+#include "datatypes/gameplay/State.hpp"
+#include "datatypes/gameplay/CharacterOperation.hpp"
+#include "datatypes/matchconfig/MatchConfig.hpp"
 
 namespace spy::network::messages {
     class GameOperation : public MessageContainer {
@@ -26,14 +30,16 @@ namespace spy::network::messages {
             bool operator==(const GameOperation &rhs) const;
 
             /**
-             * validate message according role and operation type and if operation is allowed in current state
-             * @param playerRole role of the player who sent the message
-             * @param state current state of the game
-             * @param activeCharacter character that move was requested from
+             * Validate message according role and operation type and if operation is allowed in current state.
+             * @param playerRole        Role of the player who sent the message.
+             * @param state             Current state of the game.
+             * @param activeCharacter   Character that move was requested from.
+             * @param config            Configuration of the current match.
              * @return true if message is valid
              *         false if message is not valid
              */
-            [[nodiscard]] bool validate(RoleEnum playerRole, gameplay::State &state, util::UUID activeCharacter) const;
+            [[nodiscard]] bool validate(RoleEnum playerRole, const gameplay::State &state, util::UUID activeCharacter,
+                                        const MatchConfig &config) const;
 
             friend std::ostream &operator<<(std::ostream &os, const GameOperation &metaInformation);
 

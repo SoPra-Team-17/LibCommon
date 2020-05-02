@@ -1,20 +1,24 @@
-//
-// Created by jonas on 28.04.20.
-//
+/**
+* @file   ActionExecutor.hpp
+* @author Jonas
+* @date   28.04.2020 (creation)
+* @brief  Definition of the static action execution class.
+*/
 
 #ifndef LIBCOMMON_ACTIONEXECUTOR_HPP
 #define LIBCOMMON_ACTIONEXECUTOR_HPP
 
-#include <datatypes/gameplay/State.hpp>
-#include <datatypes/gameplay/CatAction.hpp>
-#include <datatypes/gameplay/Exfiltration.hpp>
-#include <datatypes/gameplay/GadgetAction.hpp>
-#include <datatypes/gameplay/GambleAction.hpp>
-#include <datatypes/gameplay/JanitorAction.hpp>
-#include <datatypes/gameplay/Movement.hpp>
-#include <datatypes/gameplay/PropertyAction.hpp>
-#include <datatypes/gameplay/RetireAction.hpp>
-#include <datatypes/gameplay/SpyAction.hpp>
+#include "datatypes/gameplay/State.hpp"
+#include "datatypes/gameplay/CatAction.hpp"
+#include "datatypes/gameplay/Exfiltration.hpp"
+#include "datatypes/gameplay/GadgetAction.hpp"
+#include "datatypes/gameplay/GambleAction.hpp"
+#include "datatypes/gameplay/JanitorAction.hpp"
+#include "datatypes/gameplay/Movement.hpp"
+#include "datatypes/gameplay/PropertyAction.hpp"
+#include "datatypes/gameplay/RetireAction.hpp"
+#include "datatypes/gameplay/SpyAction.hpp"
+#include "datatypes/matchconfig/MatchConfig.hpp"
 
 namespace spy::gameplay {
     /**
@@ -24,7 +28,7 @@ namespace spy::gameplay {
         public:
             ActionExecutor() = delete;
 
-            static bool execute(State &s, std::shared_ptr<const BaseOperation> op);
+            static bool execute(State &s, std::shared_ptr<const BaseOperation> op, const MatchConfig &config);
 
         private:
 
@@ -41,7 +45,7 @@ namespace spy::gameplay {
              * @param op Operation to execute, has to be valid
              * @return true, if GadgetAction was successful
              */
-            static bool executeGadget(State &s, const GadgetAction &op);
+            static bool executeGadget(State &s, const GadgetAction &op, const MatchConfig &config);
 
             /**
              * Execute GambleAction
@@ -62,14 +66,14 @@ namespace spy::gameplay {
              * @param op Operation to execute, has to be valid
              * @return true, if PropertyAction was successful
              */
-            static bool executeProperty(State &s, const PropertyAction &op);
+            static bool executeProperty(State &s, const PropertyAction &op, const MatchConfig &config);
 
             /**
              * Execute SpyAction
              * @param op Operation to execute, has to be valid
              * @return true, if SpyAction was successful
              */
-            static bool executeSpy(State &s, const SpyAction &op);
+            static bool executeSpy(State &s, const SpyAction &op, const MatchConfig &config);
 
             /**
              * Execute CatAction

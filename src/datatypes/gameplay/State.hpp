@@ -55,13 +55,6 @@ namespace spy::gameplay {
              */
             void setJanitorCoordinates(const std::optional<util::Point> &janitorCoordinates);
 
-            /**
-             * Perform the given movement operation.
-             * @param op Operation to perform.
-             * @return True if the operation was successful, otherwise false.
-             */
-            [[nodiscard]] bool performMovement(const Movement &op);
-
             friend void to_json(nlohmann::json &j, const State &s);
 
             friend void from_json(const nlohmann::json &j, State &s);

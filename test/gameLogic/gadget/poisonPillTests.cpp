@@ -7,7 +7,7 @@
 
 #include <gtest/gtest.h>
 #include "gadgetActionFixture.hpp"
-#include "datatypes/validation/ActionValidator.hpp"
+#include "gameLogic/validation/ActionValidator.hpp"
 
 TEST_F(GadgetActionTests, PoisonPills_Validate) {
     using spy::gameplay::ActionValidator;
@@ -46,14 +46,14 @@ TEST_F(GadgetActionTests, PoisonPills_Validate) {
     auto g9  = std::make_shared<GadgetAction>(GadgetAction(false, {1, 3}, uuid6, GadgetEnum::POISON_PILLS));
     auto g10 = std::make_shared<GadgetAction>(GadgetAction(false, {3, 1}, uuid7, GadgetEnum::POISON_PILLS));
 
-    EXPECT_FALSE(ActionValidator::validate(state, g1)) << "character has no pills --> invalid";
-    EXPECT_TRUE(ActionValidator::validate(state, g2)) << "aim on own cocktail --> valid";
-    EXPECT_FALSE(ActionValidator::validate(state, g3)) << "aim on empty field --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g4)) << "aim on character without cocktail --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g5)) << "target outside map --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g6)) << "target out of range --> invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g7)) << "aim on oneself without a cocktail --> invalid";
-    EXPECT_TRUE(ActionValidator::validate(state, g8)) << "aim on character with cocktail --> valid";
-    EXPECT_TRUE(ActionValidator::validate(state, g9)) << "aim on cocktail on a bar table --> valid";
-    EXPECT_FALSE(ActionValidator::validate(state, g10)) << "aim on empty bar table --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g1, config)) << "character has no pills --> invalid";
+    EXPECT_TRUE(ActionValidator::validate(state, g2, config)) << "aim on own cocktail --> valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g3, config)) << "aim on empty field --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g4, config)) << "aim on character without cocktail --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g5, config)) << "target outside map --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g6, config)) << "target out of range --> invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g7, config)) << "aim on oneself without a cocktail --> invalid";
+    EXPECT_TRUE(ActionValidator::validate(state, g8, config)) << "aim on character with cocktail --> valid";
+    EXPECT_TRUE(ActionValidator::validate(state, g9, config)) << "aim on cocktail on a bar table --> valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g10, config)) << "aim on empty bar table --> invalid";
 }

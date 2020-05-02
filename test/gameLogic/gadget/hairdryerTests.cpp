@@ -7,8 +7,8 @@
 
 #include <gtest/gtest.h>
 #include "gadgetActionFixture.hpp"
-#include "datatypes/validation/ActionValidator.hpp"
-#include "datatypes/execution/ActionExecutor.hpp"
+#include "gameLogic/validation/ActionValidator.hpp"
+#include "gameLogic/execution/ActionExecutor.hpp"
 
 TEST_F(GadgetActionTests, Hairdryer_Validate) {
     using spy::gameplay::ActionValidator;
@@ -37,20 +37,20 @@ TEST_F(GadgetActionTests, Hairdryer_Validate) {
     auto g7 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 2}, uuid1, GadgetEnum::HAIRDRYER));
     auto g8 = std::make_shared<GadgetAction>(GadgetAction(false, {4, 4}, uuid1, GadgetEnum::HAIRDRYER));
 
-    EXPECT_FALSE(ActionValidator::validate(state, g1)) << "execution without owning a hairdryer is invalid";
-    EXPECT_FALSE(ActionValidator::validate(state, g2)) << "execution on a field outside is invalid";
-    EXPECT_TRUE(ActionValidator::validate(state, g3)) << "execution on oneself without CLAMMY_CLOTHES is valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g1, config)) << "execution without owning a hairdryer is invalid";
+    EXPECT_FALSE(ActionValidator::validate(state, g2, config)) << "execution on a field outside is invalid";
+    EXPECT_TRUE(ActionValidator::validate(state, g3, config)) << "execution on oneself without CLAMMY_CLOTHES is valid";
 
     std::set<PropertyEnum> properties = {PropertyEnum::CLAMMY_CLOTHES};
     state.getCharacters().getByUUID(uuid5)->setProperties(properties);
     state.getCharacters().getByUUID(uuid3)->setProperties(properties);
 
-    EXPECT_TRUE(ActionValidator::validate(state, g4)) << "execution on oneself with CLAMMY_CLOTHES is valid";
-    EXPECT_FALSE(ActionValidator::validate(state, g5)) << "target out of range --> invalid";
+    EXPECT_TRUE(ActionValidator::validate(state, g4, config)) << "execution on oneself with CLAMMY_CLOTHES is valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g5, config)) << "target out of range --> invalid";
 
-    EXPECT_FALSE(ActionValidator::validate(state, g6)) << "execution on empty field is invalid";
-    EXPECT_TRUE(ActionValidator::validate(state, g7)) << "execution on character without CLAMMY_CLOTHES is valid";
-    EXPECT_TRUE(ActionValidator::validate(state, g8)) << "execution on character with CLAMMY_CLOTHES is valid";
+    EXPECT_FALSE(ActionValidator::validate(state, g6, config)) << "execution on empty field is invalid";
+    EXPECT_TRUE(ActionValidator::validate(state, g7, config)) << "execution on character without CLAMMY_CLOTHES is valid";
+    EXPECT_TRUE(ActionValidator::validate(state, g8, config)) << "execution on character with CLAMMY_CLOTHES is valid";
 }
 
 TEST_F(GadgetActionTests, HairDryer_Execute) {
@@ -68,7 +68,7 @@ TEST_F(GadgetActionTests, HairDryer_Execute) {
     ASSERT_TRUE(c2->getProperties().find(PropertyEnum::CLAMMY_CLOTHES) != c2->getProperties().end());
 
     auto a = std::make_shared<GadgetAction>(GadgetAction{false, c2->getCoordinates().value(), uuid1, spy::gadget::GadgetEnum::HAIRDRYER});
-    ActionExecutor::execute(state, a);
+    ActionExecutor::execute(state, a, config);
 
     EXPECT_TRUE(c2->getProperties().find(PropertyEnum::CLAMMY_CLOTHES) == c2->getProperties().end())
                         << "Expect CLAMMY_CLOTHES to be removed from character 2";

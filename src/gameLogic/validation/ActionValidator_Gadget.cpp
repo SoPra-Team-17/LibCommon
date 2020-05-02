@@ -2,13 +2,13 @@
 // Created by jonas on 28.04.20.
 //
 
-#include <datatypes/validation/gadget/GadgetValidator.hpp>
+#include <gameLogic/validation/gadget/GadgetValidator.hpp>
 #include <util/GadgetUtils.hpp>
 #include "ActionValidator.hpp"
 
 namespace spy::gameplay {
 
-    bool ActionValidator::validateGadgetAction(const State &s, GadgetAction op) {
+    bool ActionValidator::validateGadgetAction(const State &s, GadgetAction op, const MatchConfig &config) {
         using spy::gadget::GadgetEnum;
 
         // check if target inside map
@@ -32,6 +32,6 @@ namespace spy::gameplay {
             return false;
         }
 
-        return GadgetValidator::validate(s, op);
+        return GadgetValidator::validate(s, op, config);
     }
 }

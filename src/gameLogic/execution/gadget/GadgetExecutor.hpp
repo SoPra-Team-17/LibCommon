@@ -6,8 +6,9 @@
 #ifndef LIBCOMMON_GADGETEXECUTOR_HPP
 #define LIBCOMMON_GADGETEXECUTOR_HPP
 
-#include <datatypes/gameplay/GadgetAction.hpp>
-#include <datatypes/gameplay/State.hpp>
+#include "datatypes/gameplay/GadgetAction.hpp"
+#include "datatypes/gameplay/State.hpp"
+#include "datatypes/matchconfig/MatchConfig.hpp"
 
 namespace spy::gameplay {
 
@@ -21,7 +22,7 @@ namespace spy::gameplay {
             /**
              * @param action Operation to execute, has to be valid
              */
-            static bool execute(State &s, GadgetAction action);
+            static bool execute(State &s, GadgetAction action, const MatchConfig &config);
 
         private:
             // TODO: Gadget execution methods
