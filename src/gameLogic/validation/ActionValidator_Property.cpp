@@ -2,7 +2,7 @@
 // Created by jonas on 28.04.20.
 //
 
-#include <util/GadgetUtils.hpp>
+#include <util/GameLogicUtils.hpp>
 #include <datatypes/character/PropertyEnum.hpp>
 #include "ActionValidator.hpp"
 

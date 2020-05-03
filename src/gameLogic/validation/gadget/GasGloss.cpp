@@ -6,7 +6,7 @@
  */
 
 
-#include <util/GadgetUtils.hpp>
+#include <util/GameLogicUtils.hpp>
 #include "datatypes/gameplay/Movement.hpp"
 #include "GadgetValidator.hpp"
 
@@ -19,6 +19,6 @@ namespace spy::gameplay {
         }
 
         // check if person on target field
-        return util::GadgetUtils::isPersonOnField(s, a.getTarget());
+        return util::GameLogicUtils::isPersonOnField(s, a.getTarget());
     }
 }

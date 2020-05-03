@@ -6,20 +6,20 @@
 */
 
 #include "GadgetValidator.hpp"
-#include "util/GadgetUtils.hpp"
+#include "util/GameLogicUtils.hpp"
 
 namespace spy::gameplay {
 
     bool GadgetValidator::validateBowlerBlade(const State &s, GadgetAction a, const MatchConfig &config) {
         // check LoS
         auto character = s.getCharacters().findByUUID(a.getCharacterId());
-        bool lineOfSightFree = spy::util::GadgetUtils::bowlerBladeLineOfSight(s, character->getCoordinates().value(),
-                                                                              a.getTarget());
+        bool lineOfSightFree = spy::util::GameLogicUtils::bowlerBladeLineOfSight(s, character->getCoordinates().value(),
+                                                                                 a.getTarget());
         // check range
         auto distance = Movement::getMoveDistance(character->getCoordinates().value(), a.getTarget());
 
         // check if there is a person on target field
-        bool personOnField = util::GadgetUtils::isPersonOnField(s, a.getTarget());
+        bool personOnField = util::GameLogicUtils::isPersonOnField(s, a.getTarget());
 
         return personOnField && lineOfSightFree && distance <= config.getBowlerBladeRange();
     }

@@ -5,7 +5,7 @@
 * @brief  Implementation of jetpack gadget validation.
 */
 
-#include <util/GadgetUtils.hpp>
+#include <util/GameLogicUtils.hpp>
 #include "GadgetValidator.hpp"
 
 namespace spy::gameplay {
@@ -22,7 +22,7 @@ namespace spy::gameplay {
         }
 
         //check if any character is occupying the field
-        return !util::GadgetUtils::isPersonOnField(s, a.getTarget());
+        return !util::GameLogicUtils::isPersonOnField(s, a.getTarget());
     }
 
 }

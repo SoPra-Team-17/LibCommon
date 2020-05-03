@@ -6,13 +6,13 @@
  */
 
 #include "datatypes/gameplay/Movement.hpp"
-#include "util/GadgetUtils.hpp"
+#include "util/GameLogicUtils.hpp"
 #include "GadgetValidator.hpp"
 
 namespace spy::gameplay {
     bool GadgetValidator::validatePoisonPills(const State &s, GadgetAction a) {
         // check if target contains cocktail
-        bool targetHasCocktail = spy::util::GadgetUtils::hasCocktail(s, a.getTarget());
+        bool targetHasCocktail = spy::util::GameLogicUtils::hasCocktail(s, a.getTarget());
         // check if target is adjacent field
         auto character = s.getCharacters().findByUUID(a.getCharacterId());
         auto distance = gameplay::Movement::getMoveDistance(a.getTarget(), character->getCoordinates().value());

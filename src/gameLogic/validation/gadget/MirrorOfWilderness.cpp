@@ -6,13 +6,13 @@
  */
 
 #include "GadgetValidator.hpp"
-#include "util/GadgetUtils.hpp"
+#include "util/GameLogicUtils.hpp"
 
 namespace spy::gameplay{
 
     bool GadgetValidator::validateMirrorOfWilderness(const State &s, GadgetAction a) {
         auto character = s.getCharacters().findByUUID(a.getCharacterId());
-        return spy::util::GadgetUtils::personOnNeighboringField(s, a.getTarget(), character->getCoordinates().value());
+        return spy::util::GameLogicUtils::personOnNeighboringField(s, a.getTarget(), character->getCoordinates().value());
     }
 
 }

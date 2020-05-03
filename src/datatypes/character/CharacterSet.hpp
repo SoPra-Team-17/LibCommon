@@ -107,22 +107,6 @@ namespace spy::character {
              */
             iterator getByUUID(const util::UUID &uuid);
 
-            /**
-             * Searches the set for a character at the given point. Returns first match.
-             * @param  p Point to search for. Has to be in the map.
-             * @return Const iterator to the found character if one at the specified point exits, otherwise a
-             *         const iterator to the end of the set.
-             */
-            [[nodiscard]] const_iterator findByCoordinates(const util::Point &p) const;
-
-            /**
-             * Searches the set for a character at the given point. Returns first match.
-             * @param  p Point to search for. Has to be in the map.
-             * @return Iterator to the found character if one at the specified point exits, otherwise an
-             *         iterator to the end of the set.
-             */
-            iterator getByCoordinates(const util::Point &p);
-
             bool operator==(const CharacterSet &rhs) const;
 
             friend void to_json(nlohmann::json &j, const CharacterSet &c);

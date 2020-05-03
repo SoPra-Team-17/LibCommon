@@ -3,7 +3,7 @@
 //
 
 #include <gameLogic/validation/gadget/GadgetValidator.hpp>
-#include <util/GadgetUtils.hpp>
+#include <util/GameLogicUtils.hpp>
 #include "ActionValidator.hpp"
 
 namespace spy::gameplay {
@@ -25,8 +25,8 @@ namespace spy::gameplay {
         }
 
         // check if character has gadget
-        bool hasGadget = spy::util::GadgetUtils::characterHasGadget(s, op.getCharacterId(),
-                                                                    op.getGadget());
+        bool hasGadget = spy::util::GameLogicUtils::characterHasGadget(s, op.getCharacterId(),
+                                                                       op.getGadget());
         // picking up a cocktail is the only action that can be performed without having the gadget
         if (op.getGadget() != GadgetEnum::COCKTAIL && !hasGadget) {
             return false;
