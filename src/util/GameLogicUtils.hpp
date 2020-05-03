@@ -110,7 +110,7 @@ namespace spy::util {
                                                         p + Point{-dist, -dist}, p + Point{-dist, dist},
                                                         p + Point{dist, -dist}};
                 for (Point &point: possiblePoints) {
-                    if (isSearchedField(point)) {
+                    if (s.getMap().isInside(point) && isSearchedField(point)) {
                         result.push_back(point);
                     }
                 }
@@ -127,7 +127,9 @@ namespace spy::util {
                 std::random_device rd;
                 std::mt19937 gen(rd());
                 std::uniform_int_distribution<unsigned int> randPos(0, v.size() - 1);
-                return v.at(randPos(gen));
+                auto result = v.begin();
+                std::advance(result, randPos(gen));
+                return result;
             }
 
             /**
