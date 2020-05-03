@@ -82,12 +82,16 @@ namespace spy::util {
             static const util::Point &
             getRandomNeighbouringField(const spy::gameplay::State &s, const util::Point &p, T isSearchedField) {
                 std::vector<Point> points;
-                for (int i = 0;; i++) {
+                int dist = 0;
+                while (true) {
                     points.clear();
-                    getNeighbouringFieldsInDist(points, s, p, i, isSearchedField);
+                    if (!getNeighbouringFieldsInDist(points, s, p, dist, isSearchedField)) {
+                        throw std::domain_error("No Point fulfilling isSearchedField was found on the whole map");
+                    }
                     if (!points.empty()) {
                         return *getRandomItemFromVector(points);
                     }
+                    dist++;
                 }
             }
 
@@ -99,21 +103,28 @@ namespace spy::util {
              * @param p point from which to search
              * @param dist distance that has to be between p and resulting points
              * @param isSearchedField function that defines conditions returned points must fulfil to be accepted
+             * @return true if there was at least one point with dist inside the map
              */
             template<typename T>
-            static void
+            static bool
             getNeighbouringFieldsInDist(std::vector<util::Point> &result, const spy::gameplay::State &s,
                                         const util::Point &p, const int dist,
                                         T isSearchedField) {
+                bool noPointsInMap = true;
                 std::vector<util::Point> possiblePoints{p + Point{dist, 0}, p + Point{-dist, 0}, p + Point{0, dist},
                                                         p + Point{0, -dist}, p + Point{dist, dist},
                                                         p + Point{-dist, -dist}, p + Point{-dist, dist},
                                                         p + Point{dist, -dist}};
                 for (Point &point: possiblePoints) {
-                    if (s.getMap().isInside(point) && isSearchedField(point)) {
-                        result.push_back(point);
+                    if (s.getMap().isInside(point)) {
+                        noPointsInMap = false;
+                        if (isSearchedField(point)) {
+                            result.push_back(point);
+                        }
                     }
                 }
+
+                return !noPointsInMap;
             }
 
             /**
