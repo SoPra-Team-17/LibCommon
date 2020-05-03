@@ -2,12 +2,13 @@
 // Created by jonas on 28.04.20.
 //
 
+#include <util/GameLogicUtils.hpp>
 #include "ActionValidator.hpp"
 
 namespace spy::gameplay {
 
-    bool ActionValidator::validateSpyAction(const State &/*s*/, spy::gameplay::SpyAction /*op*/) {
-        // TODO implement
-        return false;
+    bool ActionValidator::validateSpyAction(const State &s, const spy::gameplay::SpyAction& op) {
+        auto character = s.getCharacters().findByUUID(op.getCharacterId());
+        return spy::util::GameLogicUtils::personOnNeighboringField(s, op.getTarget(), character->getCoordinates().value());
     }
 }

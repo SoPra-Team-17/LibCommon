@@ -1,19 +1,19 @@
 /**
- * @file   GadgetUtils.hpp
+ * @file   GameLogicUtils.hpp
  * @author Marco Deuscher
  * @date   29.04.2020 (creation)
  * @brief  definition of gadget utils
  */
 
-#ifndef LIBCOMMON_GADGETUTILS_HPP
-#define LIBCOMMON_GADGETUTILS_HPP
+#ifndef LIBCOMMON_GAMELOGICUTILS_HPP
+#define LIBCOMMON_GAMELOGICUTILS_HPP
 
 #include "datatypes/gameplay/State.hpp"
 
 namespace spy::util {
-    class GadgetUtils {
+    class GameLogicUtils {
         public:
-            GadgetUtils() = delete;
+            GameLogicUtils() = delete;
 
             /**
              * @brief       checks if a field contains a cocktail, or if the person standing on the field is holding one
@@ -59,7 +59,25 @@ namespace spy::util {
              * @return      true if line of sight is free
              */
             static bool bowlerBladeLineOfSight(const spy::gameplay::State &s, const Point &p1, const Point &p2);
+
+            /**
+             * Searches the set for a character at the given point. Returns first match.
+             * @param cs CharacterSet to search in
+             * @param  p Point to search for. Has to be in the map.
+             * @return Const iterator to the found character if one at the specified point exits, otherwise a
+             *         const iterator to the end of the set.
+             */
+            static std::vector<character::Character>::const_iterator findInCharacterSetByCoordinates(const character::CharacterSet &cs, const util::Point &p);
+
+            /**
+             * Searches the set for a character at the given point. Returns first match.
+             * @param cs CharacterSet to search in
+             * @param  p Point to search for. Has to be in the map.
+             * @return Iterator to the found character if one at the specified point exits, otherwise an
+             *         iterator to the end of the set.
+             */
+            static std::vector<character::Character>::iterator getInCharacterSetByCoordinates(character::CharacterSet &cs, const util::Point &p);
     };
 }
 
-#endif //LIBCOMMON_GADGETUTILS_HPP
+#endif //LIBCOMMON_GAMELOGICUTILS_HPP

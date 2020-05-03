@@ -6,7 +6,7 @@
  */
 
 #include "GadgetValidator.hpp"
-#include "util/GadgetUtils.hpp"
+#include "util/GameLogicUtils.hpp"
 
 namespace spy::gameplay{
 

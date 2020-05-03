@@ -130,4 +130,8 @@ namespace spy::character {
                std::tie(rhs.characterId, rhs.name, rhs.coordinates, rhs.movePoints, rhs.actionPoints, rhs.healthPoints,
                         rhs.intelligencePoints, rhs.chips, rhs.properties, rhs.gadgets);
     }
+
+    bool Character::hasProperty(PropertyEnum property) const {
+        return std::find(properties.begin(), properties.end(), property) != properties.end();
+    }
 }  // namespace spy::character

@@ -36,15 +36,15 @@ namespace spy::gameplay {
 
             static bool validateGadgetAction(const State &s, GadgetAction op, const MatchConfig &config);
 
-            static bool validateGambleAction(const State &s, GambleAction op);
+            static bool validateGambleAction(const State &s, const GambleAction& op);
 
             static bool validateMovement(const State &s, Movement op);
 
-            static bool validatePropertyAction(const State &s, PropertyAction op);
+            static bool validatePropertyAction(const State &s, const PropertyAction& op);
 
-            static bool validateSpyAction(const State &s, SpyAction op);
+            static bool validateSpyAction(const State &s, const SpyAction& op);
 
-            static bool validateRetireAction(const State &s, RetireAction op);
+            static bool validateRetireAction(const State &s, const RetireAction& op);
 
     };
 }

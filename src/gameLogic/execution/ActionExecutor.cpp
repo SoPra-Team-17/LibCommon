@@ -46,4 +46,10 @@ namespace spy::gameplay {
                 throw std::invalid_argument("Execute for this action has not been implemented");
         }
     }
+
+
+    const util::Point &ActionExecutor::getRandomFreeNeighbouringField(const util::Point &point) {
+        // TODO implement
+        return point;
+    }
 }
