@@ -33,13 +33,6 @@ namespace spy::gameplay {
         private:
 
             /**
-             * get point of random free neighbouring field with no character on it
-             * @param point Point where character is at the moment
-             * @return point where character can be swapped to
-             */
-            static const util::Point &getRandomFreeNeighbouringField(const util::Point& point);
-
-            /**
              * Execute Exfiltration
              * @param op Operation to execute, has to be valid
              * @return true, if Exfiltration was successful

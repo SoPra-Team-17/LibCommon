@@ -5,13 +5,13 @@
  * @brief  Implementation of laser compact gadget validation.
  */
 
-#include "util/GadgetUtils.hpp"
+#include "util/GameLogicUtils.hpp"
 #include "GadgetValidator.hpp"
 
 namespace spy::gameplay {
     bool GadgetValidator::validateLaserCompact(const State &s, GadgetAction a) {
         // check if target contains cocktail
-        bool targetHasCocktail = spy::util::GadgetUtils::hasCocktail(s, a.getTarget());
+        bool targetHasCocktail = spy::util::GameLogicUtils::hasCocktail(s, a.getTarget());
 
         // check if target is in line of sight of character
         auto character = s.getCharacters().findByUUID(a.getCharacterId());

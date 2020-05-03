@@ -7,7 +7,7 @@
 
 
 #include "GadgetValidator.hpp"
-#include "util/GadgetUtils.hpp"
+#include "util/GameLogicUtils.hpp"
 
 namespace spy::gameplay {
 
@@ -15,8 +15,8 @@ namespace spy::gameplay {
 
         auto character = s.getCharacters().findByUUID(a.getCharacterId());
 
-        auto hasCocktail = spy::util::GadgetUtils::characterHasGadget(s, a.getCharacterId(),
-                                                                 spy::gadget::GadgetEnum::COCKTAIL);
+        auto hasCocktail = spy::util::GameLogicUtils::characterHasGadget(s, a.getCharacterId(),
+                                                                         spy::gadget::GadgetEnum::COCKTAIL);
 
         if (Movement::getMoveDistance(a.getTarget(), character->getCoordinates().value()) > 1) {
             return false;
@@ -24,7 +24,7 @@ namespace spy::gameplay {
 
         if (s.getMap().getField(a.getTarget()).getFieldState() == scenario::FieldStateEnum::BAR_TABLE) {
             // character is standing next to a bar table
-            if (spy::util::GadgetUtils::hasCocktail(s, a.getTarget())) {
+            if (spy::util::GameLogicUtils::hasCocktail(s, a.getTarget())) {
                 return !hasCocktail;
             } else {
                 return false;
@@ -39,6 +39,6 @@ namespace spy::gameplay {
         }
 
         // check if person on neighboring field
-        return spy::util::GadgetUtils::personOnNeighboringField(s, a.getTarget(), character->getCoordinates().value());
+        return spy::util::GameLogicUtils::personOnNeighboringField(s, a.getTarget(), character->getCoordinates().value());
     }
 }

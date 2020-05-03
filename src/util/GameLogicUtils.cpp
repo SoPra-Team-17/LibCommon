@@ -1,16 +1,16 @@
 /**
- * @file   GadgetUtils.cpp
+ * @file   GameLogicUtils.cpp
  * @author Marco Deuscher
  * @date   29.04.2020 (creation)
  * @brief  implementation of gadget utils
  */
 
-#include "GadgetUtils.hpp"
+#include "GameLogicUtils.hpp"
 #include "gameplay/Movement.hpp"
 #include "scenario/FieldMap.hpp"
 
 namespace spy::util {
-    bool GadgetUtils::hasCocktail(const spy::gameplay::State &s, const Point &pt) {
+    bool GameLogicUtils::hasCocktail(const spy::gameplay::State &s, const Point &pt) {
         using spy::gadget::GadgetEnum;
         bool targetHasGadget = false;
 
@@ -41,7 +41,7 @@ namespace spy::util {
         return targetHasGadget;
     }
 
-    bool GadgetUtils::characterHasGadget(const gameplay::State &s, const UUID &id, spy::gadget::GadgetEnum type) {
+    bool GameLogicUtils::characterHasGadget(const gameplay::State &s, const UUID &id, spy::gadget::GadgetEnum type) {
         auto character = s.getCharacters().findByUUID(id);
         auto gadgets = character->getGadgets();
         auto gadget = std::find_if(gadgets.begin(), gadgets.end(), [type](const gadget::Gadget &g) {
@@ -51,7 +51,7 @@ namespace spy::util {
         return gadget != gadgets.end();
     }
 
-    bool GadgetUtils::isPersonOnField(const gameplay::State &s, const Point &target) {
+    bool GameLogicUtils::isPersonOnField(const gameplay::State &s, const Point &target) {
         auto person = std::find_if(s.getCharacters().begin(), s.getCharacters().end(),
                                    [target](const character::Character &c) {
                                        return c.getCoordinates() == target;
@@ -59,7 +59,7 @@ namespace spy::util {
         return !(person == s.getCharacters().end());
     }
 
-    bool GadgetUtils::personOnNeighboringField(const gameplay::State &s, const Point &target, const Point &charCoord) {
+    bool GameLogicUtils::personOnNeighboringField(const gameplay::State &s, const Point &target, const Point &charCoord) {
         // check distance
         auto distance = gameplay::Movement::getMoveDistance(charCoord, target);
         if (distance != 1) {
@@ -70,7 +70,7 @@ namespace spy::util {
         return isPersonOnField(s, target);
     }
 
-    bool GadgetUtils::bowlerBladeLineOfSight(const spy::gameplay::State &s, const Point &p1, const Point &p2) {
+    bool GameLogicUtils::bowlerBladeLineOfSight(const spy::gameplay::State &s, const Point &p1, const Point &p2) {
         return s.getMap().isLineOfSightFree(p1, p2, [&s](util::Point currentPoint) {
             // check if point is conventionally blocked
             if (s.getMap().blocksSight(currentPoint)) {
@@ -79,5 +79,24 @@ namespace spy::util {
             // check if character blocks point
             return isPersonOnField(s, currentPoint);
         });
+    }
+
+    const util::Point &GameLogicUtils::getRandomFreeNeighbouringField(const gameplay::State &s, const Point &p) {
+        return getRandomNeighbouringField(s, p, [&s](util::Point currentPoint) {
+            // check if point is free -> accessible
+            if (s.getMap().isAccessible(currentPoint)) {
+                return true;
+            }
+            // check if character is on point
+            return !isPersonOnField(s, currentPoint);
+        });
+    }
+
+    bool GameLogicUtils::probabilityTest(double chance) {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_real_distribution<double> prob(0.0, std::nextafter(1.0, 0.0));
+        // return random number >= change of failure
+        return prob(gen) >= (1 - chance);
     }
 }
