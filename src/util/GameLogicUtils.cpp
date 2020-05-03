@@ -80,6 +80,21 @@ namespace spy::util {
             return isPersonOnField(s, currentPoint);
         });
     }
+  
+  std::vector<character::Character>::const_iterator GameLogicUtils::findInCharacterSetByCoordinates(const character::CharacterSet &cs, const util::Point &p) {
+        auto character = std::find_if(cs.begin(), cs.end(), [&p](const character::Character &c) {
+            return c.getCoordinates() == p;
+        });
+
+        return character;
+    }
+
+    std::vector<character::Character>::iterator GameLogicUtils::getInCharacterSetByCoordinates(character::CharacterSet &cs, const util::Point &p) {
+        auto character = std::find_if(cs.begin(), cs.end(), [&p](const character::Character &c) {
+            return c.getCoordinates() == p;
+        });
+
+        return character;
 
     const util::Point &GameLogicUtils::getRandomFreeNeighbouringField(const gameplay::State &s, const Point &p) {
         return getRandomNeighbouringField(s, p, [&s](util::Point currentPoint) {
