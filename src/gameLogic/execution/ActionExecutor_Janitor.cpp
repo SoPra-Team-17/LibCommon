@@ -4,8 +4,9 @@
 #include "ActionExecutor.hpp"
 
 namespace spy::gameplay {
-    bool ActionExecutor::executeJanitor(State &/*s*/, const JanitorAction &/*op*/) {
-        // TODO: implement
-        return false;
+    bool ActionExecutor::executeJanitor(State &s, const JanitorAction &op) {
+        s.setJanitorCoordinates(op.getTarget());
+        s.getCharacters().getByCoordinates(op.getTarget())->setCoordinates(std::nullopt);
+        return true;
     }
 }
