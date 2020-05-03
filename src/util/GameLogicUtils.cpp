@@ -95,6 +95,7 @@ namespace spy::util {
         });
 
         return character;
+    }
 
     const util::Point &GameLogicUtils::getRandomFreeNeighbouringField(const gameplay::State &s, const Point &p) {
         return getRandomNeighbouringField(s, p, [&s](util::Point currentPoint) {
