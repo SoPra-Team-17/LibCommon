@@ -6,7 +6,7 @@
 namespace spy::gameplay {
     bool ActionExecutor::executeJanitor(State &s, const JanitorAction &op) {
         s.setJanitorCoordinates(op.getTarget());
-        s.getCharacters().getByCoordinates(op.getTarget())->setCoordinates(std::nullopt);
+        s.getCharacters().getByCoordinates(op.getTarget())->setCoordinates(util::Point{-1, -1});
         return true;
     }
 }

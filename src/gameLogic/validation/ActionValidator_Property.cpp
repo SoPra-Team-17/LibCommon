@@ -22,9 +22,7 @@ namespace spy::gameplay {
                         s.getMap().isLineOfSightFree(op.getTarget(), character->getCoordinates().value());
             }
             default:
-                // property not usable as action
-                break;
+                throw std::invalid_argument("Property is not usable as action");
         }
-        return false;
     }
 }
