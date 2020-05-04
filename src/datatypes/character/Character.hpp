@@ -16,7 +16,7 @@
 #include <util/UUID.hpp>
 #include <util/Point.hpp>
 #include <set>
-
+#include "FractionEnum.hpp"
 
 namespace spy::character {
     constexpr unsigned int DEFAULT_HEALTH_POINTS = 100;
@@ -73,6 +73,10 @@ namespace spy::character {
 
             void setGadgets(const std::vector<gadget::Gadget> &gadgets);
 
+            void setFraction(character::FractionEnum fraction);
+
+            character::FractionEnum getFraction() const;
+
             void addGadget(gadget::Gadget gadget);
 
             friend void to_json(nlohmann::json &j, const Character &c);
@@ -94,6 +98,7 @@ namespace spy::character {
             unsigned int chips = DEFAULT_CHIPS;
             std::set<spy::character::PropertyEnum> properties;
             std::vector<spy::gadget::Gadget> gadgets;
+            character::FractionEnum fraction;
     };
 }
 

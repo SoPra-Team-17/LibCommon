@@ -134,4 +134,13 @@ namespace spy::character {
     bool Character::hasProperty(PropertyEnum property) const {
         return std::find(properties.begin(), properties.end(), property) != properties.end();
     }
+
+    void Character::setFraction(character::FractionEnum f) {
+        this->fraction = f;
+    }
+
+    character::FractionEnum Character::getFraction() const {
+        return fraction;
+    }
+
 }  // namespace spy::character
