@@ -178,6 +178,17 @@ namespace spy::util {
              * @return true, if test succeeded
              */
             static bool probabilityTest(double chance);
+
+
+            /**
+             * @brief tests for success given a character
+             * @param state current state
+             * @param char character with properties
+             * @param chance probability tiven in Matchconfig (double values between 0 and 1)
+             * @return true, if test suceeded
+             */
+            static bool
+            probabilityTestWithCharacter(spy::gameplay::State &s, spy::character::Character &character, double chance);
     };
 }
 
