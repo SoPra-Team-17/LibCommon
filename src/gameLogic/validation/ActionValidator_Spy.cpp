@@ -8,6 +8,10 @@
 namespace spy::gameplay {
 
     bool ActionValidator::validateSpyAction(const State &s, const spy::gameplay::SpyAction& op) {
+        // check if target inside map
+        if (!s.getMap().isInside(op.getTarget())) {
+            return false;
+        }
         auto character = s.getCharacters().findByUUID(op.getCharacterId());
         return spy::util::GameLogicUtils::personOnNeighbourField(s, op.getTarget(), character->getCoordinates().value());
     }
