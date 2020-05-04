@@ -120,15 +120,14 @@ namespace spy::util {
             template<typename T>
             static const util::Point &
             getRandomNearField(const spy::gameplay::State &s, const util::Point &p, T isSearchedField) {
-                std::vector<Point> points;
                 int dist = 1;
                 while (true) {
-                    points.clear();
-                    if (!getNearFieldsInDist(points, s, p, dist, isSearchedField)) {
+                    std::pair<std::vector<util::Point>, bool> res = getNearFieldsInDist(s, p, dist, isSearchedField);
+                    if (!res.second) {
                         throw std::domain_error("No Point fulfilling isSearchedField was found on the whole map");
                     }
-                    if (!points.empty()) {
-                        return *getRandomItemFromVector(points);
+                    if (!res.first.empty()) {
+                        return *getRandomItemFromVector(res.first);
                     }
                     dist++;
                 }
@@ -137,17 +136,17 @@ namespace spy::util {
             /**
              * @brief get all neighbouring fields with distance dist fulfilling certain conditions
              * @tparam t function
-             * @param result contains resutling list of points
              * @param s current state
              * @param p point from which to search
              * @param dist distance that has to be between p and resulting points. Has to be != 0
              * @param isSearchedField function that defines conditions returned points must fulfil to be accepted
-             * @return true if there was at least one point with dist inside the map
+             * @return pair (std::vector<util::Point>, bool)
+             *              vector contains resulting points
+             *              bool is true if there was at least one point with dist inside the map
              */
             template<typename T>
-            static bool
-            getNearFieldsInDist(std::vector<util::Point> &result, const spy::gameplay::State &s,
-                                const util::Point &p, const int dist,
+            static std::pair<std::vector<util::Point>, bool>
+            getNearFieldsInDist(const spy::gameplay::State &s, const util::Point &p, const int dist,
                                 T isSearchedField) {
                 bool noPointsInMap = true;
                 if (dist == 0) {
@@ -162,6 +161,7 @@ namespace spy::util {
                     possiblePoints.push_back(p + Point{dist, i}); // right line
                 }
 
+                std::vector<util::Point> result;
                 for (Point &point: possiblePoints) {
                     if (s.getMap().isInside(point)) {
                         noPointsInMap = false;
@@ -171,7 +171,7 @@ namespace spy::util {
                     }
                 }
 
-                return !noPointsInMap;
+                return std::make_pair(result, !noPointsInMap);
             }
 
             /**
