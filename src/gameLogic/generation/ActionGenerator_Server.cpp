@@ -2,6 +2,8 @@
 // Created by Carolin on 04.05.2020.
 //
 
+#include <datatypes/gameplay/CatAction.hpp>
+#include <util/GameLogicUtils.hpp>
 #include "ActionGenerator.hpp"
 
 namespace spy::gameplay {
@@ -11,9 +13,11 @@ namespace spy::gameplay {
         return std::shared_ptr<BaseOperation>();
     }
 
-    std::shared_ptr<BaseOperation> ActionGenerator::generateCatAction(const State &/*s*/) {
-        // TODO implement
-        return std::shared_ptr<BaseOperation>();
+    std::shared_ptr<BaseOperation> ActionGenerator::generateCatAction(const State &s) {
+        auto target = util::GameLogicUtils::getRandomCharacterFreeNeighbourField(s, s.getCatCoordinates().value());
+        target = target.has_value() ? target : s.getCatCoordinates().value();
+        auto action = std::make_shared<CatAction>(spy::gameplay::CatAction(target.value()));
+        return action;
     }
 
     std::shared_ptr<BaseOperation> ActionGenerator::generateJanitorAction(const State &/*s*/) {

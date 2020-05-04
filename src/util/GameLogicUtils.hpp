@@ -86,10 +86,19 @@ namespace spy::util {
              * @brief get point of random free neighbouring field with no character on it
              * @param s current state
              * @param p Point where character is at the moment
-             * @return point where character can be swapped to if found
+             * @return point where character can be placed to
              */
             static const util::Point &
-            getRandomFreeNeighbouringField(const spy::gameplay::State &s, const util::Point &p);
+            getRandomCharacterFreeNeighbouringField(const spy::gameplay::State &s, const util::Point &p);
+
+            /**
+             * @brief get point of free neighbour field (dist = 1) with no character on it
+             * @param s current state
+             * @param p Point where character is at the moment
+             * @return point where character can move to, if no point is found nullopt is returned
+             */
+            static std::optional<util::Point>
+            getRandomCharacterFreeNeighbourField(const spy::gameplay::State &s, const util::Point &p);
 
             /**
              * @brief get point of random neighbouring field which fulfils certain condition
