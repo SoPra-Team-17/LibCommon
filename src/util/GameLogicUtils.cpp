@@ -100,8 +100,8 @@ namespace spy::util {
         return character;
     }
 
-    const util::Point &GameLogicUtils::getRandomFreeNeighbouringField(const gameplay::State &s, const Point &p) {
-        return getRandomNeighbouringField(s, p, [&s](util::Point currentPoint) {
+    const util::Point &GameLogicUtils::getRandomCharacterFreeNearField(const gameplay::State &s, const Point &p) {
+        return getRandomNearField(s, p, [&s](util::Point currentPoint) {
             // check if point is free -> accessible and no character is on point
             return s.getMap().isAccessible(currentPoint) && !isPersonOnField(s, currentPoint);
         });
@@ -113,5 +113,24 @@ namespace spy::util {
         std::uniform_real_distribution<double> prob(0.0, std::nextafter(1.0, 0.0));
         // return random number >= change of failure
         return prob(gen) >= (1 - chance);
+    }
+
+    std::optional<util::Point> GameLogicUtils::getRandomCharacterFreeNeighbourField(const gameplay::State &s, const Point &p) {
+        std::optional<Point> result;
+        std::vector<Point> points;
+        if (getNearFieldsInDist(points, s, p, 1, [&s](util::Point currentPoint) {
+            // check if point is free -> accessible and no character is on point
+            return s.getMap().isAccessible(currentPoint) && !isPersonOnField(s, currentPoint);
+        }) && !points.empty()) {
+            result = *getRandomItemFromVector(points);
+        }
+        return result;
+    }
+
+    const util::Point &GameLogicUtils::getRandomCharacterNearField(const gameplay::State &s, const Point &p) {
+        return getRandomNearField(s, p, [&s](util::Point currentPoint) {
+            // check if character is on point
+            return isPersonOnField(s, currentPoint);
+        });
     }
 }
