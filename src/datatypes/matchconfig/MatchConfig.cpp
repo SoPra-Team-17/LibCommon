@@ -22,7 +22,7 @@ namespace spy {
         return bowlerBladeRange;
     }
 
-    unsigned int MatchConfig::getBowlerBladeDamage() const {
+    int MatchConfig::getBowlerBladeDamage() const {
         return bowlerBladeDamage;
     }
 
@@ -30,7 +30,7 @@ namespace spy {
         return laserCompactHitChance;
     }
 
-    unsigned int MatchConfig::getRocketPenDamage() const {
+    int MatchConfig::getRocketPenDamage() const {
         return rocketPenDamage;
     }
 
@@ -42,7 +42,7 @@ namespace spy {
         return mothballPouchRange;
     }
 
-    unsigned int MatchConfig::getMothballPouchDamage() const {
+    int MatchConfig::getMothballPouchDamage() const {
         return mothballPouchDamage;
     }
 
