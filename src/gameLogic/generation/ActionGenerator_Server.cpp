@@ -29,6 +29,6 @@ namespace spy::gameplay {
 
     std::shared_ptr<BaseOperation> ActionGenerator::generateNPCAction(const State &/*s*/, const util::UUID &/*activeNPC*/) {
         // TODO implement
-        return std::shared_ptr<BaseOperation>();
+        return nullptr;
     }
 }
