@@ -10,7 +10,7 @@
 
 namespace spy::character {
     /**
-     * Represents the different possible fractions.
+     * Represents the different possible factions.
      */
     enum class FactionEnum {
             INVALID,
