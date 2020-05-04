@@ -21,7 +21,7 @@ namespace spy::gameplay {
 
         auto targetPerson = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
         // check if target person has magnetic watch
-        bool targetHasMagneticWatch = s.getCharacters().findByUUID(targetPerson->getCharacterId())->hasGadget(
+        bool targetHasMagneticWatch = targetPerson->hasGadget(
                 gadget::GadgetEnum::MAGNETIC_WATCH);
 
         if (successfullHit && !targetHasMagneticWatch && !babysitter) {

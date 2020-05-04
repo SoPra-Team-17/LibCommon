@@ -15,7 +15,7 @@ namespace spy::gameplay {
 
         auto character = s.getCharacters().findByUUID(a.getCharacterId());
 
-        auto hasCocktail = s.getCharacters().findByUUID(a.getCharacterId())->hasGadget(a.getGadget());
+        auto hasCocktail = character->hasGadget(a.getGadget());
 
         if (Movement::getMoveDistance(a.getTarget(), character->getCoordinates().value()) > 1) {
             return false;
