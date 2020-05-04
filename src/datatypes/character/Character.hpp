@@ -75,7 +75,7 @@ namespace spy::character {
 
             void setFraction(character::FractionEnum fraction);
 
-            character::FractionEnum getFraction() const;
+            [[nodiscard]] character::FractionEnum getFraction() const;
 
             void addGadget(gadget::Gadget gadget);
 
