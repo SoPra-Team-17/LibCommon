@@ -27,7 +27,7 @@ namespace spy::util {
 
     std::vector<unsigned int> RoundUtils::getRandomCharacterOrder(const gameplay::State &s) {
         std::vector<unsigned int> order(s.getCharacters().size());
-        std::generate(order.begin(), order.end(), [n = 0] () mutable { return n++; });
+        std::iota (order.begin(), order.end(), 0);
 
         std::random_device rd;
         std::mt19937 g(rd());
