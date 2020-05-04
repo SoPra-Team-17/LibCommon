@@ -55,5 +55,13 @@ namespace spy::util {
     void RoundUtils::checkGadgetFallouts(gameplay::State &s) {
         //TODO: implement for wiretap with earplugs
     }
+
+    void RoundUtils::resetUpdatedMarker(gameplay::State &s) {
+        for (unsigned int y = 0; y < s.getMap().getNumberOfRows(); y++) {
+            for (unsigned int x = 0; x < s.getMap().getRowLength(y); x++) {
+                s.getMap().getField(x, y).setUpdated(false);
+            }
+        }
+    }
 }
 

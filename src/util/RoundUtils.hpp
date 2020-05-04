@@ -40,6 +40,12 @@ namespace spy::util {
              * @param s Current state that should be modified.
              */
             static void checkGadgetFallouts(spy::gameplay::State &s);
+
+            /**
+             * Resets the updated flag for all fields of the map.
+             * @param s Current state that should be modified.
+             */
+            static void resetUpdatedMarker(spy::gameplay::State &s);
     };
 }
 
