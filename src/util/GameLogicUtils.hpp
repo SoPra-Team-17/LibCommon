@@ -50,7 +50,7 @@ namespace spy::util {
              * @return              true of person is on field and field is neighboring
              */
             static bool
-            personOnNeighboringField(const spy::gameplay::State &s, const Point &target, const Point &charCoord);
+            personOnNeighbourField(const spy::gameplay::State &s, const Point &target, const Point &charCoord);
 
             /**
              * @brief       checks the bowler blade line of sight

@@ -60,7 +60,7 @@ namespace spy::util {
     }
 
     bool
-    GameLogicUtils::personOnNeighboringField(const gameplay::State &s, const Point &target, const Point &charCoord) {
+    GameLogicUtils::personOnNeighbourField(const gameplay::State &s, const Point &target, const Point &charCoord) {
         // check distance
         auto distance = gameplay::Movement::getMoveDistance(charCoord, target);
         if (distance != 1) {
@@ -101,7 +101,7 @@ namespace spy::util {
     }
 
     const util::Point &
-    GameLogicUtils::getRandomCharacterFreeNeighbouringField(const gameplay::State &s, const Point &p) {
+    GameLogicUtils::getRandomCharacterFreeNearField(const gameplay::State &s, const Point &p) {
         return getRandomNearField(s, p, [&s](util::Point currentPoint) {
             // check if point is free -> accessible and no character is on point
             return s.getMap().isAccessible(currentPoint) && !isPersonOnField(s, currentPoint);
