@@ -39,6 +39,6 @@ namespace spy::gameplay {
         }
 
         // check if person on neighboring field
-        return spy::util::GameLogicUtils::personOnNeighboringField(s, a.getTarget(), character->getCoordinates().value());
+        return spy::util::GameLogicUtils::personOnNeighbourField(s, a.getTarget(), character->getCoordinates().value());
     }
 }
