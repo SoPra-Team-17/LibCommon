@@ -33,6 +33,8 @@ namespace spy::gameplay {
 
             static bool executeBowlerBlade(State &s, const GadgetAction &a, const MatchConfig &config);
 
+            static bool executeNugget(State &s, const GadgetAction &a);
+
             static bool executeRocketPen(State &s, const GadgetAction &a, const MatchConfig &config);
 
             static bool executeMoleDie(State &s, const GadgetAction &a);
