@@ -73,6 +73,8 @@ set(SOURCE
         gameLogic/validation/gadget/BowlerBlade.cpp
         gameLogic/execution/gadget/BowlerBlade.cpp
         gameLogic/execution/gadget/TechnicolorPrism.cpp
+        gameLogic/execution/gadget/GasGloss.cpp
+        gameLogic/generation/ActionGenerator_Server.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp
@@ -82,9 +84,6 @@ set(SOURCE
         network/messages/Hello.cpp
         network/messages/HelloReply.cpp
         network/MessageContainer.cpp
-        util/UUID.cpp
-        util/Point.cpp
-        util/GameLogicUtils.cpp
         network/messages/GameStarted.cpp
         network/messages/Reconnect.cpp
         network/messages/RequestItemChoice.cpp
@@ -99,8 +98,9 @@ set(SOURCE
         network/messages/RequestReplay.cpp
         network/messages/Replay.cpp
         network/messages/StatisticsMessage.cpp
-        gameLogic/generation/ActionGenerator_Server.cpp
-        gameLogic/execution/gadget/GasGloss.cpp)
+        util/UUID.cpp
+        util/Point.cpp
+        util/GameLogicUtils.cpp)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMMON_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror -mtune=native -march=native)
