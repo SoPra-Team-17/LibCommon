@@ -192,16 +192,17 @@ namespace spy::util {
             static std::vector<util::Point> getAllFieldsWith(const spy::gameplay::State &s, T isSearchedField) {
                 std::vector<util::Point> result;
 
-                auto fieldmap = s.getMap();
-                for (unsigned int y = 0; y < fieldmap.getMap().size(); y++) {
-                    for (unsigned int x = 0; x < fieldmap.getMap().at(y).size(); x++) {
-                        if (isSearchedField(fieldmap.getField(x, y))) {
-                            result.push_back({(int)y, (int)x});
+                auto field = s.getMap().getMap();
+                for (unsigned int y = 0; y < field.size(); y++) {
+                    for (unsigned int x = 0; x < field.at(y).size(); x++) {
+                        Point p {(int)x, (int)y};
+                        if (isSearchedField(p)) {
+                            result.push_back(p);
                         }
                     }
                 }
                 return result;
-            };
+            }
 
             /**
              * @brief get random element from a vector
