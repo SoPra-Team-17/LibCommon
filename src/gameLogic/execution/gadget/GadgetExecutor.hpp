@@ -27,6 +27,8 @@ namespace spy::gameplay {
         private:
             // TODO: Gadget execution methods
 
+            static bool executeGasGloss(State &s, const GadgetAction &a, const MatchConfig &config);
+
             static bool executeHairDryer(State &s, const GadgetAction &action);
 
             static bool executeTechnicolorPrism(State &s, const GadgetAction &a);

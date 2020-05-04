@@ -78,6 +78,8 @@ set(SOURCE
         gameLogic/execution/gadget/MoleDie.cpp
         gameLogic/execution/gadget/BowlerBlade.cpp
         gameLogic/execution/gadget/TechnicolorPrism.cpp
+        gameLogic/execution/gadget/GasGloss.cpp
+        gameLogic/generation/ActionGenerator_Server.cpp
         gameLogic/execution/gadget/LaserCompact.cpp
         gameLogic/execution/gadget/DiamondCollar.cpp
         gameLogic/execution/gadget/ChickenFeed.cpp
@@ -93,9 +95,6 @@ set(SOURCE
         network/messages/Hello.cpp
         network/messages/HelloReply.cpp
         network/MessageContainer.cpp
-        util/UUID.cpp
-        util/Point.cpp
-        util/GameLogicUtils.cpp
         network/messages/GameStarted.cpp
         network/messages/Reconnect.cpp
         network/messages/RequestItemChoice.cpp
@@ -110,6 +109,9 @@ set(SOURCE
         network/messages/RequestReplay.cpp
         network/messages/Replay.cpp
         network/messages/StatisticsMessage.cpp
+        util/UUID.cpp
+        util/Point.cpp
+        util/GameLogicUtils.cpp
         gameLogic/generation/ActionGenerator_Server.cpp)
 
 
