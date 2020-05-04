@@ -102,7 +102,7 @@ namespace spy::util {
             static const util::Point &
             getRandomNeighbouringField(const spy::gameplay::State &s, const util::Point &p, T isSearchedField) {
                 std::vector<Point> points;
-                int dist = 0;
+                int dist = 1;
                 while (true) {
                     points.clear();
                     if (!getNeighbouringFieldsInDist(points, s, p, dist, isSearchedField)) {
@@ -121,7 +121,7 @@ namespace spy::util {
              * @param result contains resutling list of points
              * @param s current state
              * @param p point from which to search
-             * @param dist distance that has to be between p and resulting points
+             * @param dist distance that has to be between p and resulting points. Has to be != 0
              * @param isSearchedField function that defines conditions returned points must fulfil to be accepted
              * @return true if there was at least one point with dist inside the map
              */
@@ -131,6 +131,9 @@ namespace spy::util {
                                         const util::Point &p, const int dist,
                                         T isSearchedField) {
                 bool noPointsInMap = true;
+                if (dist == 0) {
+                    throw std::invalid_argument("dist has to be != 0");
+                }
 
                 std::set<util::Point> possiblePoints;
                 for (int i = -dist; i <= dist; i++) {
