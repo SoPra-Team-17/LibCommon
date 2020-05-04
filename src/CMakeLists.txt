@@ -84,6 +84,7 @@ set(SOURCE
         util/UUID.cpp
         util/Point.cpp
         util/GameLogicUtils.cpp
+        util/GadgetSerialization.hpp
         network/messages/GameStarted.cpp
         network/messages/Reconnect.cpp
         network/messages/RequestItemChoice.cpp
