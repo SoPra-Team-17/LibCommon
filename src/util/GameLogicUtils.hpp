@@ -122,7 +122,7 @@ namespace spy::util {
             getRandomNearField(const spy::gameplay::State &s, const util::Point &p, T isSearchedField) {
                 int dist = 1;
                 while (true) {
-                    std::pair<std::vector<util::Point>, bool> res = getNearFieldsInDist(s, p, dist, isSearchedField);
+                    auto res = getNearFieldsInDist(s, p, dist, isSearchedField);
                     if (!res.second) {
                         throw std::domain_error("No Point fulfilling isSearchedField was found on the whole map");
                     }
