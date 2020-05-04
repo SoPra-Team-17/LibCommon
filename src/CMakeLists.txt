@@ -43,6 +43,7 @@ set(SOURCE
         datatypes/statistics/StatisticsEntry.cpp
         datatypes/statistics/Statistics.cpp
         datatypes/gameplay/State.cpp
+        gameLogic/generation/ActionGenerator_Server.cpp
         gameLogic/validation/ActionValidator_Gadget.cpp
         gameLogic/validation/ActionValidator_Gamble.cpp
         gameLogic/validation/ActionValidator_Movement.cpp
@@ -77,6 +78,7 @@ set(SOURCE
         gameLogic/execution/gadget/MoleDie.cpp
         gameLogic/execution/gadget/BowlerBlade.cpp
         gameLogic/execution/gadget/TechnicolorPrism.cpp
+        gameLogic/execution/gadget/LaserCompact.cpp
         gameLogic/execution/gadget/DiamondCollar.cpp
         gameLogic/execution/gadget/ChickenFeed.cpp
         gameLogic/execution/gadget/MirrorOfWilderness.cpp
@@ -109,6 +111,7 @@ set(SOURCE
         network/messages/Replay.cpp
         network/messages/StatisticsMessage.cpp
         gameLogic/generation/ActionGenerator_Server.cpp)
+
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMMON_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror -mtune=native -march=native)

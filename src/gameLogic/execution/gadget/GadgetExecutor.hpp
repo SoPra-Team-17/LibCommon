@@ -33,6 +33,8 @@ namespace spy::gameplay {
 
             static bool executeBowlerBlade(State &s, const GadgetAction &a, const MatchConfig &config);
 
+            static bool executeLaserCompact(State &s, const GadgetAction &a, const MatchConfig &config);
+
             static bool executeChickenFeed(State &s, const GadgetAction &a);
 
             static bool executeMirrorOfWilderness(State &s, const GadgetAction &a, const MatchConfig &config);
@@ -44,7 +46,6 @@ namespace spy::gameplay {
             static bool executeMoleDie(State &s, const GadgetAction &a);
 
             static bool executeDiamondCollar(State &s, const GadgetAction &a);
-
     };
 }
 
