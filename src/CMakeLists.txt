@@ -22,7 +22,7 @@ set(SOURCE
         datatypes/character/CharacterInformation.cpp
         datatypes/character/CharacterDescription.cpp
         datatypes/character/CharacterSet.cpp
-        datatypes/character/FractionEnum.hpp
+        datatypes/character/FactionEnum.hpp
         gameLogic/execution/ActionExecutor_Cat.cpp
         gameLogic/execution/ActionExecutor_Exfiltration.cpp
         gameLogic/execution/ActionExecutor_Gadget.cpp

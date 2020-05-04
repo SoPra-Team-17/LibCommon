@@ -135,11 +135,11 @@ namespace spy::character {
         return std::find(properties.begin(), properties.end(), property) != properties.end();
     }
 
-    void Character::setFraction(character::FractionEnum f) {
+    void Character::setFraction(character::FactionEnum f) {
         this->fraction = f;
     }
 
-    character::FractionEnum Character::getFraction() const {
+    character::FactionEnum Character::getFraction() const {
         return fraction;
     }
 
