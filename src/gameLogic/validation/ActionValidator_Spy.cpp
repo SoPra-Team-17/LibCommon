@@ -8,7 +8,23 @@
 namespace spy::gameplay {
 
     bool ActionValidator::validateSpyAction(const State &s, const spy::gameplay::SpyAction& op) {
+        using spy::character::PropertyEnum;
+
         auto character = s.getCharacters().findByUUID(op.getCharacterId());
-        return spy::util::GameLogicUtils::personOnNeighboringField(s, op.getTarget(), character->getCoordinates().value());
+        bool spyOnPerson = spy::util::GameLogicUtils::personOnNeighboringField(s, op.getTarget(),
+                                                                               character->getCoordinates().value());
+        if (spyOnPerson) {
+            return true;
+        }
+
+        // check if target field has safe
+        bool hasSafe = s.getMap().getField(op.getTarget()).getFieldState() == scenario::FieldStateEnum::SAFE;
+        // check distance to field
+        auto distance = Movement::getMoveDistance(op.getTarget(), character->getCoordinates().value());
+        if (hasSafe && distance == 1) {
+            return true;
+        }
+
+        return hasSafe && (distance == 2) && character->hasProperty(character::PropertyEnum::FLAPS_AND_SEALS);
     }
 }
