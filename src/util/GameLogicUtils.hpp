@@ -8,6 +8,8 @@
 #ifndef LIBCOMMON_GAMELOGICUTILS_HPP
 #define LIBCOMMON_GAMELOGICUTILS_HPP
 
+#include <random>
+#include <unordered_set>
 #include "datatypes/gameplay/State.hpp"
 
 namespace spy::util {
@@ -61,22 +63,121 @@ namespace spy::util {
             static bool bowlerBladeLineOfSight(const spy::gameplay::State &s, const Point &p1, const Point &p2);
 
             /**
-             * Searches the set for a character at the given point. Returns first match.
+             * @brief Searches the set for a character at the given point. Returns first match.
              * @param cs CharacterSet to search in
              * @param  p Point to search for. Has to be in the map.
              * @return Const iterator to the found character if one at the specified point exits, otherwise a
              *         const iterator to the end of the set.
              */
-            static std::vector<character::Character>::const_iterator findInCharacterSetByCoordinates(const character::CharacterSet &cs, const util::Point &p);
+            static std::vector<character::Character>::const_iterator
+            findInCharacterSetByCoordinates(const character::CharacterSet &cs, const util::Point &p);
 
             /**
-             * Searches the set for a character at the given point. Returns first match.
+             * @brief Searches the set for a character at the given point. Returns first match.
              * @param cs CharacterSet to search in
              * @param  p Point to search for. Has to be in the map.
              * @return Iterator to the found character if one at the specified point exits, otherwise an
              *         iterator to the end of the set.
              */
-            static std::vector<character::Character>::iterator getInCharacterSetByCoordinates(character::CharacterSet &cs, const util::Point &p);
+            static std::vector<character::Character>::iterator
+            getInCharacterSetByCoordinates(character::CharacterSet &cs, const util::Point &p);
+
+            /**
+             * @brief get point of random free neighbouring field with no character on it
+             * @param s current state
+             * @param p Point where character is at the moment
+             * @return point where character can be swapped to if found
+             */
+            static const util::Point &
+            getRandomFreeNeighbouringField(const spy::gameplay::State &s, const util::Point &p);
+
+            /**
+             * @brief get point of random neighbouring field which fulfils certain condition
+             * @tparam t function
+             * @param s current state
+             * @param p Point from which to search
+             * @param isSearchedField function that defines conditions returned point must fulfil to be accepted
+             * @return randomly selected closest point fulfilling conditions
+             */
+            template<typename T>
+            static const util::Point &
+            getRandomNeighbouringField(const spy::gameplay::State &s, const util::Point &p, T isSearchedField) {
+                std::vector<Point> points;
+                int dist = 1;
+                while (true) {
+                    points.clear();
+                    if (!getNeighbouringFieldsInDist(points, s, p, dist, isSearchedField)) {
+                        throw std::domain_error("No Point fulfilling isSearchedField was found on the whole map");
+                    }
+                    if (!points.empty()) {
+                        return *getRandomItemFromVector(points);
+                    }
+                    dist++;
+                }
+            }
+
+            /**
+             * @brief get all neighbouring fields with distance dist fulfilling certain conditions
+             * @tparam t function
+             * @param result contains resutling list of points
+             * @param s current state
+             * @param p point from which to search
+             * @param dist distance that has to be between p and resulting points. Has to be != 0
+             * @param isSearchedField function that defines conditions returned points must fulfil to be accepted
+             * @return true if there was at least one point with dist inside the map
+             */
+            template<typename T>
+            static bool
+            getNeighbouringFieldsInDist(std::vector<util::Point> &result, const spy::gameplay::State &s,
+                                        const util::Point &p, const int dist,
+                                        T isSearchedField) {
+                bool noPointsInMap = true;
+                if (dist == 0) {
+                    throw std::invalid_argument("dist has to be != 0");
+                }
+
+                std::vector<util::Point> possiblePoints;
+                for (int i = -dist; i <= dist; i++) {
+                    possiblePoints.push_back(p + Point{i, -dist}); // upper line
+                    possiblePoints.push_back(p + Point{i, dist}); // bottom line
+                    possiblePoints.push_back(p + Point{-dist, i}); // left line
+                    possiblePoints.push_back(p + Point{dist, i}); // right line
+                }
+
+                for (Point &point: possiblePoints) {
+                    if (s.getMap().isInside(point)) {
+                        noPointsInMap = false;
+                        if (isSearchedField(point)) {
+                            result.push_back(point);
+                        }
+                    }
+                }
+
+                return !noPointsInMap;
+            }
+
+            /**
+             * @brief get random element from a vector
+             * @tparam T type of vector elements
+             * @param v non empty vector to select a random element from
+             * @return const_iterator pointing to randomly selected element
+             */
+            template<typename T>
+            static typename std::vector<T>::const_iterator getRandomItemFromVector(const std::vector<T> &v) {
+                std::random_device rd;
+                std::mt19937 gen(rd());
+                std::uniform_int_distribution<unsigned int> randPos(0, v.size() - 1);
+                auto result = v.begin();
+                std::advance(result, randPos(gen));
+                return result;
+            }
+
+            /**
+             * @brief test for success
+             * @param chance probability given in MatchConfig (double values between 0 and 1)
+             * @return true, if test succeeded
+             */
+            static bool probabilityTest(double chance);
     };
 }
 

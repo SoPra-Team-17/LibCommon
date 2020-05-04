@@ -1,7 +1,9 @@
 //
 // Created by jonas on 28.04.20.
 //
+
 #include "ActionExecutor.hpp"
+#include <util/GameLogicUtils.hpp>
 
 namespace spy::gameplay {
     bool ActionExecutor::executeExfiltration(State &s, const Exfiltration &op) {
@@ -15,7 +17,7 @@ namespace spy::gameplay {
 
         if (charTarget != s.getCharacters().end()) {
             // charTarget has to be placed on a random free neighbouring field
-            charTarget->setCoordinates(ActionExecutor::getRandomFreeNeighbouringField(charTarget->getCoordinates().value()));
+            charTarget->setCoordinates(util::GameLogicUtils::getRandomFreeNeighbouringField(s, op.getTarget()));
         }
 
         // character has to be exfiltrated
