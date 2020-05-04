@@ -75,6 +75,8 @@ namespace spy::character {
 
             void addGadget(gadget::Gadget gadget);
 
+            void removeGadget(gadget::GadgetEnum gadget);
+
             friend void to_json(nlohmann::json &j, const Character &c);
 
             friend void from_json(const nlohmann::json &j, Character &c);
