@@ -9,6 +9,7 @@ namespace spy::gameplay {
     bool GadgetExecutor::executeJetpack(State &s, const GadgetAction &a) {
         auto character = s.getCharacters().getByUUID(a.getCharacterId());
         character->setCoordinates(a.getTarget());
+        character->removeGadget(a.getGadget());
         return true;
     }
 
