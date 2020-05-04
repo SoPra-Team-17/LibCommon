@@ -136,7 +136,7 @@ namespace spy::character {
     }
 
     void Character::setFraction(character::FactionEnum f) {
-        this->fraction = f;
+        this->faction = f;
     }
 
     character::FactionEnum Character::getFraction() const {
