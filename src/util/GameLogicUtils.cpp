@@ -120,7 +120,7 @@ namespace spy::util {
     GameLogicUtils::getRandomCharacterFreeNeighbourField(const gameplay::State &s, const Point &p) {
         std::optional<Point> result;
         std::vector<Point> points;
-        if (getNeighbouringFieldsInDist(points, s, p, 1, [&s](util::Point currentPoint) {
+        if (getNearFieldsInDist(points, s, p, 1, [&s](util::Point currentPoint) {
             // check if point is free -> accessible and no character is on point
             return s.getMap().isAccessible(currentPoint) && !isPersonOnField(s, currentPoint);
         }) && !points.empty()) {
@@ -129,8 +129,8 @@ namespace spy::util {
         return result;
     }
 
-    const util::Point &GameLogicUtils::getRandomCharacterNeighbouringField(const gameplay::State &s, const Point &p) {
-        return getRandomNeighbouringField(s, p, [&s](util::Point currentPoint) {
+    const util::Point &GameLogicUtils::getRandomCharacterNearField(const gameplay::State &s, const Point &p) {
+        return getRandomNearField(s, p, [&s](util::Point currentPoint) {
             // check if character is on point
             return isPersonOnField(s, currentPoint);
         });

@@ -26,7 +26,7 @@ namespace spy::gameplay {
     }
 
     std::shared_ptr<BaseOperation> ActionGenerator::generateJanitorAction(const State &s) {
-        auto target = util::GameLogicUtils::getRandomCharacterNeighbouringField(s, s.getJanitorCoordinates().value());
+        auto target = util::GameLogicUtils::getRandomCharacterNearField(s, s.getJanitorCoordinates().value());
         auto action = std::make_shared<JanitorAction>(spy::gameplay::JanitorAction(target));
         return action;
     }
@@ -34,6 +34,6 @@ namespace spy::gameplay {
     std::shared_ptr<BaseOperation>
     ActionGenerator::generateNPCAction(const State &/*s*/, const util::UUID &/*activeNPC*/) {
         // TODO implement
-        return std::shared_ptr<BaseOperation>();
+        return nullptr;
     }
 }
