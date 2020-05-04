@@ -188,7 +188,7 @@ namespace spy::util {
              * @return true, if test suceeded
              */
             static bool
-            probabilityTestWithCharacter(spy::gameplay::State &s, spy::character::Character &character, double chance);
+            probabilityTestWithCharacter(const spy::gameplay::State &s, const spy::character::Character &character, double chance);
     };
 }
 
