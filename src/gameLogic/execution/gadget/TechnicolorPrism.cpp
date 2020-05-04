@@ -7,7 +7,7 @@
 
 #include "GadgetExecutor.hpp"
 
-namespace spy::gameplay{
+namespace spy::gameplay {
 
     bool GadgetExecutor::executeTechnicolorPrism(State &s, const GadgetAction &a) {
         using spy::gadget::GadgetEnum;
@@ -16,8 +16,8 @@ namespace spy::gameplay{
         s.getMap().getField(a.getTarget()).setInverted(true);
 
         // remove technicolor prism from inventory
-        auto character = *(s.getCharacters().findByUUID(a.getCharacterId()));
-        character.removeGadget(GadgetEnum::TECHNICOLOUR_PRISM);
+        auto character = s.getCharacters().getByUUID(a.getCharacterId());
+        character->removeGadget(GadgetEnum::TECHNICOLOUR_PRISM);
 
         return true;
     }
