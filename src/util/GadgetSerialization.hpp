@@ -29,6 +29,7 @@ namespace nlohmann {
                     break;
 
                 default:
+                    j = gadget;
                     break;
             }
         }
@@ -52,7 +53,7 @@ namespace nlohmann {
 
                 default:
                     gadget = std::make_shared<Gadget>();
-                    *std::static_pointer_cast<Gadget>(gadget) = j.get<Gadget>();
+                    *gadget = j.get<Gadget>();
                     break;
             }
         }

@@ -39,8 +39,8 @@ nlohmann::json exampleScenarioJson = R"({ "scenario": [
 class MessageEncodeDecode : public ::testing::Test {
     public:
         MessageEncodeDecode() {
-            std::shared_ptr<spy::gadget::Gadget> g1 = std::make_shared<spy::gadget::Gadget>(spy::gadget::GadgetEnum::LASER_COMPACT, 3);
-            std::shared_ptr<spy::gadget::Gadget> g2 = std::make_shared<spy::gadget::Gadget>(spy::gadget::GadgetEnum::JETPACK, 4);
+            auto g1 = std::make_shared<spy::gadget::Gadget>(spy::gadget::GadgetEnum::LASER_COMPACT, 3);
+            auto g2 = std::make_shared<spy::gadget::Gadget>(spy::gadget::GadgetEnum::JETPACK, 4);
 
             exampleState = {7, exampleMap, {1337, 420}, {char1, char2}, spy::util::Point{1, 2},
                             spy::util::Point{5, 1}};
