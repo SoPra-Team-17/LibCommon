@@ -18,7 +18,7 @@
 class GadgetActionTests : public ::testing::Test {
     public:
         GadgetActionTests() {
-            for (auto it = characters.begin(); it != characters.end(); it++) {
+            for (auto it = state.getCharacters().begin(); it != state.getCharacters().end(); it++) {
                 it->setActionPoints(1);
                 it->setMovePoints(1);
             }
@@ -77,7 +77,7 @@ class GadgetActionTests : public ::testing::Test {
 
         spy::scenario::FieldMap field{decodedScenario};
 
-        spy::character::CharacterSet characters = {{uuid1, "dummmy"},
+        spy::character::CharacterSet characters = {{uuid1, "dummy"},
                                                    {uuid2, "dummy"},
                                                    {uuid3, "dummy"},
                                                    {uuid4, "dummy"},
