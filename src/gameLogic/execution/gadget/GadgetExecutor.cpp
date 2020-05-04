@@ -37,7 +37,7 @@ namespace spy::gameplay {
             case gadget::GadgetEnum::DIAMOND_COLLAR:
                 break;
             case gadget::GadgetEnum::JETPACK:
-                break;
+                return executeJetpack(s, action);
             case gadget::GadgetEnum::CHICKEN_FEED:
                 break;
             case gadget::GadgetEnum::NUGGET:

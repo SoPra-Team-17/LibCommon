@@ -27,6 +27,8 @@ namespace spy::gameplay {
         private:
             // TODO: Gadget execution methods
 
+            static bool executeJetpack(State &s, const GadgetAction &a);
+
             static bool executeHairDryer(State &s, const GadgetAction &action);
 
             static bool executeGrapple(State &s, const GadgetAction &action, const MatchConfig &config);
