@@ -17,7 +17,7 @@ namespace spy::gameplay {
 
         if (charTarget != s.getCharacters().end()) {
             // charTarget has to be placed on a random free neighbouring field
-            charTarget->setCoordinates(util::GameLogicUtils::getRandomFreeNeighbouringField(s, op.getTarget()));
+            charTarget->setCoordinates(util::GameLogicUtils::getRandomCharacterFreeNearField(s, op.getTarget()));
         }
 
         // character has to be exfiltrated
