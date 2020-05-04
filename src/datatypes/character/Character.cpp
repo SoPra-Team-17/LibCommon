@@ -134,4 +134,19 @@ namespace spy::character {
     bool Character::hasProperty(PropertyEnum property) const {
         return std::find(properties.begin(), properties.end(), property) != properties.end();
     }
+
+    void Character::setFaction(character::FactionEnum f) {
+        faction = f;
+    }
+
+    character::FactionEnum Character::getFaction() const {
+        return faction;
+    }
+
+    void Character::removeGadget(gadget::GadgetEnum gadget) {
+        gadgets.erase(std::remove_if(gadgets.begin(), gadgets.end(), [gadget](gadget::Gadget &g){
+            return g.getType() == gadget;
+        }));
+    }
+
 }  // namespace spy::character

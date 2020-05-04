@@ -10,8 +10,12 @@ namespace spy::gameplay {
     bool ActionValidator::validateSpyAction(const State &s, const spy::gameplay::SpyAction& op) {
         using spy::character::PropertyEnum;
 
+        // check if target inside map
+        if (!s.getMap().isInside(op.getTarget())) {
+            return false;
+        }
         auto character = s.getCharacters().findByUUID(op.getCharacterId());
-        bool spyOnPerson = spy::util::GameLogicUtils::personOnNeighboringField(s, op.getTarget(),
+        bool spyOnPerson = spy::util::GameLogicUtils::personOnNeighbourField(s, op.getTarget(),
                                                                                character->getCoordinates().value());
         if (spyOnPerson) {
             return true;
