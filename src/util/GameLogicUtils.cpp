@@ -115,7 +115,7 @@ namespace spy::util {
         return prob(gen) >= (1 - chance);
     }
 
-    bool GameLogicUtils::probabilityTestWithCharacter(spy::gameplay::State &s, character::Character &character,
+    bool GameLogicUtils::probabilityTestWithCharacter(const spy::gameplay::State &s, const character::Character &character,
                                                       double chance) {
         using spy::character::PropertyEnum;
         using spy::gadget::GadgetEnum;
