@@ -5,7 +5,7 @@
 #include "GadgetExecutor.hpp"
 
 namespace spy::gameplay {
-    bool GadgetExecutor::execute(State &s, GadgetAction action, const MatchConfig &/*config*/) {
+    bool GadgetExecutor::execute(State &s, GadgetAction action, const MatchConfig &config) {
         // TODO: implement
         switch (action.getGadget()) {
             case gadget::GadgetEnum::HAIRDRYER:
@@ -25,19 +25,19 @@ namespace spy::gameplay {
             case gadget::GadgetEnum::ROCKET_PEN:
                 break;
             case gadget::GadgetEnum::GAS_GLOSS:
-                break;
+                return executeGasGloss(s, action, config);
             case gadget::GadgetEnum::MOTHBALL_POUCH:
                 break;
             case gadget::GadgetEnum::FOG_TIN:
                 break;
             case gadget::GadgetEnum::GRAPPLE:
-                break;
+                return executeGrapple(s, action, config);
             case gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS:
                 break;
             case gadget::GadgetEnum::DIAMOND_COLLAR:
                 break;
             case gadget::GadgetEnum::JETPACK:
-                break;
+                return executeJetpack(s, action);
             case gadget::GadgetEnum::CHICKEN_FEED:
                 break;
             case gadget::GadgetEnum::NUGGET:
