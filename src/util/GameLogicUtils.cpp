@@ -182,7 +182,7 @@ namespace spy::util {
 
         // if char has tradecraft and not mole die, prob. test is repeated
         if (character.hasProperty(PropertyEnum::TRADECRAFT)
-            && !s.getCharacters().findByUUID(character.getCharacterId())->hasGadget(GadgetEnum::MOLEDIE)) {
+            && !character.hasGadget(GadgetEnum::MOLEDIE)) {
             result = probabilityTest(chance);
         }
 
