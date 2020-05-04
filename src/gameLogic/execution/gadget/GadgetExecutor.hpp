@@ -27,6 +27,8 @@ namespace spy::gameplay {
         private:
             // TODO: Gadget execution methods
 
+            static bool executeGasGloss(State &s, const GadgetAction &a, const MatchConfig &config);
+
             static bool executeHairDryer(State &s, const GadgetAction &action);
 
             static bool executeGrapple(State &s, const GadgetAction &action, const MatchConfig &config);
@@ -35,6 +37,19 @@ namespace spy::gameplay {
 
             static bool executeBowlerBlade(State &s, const GadgetAction &a, const MatchConfig &config);
 
+            static bool executeLaserCompact(State &s, const GadgetAction &a, const MatchConfig &config);
+
+            static bool executeChickenFeed(State &s, const GadgetAction &a);
+
+            static bool executeMirrorOfWilderness(State &s, const GadgetAction &a, const MatchConfig &config);
+
+            static bool executeNugget(State &s, const GadgetAction &a);
+
+            static bool executeRocketPen(State &s, const GadgetAction &a, const MatchConfig &config);
+
+            static bool executeMoleDie(State &s, const GadgetAction &a);
+
+            static bool executeDiamondCollar(State &s, const GadgetAction &a);
     };
 }
 
