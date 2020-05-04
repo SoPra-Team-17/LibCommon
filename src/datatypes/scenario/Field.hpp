@@ -18,7 +18,7 @@ namespace spy::scenario {
      * @brief Represents a field of the scenario.
      */
     class Field {
-            using Gadget = spy::gadget::Gadget;
+        using Gadget = spy::gadget::Gadget;
 
         public:
             Field() = default;
@@ -29,6 +29,8 @@ namespace spy::scenario {
             void setUpdated(std::optional<bool> isUpdated);
             void setInverted(std::optional<bool> isInverted);
             void setFoggy(bool isFoggy);
+            void incrementFogCounter();
+            void resetFogCounter();
             void setGadget(std::optional<Gadget> g);
             void removeGadget();
             void setChipAmount(std::optional<unsigned int> chipAmount);
@@ -41,6 +43,8 @@ namespace spy::scenario {
             [[nodiscard]] std::optional<bool> isInverted() const;
 
             [[nodiscard]] bool isFoggy() const;
+
+            [[nodiscard]] unsigned int getFogCounter() const;
 
             [[nodiscard]] const std::optional<Gadget> &getGadget() const;
 
@@ -62,6 +66,7 @@ namespace spy::scenario {
             std::optional<unsigned int> chipAmount;
             std::optional<unsigned int> safeIndex;
             bool foggy = false;
+            unsigned int fogCounter = 0;
             std::optional<bool> updated;
     };
 }

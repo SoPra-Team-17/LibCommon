@@ -45,6 +45,14 @@ namespace spy::scenario {
         Field::foggy = isFoggy;
     }
 
+    void Field::incrementFogCounter() {
+        Field::fogCounter++;
+    }
+
+    void Field::resetFogCounter() {
+        Field::fogCounter = 0;
+    }
+
     void Field::setGadget(std::optional<Gadget> g) {
         Field::gadget = g;
     }
@@ -117,6 +125,10 @@ namespace spy::scenario {
 
     bool Field::isFoggy() const {
         return foggy;
+    }
+
+    [[nodiscard]] unsigned int Field::getFogCounter() const {
+        return fogCounter;
     }
 
     const std::optional<spy::gadget::Gadget> &Field::getGadget() const {
