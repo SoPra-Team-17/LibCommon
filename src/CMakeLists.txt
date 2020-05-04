@@ -70,6 +70,7 @@ set(SOURCE
         gameLogic/validation/gadget/DiamondCollar.cpp
         gameLogic/validation/gadget/Cocktail.cpp
         gameLogic/validation/gadget/BowlerBlade.cpp
+        gameLogic/execution/gadget/TechnicolorPrism.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp
