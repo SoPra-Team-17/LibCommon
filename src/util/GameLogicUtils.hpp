@@ -9,7 +9,6 @@
 #define LIBCOMMON_GAMELOGICUTILS_HPP
 
 #include <random>
-#include <unordered_set>
 #include "datatypes/gameplay/State.hpp"
 
 namespace spy::util {
@@ -133,15 +132,15 @@ namespace spy::util {
                                         T isSearchedField) {
                 bool noPointsInMap = true;
 
-                std::vector<util::Point> possiblePoints;
+                std::set<util::Point> possiblePoints;
                 for (int i = -dist; i <= dist; i++) {
-                    possiblePoints.push_back(p + Point{i, -dist}); // upper line
-                    possiblePoints.push_back(p + Point{i, dist}); // bottom line
-                    possiblePoints.push_back(p + Point{-dist, i}); // left line
-                    possiblePoints.push_back(p + Point{dist, i}); // right line
+                    possiblePoints.insert(p + Point{i, -dist}); // upper line
+                    possiblePoints.insert(p + Point{i, dist}); // bottom line
+                    possiblePoints.insert(p + Point{-dist, i}); // left line
+                    possiblePoints.insert(p + Point{dist, i}); // right line
                 }
 
-                for (Point &point: possiblePoints) {
+                for (Point point: possiblePoints) {
                     if (s.getMap().isInside(point)) {
                         noPointsInMap = false;
                         if (isSearchedField(point)) {
