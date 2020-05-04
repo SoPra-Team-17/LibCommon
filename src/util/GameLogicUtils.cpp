@@ -148,4 +148,28 @@ namespace spy::util {
             throw std::domain_error("No seat field with no character on it was found in the whole map");
         }
     }
+
+    bool GameLogicUtils::probabilityTestWithCharacter(const spy::gameplay::State &s, const character::Character &character,
+                                                      double chance) {
+        using spy::character::PropertyEnum;
+        using spy::gadget::GadgetEnum;
+
+        // character with clammy clothes only has half the chance of success
+        if (character.hasProperty(PropertyEnum::CLAMMY_CLOTHES)) {
+            chance /= 2;
+        }
+
+        bool result = probabilityTest(chance);
+        if (result) {
+            return true;
+        }
+
+        // if char has tradecraft and not mole die, prob. test is repeated
+        if (character.hasProperty(PropertyEnum::TRADECRAFT) &&
+            !characterHasGadget(s, character.getCharacterId(), GadgetEnum::MOLEDIE)) {
+            result = probabilityTest(chance);
+        }
+
+        return result;
+    }
 }
