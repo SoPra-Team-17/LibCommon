@@ -7,6 +7,11 @@
 namespace spy::gameplay {
 
     bool ActionValidator::validateMovement(const State &s, spy::gameplay::Movement op) {
+        // check if target inside map
+        if (!s.getMap().isInside(op.getTarget())) {
+            return false;
+        }
+
         if (Movement::getMoveDistance(op.getFrom(), op.getTarget()) > 1) {  // only one step is allowed per game rules
             return false;
         }
