@@ -9,6 +9,6 @@ namespace spy::gameplay {
 
     bool ActionValidator::validateSpyAction(const State &s, const spy::gameplay::SpyAction& op) {
         auto character = s.getCharacters().findByUUID(op.getCharacterId());
-        return spy::util::GameLogicUtils::personOnNeighboringField(s, op.getTarget(), character->getCoordinates().value());
+        return spy::util::GameLogicUtils::personOnNeighbourField(s, op.getTarget(), character->getCoordinates().value());
     }
 }
