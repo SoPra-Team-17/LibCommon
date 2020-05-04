@@ -100,7 +100,8 @@ namespace spy::util {
         return character;
     }
 
-    const util::Point &GameLogicUtils::getRandomCharacterFreeNeighbouringField(const gameplay::State &s, const Point &p) {
+    const util::Point &
+    GameLogicUtils::getRandomCharacterFreeNeighbouringField(const gameplay::State &s, const Point &p) {
         return getRandomNeighbouringField(s, p, [&s](util::Point currentPoint) {
             // check if point is free -> accessible and no character is on point
             return s.getMap().isAccessible(currentPoint) && !isPersonOnField(s, currentPoint);
@@ -115,7 +116,8 @@ namespace spy::util {
         return prob(gen) >= (1 - chance);
     }
 
-    std::optional<util::Point> GameLogicUtils::getRandomCharacterFreeNeighbourField(const gameplay::State &s, const Point &p) {
+    std::optional<util::Point>
+    GameLogicUtils::getRandomCharacterFreeNeighbourField(const gameplay::State &s, const Point &p) {
         std::optional<Point> result;
         std::vector<Point> points;
         if (getNeighbouringFieldsInDist(points, s, p, 1, [&s](util::Point currentPoint) {
@@ -132,5 +134,18 @@ namespace spy::util {
             // check if character is on point
             return isPersonOnField(s, currentPoint);
         });
+    }
+
+    const util::Point &GameLogicUtils::getRandomFreeSeatField(const gameplay::State &s) {
+        auto points = getAllFieldsWith(s, [&s](util::Point currentPoint) {
+            // check if field is seat with no character on it
+            return s.getMap().getField(currentPoint).getFieldState() == scenario::FieldStateEnum::BAR_SEAT &&
+                   !isPersonOnField(s, currentPoint);
+        });
+        if (!points.empty()) {
+            return *getRandomItemFromVector(points);
+        } else {
+            throw std::domain_error("No seat field with no character on it was found in the whole map");
+        }
     }
 }

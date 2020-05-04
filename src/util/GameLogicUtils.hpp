@@ -175,6 +175,35 @@ namespace spy::util {
             }
 
             /**
+             * @brief get point of random seat field in map with no character on it
+             * @param s current state
+             * @return randomly selected point with a free seat on it
+             */
+            static const util::Point &getRandomFreeSeatField(const spy::gameplay::State &s);
+
+            /**
+             * @brief get point of all fields fulfilling certain conditions
+             * @tparam t function
+             * @param s current state
+             * @param isSearchedField function that defines conditions returned points must fulfil to be accepted
+             * @return list of points fulfilling conditions
+             */
+            template<typename T>
+            static std::vector<util::Point> getAllFieldsWith(const spy::gameplay::State &s, T isSearchedField) {
+                std::vector<util::Point> result;
+
+                auto fieldmap = s.getMap();
+                for (unsigned int y = 0; y < fieldmap.getMap().size(); y++) {
+                    for (unsigned int x = 0; x < fieldmap.getMap().at(y).size(); x++) {
+                        if (isSearchedField(fieldmap.getField(x, y))) {
+                            result.push_back({(int)y, (int)x});
+                        }
+                    }
+                }
+                return result;
+            };
+
+            /**
              * @brief get random element from a vector
              * @tparam T type of vector elements
              * @param v non empty vector to select a random element from

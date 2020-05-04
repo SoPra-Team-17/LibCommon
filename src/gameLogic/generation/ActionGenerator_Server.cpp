@@ -5,13 +5,17 @@
 #include <datatypes/gameplay/CatAction.hpp>
 #include <util/GameLogicUtils.hpp>
 #include <datatypes/gameplay/JanitorAction.hpp>
+#include <datatypes/gameplay/Exfiltration.hpp>
 #include "ActionGenerator.hpp"
 
 namespace spy::gameplay {
     std::shared_ptr<BaseOperation>
-    ActionGenerator::generateExfiltration(const State &/*s*/, const util::UUID &/*damagedCharacter*/) {
-        // TODO implement
-        return std::shared_ptr<BaseOperation>();
+    ActionGenerator::generateExfiltration(const State &s, const util::UUID &damagedCharacter) {
+        auto target = util::GameLogicUtils::getRandomFreeSeatField(s);
+        auto character = s.getCharacters().findByUUID(damagedCharacter);
+        auto action = std::make_shared<Exfiltration>(
+                spy::gameplay::Exfiltration(true, target, damagedCharacter, character->getCoordinates().value()));
+        return action;
     }
 
     std::shared_ptr<BaseOperation> ActionGenerator::generateCatAction(const State &s) {
@@ -27,7 +31,8 @@ namespace spy::gameplay {
         return action;
     }
 
-    std::shared_ptr<BaseOperation> ActionGenerator::generateNPCAction(const State &/*s*/, const util::UUID &/*activeNPC*/) {
+    std::shared_ptr<BaseOperation>
+    ActionGenerator::generateNPCAction(const State &/*s*/, const util::UUID &/*activeNPC*/) {
         // TODO implement
         return std::shared_ptr<BaseOperation>();
     }
