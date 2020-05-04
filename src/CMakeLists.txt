@@ -98,6 +98,7 @@ set(SOURCE
         network/messages/RequestReplay.cpp
         network/messages/Replay.cpp
         network/messages/StatisticsMessage.cpp
+        gameLogic/execution/gadget/Jetpack.cpp
         gameLogic/generation/ActionGenerator_Server.cpp )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
