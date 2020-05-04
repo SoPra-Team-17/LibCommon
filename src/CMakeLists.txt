@@ -88,6 +88,7 @@ set(SOURCE
         gameLogic/execution/gadget/BowlerBlade.cpp
         gameLogic/execution/gadget/TechnicolorPrism.cpp
         gameLogic/execution/gadget/GasGloss.cpp
+        gameLogic/execution/gadget/Grapple.cpp
         gameLogic/generation/ActionGenerator_Server.cpp
         gameLogic/execution/gadget/LaserCompact.cpp
         gameLogic/execution/gadget/DiamondCollar.cpp
