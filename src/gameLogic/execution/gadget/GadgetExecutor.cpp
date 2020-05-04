@@ -31,13 +31,13 @@ namespace spy::gameplay {
             case gadget::GadgetEnum::FOG_TIN:
                 break;
             case gadget::GadgetEnum::GRAPPLE:
-                break;
+                return executeGrapple(s, action, config);
             case gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS:
                 break;
             case gadget::GadgetEnum::DIAMOND_COLLAR:
                 break;
             case gadget::GadgetEnum::JETPACK:
-                break;
+                return executeJetpack(s, action);
             case gadget::GadgetEnum::CHICKEN_FEED:
                 break;
             case gadget::GadgetEnum::NUGGET:

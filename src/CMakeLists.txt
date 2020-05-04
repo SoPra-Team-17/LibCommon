@@ -35,6 +35,15 @@ set(SOURCE
         gameLogic/execution/gadget/GadgetExecutor.cpp
         gameLogic/execution/ActionExecutor.cpp
         gameLogic/execution/gadget/HairDryer.cpp
+        gameLogic/execution/gadget/MoleDie.cpp
+        gameLogic/execution/gadget/BowlerBlade.cpp
+        gameLogic/execution/gadget/TechnicolorPrism.cpp
+        gameLogic/execution/gadget/Nugget.cpp
+        gameLogic/execution/gadget/RocketPen.cpp
+        gameLogic/execution/gadget/Grapple.cpp
+        gameLogic/execution/gadget/Jetpack.cpp
+        gameLogic/execution/gadget/GasGloss.cpp
+        gameLogic/generation/ActionGenerator_Server.cpp
         datatypes/matchconfig/MatchConfig.cpp
         datatypes/scenario/Scenario.cpp
         datatypes/scenario/Scenario.cpp
@@ -112,7 +121,7 @@ set(SOURCE
         util/UUID.cpp
         util/Point.cpp
         util/GameLogicUtils.cpp
-        gameLogic/generation/ActionGenerator_Server.cpp)
+        )
 
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
