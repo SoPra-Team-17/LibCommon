@@ -99,10 +99,6 @@ namespace spy::character {
 
             [[nodiscard]] bool hasGadget(spy::gadget::GadgetEnum type) const;
 
-            [[nodiscard]] std::optional<util::UUID> isWiredBy() const;
-
-            void setWiredBy(std::optional<util::UUID> playerID);
-
             std::shared_ptr<spy::gadget::Gadget> getGadget(spy::gadget::GadgetEnum type);
 
         private:
@@ -117,7 +113,6 @@ namespace spy::character {
             std::set<spy::character::PropertyEnum> properties;
             std::vector<std::shared_ptr<spy::gadget::Gadget>> gadgets;
             character::FactionEnum faction = FactionEnum::INVALID;
-            std::optional<util::UUID> wiredBy;
     };
 }
 

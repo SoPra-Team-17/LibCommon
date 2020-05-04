@@ -93,10 +93,6 @@ namespace spy::character {
         Character::gadgets.push_back(std::move(gadget));
     }
 
-    void Character::setWiredBy(std::optional<util::UUID> playerID) {
-        Character::wiredBy = playerID;
-    }
-
     std::shared_ptr<spy::gadget::Gadget> Character::getGadget(spy::gadget::GadgetEnum type) {
         auto it = std::find_if(gadgets.begin(), gadgets.end(),
                             [&type](const std::shared_ptr<spy::gadget::Gadget> &g) {
@@ -177,10 +173,6 @@ namespace spy::character {
                                    });
 
         return (gadget != gadgets.end());
-    }
-
-    std::optional<util::UUID> Character::isWiredBy() const {
-        return wiredBy;
     }
 
     void Character::addHealthPoints(unsigned int add) {
