@@ -103,4 +103,12 @@ namespace spy::gameplay {
             s.setJanitorCoordinates(janitorCoordinatesJson->get<decltype(s.janitorCoordinates)>());
         }
     }
+
+    bool State::getHasCatDiamondCollar() const {
+        return hasCatDiamondCollar;
+    }
+
+    void State::setHasCatDiamondCollar(bool d) {
+        hasCatDiamondCollar = d;
+    }
 }

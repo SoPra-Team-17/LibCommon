@@ -41,6 +41,10 @@ namespace spy::gameplay {
 
             [[nodiscard]] const std::optional<util::Point> &getJanitorCoordinates() const;
 
+            [[nodiscard]] bool getHasCatDiamondCollar() const;
+
+            void setHasCatDiamondCollar(bool);
+
             /**
               * @brief Sets the cat coordinates.
               * @details Standard specifies that absence of cat can be indicated by coordinates outside the map, so this resets
@@ -69,6 +73,7 @@ namespace spy::gameplay {
             character::CharacterSet characters{};
             std::optional<util::Point> catCoordinates;
             std::optional<util::Point> janitorCoordinates;
+            bool hasCatDiamondCollar = false;
     };
 }
 #endif //LIBCOMMON_STATE_HPP
