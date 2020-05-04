@@ -11,7 +11,6 @@
 #include <optional>
 #include "datatypes/gadgets/Gadget.hpp"
 #include "FieldStateEnum.hpp"
-#include "util/OptionalSerialization.hpp"
 
 namespace spy::scenario {
     /**
@@ -29,7 +28,7 @@ namespace spy::scenario {
             void setUpdated(std::optional<bool> isUpdated);
             void setInverted(std::optional<bool> isInverted);
             void setFoggy(bool isFoggy);
-            void setGadget(std::optional<Gadget> g);
+            void setGadget(std::optional<std::shared_ptr<Gadget>> g);
             void removeGadget();
             void setChipAmount(std::optional<unsigned int> chipAmount);
             void setSafeIndex(std::optional<unsigned int> index);
@@ -42,7 +41,7 @@ namespace spy::scenario {
 
             [[nodiscard]] bool isFoggy() const;
 
-            [[nodiscard]] const std::optional<Gadget> &getGadget() const;
+            [[nodiscard]] const std::optional<std::shared_ptr<Gadget>> &getGadget() const;
 
             [[nodiscard]] std::optional<unsigned int> getChipAmount() const;
 
@@ -56,7 +55,7 @@ namespace spy::scenario {
 
         private:
             FieldStateEnum state = FieldStateEnum::FREE;
-            std::optional<Gadget> gadget;
+            std::optional<std::shared_ptr<Gadget>> gadget;
             std::optional<bool> destroyed;
             std::optional<bool> inverted;
             std::optional<unsigned int> chipAmount;

@@ -165,14 +165,15 @@ namespace spy::character {
     }
 
     void Character::removeGadget(gadget::GadgetEnum gadget) {
-        gadgets.erase(std::remove_if(gadgets.begin(), gadgets.end(), [gadget](gadget::Gadget &g){
-            return g.getType() == gadget;
+        gadgets.erase(std::remove_if(gadgets.begin(), gadgets.end(), [gadget](std::shared_ptr<gadget::Gadget> g) {
+            return g->getType() == gadget;
         }));
     }
 
     bool Character::hasGadget(spy::gadget::GadgetEnum type) const {
-        auto gadget = std::find_if(gadgets.begin(), gadgets.end(), [type](const gadget::Gadget &g) {
-            return g.getType() == type;
+        auto gadget = std::find_if(gadgets.begin(), gadgets.end(),
+                [type](const std::shared_ptr<gadget::Gadget> &g) {
+            return g->getType() == type;
         });
 
         return (gadget != gadgets.end());

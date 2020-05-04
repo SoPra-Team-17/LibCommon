@@ -17,6 +17,8 @@ namespace spy::gadget {
 
             explicit Gadget(GadgetEnum type, int usagesLeft = 0);
 
+            virtual ~Gadget() = default;
+
             [[nodiscard]] GadgetEnum getType() const;
 
             [[nodiscard]] std::optional<unsigned int> getUsagesLeft() const;

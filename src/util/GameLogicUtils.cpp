@@ -17,7 +17,7 @@ namespace spy::util {
         // check if field contains gadget
         auto gadget = s.getMap().getField(pt).getGadget();
         if (gadget.has_value()) {
-            targetHasGadget = (gadget->getType() == GadgetEnum::COCKTAIL);
+            targetHasGadget = (gadget.value()->getType() == GadgetEnum::COCKTAIL);
         }
 
         if (!targetHasGadget) {
@@ -33,8 +33,8 @@ namespace spy::util {
 
             // check if person has cocktail
             auto cocktail = std::find_if(person->getGadgets().begin(), person->getGadgets().end(),
-                                         [](const gadget::Gadget &g) {
-                                             return g.getType() == GadgetEnum::COCKTAIL;
+                                         [](const std::shared_ptr<gadget::Gadget> &g) {
+                                             return g->getType() == GadgetEnum::COCKTAIL;
                                          });
             targetHasGadget = (cocktail != person->getGadgets().end());
         }
@@ -155,8 +155,8 @@ namespace spy::util {
         }
 
         // if char has tradecraft and not mole die, prob. test is repeated
-        if (character.hasProperty(PropertyEnum::TRADECRAFT) &&
-            !characterHasGadget(s, character.getCharacterId(), GadgetEnum::MOLEDIE)) {
+        if (character.hasProperty(PropertyEnum::TRADECRAFT)
+            && !s.getCharacters().findByUUID(character.getCharacterId())->hasGadget(GadgetEnum::MOLEDIE)) {
             result = probabilityTest(chance);
         }
 
