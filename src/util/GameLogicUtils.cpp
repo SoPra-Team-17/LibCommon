@@ -59,7 +59,8 @@ namespace spy::util {
         return !(person == s.getCharacters().end());
     }
 
-    bool GameLogicUtils::personOnNeighboringField(const gameplay::State &s, const Point &target, const Point &charCoord) {
+    bool
+    GameLogicUtils::personOnNeighboringField(const gameplay::State &s, const Point &target, const Point &charCoord) {
         // check distance
         auto distance = gameplay::Movement::getMoveDistance(charCoord, target);
         if (distance != 1) {
@@ -80,8 +81,9 @@ namespace spy::util {
             return isPersonOnField(s, currentPoint);
         });
     }
-  
-  std::vector<character::Character>::const_iterator GameLogicUtils::findInCharacterSetByCoordinates(const character::CharacterSet &cs, const util::Point &p) {
+
+    character::CharacterSet::const_iterator
+    GameLogicUtils::findInCharacterSetByCoordinates(const character::CharacterSet &cs, const util::Point &p) {
         auto character = std::find_if(cs.begin(), cs.end(), [&p](const character::Character &c) {
             return c.getCoordinates() == p;
         });
@@ -89,7 +91,8 @@ namespace spy::util {
         return character;
     }
 
-    std::vector<character::Character>::iterator GameLogicUtils::getInCharacterSetByCoordinates(character::CharacterSet &cs, const util::Point &p) {
+    character::CharacterSet::iterator
+    GameLogicUtils::getInCharacterSetByCoordinates(character::CharacterSet &cs, const util::Point &p) {
         auto character = std::find_if(cs.begin(), cs.end(), [&p](const character::Character &c) {
             return c.getCoordinates() == p;
         });
@@ -99,12 +102,8 @@ namespace spy::util {
 
     const util::Point &GameLogicUtils::getRandomFreeNeighbouringField(const gameplay::State &s, const Point &p) {
         return getRandomNeighbouringField(s, p, [&s](util::Point currentPoint) {
-            // check if point is free -> accessible
-            if (s.getMap().isAccessible(currentPoint)) {
-                return true;
-            }
-            // check if character is on point
-            return !isPersonOnField(s, currentPoint);
+            // check if point is free -> accessible and no character is on point
+            return s.getMap().isAccessible(currentPoint) && !isPersonOnField(s, currentPoint);
         });
     }
 

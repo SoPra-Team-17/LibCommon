@@ -18,10 +18,10 @@ namespace spy::character {
      *          of iterators instead of the const_iterators a normal set would return.
      */
     class CharacterSet {
+        public:
             using iterator = std::vector<Character>::iterator;
             using const_iterator = std::vector<Character>::const_iterator;
 
-        public:
             CharacterSet() = default;
 
             CharacterSet(std::initializer_list<Character> list);
