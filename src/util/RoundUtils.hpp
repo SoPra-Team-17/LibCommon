@@ -15,7 +15,18 @@ namespace spy::util {
         public:
             RoundUtils() = delete;
 
+            /**
+             * Places a cocktail on all empty bar tables.
+             * @param s Current state that should be modified.
+             */
             static void refillBarTables(spy::gameplay::State &s);
+
+            /**
+             * Generates a random order for the character indexes.
+             * @param s Current state
+             * @return
+             */
+            static std::vector<unsigned int> getRandomCharacterOrder(const spy::gameplay::State &s);
     };
 }
 
