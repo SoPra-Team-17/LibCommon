@@ -33,6 +33,8 @@ namespace spy::gameplay {
 
             static bool executeTechnicolorPrism(State &s, const GadgetAction &a);
 
+            static bool executeBowlerBlade(State &s, const GadgetAction &a, const MatchConfig &config);
+
     };
 }
 
