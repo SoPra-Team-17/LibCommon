@@ -16,7 +16,7 @@
 #include <util/UUID.hpp>
 #include <util/Point.hpp>
 #include <set>
-
+#include "FactionEnum.hpp"
 
 namespace spy::character {
     constexpr unsigned int DEFAULT_HEALTH_POINTS = 100;
@@ -73,6 +73,10 @@ namespace spy::character {
 
             void setGadgets(const std::vector<gadget::Gadget> &gadgets);
 
+            void setFaction(character::FactionEnum faction);
+
+            [[nodiscard]] character::FactionEnum getFaction() const;
+
             void addGadget(gadget::Gadget gadget);
 
             void removeGadget(gadget::GadgetEnum gadget);
@@ -83,7 +87,7 @@ namespace spy::character {
 
             bool operator==(const Character &rhs) const;
 
-            bool hasProperty(PropertyEnum property) const;
+            [[nodiscard]] bool hasProperty(PropertyEnum property) const;
 
         private:
             spy::util::UUID characterId;
@@ -96,6 +100,7 @@ namespace spy::character {
             unsigned int chips = DEFAULT_CHIPS;
             std::set<spy::character::PropertyEnum> properties;
             std::vector<spy::gadget::Gadget> gadgets;
+            character::FactionEnum faction = FactionEnum::INVALID;
     };
 }
 

@@ -7,6 +7,11 @@
 namespace spy::gameplay {
 
     bool ActionValidator::validateGambleAction(const State &s, const spy::gameplay::GambleAction& op) {
+        // check if target inside map
+        if (!s.getMap().isInside(op.getTarget())) {
+            return false;
+        }
+
         auto character = s.getCharacters().findByUUID(op.getCharacterId());
         auto targetField = s.getMap().getField(op.getTarget());
         if (Movement::getMoveDistance(op.getTarget(), character->getCoordinates().value()) != 1 ||
