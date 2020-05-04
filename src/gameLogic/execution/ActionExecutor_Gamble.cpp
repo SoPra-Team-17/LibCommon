@@ -10,7 +10,7 @@ namespace spy::gameplay {
         character->subActionPoint();
         auto targetField = s.getMap().getField(op.getTarget());
 
-        double winningChance = 18/37;
+        double winningChance = 18.0/37.0;
         if (character->hasProperty(character::PropertyEnum::LUCKY_DEVIL)) {
             winningChance = 32/37;
         } else if (character->hasProperty(character::PropertyEnum::JINX)) {
