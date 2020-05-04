@@ -229,7 +229,7 @@ namespace spy::util {
              * @return true, if test suceeded
              */
             static bool
-            probabilityTestWithCharacter(const spy::gameplay::State &s, const spy::character::Character &character, double chance);
+            probabilityTestWithCharacter(const spy::character::Character &character, double chance);
 
             /**
              * @brief checks if the babysitter property can be applied

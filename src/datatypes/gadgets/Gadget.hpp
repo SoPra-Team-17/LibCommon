@@ -25,9 +25,9 @@ namespace spy::gadget {
 
             void setUsagesLeft(std::optional<unsigned int> newUsages);
 
-            friend void to_json(nlohmann::json &j, const Gadget &g);
+            static void common_to_json(nlohmann::json &j, const Gadget &g);
 
-            friend void from_json(const nlohmann::json &j, Gadget &g);
+            static void common_from_json(const nlohmann::json &j, Gadget &g);
 
             bool operator==(const Gadget &rhs) const;
 

@@ -3,6 +3,7 @@
 //
 
 #include "WiretapWithEarplugs.hpp"
+#include "util/OptionalSerialization.hpp"
 
 namespace spy::gadget {
 
@@ -20,6 +21,18 @@ namespace spy::gadget {
 
     void WiretapWithEarplugs::setActiveOn(const std::optional<spy::util::UUID> &active) {
         WiretapWithEarplugs::activeOn = active;
+    }
+
+    void to_json(nlohmann::json &j, const WiretapWithEarplugs &w) {
+        Gadget::common_to_json(j, w);
+        j["working"] = w.working;
+        j["activeOn"] = w.activeOn;
+    }
+
+    void from_json(const nlohmann::json &j, WiretapWithEarplugs &w) {
+        Gadget::common_from_json(j,w);
+        j.at("working").get_to(w.working);
+        j.at("activeOn").get_to(w.activeOn);
     }
 
 }  // namespace spy::gadget

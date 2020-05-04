@@ -13,7 +13,7 @@ namespace spy::gameplay {
 
     bool GadgetExecutor::executeBowlerBlade(State &s, const GadgetAction &a, const MatchConfig &config) {
         auto character = *(s.getCharacters().getByUUID(a.getCharacterId()));
-        bool successfullHit = util::GameLogicUtils::probabilityTestWithCharacter(s, character,
+        bool successfullHit = util::GameLogicUtils::probabilityTestWithCharacter(character,
                                                                                  config.getBowlerBladeHitChance());
 
         // Babysitter successfull

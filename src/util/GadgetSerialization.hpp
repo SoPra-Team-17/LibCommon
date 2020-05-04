@@ -29,7 +29,7 @@ namespace nlohmann {
                     break;
 
                 default:
-                    j = gadget;
+                    Gadget::common_to_json(j, *gadget);
                     break;
             }
         }
@@ -53,7 +53,7 @@ namespace nlohmann {
 
                 default:
                     gadget = std::make_shared<Gadget>();
-                    *gadget = j.get<Gadget>();
+                    Gadget::common_from_json(j, *gadget);
                     break;
             }
         }
