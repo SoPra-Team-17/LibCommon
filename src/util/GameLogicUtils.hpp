@@ -89,7 +89,7 @@ namespace spy::util {
              * @return point where character can be placed to
              */
             static const util::Point &
-            getRandomCharacterFreeNeighbouringField(const spy::gameplay::State &s, const util::Point &p);
+            getRandomCharacterFreeNearField(const spy::gameplay::State &s, const util::Point &p);
 
             /**
              * @brief get point of free neighbour field (dist = 1) with no character on it
@@ -107,7 +107,7 @@ namespace spy::util {
              * @return point where closest character is standing
              */
             static const util::Point &
-            getRandomCharacterNeighbouringField(const spy::gameplay::State &s, const util::Point &p);
+            getRandomCharacterNearField(const spy::gameplay::State &s, const util::Point &p);
 
             /**
              * @brief get point of random neighbouring field which fulfils certain condition
@@ -119,12 +119,12 @@ namespace spy::util {
              */
             template<typename T>
             static const util::Point &
-            getRandomNeighbouringField(const spy::gameplay::State &s, const util::Point &p, T isSearchedField) {
+            getRandomNearField(const spy::gameplay::State &s, const util::Point &p, T isSearchedField) {
                 std::vector<Point> points;
                 int dist = 1;
                 while (true) {
                     points.clear();
-                    if (!getNeighbouringFieldsInDist(points, s, p, dist, isSearchedField)) {
+                    if (!getNearFieldsInDist(points, s, p, dist, isSearchedField)) {
                         throw std::domain_error("No Point fulfilling isSearchedField was found on the whole map");
                     }
                     if (!points.empty()) {
@@ -146,9 +146,9 @@ namespace spy::util {
              */
             template<typename T>
             static bool
-            getNeighbouringFieldsInDist(std::vector<util::Point> &result, const spy::gameplay::State &s,
-                                        const util::Point &p, const int dist,
-                                        T isSearchedField) {
+            getNearFieldsInDist(std::vector<util::Point> &result, const spy::gameplay::State &s,
+                                const util::Point &p, const int dist,
+                                T isSearchedField) {
                 bool noPointsInMap = true;
                 if (dist == 0) {
                     throw std::invalid_argument("dist has to be != 0");
