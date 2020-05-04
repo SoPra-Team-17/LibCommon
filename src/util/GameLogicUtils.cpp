@@ -9,6 +9,7 @@
 #include "gameplay/Movement.hpp"
 #include "scenario/FieldMap.hpp"
 
+
 namespace spy::util {
     bool GameLogicUtils::hasCocktail(const spy::gameplay::State &s, const Point &pt) {
         using spy::gadget::GadgetEnum;
@@ -124,6 +125,31 @@ namespace spy::util {
             // check if character is on point
             return isPersonOnField(s, currentPoint);
         });
+    }
+
+    bool GameLogicUtils::checkBabySitter(const gameplay::State &s, const gameplay::CharacterOperation &op,
+                                         const spy::MatchConfig &config) {
+        bool babySitterSuccess = false;
+
+        auto result = getNearFieldsInDist(s, op.getTarget(), 1, [&s](const util::Point &p) {
+            return isPersonOnField(s, p);
+        });
+
+        auto character = s.getCharacters().findByUUID(op.getCharacterId());
+
+        if (result.second) {
+            for (const auto &p : result.first) {
+                auto person = GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), p);
+                if (person->hasProperty(character::PropertyEnum::BABYSITTER)
+                    && (character->getFaction() == person->getFaction())
+                    && probabilityTest(config.getBabysitterSuccessChance())) {
+                    babySitterSuccess = true;
+                    break;
+                }
+            }
+        }
+
+        return babySitterSuccess;
     }
 
     const util::Point &GameLogicUtils::getRandomFreeSeatField(const gameplay::State &s) {
