@@ -19,7 +19,7 @@
 #include "FactionEnum.hpp"
 
 namespace spy::character {
-    constexpr unsigned int DEFAULT_HEALTH_POINTS = 100;
+    constexpr int DEFAULT_HEALTH_POINTS = 100;
     constexpr unsigned int DEFAULT_CHIPS = 10;
     constexpr unsigned int DEFAULT_ACTION_POINTS = 0;
     constexpr unsigned int DEFAULT_MOVE_POINTS = 0;
@@ -51,9 +51,9 @@ namespace spy::character {
 
             void setActionPoints(unsigned int ap);
 
-            [[nodiscard]] unsigned int getHealthPoints() const;
+            [[nodiscard]] int getHealthPoints() const;
 
-            void setHealthPoints(unsigned int hp);
+            void setHealthPoints(int hp);
 
             [[nodiscard]] unsigned int getIntelligencePoints() const;
 
@@ -87,6 +87,14 @@ namespace spy::character {
 
             bool operator==(const Character &rhs) const;
 
+            void subActionPoint();
+
+            void subMovePoint();
+
+            void subHealthPoints(unsigned int);
+
+            void addHealthPoints(unsigned int);
+
             [[nodiscard]] bool hasProperty(PropertyEnum property) const;
 
         private:
@@ -95,7 +103,7 @@ namespace spy::character {
             std::optional<spy::util::Point> coordinates;
             unsigned int movePoints = DEFAULT_MOVE_POINTS;
             unsigned int actionPoints = DEFAULT_ACTION_POINTS;
-            unsigned int healthPoints = DEFAULT_HEALTH_POINTS;
+            int healthPoints = DEFAULT_HEALTH_POINTS;
             unsigned int intelligencePoints = DEFAULT_INTELLIGENCE_POINTS;
             unsigned int chips = DEFAULT_CHIPS;
             std::set<spy::character::PropertyEnum> properties;

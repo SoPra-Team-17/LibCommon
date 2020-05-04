@@ -24,17 +24,17 @@ namespace spy {
 
             [[nodiscard]] double getBowlerBladeHitChance() const;
 
-            [[nodiscard]] unsigned int getBowlerBladeDamage() const;
+            [[nodiscard]] int getBowlerBladeDamage() const;
 
             [[nodiscard]] double getLaserCompactHitChance() const;
 
-            [[nodiscard]] unsigned int getRocketPenDamage() const;
+            [[nodiscard]] int getRocketPenDamage() const;
 
             [[nodiscard]] int getGasGlossDamage() const;
 
             [[nodiscard]] unsigned int getMothballPouchRange() const;
 
-            [[nodiscard]] unsigned int getMothballPouchDamage() const;
+            [[nodiscard]] int getMothballPouchDamage() const;
 
             [[nodiscard]] unsigned int getFogTinRange() const;
 
@@ -83,16 +83,16 @@ namespace spy {
 
             unsigned int bowlerBladeRange;
             double bowlerBladeHitChance;
-            unsigned int bowlerBladeDamage;
+            int bowlerBladeDamage;
 
             double laserCompactHitChance;
 
-            unsigned int rocketPenDamage;
+            int rocketPenDamage;
 
             int gasGlossDamage;
 
             unsigned int mothballPouchRange;
-            unsigned int mothballPouchDamage;
+            int mothballPouchDamage;
 
             unsigned int fogTinRange;
 

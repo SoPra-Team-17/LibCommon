@@ -4,7 +4,9 @@
 #include "ActionExecutor.hpp"
 
 namespace spy::gameplay {
-    bool ActionExecutor::executeGamble(State &/*s*/, const GambleAction &/*op*/) {
+    bool ActionExecutor::executeGamble(State &s, const GambleAction &op) {
+        auto character = s.getCharacters().getByUUID(op.getCharacterId());
+        character->subActionPoint();
         // TODO: implement
         return false;
     }

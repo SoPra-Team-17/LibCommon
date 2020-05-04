@@ -16,17 +16,20 @@ namespace spy::gameplay {
         if (!s.getMap().isInside(op.getTarget())) {
             return false;
         }
-      
+
+        auto character = s.getCharacters().findByUUID(op.getCharacterId());
+        // check if character has enough action points
+        if (character->getActionPoints() <= 0) {
+            return false;
+        }
+
         switch (op.getUsedProperty()) {
-            case character::PropertyEnum::BANG_AND_BURN: {
-                auto character = s.getCharacters().findByUUID(op.getCharacterId());
+            case character::PropertyEnum::BANG_AND_BURN:
                 return character->hasProperty(character::PropertyEnum::BANG_AND_BURN) &&
                        Movement::getMoveDistance(op.getTarget(), character->getCoordinates().value()) == 1 &&
                        s.getMap().getField(op.getTarget()).getFieldState() == scenario::FieldStateEnum::ROULETTE_TABLE;
-            }
-            case character::PropertyEnum::OBSERVATION: {
+            case character::PropertyEnum::OBSERVATION:
                 // if character has mole die observation is deactivated
-                auto character = s.getCharacters().findByUUID(op.getCharacterId());
                 bool hasMoleDie = spy::util::GameLogicUtils::characterHasGadget(s, character->getCharacterId(),
                                                                                 GadgetEnum::MOLEDIE);
                 if (hasMoleDie) {
@@ -35,7 +38,6 @@ namespace spy::gameplay {
 
                 return character->hasProperty(character::PropertyEnum::OBSERVATION) &&
                        s.getMap().isLineOfSightFree(op.getTarget(), character->getCoordinates().value());
-            }
             default:
                 throw std::invalid_argument("Property is not usable as action");
         }

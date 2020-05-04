@@ -6,6 +6,7 @@
 namespace spy::gameplay {
     bool ActionExecutor::executeMovement(State &s, const Movement &op) {
         auto character = s.getCharacters().getByUUID(op.getCharacterId());
+        character->subMovePoint();
 
         // search for character at target position
         auto charTarget = std::find_if(s.getCharacters().begin(), s.getCharacters().end(),
