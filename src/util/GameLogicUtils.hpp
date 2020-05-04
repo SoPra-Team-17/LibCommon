@@ -9,6 +9,7 @@
 #define LIBCOMMON_GAMELOGICUTILS_HPP
 
 #include <random>
+#include <unordered_set>
 #include "datatypes/gameplay/State.hpp"
 
 namespace spy::util {
@@ -60,7 +61,7 @@ namespace spy::util {
              * @return      true if line of sight is free
              */
             static bool bowlerBladeLineOfSight(const spy::gameplay::State &s, const Point &p1, const Point &p2);
-            
+
             /**
              * @brief Searches the set for a character at the given point. Returns first match.
              * @param cs CharacterSet to search in
@@ -68,7 +69,8 @@ namespace spy::util {
              * @return Const iterator to the found character if one at the specified point exits, otherwise a
              *         const iterator to the end of the set.
              */
-            static std::vector<character::Character>::const_iterator findInCharacterSetByCoordinates(const character::CharacterSet &cs, const util::Point &p);
+            static std::vector<character::Character>::const_iterator
+            findInCharacterSetByCoordinates(const character::CharacterSet &cs, const util::Point &p);
 
             /**
              * @brief Searches the set for a character at the given point. Returns first match.
@@ -77,7 +79,8 @@ namespace spy::util {
              * @return Iterator to the found character if one at the specified point exits, otherwise an
              *         iterator to the end of the set.
              */
-            static std::vector<character::Character>::iterator getInCharacterSetByCoordinates(character::CharacterSet &cs, const util::Point &p);
+            static std::vector<character::Character>::iterator
+            getInCharacterSetByCoordinates(character::CharacterSet &cs, const util::Point &p);
 
             /**
              * @brief get point of random free neighbouring field with no character on it
@@ -129,10 +132,15 @@ namespace spy::util {
                                         const util::Point &p, const int dist,
                                         T isSearchedField) {
                 bool noPointsInMap = true;
-                std::vector<util::Point> possiblePoints{p + Point{dist, 0}, p + Point{-dist, 0}, p + Point{0, dist},
-                                                        p + Point{0, -dist}, p + Point{dist, dist},
-                                                        p + Point{-dist, -dist}, p + Point{-dist, dist},
-                                                        p + Point{dist, -dist}};
+
+                std::vector<util::Point> possiblePoints;
+                for (int i = -dist; i <= dist; i++) {
+                    possiblePoints.push_back(p + Point{i, -dist}); // upper line
+                    possiblePoints.push_back(p + Point{i, dist}); // bottom line
+                    possiblePoints.push_back(p + Point{-dist, i}); // left line
+                    possiblePoints.push_back(p + Point{dist, i}); // right line
+                }
+
                 for (Point &point: possiblePoints) {
                     if (s.getMap().isInside(point)) {
                         noPointsInMap = false;
