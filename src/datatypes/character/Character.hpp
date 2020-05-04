@@ -75,7 +75,7 @@ namespace spy::character {
 
             void setFaction(character::FactionEnum faction);
 
-            [[nodiscard]] character::FactionEnum getFraction() const;
+            [[nodiscard]] character::FactionEnum getFaction() const;
 
             void addGadget(gadget::Gadget gadget);
 
