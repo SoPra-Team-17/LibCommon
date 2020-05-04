@@ -42,6 +42,7 @@ set(SOURCE
         gameLogic/execution/gadget/RocketPen.cpp
         gameLogic/execution/gadget/Grapple.cpp
         gameLogic/execution/gadget/Jetpack.cpp
+        gameLogic/execution/gadget/GasGloss.cpp
         gameLogic/generation/ActionGenerator_Server.cpp
         datatypes/matchconfig/MatchConfig.cpp
         datatypes/scenario/Scenario.cpp
@@ -88,9 +89,6 @@ set(SOURCE
         network/messages/Hello.cpp
         network/messages/HelloReply.cpp
         network/MessageContainer.cpp
-        util/UUID.cpp
-        util/Point.cpp
-        util/GameLogicUtils.cpp
         network/messages/GameStarted.cpp
         network/messages/Reconnect.cpp
         network/messages/RequestItemChoice.cpp
@@ -104,7 +102,10 @@ set(SOURCE
         network/messages/Strike.cpp
         network/messages/RequestReplay.cpp
         network/messages/Replay.cpp
-        network/messages/StatisticsMessage.cpp)
+        network/messages/StatisticsMessage.cpp
+        util/UUID.cpp
+        util/Point.cpp
+        util/GameLogicUtils.cpp)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMMON_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror -mtune=native -march=native)

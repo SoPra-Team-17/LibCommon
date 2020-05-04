@@ -25,7 +25,7 @@ namespace spy::gameplay {
             case gadget::GadgetEnum::ROCKET_PEN:
                 break;
             case gadget::GadgetEnum::GAS_GLOSS:
-                break;
+                return executeGasGloss(s, action, config);
             case gadget::GadgetEnum::MOTHBALL_POUCH:
                 break;
             case gadget::GadgetEnum::FOG_TIN:
