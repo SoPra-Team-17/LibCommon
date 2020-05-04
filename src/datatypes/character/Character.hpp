@@ -98,7 +98,7 @@ namespace spy::character {
             unsigned int chips = DEFAULT_CHIPS;
             std::set<spy::character::PropertyEnum> properties;
             std::vector<spy::gadget::Gadget> gadgets;
-            character::FactionEnum fraction = FactionEnum::INVALID;
+            character::FactionEnum faction = FactionEnum::INVALID;
     };
 }
 
