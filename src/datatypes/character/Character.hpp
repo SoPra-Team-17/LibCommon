@@ -87,6 +87,10 @@ namespace spy::character {
 
             bool operator==(const Character &rhs) const;
 
+            void subActionPoint();
+
+            void subMovePoint();
+
             [[nodiscard]] bool hasProperty(PropertyEnum property) const;
 
             [[nodiscard]] bool hasGadget(spy::gadget::GadgetEnum type) const;

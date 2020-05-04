@@ -24,6 +24,11 @@ namespace spy::gameplay {
             return false;
         }
 
+        // check if character has enough action points
+        if (character->getActionPoints() <= 0) {
+            return false;
+        }
+
         // check if character has gadget
         bool hasGadget = s.getCharacters().findByUUID(op.getCharacterId())->hasGadget(op.getGadget());
         // picking up a cocktail is the only action that can be performed without having the gadget
