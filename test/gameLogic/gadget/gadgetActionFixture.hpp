@@ -11,11 +11,19 @@
 #include "scenario/Scenario.hpp"
 #include "scenario/FieldMap.hpp"
 #include "gameplay/State.hpp"
-#include "character/Character.hpp"
+#include "character/CharacterSet.hpp"
 #include "util/Point.hpp"
 #include "matchconfig/MatchConfig.hpp"
 
 class GadgetActionTests : public ::testing::Test {
+    public:
+        GadgetActionTests() {
+            for (auto it = characters.begin(); it != characters.end(); it++) {
+                it->setActionPoints(1);
+                it->setMovePoints(1);
+            }
+        }
+
     protected:
         spy::util::UUID uuid1 = spy::util::UUID::generate();
         spy::util::UUID uuid2 = spy::util::UUID::generate();
@@ -69,7 +77,7 @@ class GadgetActionTests : public ::testing::Test {
 
         spy::scenario::FieldMap field{decodedScenario};
 
-        spy::character::CharacterSet characters = {{uuid1, "dummy"},
+        spy::character::CharacterSet characters = {{uuid1, "dummmy"},
                                                    {uuid2, "dummy"},
                                                    {uuid3, "dummy"},
                                                    {uuid4, "dummy"},
