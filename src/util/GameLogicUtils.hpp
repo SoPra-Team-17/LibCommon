@@ -101,6 +101,15 @@ namespace spy::util {
             getRandomCharacterFreeNeighbourField(const spy::gameplay::State &s, const util::Point &p);
 
             /**
+             * @brief get point of of a neighbouring field with a character on it. If there are more fields randomize
+             * @param s current state
+             * @param p Point where character is at the moment
+             * @return point where closest character is standing
+             */
+            static const util::Point &
+            getRandomCharacterNeighbouringField(const spy::gameplay::State &s, const util::Point &p);
+
+            /**
              * @brief get point of random neighbouring field which fulfils certain condition
              * @tparam t function
              * @param s current state

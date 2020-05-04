@@ -126,4 +126,11 @@ namespace spy::util {
         }
         return result;
     }
+
+    const util::Point &GameLogicUtils::getRandomCharacterNeighbouringField(const gameplay::State &s, const Point &p) {
+        return getRandomNeighbouringField(s, p, [&s](util::Point currentPoint) {
+            // check if character is on point
+            return isPersonOnField(s, currentPoint);
+        });
+    }
 }
