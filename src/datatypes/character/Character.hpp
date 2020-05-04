@@ -85,7 +85,7 @@ namespace spy::character {
 
             bool operator==(const Character &rhs) const;
 
-            bool hasProperty(PropertyEnum property) const;
+            [[nodiscard]] bool hasProperty(PropertyEnum property) const;
 
         private:
             spy::util::UUID characterId;
