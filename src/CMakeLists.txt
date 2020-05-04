@@ -70,6 +70,7 @@ set(SOURCE
         gameLogic/validation/gadget/DiamondCollar.cpp
         gameLogic/validation/gadget/Cocktail.cpp
         gameLogic/validation/gadget/BowlerBlade.cpp
+        gameLogic/execution/gadget/TechnicolorPrism.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp
@@ -96,7 +97,7 @@ set(SOURCE
         network/messages/RequestReplay.cpp
         network/messages/Replay.cpp
         network/messages/StatisticsMessage.cpp
-        util/GameLogicUtils.cpp)
+       )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMMON_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror -mtune=native -march=native)
