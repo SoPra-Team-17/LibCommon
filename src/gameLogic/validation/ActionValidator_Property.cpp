@@ -28,7 +28,7 @@ namespace spy::gameplay {
                 return character->hasProperty(character::PropertyEnum::BANG_AND_BURN) &&
                        Movement::getMoveDistance(op.getTarget(), character->getCoordinates().value()) == 1 &&
                        s.getMap().getField(op.getTarget()).getFieldState() == scenario::FieldStateEnum::ROULETTE_TABLE;
-            case character::PropertyEnum::OBSERVATION:
+            case character::PropertyEnum::OBSERVATION: {
                 // if character has mole die observation is deactivated
                 bool hasMoleDie = spy::util::GameLogicUtils::characterHasGadget(s, character->getCharacterId(),
                                                                                 GadgetEnum::MOLEDIE);
@@ -38,6 +38,7 @@ namespace spy::gameplay {
 
                 return character->hasProperty(character::PropertyEnum::OBSERVATION) &&
                        s.getMap().isLineOfSightFree(op.getTarget(), character->getCoordinates().value());
+            }
             default:
                 throw std::invalid_argument("Property is not usable as action");
         }
