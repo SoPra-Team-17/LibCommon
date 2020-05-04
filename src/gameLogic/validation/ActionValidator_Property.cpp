@@ -9,6 +9,8 @@
 namespace spy::gameplay {
 
     bool ActionValidator::validatePropertyAction(const State &s, const spy::gameplay::PropertyAction &op) {
+        using spy::gadget::GadgetEnum;
+
         switch (op.getUsedProperty()) {
             case character::PropertyEnum::BANG_AND_BURN: {
                 auto character = s.getCharacters().findByUUID(op.getCharacterId());
@@ -17,9 +19,16 @@ namespace spy::gameplay {
                        s.getMap().getField(op.getTarget()).getFieldState() == scenario::FieldStateEnum::ROULETTE_TABLE;
             }
             case character::PropertyEnum::OBSERVATION: {
+                // if character has mole die observation is deactivated
                 auto character = s.getCharacters().findByUUID(op.getCharacterId());
+                bool hasMoleDie = spy::util::GameLogicUtils::characterHasGadget(s, character->getCharacterId(),
+                                                                                GadgetEnum::MOLEDIE);
+                if (hasMoleDie) {
+                    return false;
+                }
+
                 return character->hasProperty(character::PropertyEnum::OBSERVATION) &&
-                        s.getMap().isLineOfSightFree(op.getTarget(), character->getCoordinates().value());
+                       s.getMap().isLineOfSightFree(op.getTarget(), character->getCoordinates().value());
             }
             default:
                 throw std::invalid_argument("Property is not usable as action");
