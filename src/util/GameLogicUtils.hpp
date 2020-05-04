@@ -50,7 +50,7 @@ namespace spy::util {
              * @return              true of person is on field and field is neighboring
              */
             static bool
-            personOnNeighboringField(const spy::gameplay::State &s, const Point &target, const Point &charCoord);
+            personOnNeighbourField(const spy::gameplay::State &s, const Point &target, const Point &charCoord);
 
             /**
              * @brief       checks the bowler blade line of sight
@@ -172,6 +172,36 @@ namespace spy::util {
                 }
 
                 return std::make_pair(result, !noPointsInMap);
+            }
+
+            /**
+             * @brief get point of random seat field in map with no character on it
+             * @param s current state
+             * @return randomly selected point with a free seat on it
+             */
+            static const util::Point &getRandomFreeSeatField(const spy::gameplay::State &s);
+
+            /**
+             * @brief get point of all fields fulfilling certain conditions
+             * @tparam t function
+             * @param s current state
+             * @param isSearchedField function that defines conditions returned points must fulfil to be accepted
+             * @return list of points fulfilling conditions
+             */
+            template<typename T>
+            static std::vector<util::Point> getAllFieldsWith(const spy::gameplay::State &s, T isSearchedField) {
+                std::vector<util::Point> result;
+
+                auto field = s.getMap().getMap();
+                for (unsigned int y = 0; y < field.size(); y++) {
+                    for (unsigned int x = 0; x < field.at(y).size(); x++) {
+                        Point p {(int)x, (int)y};
+                        if (isSearchedField(p)) {
+                            result.push_back(p);
+                        }
+                    }
+                }
+                return result;
             }
 
             /**

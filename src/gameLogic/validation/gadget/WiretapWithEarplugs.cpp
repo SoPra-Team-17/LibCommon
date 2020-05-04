@@ -12,6 +12,6 @@ namespace spy::gameplay {
 
     bool GadgetValidator::validateWiretapWithEarplugs(const State &s, GadgetAction a) {
         auto character = s.getCharacters().findByUUID(a.getCharacterId());
-        return spy::util::GameLogicUtils::personOnNeighboringField(s, a.getTarget(), character->getCoordinates().value());
+        return spy::util::GameLogicUtils::personOnNeighbourField(s, a.getTarget(), character->getCoordinates().value());
     }
 }
