@@ -143,4 +143,10 @@ namespace spy::character {
         return faction;
     }
 
+    void Character::removeGadget(gadget::GadgetEnum gadget) {
+        gadgets.erase(std::remove_if(gadgets.begin(), gadgets.end(), [gadget](gadget::Gadget &g){
+            return g.getType() == gadget;
+        }));
+    }
+
 }  // namespace spy::character
