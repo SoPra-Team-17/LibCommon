@@ -41,16 +41,6 @@ namespace spy::util {
         return targetHasGadget;
     }
 
-    bool GameLogicUtils::characterHasGadget(const gameplay::State &s, const UUID &id, spy::gadget::GadgetEnum type) {
-        auto character = s.getCharacters().findByUUID(id);
-        auto gadgets = character->getGadgets();
-        auto gadget = std::find_if(gadgets.begin(), gadgets.end(), [type](const gadget::Gadget &g) {
-            return g.getType() == type;
-        });
-
-        return gadget != gadgets.end();
-    }
-
     bool GameLogicUtils::isPersonOnField(const gameplay::State &s, const Point &target) {
         auto person = std::find_if(s.getCharacters().begin(), s.getCharacters().end(),
                                    [target](const character::Character &c) {

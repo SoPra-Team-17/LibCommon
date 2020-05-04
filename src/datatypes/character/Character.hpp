@@ -89,6 +89,8 @@ namespace spy::character {
 
             [[nodiscard]] bool hasProperty(PropertyEnum property) const;
 
+            [[nodiscard]] bool hasGadget(spy::gadget::GadgetEnum type) const;
+
         private:
             spy::util::UUID characterId;
             std::string name;

@@ -149,4 +149,12 @@ namespace spy::character {
         }));
     }
 
+    bool Character::hasGadget(spy::gadget::GadgetEnum type) const {
+        auto gadget = std::find_if(gadgets.begin(), gadgets.end(), [type](const gadget::Gadget &g) {
+            return g.getType() == type;
+        });
+
+        return (gadget != gadgets.end());
+    }
+
 }  // namespace spy::character

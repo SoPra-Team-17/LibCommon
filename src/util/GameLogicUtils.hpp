@@ -26,15 +26,6 @@ namespace spy::util {
             static bool hasCocktail(const spy::gameplay::State &s, const Point &pt);
 
             /**
-             * @brief           checks if a character holds a certain object
-             * @param s         current state
-             * @param id        character id, who is checked
-             * @param type      gadget for which is checked
-             * @return          true if character has gadget
-             */
-            static bool characterHasGadget(const spy::gameplay::State &s, const UUID &id, spy::gadget::GadgetEnum type);
-
-            /**
              * @brief           Checks if a person is at the specified location
              * @param s         current state
              * @param target    coordinate to check for a person
