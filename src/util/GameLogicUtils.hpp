@@ -11,6 +11,8 @@
 #include <random>
 #include <unordered_set>
 #include "datatypes/gameplay/State.hpp"
+#include "matchconfig/MatchConfig.hpp"
+#include "gameplay/CharacterOperation.hpp"
 
 namespace spy::util {
     class GameLogicUtils {
@@ -237,6 +239,14 @@ namespace spy::util {
              */
             static bool
             probabilityTestWithCharacter(const spy::gameplay::State &s, const spy::character::Character &character, double chance);
+
+            /**
+             * @brief checks if the babysitter property can be applied
+             * @param state current state
+             * @return true, if babysitter was applied
+             */
+            static bool checkBabySitter(const gameplay::State &s, const gameplay::CharacterOperation &op,
+                                        const spy::MatchConfig &config);
     };
 }
 

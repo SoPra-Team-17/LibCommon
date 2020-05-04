@@ -44,11 +44,11 @@ namespace spy::character {
         Character::actionPoints = ap;
     }
 
-    unsigned int Character::getHealthPoints() const {
+    int Character::getHealthPoints() const {
         return healthPoints;
     }
 
-    void Character::setHealthPoints(unsigned int hp) {
+    void Character::setHealthPoints(int hp) {
         Character::healthPoints = hp;
     }
 
@@ -143,10 +143,26 @@ namespace spy::character {
         return faction;
     }
 
+    void Character::subActionPoint() {
+        actionPoints--;
+    }
+
+    void Character::subMovePoint() {
+        movePoints--;
+    }
+
     void Character::removeGadget(gadget::GadgetEnum gadget) {
-        gadgets.erase(std::remove_if(gadgets.begin(), gadgets.end(), [gadget](gadget::Gadget &g){
+        gadgets.erase(std::remove_if(gadgets.begin(), gadgets.end(), [gadget](gadget::Gadget &g) {
             return g.getType() == gadget;
         }));
+    }
+
+    void Character::addHealthPoints(unsigned int add) {
+        healthPoints += add;
+    }
+
+    void Character::subHealthPoints(unsigned int sub) {
+        healthPoints -= sub;
     }
 
 }  // namespace spy::character

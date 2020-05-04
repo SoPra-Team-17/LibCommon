@@ -15,6 +15,14 @@
 #include "gameLogic/execution/ActionExecutor.hpp"
 
 class MovementOperation : public ::testing::Test {
+    public:
+        MovementOperation() {
+            for (auto it = state.getCharacters().begin(); it != state.getCharacters().end(); it++) {
+                it->setActionPoints(1);
+                it->setMovePoints(1);
+            }
+        }
+
     protected:
         spy::util::UUID uuid1 = spy::util::UUID::generate();
         spy::util::UUID uuid2 = spy::util::UUID::generate();
