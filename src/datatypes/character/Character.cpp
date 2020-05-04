@@ -140,7 +140,7 @@ namespace spy::character {
     }
 
     character::FactionEnum Character::getFraction() const {
-        return fraction;
+        return faction;
     }
 
 }  // namespace spy::character
