@@ -11,6 +11,12 @@ namespace spy::gameplay {
     bool ActionValidator::validatePropertyAction(const State &s, const spy::gameplay::PropertyAction &op) {
         using spy::gadget::GadgetEnum;
 
+
+        // check if target inside map
+        if (!s.getMap().isInside(op.getTarget())) {
+            return false;
+        }
+      
         switch (op.getUsedProperty()) {
             case character::PropertyEnum::BANG_AND_BURN: {
                 auto character = s.getCharacters().findByUUID(op.getCharacterId());

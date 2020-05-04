@@ -60,7 +60,7 @@ namespace spy::util {
     }
 
     bool
-    GameLogicUtils::personOnNeighboringField(const gameplay::State &s, const Point &target, const Point &charCoord) {
+    GameLogicUtils::personOnNeighbourField(const gameplay::State &s, const Point &target, const Point &charCoord) {
         // check distance
         auto distance = gameplay::Movement::getMoveDistance(charCoord, target);
         if (distance != 1) {
@@ -100,8 +100,9 @@ namespace spy::util {
         return character;
     }
 
-    const util::Point &GameLogicUtils::getRandomFreeNeighbouringField(const gameplay::State &s, const Point &p) {
-        return getRandomNeighbouringField(s, p, [&s](util::Point currentPoint) {
+    const util::Point &
+    GameLogicUtils::getRandomCharacterFreeNearField(const gameplay::State &s, const Point &p) {
+        return getRandomNearField(s, p, [&s](util::Point currentPoint) {
             // check if point is free -> accessible and no character is on point
             return s.getMap().isAccessible(currentPoint) && !isPersonOnField(s, currentPoint);
         });
@@ -113,5 +114,62 @@ namespace spy::util {
         std::uniform_real_distribution<double> prob(0.0, std::nextafter(1.0, 0.0));
         // return random number >= change of failure
         return prob(gen) >= (1 - chance);
+    }
+
+    std::optional<util::Point>
+    GameLogicUtils::getRandomCharacterFreeNeighbourField(const gameplay::State &s, const Point &p) {
+        std::optional<Point> result;
+        auto res = getNearFieldsInDist(s, p, 1, [&s](util::Point currentPoint) {
+            // check if point is free -> accessible and no character is on point
+            return s.getMap().isAccessible(currentPoint) && !isPersonOnField(s, currentPoint);
+        });
+        if (res.second && !res.first.empty()) {
+            result = *getRandomItemFromVector(res.first);
+        }
+        return result;
+    }
+
+    const util::Point &GameLogicUtils::getRandomCharacterNearField(const gameplay::State &s, const Point &p) {
+        return getRandomNearField(s, p, [&s](util::Point currentPoint) {
+            // check if character is on point
+            return isPersonOnField(s, currentPoint);
+        });
+    }
+
+    const util::Point &GameLogicUtils::getRandomFreeSeatField(const gameplay::State &s) {
+        auto points = getAllFieldsWith(s, [&s](util::Point currentPoint) {
+            // check if field is seat with no character on it
+            return s.getMap().getField(currentPoint).getFieldState() == scenario::FieldStateEnum::BAR_SEAT &&
+                   !isPersonOnField(s, currentPoint);
+        });
+        if (!points.empty()) {
+            return *getRandomItemFromVector(points);
+        } else {
+            throw std::domain_error("No seat field with no character on it was found in the whole map");
+        }
+    }
+
+    bool GameLogicUtils::probabilityTestWithCharacter(const spy::gameplay::State &s, const character::Character &character,
+                                                      double chance) {
+        using spy::character::PropertyEnum;
+        using spy::gadget::GadgetEnum;
+
+        // character with clammy clothes only has half the chance of success
+        if (character.hasProperty(PropertyEnum::CLAMMY_CLOTHES)) {
+            chance /= 2;
+        }
+
+        bool result = probabilityTest(chance);
+        if (result) {
+            return true;
+        }
+
+        // if char has tradecraft and not mole die, prob. test is repeated
+        if (character.hasProperty(PropertyEnum::TRADECRAFT) &&
+            !characterHasGadget(s, character.getCharacterId(), GadgetEnum::MOLEDIE)) {
+            result = probabilityTest(chance);
+        }
+
+        return result;
     }
 }

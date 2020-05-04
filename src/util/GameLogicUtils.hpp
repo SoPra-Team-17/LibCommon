@@ -50,7 +50,7 @@ namespace spy::util {
              * @return              true of person is on field and field is neighboring
              */
             static bool
-            personOnNeighboringField(const spy::gameplay::State &s, const Point &target, const Point &charCoord);
+            personOnNeighbourField(const spy::gameplay::State &s, const Point &target, const Point &charCoord);
 
             /**
              * @brief       checks the bowler blade line of sight
@@ -86,10 +86,28 @@ namespace spy::util {
              * @brief get point of random free neighbouring field with no character on it
              * @param s current state
              * @param p Point where character is at the moment
-             * @return point where character can be swapped to if found
+             * @return point where character can be placed to
              */
             static const util::Point &
-            getRandomFreeNeighbouringField(const spy::gameplay::State &s, const util::Point &p);
+            getRandomCharacterFreeNearField(const spy::gameplay::State &s, const util::Point &p);
+
+            /**
+             * @brief get point of free neighbour field (dist = 1) with no character on it
+             * @param s current state
+             * @param p Point where character is at the moment
+             * @return point where character can move to, if no point is found nullopt is returned
+             */
+            static std::optional<util::Point>
+            getRandomCharacterFreeNeighbourField(const spy::gameplay::State &s, const util::Point &p);
+
+            /**
+             * @brief get point of of a neighbouring field with a character on it. If there are more fields randomize
+             * @param s current state
+             * @param p Point where character is at the moment
+             * @return point where closest character is standing
+             */
+            static const util::Point &
+            getRandomCharacterNearField(const spy::gameplay::State &s, const util::Point &p);
 
             /**
              * @brief get point of random neighbouring field which fulfils certain condition
@@ -101,16 +119,15 @@ namespace spy::util {
              */
             template<typename T>
             static const util::Point &
-            getRandomNeighbouringField(const spy::gameplay::State &s, const util::Point &p, T isSearchedField) {
-                std::vector<Point> points;
+            getRandomNearField(const spy::gameplay::State &s, const util::Point &p, T isSearchedField) {
                 int dist = 1;
                 while (true) {
-                    points.clear();
-                    if (!getNeighbouringFieldsInDist(points, s, p, dist, isSearchedField)) {
+                    auto res = getNearFieldsInDist(s, p, dist, isSearchedField);
+                    if (!res.second) {
                         throw std::domain_error("No Point fulfilling isSearchedField was found on the whole map");
                     }
-                    if (!points.empty()) {
-                        return *getRandomItemFromVector(points);
+                    if (!res.first.empty()) {
+                        return *getRandomItemFromVector(res.first);
                     }
                     dist++;
                 }
@@ -119,18 +136,18 @@ namespace spy::util {
             /**
              * @brief get all neighbouring fields with distance dist fulfilling certain conditions
              * @tparam t function
-             * @param result contains resutling list of points
              * @param s current state
              * @param p point from which to search
              * @param dist distance that has to be between p and resulting points. Has to be != 0
              * @param isSearchedField function that defines conditions returned points must fulfil to be accepted
-             * @return true if there was at least one point with dist inside the map
+             * @return pair (std::vector<util::Point>, bool)
+             *              vector contains resulting points
+             *              bool is true if there was at least one point with dist inside the map
              */
             template<typename T>
-            static bool
-            getNeighbouringFieldsInDist(std::vector<util::Point> &result, const spy::gameplay::State &s,
-                                        const util::Point &p, const int dist,
-                                        T isSearchedField) {
+            static std::pair<std::vector<util::Point>, bool>
+            getNearFieldsInDist(const spy::gameplay::State &s, const util::Point &p, const int dist,
+                                T isSearchedField) {
                 bool noPointsInMap = true;
                 if (dist == 0) {
                     throw std::invalid_argument("dist has to be != 0");
@@ -144,6 +161,7 @@ namespace spy::util {
                     possiblePoints.push_back(p + Point{dist, i}); // right line
                 }
 
+                std::vector<util::Point> result;
                 for (Point &point: possiblePoints) {
                     if (s.getMap().isInside(point)) {
                         noPointsInMap = false;
@@ -153,7 +171,37 @@ namespace spy::util {
                     }
                 }
 
-                return !noPointsInMap;
+                return std::make_pair(result, !noPointsInMap);
+            }
+
+            /**
+             * @brief get point of random seat field in map with no character on it
+             * @param s current state
+             * @return randomly selected point with a free seat on it
+             */
+            static const util::Point &getRandomFreeSeatField(const spy::gameplay::State &s);
+
+            /**
+             * @brief get point of all fields fulfilling certain conditions
+             * @tparam t function
+             * @param s current state
+             * @param isSearchedField function that defines conditions returned points must fulfil to be accepted
+             * @return list of points fulfilling conditions
+             */
+            template<typename T>
+            static std::vector<util::Point> getAllFieldsWith(const spy::gameplay::State &s, T isSearchedField) {
+                std::vector<util::Point> result;
+
+                auto field = s.getMap().getMap();
+                for (unsigned int y = 0; y < field.size(); y++) {
+                    for (unsigned int x = 0; x < field.at(y).size(); x++) {
+                        Point p {(int)x, (int)y};
+                        if (isSearchedField(p)) {
+                            result.push_back(p);
+                        }
+                    }
+                }
+                return result;
             }
 
             /**
@@ -178,6 +226,17 @@ namespace spy::util {
              * @return true, if test succeeded
              */
             static bool probabilityTest(double chance);
+
+
+            /**
+             * @brief tests for success given a character
+             * @param state current state
+             * @param char character with properties
+             * @param chance probability tiven in Matchconfig (double values between 0 and 1)
+             * @return true, if test suceeded
+             */
+            static bool
+            probabilityTestWithCharacter(const spy::gameplay::State &s, const spy::character::Character &character, double chance);
     };
 }
 
