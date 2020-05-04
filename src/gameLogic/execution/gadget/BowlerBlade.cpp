@@ -21,8 +21,8 @@ namespace spy::gameplay {
 
         auto targetPerson = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
         // check if target person has magnetic watch
-        bool targetHasMagneticWatch = util::GameLogicUtils::characterHasGadget(s, targetPerson->getCharacterId(),
-                                                                               gadget::GadgetEnum::MAGNETIC_WATCH);
+        bool targetHasMagneticWatch = s.getCharacters().findByUUID(targetPerson->getCharacterId())->hasGadget(
+                gadget::GadgetEnum::MAGNETIC_WATCH);
 
         if (successfullHit && !targetHasMagneticWatch && !babysitter) {
             auto damage = config.getBowlerBladeDamage();
@@ -37,7 +37,7 @@ namespace spy::gameplay {
             return !fieldHasGadget && !fieldHasPerson && isFieldFree;
         });
 
-        s.getMap().getField(newHatPt).setGadget(gadget::Gadget(gadget::GadgetEnum::BOWLER_BLADE));
+        s.getMap().getField(newHatPt).setGadget(character.getGadget(gadget::GadgetEnum::BOWLER_BLADE));
 
         // remove bowler blade from inventory
         character.removeGadget(gadget::GadgetEnum::BOWLER_BLADE);
