@@ -71,6 +71,9 @@ set(SOURCE
         gameLogic/validation/gadget/DiamondCollar.cpp
         gameLogic/validation/gadget/Cocktail.cpp
         gameLogic/validation/gadget/BowlerBlade.cpp
+        gameLogic/execution/property/PropertyExecutor.cpp
+        gameLogic/execution/property/BangAndBurn.cpp
+        gameLogic/execution/property/Observation.cpp
         gameLogic/execution/gadget/MoleDie.cpp
         gameLogic/execution/gadget/BowlerBlade.cpp
         gameLogic/execution/gadget/TechnicolorPrism.cpp
@@ -102,7 +105,7 @@ set(SOURCE
         network/messages/RequestReplay.cpp
         network/messages/Replay.cpp
         network/messages/StatisticsMessage.cpp
-        gameLogic/generation/ActionGenerator_Server.cpp )
+        gameLogic/generation/ActionGenerator_Server.cpp)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMMON_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror -mtune=native -march=native)

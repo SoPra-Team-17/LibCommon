@@ -2,12 +2,12 @@
 // Created by jonas on 28.04.20.
 //
 #include "ActionExecutor.hpp"
+#include "gameLogic/execution/property/PropertyExecutor.hpp"
 
 namespace spy::gameplay {
-    bool ActionExecutor::executeProperty(State &s, const PropertyAction &op, const MatchConfig &/*config*/) {
+    bool ActionExecutor::executeProperty(State &s, const PropertyAction &op, const MatchConfig &config) {
         auto character = s.getCharacters().getByUUID(op.getCharacterId());
         character->subActionPoint();
-        // TODO: implement
-        return false;
+        return PropertyExecutor::execute(s, op, config);
     }
 }
