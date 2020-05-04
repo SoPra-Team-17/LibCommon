@@ -42,6 +42,10 @@ namespace spy::scenario {
 
             [[nodiscard]] bool isInside(util::Point p) const;
 
+            [[nodiscard]] unsigned int getNumberOfRows() const;
+
+            [[nodiscard]] unsigned int getRowLength(unsigned int row) const;
+
             /**
              * Checks if a given field blocks the line of sight (thus is a wall or a fireplace).
              * @param p Coordinate of the field to check.

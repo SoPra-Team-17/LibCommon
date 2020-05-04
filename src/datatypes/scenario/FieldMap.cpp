@@ -57,6 +57,14 @@ namespace spy::scenario {
                  || map.at(p.y).size() <= static_cast<unsigned int>(p.x));
     }
 
+    unsigned int FieldMap::getNumberOfRows() const {
+        return map.size();
+    }
+
+    unsigned int FieldMap::getRowLength(unsigned int row) const {
+        return map.at(row).size();
+    }
+
     bool FieldMap::blocksSight(util::Point p) const {
         return (getField(p).getFieldState() == FieldStateEnum::WALL
                 || getField(p).getFieldState() == FieldStateEnum::FIREPLACE);
