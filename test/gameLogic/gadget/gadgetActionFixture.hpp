@@ -11,11 +11,19 @@
 #include "scenario/Scenario.hpp"
 #include "scenario/FieldMap.hpp"
 #include "gameplay/State.hpp"
-#include "character/Character.hpp"
+#include "character/CharacterSet.hpp"
 #include "util/Point.hpp"
 #include "matchconfig/MatchConfig.hpp"
 
 class GadgetActionTests : public ::testing::Test {
+    public:
+        GadgetActionTests() {
+            for (auto it = state.getCharacters().begin(); it != state.getCharacters().end(); it++) {
+                it->setActionPoints(1);
+                it->setMovePoints(1);
+            }
+        }
+
     protected:
         spy::util::UUID uuid1 = spy::util::UUID::generate();
         spy::util::UUID uuid2 = spy::util::UUID::generate();
