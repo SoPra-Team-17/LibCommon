@@ -6,6 +6,7 @@
  */
 
 #include "Character.hpp"
+#include "util/GadgetSerialization.hpp"
 
 namespace spy::character {
 
@@ -80,16 +81,28 @@ namespace spy::character {
         Character::properties = propertyList;
     }
 
-    const std::vector<gadget::Gadget> &Character::getGadgets() const {
+    const std::vector<std::shared_ptr<gadget::Gadget>> &Character::getGadgets() const {
         return gadgets;
     }
 
-    void Character::setGadgets(const std::vector<gadget::Gadget> &gadgetList) {
+    void Character::setGadgets(const std::vector<std::shared_ptr<gadget::Gadget>> &gadgetList) {
         Character::gadgets = gadgetList;
     }
 
-    void Character::addGadget(gadget::Gadget gadget) {
+    void Character::addGadget(std::shared_ptr<gadget::Gadget> gadget) {
         Character::gadgets.push_back(std::move(gadget));
+    }
+
+    void Character::setWiredBy(std::optional<util::UUID> playerID) {
+        Character::wiredBy = playerID;
+    }
+
+    std::shared_ptr<spy::gadget::Gadget> Character::getGadget(spy::gadget::GadgetEnum type) {
+        auto it = std::find_if(gadgets.begin(), gadgets.end(),
+                            [&type](const std::shared_ptr<spy::gadget::Gadget> &g) {
+                                return g->getType() == type;
+                            });
+        return *it;
     }
 
     void to_json(nlohmann::json &j, const spy::character::Character &c) {
@@ -155,6 +168,10 @@ namespace spy::character {
         });
 
         return (gadget != gadgets.end());
+    }
+
+    std::optional<util::UUID> Character::isWiredBy() const {
+        return wiredBy;
     }
 
 }  // namespace spy::character
