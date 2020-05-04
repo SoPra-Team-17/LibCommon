@@ -29,6 +29,8 @@ namespace spy::gameplay {
 
             static bool executeHairDryer(State &s, const GadgetAction &action);
 
+            static bool executeGrapple(State &s, const GadgetAction &action, const MatchConfig &config);
+
             static bool executeTechnicolorPrism(State &s, const GadgetAction &a);
 
     };
