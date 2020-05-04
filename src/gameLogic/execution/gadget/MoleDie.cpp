@@ -21,7 +21,7 @@ namespace spy::gameplay {
         auto person = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
         if (person != s.getCharacters().end()) {
             // mole die goes into the person inventory
-            person->addGadget(gadget::Gadget(GadgetEnum::MOLEDIE));
+            person->addGadget(std::make_shared<gadget::Gadget>(GadgetEnum::MOLEDIE));
             return true;
         }
 
@@ -29,7 +29,7 @@ namespace spy::gameplay {
         auto closestPoint = util::GameLogicUtils::getRandomCharacterNearField(s, a.getTarget());
         auto closestPerson = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), closestPoint);
 
-        closestPerson->addGadget(gadget::Gadget(GadgetEnum::MOLEDIE));
+        closestPerson->addGadget(std::make_shared<gadget::Gadget>(GadgetEnum::MOLEDIE));
 
         return true;
     }
