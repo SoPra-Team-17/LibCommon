@@ -14,7 +14,7 @@ namespace spy::gameplay {
         if (character->hasProperty(character::PropertyEnum::LUCKY_DEVIL)) {
             winningChance = 32.0/37.0;
         } else if (character->hasProperty(character::PropertyEnum::JINX)) {
-            winningChance = 13/37;
+            winningChance = 13.0/37.0;
         }
         winningChance = targetField.isInverted() ? (1-winningChance) : winningChance;
 
