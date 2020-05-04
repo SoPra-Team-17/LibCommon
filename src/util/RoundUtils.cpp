@@ -10,6 +10,8 @@
 #include "RoundUtils.hpp"
 #include "datatypes/gadgets/Cocktail.hpp"
 
+constexpr unsigned int FOG_ROUND_LIMIT = 3;
+
 namespace spy::util {
     void RoundUtils::refillBarTables(spy::gameplay::State &s) {
         for (unsigned int y = 0; y < s.getMap().getNumberOfRows(); y++) {
@@ -33,6 +35,25 @@ namespace spy::util {
         std::shuffle(order.begin(), order.end(), g);
 
         return order;
+    }
+
+    void RoundUtils::updateFog(gameplay::State &s) {
+        for (unsigned int y = 0; y < s.getMap().getNumberOfRows(); y++) {
+            for (unsigned int x = 0; x < s.getMap().getRowLength(y); x++) {
+                auto field = s.getMap().getField(x, y);
+                if (field.isFoggy()) {
+                    field.incrementFogCounter();
+                    if (field.getFogCounter() >= FOG_ROUND_LIMIT) {
+                        field.setFoggy(false);
+                        field.resetFogCounter();
+                    }
+                }
+            }
+        }
+    }
+
+    void RoundUtils::checkGadgetFallouts(gameplay::State &s) {
+        //TODO: implement for wiretap with earplugs
     }
 }
 

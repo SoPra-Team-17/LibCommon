@@ -27,6 +27,19 @@ namespace spy::util {
              * @return
              */
             static std::vector<unsigned int> getRandomCharacterOrder(const spy::gameplay::State &s);
+
+            /**
+             * Updates the fog state of each field.
+             * @param s Current state that should be modified.
+             */
+            static void updateFog(spy::gameplay::State &s);
+
+            /**
+             * Tests for all gadgets that can fall out whether this happens this round and removes them
+             * if necessary.
+             * @param s Current state that should be modified.
+             */
+            static void checkGadgetFallouts(spy::gameplay::State &s);
     };
 }
 
