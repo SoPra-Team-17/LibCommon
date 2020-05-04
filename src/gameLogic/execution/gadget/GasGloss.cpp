@@ -8,7 +8,7 @@
 namespace spy::gameplay {
 
     bool GadgetExecutor::executeGasGloss(State &s, const GadgetAction &a, const MatchConfig &config) {
-        auto character = *(s.getCharacters().getByUUID(a.getCharacterId()));
+        auto character = s.getCharacters().getByUUID(a.getCharacterId());
 
         // Babysitter successfull
         bool babysitter = util::GameLogicUtils::checkBabySitter(s, a, config);
@@ -21,7 +21,7 @@ namespace spy::gameplay {
         }
 
         // remove gas gloss from inventory
-        character.removeGadget(gadget::GadgetEnum::GAS_GLOSS);
+        character->removeGadget(gadget::GadgetEnum::GAS_GLOSS);
 
         return true;
     }
