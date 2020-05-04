@@ -73,7 +73,7 @@ namespace spy::character {
 
             void setGadgets(const std::vector<gadget::Gadget> &gadgets);
 
-            void setFraction(character::FactionEnum fraction);
+            void setFaction(character::FactionEnum faction);
 
             [[nodiscard]] character::FactionEnum getFraction() const;
 
