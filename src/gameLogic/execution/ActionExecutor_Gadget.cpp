@@ -6,6 +6,8 @@
 
 namespace spy::gameplay {
     bool ActionExecutor::executeGadget(State &s, const GadgetAction &op, const MatchConfig &config) {
+        auto character = s.getCharacters().getByUUID(op.getCharacterId());
+        character->subActionPoint();
         return GadgetExecutor::execute(s, op, config);
     }
 }

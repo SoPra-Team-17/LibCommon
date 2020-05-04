@@ -17,6 +17,12 @@ namespace spy::gameplay {
         }
 
         auto character = s.getCharacters().findByUUID(op.getCharacterId());
+
+        // check if character has enough move points
+        if (character->getMovePoints() <= 0) {
+            return false;
+        }
+
         if (character == s.getCharacters().end()) {                            // specified character UUID is not valid
             return false;
         } else if (character->getCoordinates() != op.getFrom()) {       // doesn't match characters position
