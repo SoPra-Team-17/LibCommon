@@ -22,6 +22,10 @@ namespace spy::gadget {
 
         void setActiveOn(const std::optional<spy::util::UUID> &active);
 
+        friend void to_json(nlohmann::json &j, const WiretapWithEarplugs &w);
+
+        friend void from_json(const nlohmann::json &j, WiretapWithEarplugs &w);
+
     private:
         bool working;
         std::optional<spy::util::UUID> activeOn;

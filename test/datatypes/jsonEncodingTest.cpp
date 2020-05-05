@@ -2,11 +2,12 @@
 // Created by jonas on 02.04.20.
 //
 #include <gtest/gtest.h>
-#include <gadgets/Gadget.hpp>
+#include "gadgets/Gadget.hpp"
+#include "util/GadgetSerialization.hpp"
 
 TEST(JSON_Encode, Gadget_generic) {
-    spy::gadget::Gadget rocketPen(spy::gadget::GadgetEnum::ROCKET_PEN);
-    rocketPen.setUsagesLeft(7);
+    auto rocketPen = std::make_shared<spy::gadget::Gadget>(spy::gadget::GadgetEnum::ROCKET_PEN);
+    rocketPen->setUsagesLeft(7);
 
     nlohmann::json rocketPenJson = rocketPen;
 

@@ -20,12 +20,12 @@ namespace spy::gadget {
         Gadget::usagesLeft = newUsages;
     }
 
-    void to_json(nlohmann::json &j, const spy::gadget::Gadget &g) {
+    void Gadget::common_to_json(nlohmann::json &j, const Gadget &g) {
         j["GadgetEnum"] = g.type;
         j["usages"] = g.usagesLeft;
     }
 
-    void from_json(const nlohmann::json &j, spy::gadget::Gadget &g) {
+    void Gadget::common_from_json(const nlohmann::json &j, spy::gadget::Gadget &g) {
         j.at("GadgetEnum").get_to(g.type);
         j.at("usages").get_to(g.usagesLeft);
     }

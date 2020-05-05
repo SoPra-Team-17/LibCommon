@@ -122,6 +122,7 @@ set(SOURCE
         util/UUID.cpp
         util/Point.cpp
         util/GameLogicUtils.cpp
+        util/GadgetSerialization.hpp
         )
 
 

@@ -14,8 +14,9 @@ TEST_F(GadgetActionTests, WiretapWithEarplugs_Validate) {
     using spy::gadget::GadgetEnum;
     using spy::util::Point;
     using spy::gameplay::GadgetAction;
+    using spy::gadget::Gadget;
 
-    spy::gadget::Gadget earplugs{spy::gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS};
+    auto earplugs = std::make_shared<Gadget>(spy::gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS);
 
     state.getCharacters().getByUUID(uuid1)->setCoordinates({4, 3});
     state.getCharacters().getByUUID(uuid2)->setCoordinates({5, 3});

@@ -16,6 +16,10 @@ namespace spy::gadget {
 
         void setIsPoisoned(bool isPoisoned);
 
+        friend void to_json(nlohmann::json &j, const Cocktail &c);
+
+        friend void from_json(const nlohmann::json &j, Cocktail &c);
+
     private:
         bool poisoned;
     };

@@ -14,8 +14,9 @@ TEST_F(GadgetActionTests, TechnicolourPrism_Validate) {
     using spy::gadget::GadgetEnum;
     using spy::util::Point;
     using spy::gameplay::GadgetAction;
+    using spy::gadget::Gadget;
 
-    spy::gadget::Gadget prism{spy::gadget::GadgetEnum::TECHNICOLOUR_PRISM};
+    auto prism = std::make_shared<Gadget>(GadgetEnum::TECHNICOLOUR_PRISM);
 
     state.getCharacters().getByUUID(uuid1)->setCoordinates({4, 3});
     state.getCharacters().getByUUID(uuid2)->setCoordinates({5, 3});

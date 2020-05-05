@@ -6,6 +6,7 @@
  */
 
 #include "Character.hpp"
+#include "util/GadgetSerialization.hpp"
 
 namespace spy::character {
 
@@ -80,16 +81,24 @@ namespace spy::character {
         Character::properties = propertyList;
     }
 
-    const std::vector<gadget::Gadget> &Character::getGadgets() const {
+    const std::vector<std::shared_ptr<gadget::Gadget>> &Character::getGadgets() const {
         return gadgets;
     }
 
-    void Character::setGadgets(const std::vector<gadget::Gadget> &gadgetList) {
+    void Character::setGadgets(const std::vector<std::shared_ptr<gadget::Gadget>> &gadgetList) {
         Character::gadgets = gadgetList;
     }
 
-    void Character::addGadget(gadget::Gadget gadget) {
+    void Character::addGadget(std::shared_ptr<gadget::Gadget> gadget) {
         Character::gadgets.push_back(std::move(gadget));
+    }
+
+    std::shared_ptr<spy::gadget::Gadget> Character::getGadget(spy::gadget::GadgetEnum type) {
+        auto it = std::find_if(gadgets.begin(), gadgets.end(),
+                            [&type](const std::shared_ptr<spy::gadget::Gadget> &g) {
+                                return g->getType() == type;
+                            });
+        return *it;
     }
 
     void to_json(nlohmann::json &j, const spy::character::Character &c) {
@@ -152,9 +161,18 @@ namespace spy::character {
     }
 
     void Character::removeGadget(gadget::GadgetEnum gadget) {
-        gadgets.erase(std::remove_if(gadgets.begin(), gadgets.end(), [gadget](gadget::Gadget &g) {
-            return g.getType() == gadget;
+        gadgets.erase(std::remove_if(gadgets.begin(), gadgets.end(), [gadget](std::shared_ptr<gadget::Gadget> g) {
+            return g->getType() == gadget;
         }));
+    }
+
+    bool Character::hasGadget(spy::gadget::GadgetEnum type) const {
+        auto gadget = std::find_if(gadgets.begin(), gadgets.end(),
+                                   [type](const std::shared_ptr<gadget::Gadget> &g) {
+                                       return g->getType() == type;
+                                   });
+
+        return (gadget != gadgets.end());
     }
 
     void Character::addHealthPoints(unsigned int add) {
