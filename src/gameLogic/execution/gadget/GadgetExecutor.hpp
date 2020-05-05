@@ -51,6 +51,8 @@ namespace spy::gameplay {
 
             static bool executeMoleDie(State &s, const GadgetAction &a);
 
+            static bool executeFogTin(State &s, const GadgetAction &a);
+
             static bool executeDiamondCollar(State &s, const GadgetAction &a);
     };
 }

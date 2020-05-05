@@ -87,6 +87,7 @@ set(SOURCE
         gameLogic/execution/gadget/MoleDie.cpp
         gameLogic/execution/gadget/BowlerBlade.cpp
         gameLogic/execution/gadget/TechnicolorPrism.cpp
+        gameLogic/execution/gadget/FogTin.cpp
         gameLogic/execution/gadget/GasGloss.cpp
         gameLogic/execution/gadget/Grapple.cpp
         gameLogic/generation/ActionGenerator_Server.cpp
@@ -96,6 +97,7 @@ set(SOURCE
         gameLogic/execution/gadget/MirrorOfWilderness.cpp
         gameLogic/execution/gadget/Nugget.cpp
         gameLogic/execution/gadget/RocketPen.cpp
+        gameLogic/execution/gadget/FogTin.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp
@@ -105,6 +107,10 @@ set(SOURCE
         network/messages/Hello.cpp
         network/messages/HelloReply.cpp
         network/MessageContainer.cpp
+        util/UUID.cpp
+        util/Point.cpp
+        util/GameLogicUtils.cpp
+        util/GadgetSerialization.hpp
         network/messages/GameStarted.cpp
         network/messages/Reconnect.cpp
         network/messages/RequestItemChoice.cpp
@@ -119,11 +125,7 @@ set(SOURCE
         network/messages/RequestReplay.cpp
         network/messages/Replay.cpp
         network/messages/StatisticsMessage.cpp
-        util/UUID.cpp
-        util/Point.cpp
-        util/GameLogicUtils.cpp
-        util/GadgetSerialization.hpp
-        )
+         )
 
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
