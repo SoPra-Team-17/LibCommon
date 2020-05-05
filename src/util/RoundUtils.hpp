@@ -29,11 +29,11 @@ namespace spy::util {
             static void updateFog(spy::gameplay::State &s);
 
             /**
-             * Tests for all gadgets that can fall out whether this happens this round and removes them
-             * if necessary.
+             * Tests for all gadgets that are applied over multiple rounds if they will end execution this round and
+             * removes them if necessary.
              * @param s Current state that should be modified.
              */
-            static void checkGadgetFallouts(spy::gameplay::State &s, const MatchConfig &config);
+            static void checkGadgetFailure(spy::gameplay::State &s, const MatchConfig &config);
 
             /**
              * Resets the updated flag for all fields of the map.

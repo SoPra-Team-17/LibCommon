@@ -115,6 +115,15 @@ namespace spy::scenario {
                 return true;
             }
 
+            template<typename T>
+            void forAllFields(T func) {
+                for (auto y = 0u; y < map.size(); y++) {
+                    for (auto x = 0u; x < map.at(y).size(); x++) {
+                        func(getField(x, y));
+                    }
+                }
+            }
+
             friend void to_json(nlohmann::json &j, const FieldMap &m);
 
             friend void from_json(const nlohmann::json &j, FieldMap &m);
