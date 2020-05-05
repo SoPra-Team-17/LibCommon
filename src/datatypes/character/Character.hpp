@@ -69,15 +69,15 @@ namespace spy::character {
 
             void setProperties(const std::set<PropertyEnum> &properties);
 
-            [[nodiscard]] const std::vector<gadget::Gadget> &getGadgets() const;
+            [[nodiscard]] const std::vector<std::shared_ptr<gadget::Gadget>> &getGadgets() const;
 
-            void setGadgets(const std::vector<gadget::Gadget> &gadgets);
+            void setGadgets(const std::vector<std::shared_ptr<gadget::Gadget>> &gadgets);
 
             void setFaction(character::FactionEnum faction);
 
             [[nodiscard]] character::FactionEnum getFaction() const;
 
-            void addGadget(gadget::Gadget gadget);
+            void addGadget(std::shared_ptr<gadget::Gadget> gadget);
 
             void removeGadget(gadget::GadgetEnum gadget);
 
@@ -97,6 +97,10 @@ namespace spy::character {
 
             [[nodiscard]] bool hasProperty(PropertyEnum property) const;
 
+            [[nodiscard]] bool hasGadget(spy::gadget::GadgetEnum type) const;
+
+            std::shared_ptr<spy::gadget::Gadget> getGadget(spy::gadget::GadgetEnum type);
+
         private:
             spy::util::UUID characterId;
             std::string name;
@@ -107,7 +111,7 @@ namespace spy::character {
             unsigned int intelligencePoints = DEFAULT_INTELLIGENCE_POINTS;
             unsigned int chips = DEFAULT_CHIPS;
             std::set<spy::character::PropertyEnum> properties;
-            std::vector<spy::gadget::Gadget> gadgets;
+            std::vector<std::shared_ptr<spy::gadget::Gadget>> gadgets;
             character::FactionEnum faction = FactionEnum::INVALID;
     };
 }

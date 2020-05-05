@@ -14,9 +14,10 @@ TEST_F(GadgetActionTests, PoisonPills_Validate) {
     using spy::gadget::GadgetEnum;
     using spy::util::Point;
     using spy::gameplay::GadgetAction;
+    using spy::gadget::Gadget;
 
-    spy::gadget::Gadget poisonPills{spy::gadget::GadgetEnum::POISON_PILLS};
-    spy::gadget::Gadget cocktail{spy::gadget::GadgetEnum::COCKTAIL};
+    auto poisonPills = std::make_shared<Gadget>(GadgetEnum::POISON_PILLS);
+    auto cocktail    = std::make_shared<Gadget>(GadgetEnum::COCKTAIL);
 
     state.getCharacters().getByUUID(uuid1)->setCoordinates({4, 3});
     state.getCharacters().getByUUID(uuid2)->setCoordinates({5, 3});

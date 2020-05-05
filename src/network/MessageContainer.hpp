@@ -18,9 +18,9 @@ namespace spy::network {
 
             MessageContainer() = default;
 
-            MessageContainer(messages::MessageTypeEnum messageType, util::UUID playerId);
+            MessageContainer(messages::MessageTypeEnum messageType, util::UUID clientId);
 
-            [[nodiscard]] const util::UUID &getPlayerId() const;
+            [[nodiscard]] const util::UUID &getclientId() const;
 
             [[nodiscard]] messages::MessageTypeEnum getType() const;
 
@@ -55,7 +55,7 @@ namespace spy::network {
             [[nodiscard]] bool isEqual(const MessageContainer &rhs) const;
 
         private:
-            spy::util::UUID playerId;
+            spy::util::UUID clientId;
             messages::MessageTypeEnum type = messages::MessageTypeEnum::INVALID;
             std::string creationDate;
             std::optional<std::string> debugMessage;

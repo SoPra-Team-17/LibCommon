@@ -7,8 +7,8 @@
 namespace spy::network::messages {
     RequestReplay::RequestReplay() : MessageContainer{MessageTypeEnum::REQUEST_REPLAY, {}} {}
 
-    RequestReplay::RequestReplay(const util::UUID &playerId) : MessageContainer{MessageTypeEnum::REQUEST_REPLAY,
-                                                                                playerId} {}
+    RequestReplay::RequestReplay(const util::UUID &clientId) : MessageContainer{MessageTypeEnum::REQUEST_REPLAY,
+                                                                                clientId} {}
 
 
     void to_json(nlohmann::json &j, const RequestReplay &r) {

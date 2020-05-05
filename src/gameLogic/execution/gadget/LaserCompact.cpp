@@ -13,10 +13,10 @@ namespace spy::gameplay {
     bool GadgetExecutor::executeLaserCompact(State &s, const GadgetAction &a, const MatchConfig &config) {
         auto character = s.getCharacters().getByUUID(a.getCharacterId());
         // check if shot hit
-        bool hitSuccessfull = util::GameLogicUtils::probabilityTestWithCharacter(s, *character,
+        bool hitSuccessful = util::GameLogicUtils::probabilityTestWithCharacter(*character,
                                                                                  config.getLaserCompactHitChance());
 
-        if (!hitSuccessfull) {
+        if (!hitSuccessful) {
             return false;
         }
 

@@ -15,7 +15,7 @@ namespace spy::network::messages {
         public:
             StatisticsMessage();
 
-            StatisticsMessage(const util::UUID &playerId, spy::statistics::Statistics statistics,
+            StatisticsMessage(const util::UUID &clientId, spy::statistics::Statistics statistics,
                               const util::UUID &winner,
                               const spy::statistics::VictoryEnum &reason, bool hasReplay);
 

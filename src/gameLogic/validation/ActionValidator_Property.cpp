@@ -30,8 +30,7 @@ namespace spy::gameplay {
                        s.getMap().getField(op.getTarget()).getFieldState() == scenario::FieldStateEnum::ROULETTE_TABLE;
             case character::PropertyEnum::OBSERVATION: {
                 // if character has mole die observation is deactivated
-                bool hasMoleDie = spy::util::GameLogicUtils::characterHasGadget(s, character->getCharacterId(),
-                                                                                GadgetEnum::MOLEDIE);
+                bool hasMoleDie = character->hasGadget(GadgetEnum::MOLEDIE);
                 if (hasMoleDie) {
                     return false;
                 }

@@ -12,7 +12,7 @@ namespace spy::network::messages {
         public:
             GamePause();
 
-            GamePause(util::UUID playerId, bool pause, bool serverEnforced);
+            GamePause(util::UUID clientId, bool pause, bool serverEnforced);
 
             [[nodiscard]] bool isGamePause() const;
 

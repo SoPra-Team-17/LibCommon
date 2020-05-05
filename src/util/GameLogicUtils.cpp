@@ -18,7 +18,7 @@ namespace spy::util {
         // check if field contains gadget
         auto gadget = s.getMap().getField(pt).getGadget();
         if (gadget.has_value()) {
-            targetHasGadget = (gadget->getType() == GadgetEnum::COCKTAIL);
+            targetHasGadget = (gadget.value()->getType() == GadgetEnum::COCKTAIL);
         }
 
         if (!targetHasGadget) {
@@ -34,22 +34,12 @@ namespace spy::util {
 
             // check if person has cocktail
             auto cocktail = std::find_if(person->getGadgets().begin(), person->getGadgets().end(),
-                                         [](const gadget::Gadget &g) {
-                                             return g.getType() == GadgetEnum::COCKTAIL;
+                                         [](const std::shared_ptr<gadget::Gadget> &g) {
+                                             return g->getType() == GadgetEnum::COCKTAIL;
                                          });
             targetHasGadget = (cocktail != person->getGadgets().end());
         }
         return targetHasGadget;
-    }
-
-    bool GameLogicUtils::characterHasGadget(const gameplay::State &s, const UUID &id, spy::gadget::GadgetEnum type) {
-        auto character = s.getCharacters().findByUUID(id);
-        auto gadgets = character->getGadgets();
-        auto gadget = std::find_if(gadgets.begin(), gadgets.end(), [type](const gadget::Gadget &g) {
-            return g.getType() == type;
-        });
-
-        return gadget != gadgets.end();
     }
 
     bool GameLogicUtils::isPersonOnField(const gameplay::State &s, const Point &target) {
@@ -175,7 +165,7 @@ namespace spy::util {
         }
     }
 
-    bool GameLogicUtils::probabilityTestWithCharacter(const spy::gameplay::State &s, const character::Character &character,
+    bool GameLogicUtils::probabilityTestWithCharacter(const character::Character &character,
                                                       double chance) {
         using spy::character::PropertyEnum;
         using spy::gadget::GadgetEnum;
@@ -191,8 +181,8 @@ namespace spy::util {
         }
 
         // if char has tradecraft and not mole die, prob. test is repeated
-        if (character.hasProperty(PropertyEnum::TRADECRAFT) &&
-            !characterHasGadget(s, character.getCharacterId(), GadgetEnum::MOLEDIE)) {
+        if (character.hasProperty(PropertyEnum::TRADECRAFT)
+            && !character.hasGadget(GadgetEnum::MOLEDIE)) {
             result = probabilityTest(chance);
         }
 

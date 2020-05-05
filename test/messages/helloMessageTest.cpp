@@ -20,12 +20,13 @@ TEST(messages, helloMessage){
 
     nlohmann::json json = m;
     std::string serialized = json.dump();
-    std::string expected = R"({"creationDate":")" + m.getCreationDate() +
-            R"(","name":"name123","playerId":"00000000-0000-0000-0000-000000000000","role":"PLAYER","type":"HELLO"})";
+    std::string expected =
+            R"({"clientId":"00000000-0000-0000-0000-000000000000","creationDate":")" + m.getCreationDate() +
+            R"(","name":"name123","role":"PLAYER","type":"HELLO"})";
     EXPECT_EQ(serialized, expected);
 
 
-    auto input = R"({"creationDate":"","name":"name123","playerId":"00000000-0000-0000-0000-000000000000","role":"PLAYER","type":"HELLO"})"_json;
+    auto input = R"({"creationDate":"","name":"name123","clientId":"00000000-0000-0000-0000-000000000000","role":"PLAYER","type":"HELLO"})"_json;
     auto decodedMessage = input.get<Hello>();
 
     EXPECT_EQ(decodedMessage.getName(), m.getName());

@@ -10,10 +10,10 @@ namespace spy::network::messages {
 
     RequestItemChoice::RequestItemChoice() : MessageContainer{MessageTypeEnum::REQUEST_ITEM_CHOICE, {}} {}
 
-    RequestItemChoice::RequestItemChoice(const util::UUID &playerId,
+    RequestItemChoice::RequestItemChoice(const util::UUID &clientId,
                                          std::vector<util::UUID> offeredCharacterIds,
                                          std::vector<spy::gadget::GadgetEnum> offeredGadgets) :
-            MessageContainer{MessageTypeEnum::REQUEST_ITEM_CHOICE, playerId},
+            MessageContainer{MessageTypeEnum::REQUEST_ITEM_CHOICE, clientId},
             offeredCharacterIds{std::move(offeredCharacterIds)},
             offeredGadgets{std::move(offeredGadgets)} {}
 

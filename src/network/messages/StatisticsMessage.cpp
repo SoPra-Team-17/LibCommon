@@ -10,10 +10,10 @@ namespace spy::network::messages {
 
     StatisticsMessage::StatisticsMessage() : MessageContainer{MessageTypeEnum::STATISTICS, {}} {}
 
-    StatisticsMessage::StatisticsMessage(const util::UUID &playerId, spy::statistics::Statistics statistics,
+    StatisticsMessage::StatisticsMessage(const util::UUID &clientId, spy::statistics::Statistics statistics,
                                          const util::UUID &winner,
                                          const spy::statistics::VictoryEnum &reason, bool hasReplay) :
-            MessageContainer{MessageTypeEnum::STATISTICS, playerId},
+            MessageContainer{MessageTypeEnum::STATISTICS, clientId},
             winner(winner),
             reason(reason),
             statistics(std::move(statistics)),

@@ -17,7 +17,7 @@ namespace spy::network::messages {
         public:
             HelloReply();
 
-            HelloReply(const util::UUID &playerId, const util::UUID &sessionId,
+            HelloReply(const util::UUID &clientId, const util::UUID &sessionId,
                        const scenario::Scenario &level, const MatchConfig &settings,
                        std::vector<character::CharacterInformation> characterSettings);
 

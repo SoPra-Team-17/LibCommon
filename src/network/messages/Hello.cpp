@@ -9,8 +9,8 @@ namespace spy::network::messages {
 
     Hello::Hello() : MessageContainer(MessageTypeEnum::HELLO, {}) {}
 
-    Hello::Hello(util::UUID playerId, std::string name, RoleEnum role) : MessageContainer(
-            MessageTypeEnum::HELLO, playerId), name(std::move(name)), role(role) {}
+    Hello::Hello(util::UUID clientId, std::string name, RoleEnum role) : MessageContainer(
+            MessageTypeEnum::HELLO, clientId), name(std::move(name)), role(role) {}
 
     const std::string &Hello::getName() const {
         return name;

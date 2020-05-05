@@ -18,7 +18,7 @@ namespace spy::gameplay {
         }
         winningChance = targetField.isInverted() ? (1-winningChance) : winningChance;
 
-        bool won = util::GameLogicUtils::probabilityTestWithCharacter(s, *character, winningChance);
+        bool won = util::GameLogicUtils::probabilityTestWithCharacter(*character, winningChance);
         if (won) {
             character->setChips(character->getChips() + op.getStake());
             targetField.setChipAmount(targetField.getChipAmount().value() - op.getStake());

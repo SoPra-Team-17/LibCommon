@@ -13,7 +13,7 @@ namespace spy::network::messages {
         public:
             Error();
 
-            Error(util::UUID playerId, ErrorTypeEnum reason);
+            Error(util::UUID clientId, ErrorTypeEnum reason);
 
             [[nodiscard]] ErrorTypeEnum getReason() const;
 

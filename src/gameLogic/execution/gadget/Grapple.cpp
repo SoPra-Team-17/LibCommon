@@ -9,7 +9,7 @@ namespace spy::gameplay {
 
     bool GadgetExecutor::executeGrapple(State &s, const GadgetAction &action, const MatchConfig &config) {
         auto character = s.getCharacters().getByUUID(action.getCharacterId());
-        bool successfullHit = util::GameLogicUtils::probabilityTestWithCharacter(s, *character,
+        bool successfullHit = util::GameLogicUtils::probabilityTestWithCharacter(*character,
                                                                                  config.getGrappleHitChance());
         if (successfullHit) {
             auto targetField = s.getMap().getField(action.getTarget());

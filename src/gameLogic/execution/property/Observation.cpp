@@ -14,11 +14,10 @@ namespace spy::gameplay {
         auto sourceChar = s.getCharacters().findByUUID(a.getCharacterId());
         auto targetChar = util::GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
 
-        bool success = util::GameLogicUtils::probabilityTestWithCharacter(s, *sourceChar,
+        bool success = util::GameLogicUtils::probabilityTestWithCharacter(*sourceChar,
                                                                           config.getObservationSuccessChance());
 
-        bool targetHasPocketLitter = util::GameLogicUtils::characterHasGadget(s, targetChar->getCharacterId(),
-                                                                              gadget::GadgetEnum::POCKET_LITTER);
+        bool targetHasPocketLitter = targetChar->hasGadget(gadget::GadgetEnum::POCKET_LITTER);
 
         return success
                && sourceChar->getFaction() != targetChar->getFaction()

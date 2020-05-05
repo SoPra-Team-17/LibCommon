@@ -14,8 +14,9 @@ TEST_F(GadgetActionTests, Cocktail_Validate) {
     using spy::gadget::GadgetEnum;
     using spy::util::Point;
     using spy::gameplay::GadgetAction;
+    using spy::gadget::Gadget;
 
-    spy::gadget::Gadget cocktail{spy::gadget::GadgetEnum::COCKTAIL};
+    auto cocktail = std::make_shared<Gadget>(spy::gadget::GadgetEnum::COCKTAIL);
 
     state.getCharacters().getByUUID(uuid1)->setCoordinates({4, 3});
     state.getCharacters().getByUUID(uuid2)->setCoordinates({5, 3});

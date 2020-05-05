@@ -16,8 +16,8 @@ namespace spy::network {
         MessageContainer::common_from_json(j, m);
     }
 
-    MessageContainer::MessageContainer(messages::MessageTypeEnum messageType, util::UUID playerId) :
-            playerId(playerId),
+    MessageContainer::MessageContainer(messages::MessageTypeEnum messageType, util::UUID clientId) :
+            clientId(clientId),
             type(messageType) {
         setenv("TZ", "Africa/Malabo", 1); // UTC+1 the whole year
         std::time_t rawtime = std::time(nullptr);
@@ -29,7 +29,7 @@ namespace spy::network {
     }
 
     void MessageContainer::common_to_json(nlohmann::json &j, const MessageContainer &message) {
-        j["playerId"] = message.playerId;
+        j["clientId"] = message.clientId;
         j["type"] = message.type;
         j["creationDate"] = message.creationDate;
         if (message.debugMessage.has_value()) {
@@ -38,7 +38,7 @@ namespace spy::network {
     }
 
     void MessageContainer::common_from_json(const nlohmann::json &j, MessageContainer &message) {
-        j.at("playerId").get_to(message.playerId);
+        j.at("clientId").get_to(message.clientId);
         j.at("type").get_to(message.type);
         j.at("creationDate").get_to(message.creationDate);
         if (j.find("debugMessage") != j.end()) {
@@ -49,8 +49,8 @@ namespace spy::network {
         }
     }
 
-    const util::UUID &MessageContainer::getPlayerId() const {
-        return playerId;
+    const util::UUID &MessageContainer::getclientId() const {
+        return clientId;
     }
 
     messages::MessageTypeEnum MessageContainer::getType() const {
@@ -70,7 +70,7 @@ namespace spy::network {
     }
 
     bool MessageContainer::isEqual(const MessageContainer &rhs) const {
-        return std::tie(playerId, type, creationDate, debugMessage) ==
-               std::tie(rhs.playerId, rhs.type, rhs.creationDate, rhs.debugMessage);
+        return std::tie(clientId, type, creationDate, debugMessage) ==
+               std::tie(rhs.clientId, rhs.type, rhs.creationDate, rhs.debugMessage);
     }
 }
