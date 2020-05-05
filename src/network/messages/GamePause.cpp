@@ -8,8 +8,8 @@ namespace spy::network::messages {
 
     GamePause::GamePause() : MessageContainer{MessageTypeEnum::GAME_PAUSE, {}} {}
 
-    GamePause::GamePause(util::UUID playerId, bool pause, bool serverEnforced) :
-            MessageContainer{MessageTypeEnum::GAME_PAUSE, playerId},
+    GamePause::GamePause(util::UUID clientId, bool pause, bool serverEnforced) :
+            MessageContainer{MessageTypeEnum::GAME_PAUSE, clientId},
             gamePause{pause},
             serverEnforced{serverEnforced} {}
 

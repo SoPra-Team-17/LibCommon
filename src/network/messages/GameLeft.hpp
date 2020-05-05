@@ -13,7 +13,7 @@ namespace spy::network::messages {
         public:
             GameLeft();
 
-            explicit GameLeft(util::UUID playerId, util::UUID leftUserId);
+            explicit GameLeft(util::UUID clientId, util::UUID leftUserId);
 
             friend void to_json(nlohmann::json &j, const GameLeft &g);
 

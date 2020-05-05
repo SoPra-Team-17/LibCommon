@@ -14,7 +14,7 @@ namespace spy::network::messages {
         public:
             RequestReplay();
 
-            explicit RequestReplay(const util::UUID &playerId);
+            explicit RequestReplay(const util::UUID &clientId);
 
             friend void to_json(nlohmann::json &j, const RequestReplay &r);
 

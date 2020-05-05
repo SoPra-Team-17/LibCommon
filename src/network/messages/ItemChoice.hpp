@@ -22,7 +22,7 @@ namespace spy::network::messages {
             /**
              * @param choice Character or Gadget
              */
-            ItemChoice(const util::UUID &playerId, std::variant<util::UUID, gadget::GadgetEnum> choice);
+            ItemChoice(const util::UUID &clientId, std::variant<util::UUID, gadget::GadgetEnum> choice);
 
             [[nodiscard]] const std::variant<util::UUID, gadget::GadgetEnum> &getChoice() const;
 

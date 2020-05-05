@@ -8,8 +8,8 @@ namespace spy::network::messages {
 
     RequestGamePause::RequestGamePause() : MessageContainer{MessageTypeEnum::REQUEST_GAME_PAUSE, {}} {}
 
-    RequestGamePause::RequestGamePause(const util::UUID &playerId, bool gamePause) : MessageContainer{
-            MessageTypeEnum::REQUEST_GAME_PAUSE, playerId}, gamePause(gamePause) {}
+    RequestGamePause::RequestGamePause(const util::UUID &clientId, bool gamePause) : MessageContainer{
+            MessageTypeEnum::REQUEST_GAME_PAUSE, clientId}, gamePause(gamePause) {}
 
 
     void to_json(nlohmann::json &j, const RequestGamePause &r) {

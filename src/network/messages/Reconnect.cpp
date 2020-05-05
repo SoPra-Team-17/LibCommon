@@ -9,8 +9,8 @@ namespace spy::network::messages {
 
     Reconnect::Reconnect() : MessageContainer{MessageTypeEnum::RECONNECT, {}} {}
 
-    Reconnect::Reconnect(const util::UUID &playerId, const util::UUID &sessionId) : MessageContainer{
-            MessageTypeEnum::RECONNECT, playerId}, sessionId(sessionId) {}
+    Reconnect::Reconnect(const util::UUID &clientId, const util::UUID &sessionId) : MessageContainer{
+            MessageTypeEnum::RECONNECT, clientId}, sessionId(sessionId) {}
 
     void to_json(nlohmann::json &j, const Reconnect &r) {
         MessageContainer::common_to_json(j, r);

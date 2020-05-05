@@ -11,8 +11,8 @@ namespace spy::network::messages {
 
     Error::Error() : MessageContainer{MessageTypeEnum::ERROR, {}} {}
 
-    Error::Error(util::UUID playerId, ErrorTypeEnum reason) :
-            MessageContainer{MessageTypeEnum::ERROR, playerId},
+    Error::Error(util::UUID clientId, ErrorTypeEnum reason) :
+            MessageContainer{MessageTypeEnum::ERROR, clientId},
             reason{reason} {}
 
 

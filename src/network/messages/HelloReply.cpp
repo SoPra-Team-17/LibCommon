@@ -10,10 +10,10 @@ namespace spy::network::messages {
 
     HelloReply::HelloReply() : MessageContainer{MessageTypeEnum::HELLO_REPLY, {}} {}
 
-    HelloReply::HelloReply(const util::UUID &playerId, const util::UUID &sessionId,
+    HelloReply::HelloReply(const util::UUID &clientId, const util::UUID &sessionId,
                            const scenario::Scenario &level, const MatchConfig &settings,
                            std::vector<character::CharacterInformation> characterSettings) :
-            MessageContainer{MessageTypeEnum::HELLO_REPLY, playerId},
+            MessageContainer{MessageTypeEnum::HELLO_REPLY, clientId},
             sessionId{sessionId},
             level{level},
             settings{settings},

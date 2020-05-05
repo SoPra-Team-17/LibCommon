@@ -8,7 +8,7 @@ namespace spy::network::messages {
 
     Replay::Replay() : MessageContainer{MessageTypeEnum::REPLAY, {}} {}
 
-    Replay::Replay(const util::UUID &playerId,
+    Replay::Replay(const util::UUID &clientId,
                    const util::UUID &sessionId,
                    std::string gameStart,
                    std::string gameEnd,
@@ -22,7 +22,7 @@ namespace spy::network::messages {
                    spy::character::CharacterDescription characterSettings,
                    std::vector<MessageContainer> messages)
             :
-            MessageContainer{MessageTypeEnum::REPLAY, playerId},
+            MessageContainer{MessageTypeEnum::REPLAY, clientId},
             sessionId(sessionId),
             gameStart(std::move(gameStart)),
             gameEnd(std::move(gameEnd)),
