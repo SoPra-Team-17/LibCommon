@@ -15,6 +15,9 @@ namespace spy::character {
             : CharacterDescription(name, description, gender, features),
               characterId(characterId) {}
 
+    CharacterInformation::CharacterInformation(CharacterDescription description, const util::UUID &characterId) :
+            CharacterDescription(std::move(description)), characterId(characterId) {}
+
     const util::UUID &CharacterInformation::getCharacterId() const {
         return characterId;
     }
