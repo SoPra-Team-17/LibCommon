@@ -9,6 +9,7 @@
 #define LIBCOMMON_ROUND_UTILS_HPP
 
 #include "datatypes/gameplay/State.hpp"
+#include "datatypes/matchconfig/MatchConfig.hpp"
 
 namespace spy::util {
     class RoundUtils {
@@ -39,7 +40,7 @@ namespace spy::util {
              * if necessary.
              * @param s Current state that should be modified.
              */
-            static void checkGadgetFallouts(spy::gameplay::State &s);
+            static void checkGadgetFallouts(spy::gameplay::State &s, const MatchConfig &config);
 
             /**
              * Resets the updated flag for all fields of the map.

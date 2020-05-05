@@ -9,6 +9,9 @@
 
 #include "RoundUtils.hpp"
 #include "datatypes/gadgets/Cocktail.hpp"
+#include "datatypes/gadgets/WiretapWithEarplugs.hpp"
+#include "util/GameLogicUtils.hpp"
+
 
 constexpr unsigned int FOG_ROUND_LIMIT = 3;
 
@@ -19,7 +22,7 @@ namespace spy::util {
                 auto field = s.getMap().getField(x, y);
                 if (field.getFieldState() == spy::scenario::FieldStateEnum::BAR_TABLE
                     && !field.getGadget().has_value()) {
-                    field.setGadget(spy::gadget::Cocktail());
+                    field.setGadget(std::make_shared<spy::gadget::Cocktail>());
                 }
             }
         }
@@ -52,8 +55,18 @@ namespace spy::util {
         }
     }
 
-    void RoundUtils::checkGadgetFallouts(gameplay::State &s) {
-        //TODO: implement for wiretap with earplugs
+    void RoundUtils::checkGadgetFallouts(gameplay::State &s, const MatchConfig &config) {
+        for (auto &c : s.getCharacters()) {
+            auto gadget = c.getGadget(gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS);
+            if (gadget.has_value()) {
+                auto wiretap = std::static_pointer_cast<spy::gadget::WiretapWithEarplugs>(gadget.value());
+
+                if (wiretap->isWorking() && GameLogicUtils::probabilityTest(config.getWiretapWithEarplugsFailChance())) {
+                    wiretap->setWorking(false);
+                    wiretap->setActiveOn(std::nullopt);
+                }
+            }
+        }
     }
 
     void RoundUtils::resetUpdatedMarker(gameplay::State &s) {
