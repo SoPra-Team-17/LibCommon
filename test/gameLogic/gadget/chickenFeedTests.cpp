@@ -14,8 +14,9 @@ TEST_F(GadgetActionTests, ChickenFeed_Validate) {
     using spy::gadget::GadgetEnum;
     using spy::util::Point;
     using spy::gameplay::GadgetAction;
+    using spy::gadget::Gadget;
 
-    spy::gadget::Gadget chickenFeed{spy::gadget::GadgetEnum::CHICKEN_FEED};
+    auto chickenFeed = std::make_shared<Gadget>(spy::gadget::GadgetEnum::CHICKEN_FEED);
 
     state.getCharacters().getByUUID(uuid1)->setCoordinates({4, 3});
     state.getCharacters().getByUUID(uuid2)->setCoordinates({5, 3});

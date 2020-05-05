@@ -15,6 +15,16 @@
 #include "gameLogic/execution/ActionExecutor.hpp"
 
 class MovementOperation : public ::testing::Test {
+    using GadgetPtr = std::shared_ptr<spy::gadget::Gadget>;
+
+    public:
+        MovementOperation() {
+            for (auto it = state.getCharacters().begin(); it != state.getCharacters().end(); it++) {
+                it->setActionPoints(1);
+                it->setMovePoints(1);
+            }
+        }
+
     protected:
         spy::util::UUID uuid1 = spy::util::UUID::generate();
         spy::util::UUID uuid2 = spy::util::UUID::generate();
@@ -28,11 +38,11 @@ class MovementOperation : public ::testing::Test {
         spy::character::Character c4{uuid4, "dummy"};
         spy::character::Character c5{uuid5, "dummy"};
 
-        spy::gadget::Gadget g1{spy::gadget::GadgetEnum::BOWLER_BLADE};
-        spy::gadget::Gadget g2{spy::gadget::GadgetEnum::CHICKEN_FEED};
-        spy::gadget::Gadget g3{spy::gadget::GadgetEnum::FOG_TIN};
-        spy::gadget::Gadget g4{spy::gadget::GadgetEnum::GAS_GLOSS};
-        spy::gadget::Gadget g5{spy::gadget::GadgetEnum::DIAMOND_COLLAR};
+        GadgetPtr g1 = std::make_shared<spy::gadget::Gadget>(spy::gadget::GadgetEnum::BOWLER_BLADE);
+        GadgetPtr g2 = std::make_shared<spy::gadget::Gadget>(spy::gadget::GadgetEnum::CHICKEN_FEED);
+        GadgetPtr g3 = std::make_shared<spy::gadget::Gadget>(spy::gadget::GadgetEnum::FOG_TIN);
+        GadgetPtr g4 = std::make_shared<spy::gadget::Gadget>(spy::gadget::GadgetEnum::GAS_GLOSS);
+        GadgetPtr g5 = std::make_shared<spy::gadget::Gadget>(spy::gadget::GadgetEnum::DIAMOND_COLLAR);
 
         nlohmann::json scenarioInput = R"({ "scenario": [
             ["WALL", "WALL",      "WALL", "WALL",           "WALL",     "WALL", "WALL"],
@@ -230,11 +240,11 @@ TEST_F(MovementOperation, MovementGadget) {
 
     ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{1, 2}));
     ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getGadgets().size(), 0);
-    ASSERT_EQ(state.getMap().getField({2, 2}).getGadget()->getType(), spy::gadget::GadgetEnum::BOWLER_BLADE);
-    ASSERT_EQ(state.getMap().getField({3, 2}).getGadget()->getType(), spy::gadget::GadgetEnum::CHICKEN_FEED);
-    ASSERT_EQ(state.getMap().getField({4, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::FOG_TIN);
-    ASSERT_EQ(state.getMap().getField({4, 4}).getGadget()->getType(), spy::gadget::GadgetEnum::GAS_GLOSS);
-    ASSERT_EQ(state.getMap().getField({5, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::DIAMOND_COLLAR);
+    ASSERT_EQ(state.getMap().getField({2, 2}).getGadget().value()->getType(), spy::gadget::GadgetEnum::BOWLER_BLADE);
+    ASSERT_EQ(state.getMap().getField({3, 2}).getGadget().value()->getType(), spy::gadget::GadgetEnum::CHICKEN_FEED);
+    ASSERT_EQ(state.getMap().getField({4, 3}).getGadget().value()->getType(), spy::gadget::GadgetEnum::FOG_TIN);
+    ASSERT_EQ(state.getMap().getField({4, 4}).getGadget().value()->getType(), spy::gadget::GadgetEnum::GAS_GLOSS);
+    ASSERT_EQ(state.getMap().getField({5, 3}).getGadget().value()->getType(), spy::gadget::GadgetEnum::DIAMOND_COLLAR);
 
     ASSERT_TRUE(ActionExecutor::execute(state, move1, config));
     ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{2, 2}));
@@ -244,10 +254,10 @@ TEST_F(MovementOperation, MovementGadget) {
     ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
                         state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g1),
               state.getCharacters().getByUUID(uuid1)->getGadgets().end());
-    ASSERT_EQ(state.getMap().getField({3, 2}).getGadget()->getType(), spy::gadget::GadgetEnum::CHICKEN_FEED);
-    ASSERT_EQ(state.getMap().getField({4, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::FOG_TIN);
-    ASSERT_EQ(state.getMap().getField({4, 4}).getGadget()->getType(), spy::gadget::GadgetEnum::GAS_GLOSS);
-    ASSERT_EQ(state.getMap().getField({5, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::DIAMOND_COLLAR);
+    ASSERT_EQ(state.getMap().getField({3, 2}).getGadget().value()->getType(), spy::gadget::GadgetEnum::CHICKEN_FEED);
+    ASSERT_EQ(state.getMap().getField({4, 3}).getGadget().value()->getType(), spy::gadget::GadgetEnum::FOG_TIN);
+    ASSERT_EQ(state.getMap().getField({4, 4}).getGadget().value()->getType(), spy::gadget::GadgetEnum::GAS_GLOSS);
+    ASSERT_EQ(state.getMap().getField({5, 3}).getGadget().value()->getType(), spy::gadget::GadgetEnum::DIAMOND_COLLAR);
 
     ASSERT_TRUE(ActionExecutor::execute(state, move2, config));
     ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{3, 2}));
@@ -260,9 +270,9 @@ TEST_F(MovementOperation, MovementGadget) {
     ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
                         state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g2),
               state.getCharacters().getByUUID(uuid1)->getGadgets().end());
-    ASSERT_EQ(state.getMap().getField({4, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::FOG_TIN);
-    ASSERT_EQ(state.getMap().getField({4, 4}).getGadget()->getType(), spy::gadget::GadgetEnum::GAS_GLOSS);
-    ASSERT_EQ(state.getMap().getField({5, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::DIAMOND_COLLAR);
+    ASSERT_EQ(state.getMap().getField({4, 3}).getGadget().value()->getType(), spy::gadget::GadgetEnum::FOG_TIN);
+    ASSERT_EQ(state.getMap().getField({4, 4}).getGadget().value()->getType(), spy::gadget::GadgetEnum::GAS_GLOSS);
+    ASSERT_EQ(state.getMap().getField({5, 3}).getGadget().value()->getType(), spy::gadget::GadgetEnum::DIAMOND_COLLAR);
 
     ASSERT_TRUE(ActionExecutor::execute(state, move3, config));
     ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{4, 3}));
@@ -279,8 +289,8 @@ TEST_F(MovementOperation, MovementGadget) {
     ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
                         state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g3),
               state.getCharacters().getByUUID(uuid1)->getGadgets().end());
-    ASSERT_EQ(state.getMap().getField({4, 4}).getGadget()->getType(), spy::gadget::GadgetEnum::GAS_GLOSS);
-    ASSERT_EQ(state.getMap().getField({5, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::DIAMOND_COLLAR);
+    ASSERT_EQ(state.getMap().getField({4, 4}).getGadget().value()->getType(), spy::gadget::GadgetEnum::GAS_GLOSS);
+    ASSERT_EQ(state.getMap().getField({5, 3}).getGadget().value()->getType(), spy::gadget::GadgetEnum::DIAMOND_COLLAR);
 
     ASSERT_TRUE(ActionExecutor::execute(state, move4, config));
     ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (spy::util::Point{4, 4}));
@@ -301,7 +311,7 @@ TEST_F(MovementOperation, MovementGadget) {
     ASSERT_NE(std::find(state.getCharacters().getByUUID(uuid1)->getGadgets().begin(),
                         state.getCharacters().getByUUID(uuid1)->getGadgets().end(), g4),
               state.getCharacters().getByUUID(uuid1)->getGadgets().end());
-    ASSERT_EQ(state.getMap().getField({5, 3}).getGadget()->getType(), spy::gadget::GadgetEnum::DIAMOND_COLLAR);
+    ASSERT_EQ(state.getMap().getField({5, 3}).getGadget().value()->getType(), spy::gadget::GadgetEnum::DIAMOND_COLLAR);
 
     ASSERT_TRUE(ActionExecutor::execute(state, move5, config));
     ASSERT_FALSE(state.getMap().getField({2, 2}).getGadget().has_value());

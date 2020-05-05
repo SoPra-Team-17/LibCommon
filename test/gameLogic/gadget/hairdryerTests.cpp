@@ -16,8 +16,9 @@ TEST_F(GadgetActionTests, Hairdryer_Validate) {
     using spy::character::PropertyEnum;
     using spy::util::Point;
     using spy::gameplay::GadgetAction;
+    using spy::gadget::Gadget;
 
-    spy::gadget::Gadget hairdryer{spy::gadget::GadgetEnum::HAIRDRYER};
+    auto hairdryer = std::make_shared<Gadget>(GadgetEnum::HAIRDRYER);
 
     state.getCharacters().getByUUID(uuid1)->setCoordinates({4, 3});
     state.getCharacters().getByUUID(uuid2)->setCoordinates({4, 2});

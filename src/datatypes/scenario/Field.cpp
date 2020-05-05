@@ -6,6 +6,8 @@
  */
 
 #include "Field.hpp"
+#include "util/OptionalSerialization.hpp"
+#include "util/GadgetSerialization.hpp"
 
 namespace spy::scenario {
 
@@ -54,7 +56,7 @@ namespace spy::scenario {
         Field::fogCounter = 0;
     }
 
-    void Field::setGadget(std::optional<Gadget> g) {
+    void Field::setGadget(std::optional<std::shared_ptr<Gadget>> g) {
         Field::gadget = g;
 
         Field::updated = true;
@@ -118,7 +120,7 @@ namespace spy::scenario {
         return fogCounter;
     }
 
-    const std::optional<spy::gadget::Gadget> &Field::getGadget() const {
+    const std::optional<std::shared_ptr<spy::gadget::Gadget>> &Field::getGadget() const {
         return gadget;
     }
 

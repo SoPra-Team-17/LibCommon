@@ -315,7 +315,7 @@ TEST(Scenario, FieldConstruction) {
     EXPECT_NO_THROW(f.setDestroyed(false));
     EXPECT_NO_THROW(f.setInverted(false));
     EXPECT_NO_THROW(f.setChipAmount(0));
-    EXPECT_NO_THROW(f.setGadget(spy::gadget::Gadget()));
+    EXPECT_NO_THROW(f.setGadget(std::make_shared<spy::gadget::Gadget>()));
     EXPECT_ANY_THROW(f.setSafeIndex(0));
     EXPECT_NO_THROW(f.setFoggy(false));
     EXPECT_NO_THROW(f.setUpdated(true));

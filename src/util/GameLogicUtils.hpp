@@ -11,6 +11,8 @@
 #include <random>
 #include <unordered_set>
 #include "datatypes/gameplay/State.hpp"
+#include "matchconfig/MatchConfig.hpp"
+#include "gameplay/CharacterOperation.hpp"
 
 namespace spy::util {
     class GameLogicUtils {
@@ -24,15 +26,6 @@ namespace spy::util {
              * @return      true if there is a cocktail, false if there isn't
              */
             static bool hasCocktail(const spy::gameplay::State &s, const Point &pt);
-
-            /**
-             * @brief           checks if a character holds a certain object
-             * @param s         current state
-             * @param id        character id, who is checked
-             * @param type      gadget for which is checked
-             * @return          true if character has gadget
-             */
-            static bool characterHasGadget(const spy::gameplay::State &s, const UUID &id, spy::gadget::GadgetEnum type);
 
             /**
              * @brief           Checks if a person is at the specified location
@@ -226,6 +219,25 @@ namespace spy::util {
              * @return true, if test succeeded
              */
             static bool probabilityTest(double chance);
+
+
+            /**
+             * @brief tests for success given a character
+             * @param state current state
+             * @param char character with properties
+             * @param chance probability tiven in Matchconfig (double values between 0 and 1)
+             * @return true, if test suceeded
+             */
+            static bool
+            probabilityTestWithCharacter(const spy::character::Character &character, double chance);
+
+            /**
+             * @brief checks if the babysitter property can be applied
+             * @param state current state
+             * @return true, if babysitter was applied
+             */
+            static bool checkBabySitter(const gameplay::State &s, const gameplay::CharacterOperation &op,
+                                        const spy::MatchConfig &config);
     };
 }
 

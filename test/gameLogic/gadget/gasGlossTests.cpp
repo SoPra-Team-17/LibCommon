@@ -14,8 +14,9 @@ TEST_F(GadgetActionTests, GasGloss_Validate) {
     using spy::gadget::GadgetEnum;
     using spy::util::Point;
     using spy::gameplay::GadgetAction;
+    using spy::gadget::Gadget;
 
-    spy::gadget::Gadget gloss{spy::gadget::GadgetEnum::GAS_GLOSS};
+    auto gloss = std::make_shared<Gadget>(GadgetEnum::GAS_GLOSS);
 
     state.getCharacters().getByUUID(uuid1)->setCoordinates({4, 3});
     state.getCharacters().getByUUID(uuid2)->setCoordinates({5, 3});

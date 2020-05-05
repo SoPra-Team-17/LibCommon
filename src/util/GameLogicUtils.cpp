@@ -9,6 +9,7 @@
 #include "gameplay/Movement.hpp"
 #include "scenario/FieldMap.hpp"
 
+
 namespace spy::util {
     bool GameLogicUtils::hasCocktail(const spy::gameplay::State &s, const Point &pt) {
         using spy::gadget::GadgetEnum;
@@ -17,7 +18,7 @@ namespace spy::util {
         // check if field contains gadget
         auto gadget = s.getMap().getField(pt).getGadget();
         if (gadget.has_value()) {
-            targetHasGadget = (gadget->getType() == GadgetEnum::COCKTAIL);
+            targetHasGadget = (gadget.value()->getType() == GadgetEnum::COCKTAIL);
         }
 
         if (!targetHasGadget) {
@@ -33,22 +34,12 @@ namespace spy::util {
 
             // check if person has cocktail
             auto cocktail = std::find_if(person->getGadgets().begin(), person->getGadgets().end(),
-                                         [](const gadget::Gadget &g) {
-                                             return g.getType() == GadgetEnum::COCKTAIL;
+                                         [](const std::shared_ptr<gadget::Gadget> &g) {
+                                             return g->getType() == GadgetEnum::COCKTAIL;
                                          });
             targetHasGadget = (cocktail != person->getGadgets().end());
         }
         return targetHasGadget;
-    }
-
-    bool GameLogicUtils::characterHasGadget(const gameplay::State &s, const UUID &id, spy::gadget::GadgetEnum type) {
-        auto character = s.getCharacters().findByUUID(id);
-        auto gadgets = character->getGadgets();
-        auto gadget = std::find_if(gadgets.begin(), gadgets.end(), [type](const gadget::Gadget &g) {
-            return g.getType() == type;
-        });
-
-        return gadget != gadgets.end();
     }
 
     bool GameLogicUtils::isPersonOnField(const gameplay::State &s, const Point &target) {
@@ -136,6 +127,31 @@ namespace spy::util {
         });
     }
 
+    bool GameLogicUtils::checkBabySitter(const gameplay::State &s, const gameplay::CharacterOperation &op,
+                                         const spy::MatchConfig &config) {
+        bool babySitterSuccess = false;
+
+        auto result = getNearFieldsInDist(s, op.getTarget(), 1, [&s](const util::Point &p) {
+            return isPersonOnField(s, p);
+        });
+
+        auto character = s.getCharacters().findByUUID(op.getCharacterId());
+
+        if (result.second) {
+            for (const auto &p : result.first) {
+                auto person = GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), p);
+                if (person->hasProperty(character::PropertyEnum::BABYSITTER)
+                    && (character->getFaction() == person->getFaction())
+                    && probabilityTest(config.getBabysitterSuccessChance())) {
+                    babySitterSuccess = true;
+                    break;
+                }
+            }
+        }
+
+        return babySitterSuccess;
+    }
+
     const util::Point &GameLogicUtils::getRandomFreeSeatField(const gameplay::State &s) {
         auto points = getAllFieldsWith(s, [&s](util::Point currentPoint) {
             // check if field is seat with no character on it
@@ -148,4 +164,29 @@ namespace spy::util {
             throw std::domain_error("No seat field with no character on it was found in the whole map");
         }
     }
+
+    bool GameLogicUtils::probabilityTestWithCharacter(const character::Character &character,
+                                                      double chance) {
+        using spy::character::PropertyEnum;
+        using spy::gadget::GadgetEnum;
+
+        // character with clammy clothes only has half the chance of success
+        if (character.hasProperty(PropertyEnum::CLAMMY_CLOTHES)) {
+            chance /= 2;
+        }
+
+        bool result = probabilityTest(chance);
+        if (result) {
+            return true;
+        }
+
+        // if char has tradecraft and not mole die, prob. test is repeated
+        if (character.hasProperty(PropertyEnum::TRADECRAFT)
+            && !character.hasGadget(GadgetEnum::MOLEDIE)) {
+            result = probabilityTest(chance);
+        }
+
+        return result;
+    }
 }
+

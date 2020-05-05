@@ -11,7 +11,6 @@
 #include <optional>
 #include "datatypes/gadgets/Gadget.hpp"
 #include "FieldStateEnum.hpp"
-#include "util/OptionalSerialization.hpp"
 
 namespace spy::scenario {
     /**
@@ -43,7 +42,7 @@ namespace spy::scenario {
             void setFoggy(bool isFoggy);
             void incrementFogCounter();
             void resetFogCounter();
-            void setGadget(std::optional<Gadget> g);
+            void setGadget(std::optional<std::shared_ptr<Gadget>> g);
             void removeGadget();
 
             /**
@@ -81,7 +80,7 @@ namespace spy::scenario {
 
             [[nodiscard]] unsigned int getFogCounter() const;
 
-            [[nodiscard]] const std::optional<Gadget> &getGadget() const;
+            [[nodiscard]] const std::optional<std::shared_ptr<Gadget>> &getGadget() const;
 
             /**
              * Getter for the amount of chips of the roulette table.
@@ -105,7 +104,7 @@ namespace spy::scenario {
 
         private:
             FieldStateEnum state = FieldStateEnum::FREE;
-            std::optional<Gadget> gadget;
+            std::optional<std::shared_ptr<Gadget>> gadget;
             std::optional<bool> destroyed;
             std::optional<bool> inverted;
             std::optional<unsigned int> chipAmount;

@@ -16,10 +16,10 @@
 #include <util/UUID.hpp>
 #include <util/Point.hpp>
 #include <set>
-
+#include "FactionEnum.hpp"
 
 namespace spy::character {
-    constexpr unsigned int DEFAULT_HEALTH_POINTS = 100;
+    constexpr int DEFAULT_HEALTH_POINTS = 100;
     constexpr unsigned int DEFAULT_CHIPS = 10;
     constexpr unsigned int DEFAULT_ACTION_POINTS = 0;
     constexpr unsigned int DEFAULT_MOVE_POINTS = 0;
@@ -51,9 +51,9 @@ namespace spy::character {
 
             void setActionPoints(unsigned int ap);
 
-            [[nodiscard]] unsigned int getHealthPoints() const;
+            [[nodiscard]] int getHealthPoints() const;
 
-            void setHealthPoints(unsigned int hp);
+            void setHealthPoints(int hp);
 
             [[nodiscard]] unsigned int getIntelligencePoints() const;
 
@@ -69,11 +69,15 @@ namespace spy::character {
 
             void setProperties(const std::set<PropertyEnum> &properties);
 
-            [[nodiscard]] const std::vector<gadget::Gadget> &getGadgets() const;
+            [[nodiscard]] const std::vector<std::shared_ptr<gadget::Gadget>> &getGadgets() const;
 
-            void setGadgets(const std::vector<gadget::Gadget> &gadgets);
+            void setGadgets(const std::vector<std::shared_ptr<gadget::Gadget>> &gadgets);
 
-            void addGadget(gadget::Gadget gadget);
+            void setFaction(character::FactionEnum faction);
+
+            [[nodiscard]] character::FactionEnum getFaction() const;
+
+            void addGadget(std::shared_ptr<gadget::Gadget> gadget);
 
             void removeGadget(gadget::GadgetEnum gadget);
 
@@ -83,7 +87,19 @@ namespace spy::character {
 
             bool operator==(const Character &rhs) const;
 
-            bool hasProperty(PropertyEnum property) const;
+            void subActionPoint();
+
+            void subMovePoint();
+
+            void subHealthPoints(unsigned int);
+
+            void addHealthPoints(unsigned int);
+
+            [[nodiscard]] bool hasProperty(PropertyEnum property) const;
+
+            [[nodiscard]] bool hasGadget(spy::gadget::GadgetEnum type) const;
+
+            std::shared_ptr<spy::gadget::Gadget> getGadget(spy::gadget::GadgetEnum type);
 
         private:
             spy::util::UUID characterId;
@@ -91,11 +107,12 @@ namespace spy::character {
             std::optional<spy::util::Point> coordinates;
             unsigned int movePoints = DEFAULT_MOVE_POINTS;
             unsigned int actionPoints = DEFAULT_ACTION_POINTS;
-            unsigned int healthPoints = DEFAULT_HEALTH_POINTS;
+            int healthPoints = DEFAULT_HEALTH_POINTS;
             unsigned int intelligencePoints = DEFAULT_INTELLIGENCE_POINTS;
             unsigned int chips = DEFAULT_CHIPS;
             std::set<spy::character::PropertyEnum> properties;
-            std::vector<spy::gadget::Gadget> gadgets;
+            std::vector<std::shared_ptr<spy::gadget::Gadget>> gadgets;
+            character::FactionEnum faction = FactionEnum::INVALID;
     };
 }
 
