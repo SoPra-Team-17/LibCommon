@@ -17,7 +17,7 @@ namespace spy::gameplay {
         auto targetChar = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
 
         bool sameFaction = (sourceChar->getFaction() == targetChar->getFaction());
-        bool success = util::GameLogicUtils::probabilityTestWithCharacter(s, *sourceChar, config.getMirrorSwapChance());
+        bool success = util::GameLogicUtils::probabilityTestWithCharacter(*sourceChar, config.getMirrorSwapChance());
 
         if (success || sameFaction) {
             ret = true;

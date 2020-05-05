@@ -25,7 +25,7 @@ namespace spy::gameplay {
         }
 
         // target person is a player controlled character either your own or an enemy
-        person->addGadget(gadget::Gadget(gadget::GadgetEnum::NUGGET));
+        person->addGadget(std::make_shared<gadget::Gadget>(gadget::GadgetEnum::NUGGET));
         return false;
     }
 
