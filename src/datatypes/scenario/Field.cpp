@@ -14,28 +14,31 @@ namespace spy::scenario {
     Field::Field(FieldStateEnum fieldState) : state(fieldState) {}
 
     void Field::setFieldState(FieldStateEnum fieldState) {
-        Field::state = fieldState;
+        if (fieldState != Field::state) {
+            Field::updated = true;
+            Field::state = fieldState;
 
-        if (fieldState != FieldStateEnum::ROULETTE_TABLE) {
-            Field::inverted.reset();
-            Field::destroyed.reset();
-            Field::chipAmount.reset();
+            if (fieldState != FieldStateEnum::ROULETTE_TABLE) {
+                Field::inverted.reset();
+                Field::destroyed.reset();
+                Field::chipAmount.reset();
+            }
+
+            if (fieldState != FieldStateEnum::SAFE) {
+                Field::safeIndex.reset();
+            }
         }
-
-        if (fieldState != FieldStateEnum::SAFE) {
-            Field::safeIndex.reset();
-        }
-
-        Field::updated = true;
     }
 
     void Field::setDestroyed(std::optional<bool> isDestroyed) {
         if (Field::state != FieldStateEnum::ROULETTE_TABLE) {
             throw std::invalid_argument("Field has no roulette table!");
         }
-        Field::destroyed = isDestroyed;
 
-        Field::updated = true;
+        if (isDestroyed != Field::destroyed) {
+            Field::updated = true;
+            Field::destroyed = isDestroyed;
+        }
     }
 
     void Field::setUpdated(std::optional<bool> isUpdated) {
@@ -43,9 +46,10 @@ namespace spy::scenario {
     }
 
     void Field::setFoggy(bool isFoggy) {
-        Field::foggy = isFoggy;
-
-        Field::updated = true;
+        if (Field::foggy != isFoggy) {
+            Field::updated = true;
+            Field::foggy = isFoggy;
+        }
     }
 
     void Field::incrementFogCounter() {
@@ -57,15 +61,17 @@ namespace spy::scenario {
     }
 
     void Field::setGadget(std::optional<std::shared_ptr<Gadget>> g) {
-        Field::gadget = g;
-
-        Field::updated = true;
+        if (Field::gadget != g) {
+            Field::gadget = g;
+            Field::updated = true;
+        }
     }
 
     void Field::removeGadget() {
-        Field::gadget.reset();
-
-        Field::updated = true;
+        if (Field::gadget.has_value()) {
+            Field::gadget.reset();
+            Field::updated = true;
+        }
     }
 
 
@@ -73,27 +79,32 @@ namespace spy::scenario {
         if (Field::state != FieldStateEnum::ROULETTE_TABLE) {
             throw std::invalid_argument("Field has no roulette table!");
         }
-        Field::chipAmount = chips;
 
-        Field::updated = true;
+        if (Field::chipAmount != chips) {
+            Field::chipAmount = chips;
+            Field::updated = true;
+        }
     }
 
     void Field::setSafeIndex(std::optional<unsigned int> index) {
         if (Field::state != FieldStateEnum::SAFE) {
             throw std::invalid_argument("Field has no safe!");
         }
-        Field::safeIndex = index;
-
-        Field::updated = true;
+        if (Field::safeIndex != index) {
+            Field::safeIndex = index;
+            Field::updated = true;
+        }
     }
 
     void Field::setInverted(std::optional<bool> isInverted) {
         if (Field::state != FieldStateEnum::ROULETTE_TABLE) {
             throw std::invalid_argument("Field has no roulette table!");
         }
-        Field::inverted = isInverted;
 
-        Field::updated = true;
+        if (Field::inverted != isInverted) {
+            Field::inverted = isInverted;
+            Field::updated = true;
+        }
     }
 
     FieldStateEnum Field::getFieldState() const {

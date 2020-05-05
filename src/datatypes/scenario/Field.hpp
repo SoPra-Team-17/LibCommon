@@ -110,7 +110,7 @@ namespace spy::scenario {
             std::optional<unsigned int> chipAmount;
             std::optional<unsigned int> safeIndex;
             bool foggy = false;
-            unsigned int fogCounter = 0;
+            unsigned int fogCounter = 0;                        // only used for fog tin, will not be serialized
             std::optional<bool> updated;
     };
 }
