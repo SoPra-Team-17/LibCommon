@@ -11,10 +11,10 @@ namespace spy::network::messages {
     RequestEquipmentChoice::RequestEquipmentChoice() : MessageContainer{MessageTypeEnum::REQUEST_EQUIPMENT_CHOICE,
                                                                         {}} {}
 
-    RequestEquipmentChoice::RequestEquipmentChoice(const util::UUID &playerId,
+    RequestEquipmentChoice::RequestEquipmentChoice(const util::UUID &clientId,
                                                    std::vector<util::UUID> chosenCharacterIds,
                                                    std::vector<gadget::GadgetEnum> chosenGadgets) :
-            MessageContainer{MessageTypeEnum::REQUEST_EQUIPMENT_CHOICE, playerId},
+            MessageContainer{MessageTypeEnum::REQUEST_EQUIPMENT_CHOICE, clientId},
             chosenCharacterIds{std::move(chosenCharacterIds)},
             chosenGadgets{std::move(chosenGadgets)} {}
 

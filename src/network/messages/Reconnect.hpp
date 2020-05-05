@@ -12,7 +12,7 @@ namespace spy::network::messages {
         public:
             Reconnect();
 
-            Reconnect(const util::UUID &playerId, const util::UUID &sessionId);
+            Reconnect(const util::UUID &clientId, const util::UUID &sessionId);
 
             [[nodiscard]] const util::UUID &getSessionId() const;
 

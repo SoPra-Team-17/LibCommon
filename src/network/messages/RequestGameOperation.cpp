@@ -7,8 +7,8 @@
 namespace spy::network::messages {
     RequestGameOperation::RequestGameOperation() : MessageContainer{MessageTypeEnum::REQUEST_GAME_OPERATION, {}} {}
 
-    RequestGameOperation::RequestGameOperation(const util::UUID &playerId, const util::UUID &characterId)
-            : MessageContainer{MessageTypeEnum::REQUEST_GAME_OPERATION, playerId}, characterId(characterId) {}
+    RequestGameOperation::RequestGameOperation(const util::UUID &clientId, const util::UUID &characterId)
+            : MessageContainer{MessageTypeEnum::REQUEST_GAME_OPERATION, clientId}, characterId(characterId) {}
 
 
     void to_json(nlohmann::json &j, const RequestGameOperation &r) {

@@ -17,13 +17,15 @@ namespace spy::character {
     /**
      * @brief Representation of the information of characters being used in the network protocol.
      */
-    class CharacterInformation: public CharacterDescription {
+    class CharacterInformation : public CharacterDescription {
         public:
             CharacterInformation() = default;
 
             CharacterInformation(const util::UUID &characterId, const std::string &name, const std::string &description,
                                  GenderEnum gender,
                                  const std::vector<PropertyEnum> &features);
+
+            CharacterInformation(CharacterDescription description, const util::UUID &characterId);
 
             [[nodiscard]] const util::UUID &getCharacterId() const;
 

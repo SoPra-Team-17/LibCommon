@@ -15,9 +15,9 @@ namespace spy::network::messages {
         return information;
     }
 
-    MetaInformation::MetaInformation(const util::UUID &playerId,
+    MetaInformation::MetaInformation(const util::UUID &clientId,
                                      std::map<MetaInformationKey, Info> information) :
-            MessageContainer(MessageTypeEnum::META_INFORMATION, playerId),
+            MessageContainer(MessageTypeEnum::META_INFORMATION, clientId),
             information(std::move(information)) {}
 
     void to_json(nlohmann::json &j, const MetaInformation &m) {

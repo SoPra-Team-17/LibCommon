@@ -13,8 +13,8 @@ TEST(messages, ItemChoiceMessage_encode_character) {
     nlohmann::json j;
     EXPECT_NO_THROW(j = characterChoice);
     EXPECT_EQ(j.dump(),
-              R"({"chosenCharacter":"123e4567-e89b-12d3-a456-426655441111","chosenGadget":null,"creationDate":")" +
-              characterChoice.getCreationDate() + R"(","playerId":"123e4567-e89b-12d3-a456-426655440000","type":"ITEM_CHOICE"})");
+              R"({"chosenCharacter":"123e4567-e89b-12d3-a456-426655441111","chosenGadget":null,"clientId":"123e4567-e89b-12d3-a456-426655440000","creationDate":")" +
+              characterChoice.getCreationDate() + R"(","type":"ITEM_CHOICE"})");
 }
 
 TEST(messages, ItemChoiceMessage_encode_gadget) {
@@ -25,8 +25,8 @@ TEST(messages, ItemChoiceMessage_encode_gadget) {
     nlohmann::json j;
     EXPECT_NO_THROW(j = gadgetChoice);
     EXPECT_EQ(j.dump(),
-              R"({"chosenCharacter":null,"chosenGadget":"POISON_PILLS","creationDate":")" +
-              gadgetChoice.getCreationDate() + R"(","playerId":"123e4567-e89b-12d3-a456-426655440000","type":"ITEM_CHOICE"})");
+              R"({"chosenCharacter":null,"chosenGadget":"POISON_PILLS","clientId":"123e4567-e89b-12d3-a456-426655440000","creationDate":")" +
+              gadgetChoice.getCreationDate() + R"(","type":"ITEM_CHOICE"})");
 }
 
 TEST(messages, ItemChoiceMessage_decode_character) {
@@ -35,7 +35,7 @@ TEST(messages, ItemChoiceMessage_decode_character) {
             spy::util::UUID{"123e4567-e89b-12d3-a456-426655440000"},
             choice);
 
-    std::string input = R"({"chosenCharacter":"123e4567-e89b-12d3-a456-426655441111","chosenGadget":null,"creationDate":"","playerId":"123e4567-e89b-12d3-a456-426655440000","type":"ITEM_CHOICE"})";
+    std::string input = R"({"chosenCharacter":"123e4567-e89b-12d3-a456-426655441111","chosenGadget":null,"creationDate":"","clientId":"123e4567-e89b-12d3-a456-426655440000","type":"ITEM_CHOICE"})";
     auto parsedJson = nlohmann::json::parse(input);
 
     spy::network::messages::ItemChoice decodedChoice;
@@ -50,7 +50,7 @@ TEST(messages, ItemChoiceMessage_decode_gadget) {
             spy::util::UUID{"123e4567-e89b-12d3-a456-426655440000"},
             choice);
 
-    std::string input = R"({"chosenCharacter":null,"chosenGadget":"POISON_PILLS","creationDate":"","playerId":"123e4567-e89b-12d3-a456-426655440000","type":"ITEM_CHOICE"})";
+    std::string input = R"({"chosenCharacter":null,"chosenGadget":"POISON_PILLS","creationDate":"","clientId":"123e4567-e89b-12d3-a456-426655440000","type":"ITEM_CHOICE"})";
     auto parsedJson = nlohmann::json::parse(input);
 
     spy::network::messages::ItemChoice decodedChoice;

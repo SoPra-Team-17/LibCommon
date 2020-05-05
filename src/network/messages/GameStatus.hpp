@@ -15,7 +15,7 @@ namespace spy::network::messages {
         public:
             GameStatus();
 
-            GameStatus(const util::UUID &playerId, const util::UUID &activeCharacterId,
+            GameStatus(const util::UUID &clientId, const util::UUID &activeCharacterId,
                        std::vector<std::shared_ptr<spy::gameplay::BaseOperation>> operations,
                        const spy::gameplay::State &state,
                        bool isGameOver);

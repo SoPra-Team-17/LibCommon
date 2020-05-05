@@ -13,7 +13,7 @@ namespace spy::network::messages {
         public:
             Strike();
 
-            Strike(const util::UUID &playerId, const int strikeNr, const int strikeMax, std::string reason);
+            Strike(const util::UUID &clientId, const int strikeNr, const int strikeMax, std::string reason);
 
             [[nodiscard]]  int getStrikeNr() const;
 

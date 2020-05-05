@@ -15,8 +15,8 @@
 namespace spy::network::messages {
     GameOperation::GameOperation() : MessageContainer{MessageTypeEnum::GAME_OPERATION, {}} {}
 
-    GameOperation::GameOperation(spy::util::UUID playerId, std::shared_ptr<gameplay::BaseOperation> operation) :
-            MessageContainer{MessageTypeEnum::GAME_OPERATION, playerId},
+    GameOperation::GameOperation(spy::util::UUID clientId, std::shared_ptr<gameplay::BaseOperation> operation) :
+            MessageContainer{MessageTypeEnum::GAME_OPERATION, clientId},
             operation{std::move(operation)} {}
 
     void to_json(nlohmann::json &j, const GameOperation &g) {

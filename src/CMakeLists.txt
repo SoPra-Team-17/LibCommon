@@ -87,6 +87,8 @@ set(SOURCE
         gameLogic/execution/gadget/MoleDie.cpp
         gameLogic/execution/gadget/BowlerBlade.cpp
         gameLogic/execution/gadget/TechnicolorPrism.cpp
+        gameLogic/execution/gadget/MothballPouch.cpp
+        gameLogic/execution/gadget/FogTin.cpp
         gameLogic/execution/gadget/GasGloss.cpp
         gameLogic/execution/gadget/Grapple.cpp
         gameLogic/generation/ActionGenerator_Server.cpp
@@ -96,6 +98,7 @@ set(SOURCE
         gameLogic/execution/gadget/MirrorOfWilderness.cpp
         gameLogic/execution/gadget/Nugget.cpp
         gameLogic/execution/gadget/RocketPen.cpp
+        gameLogic/execution/gadget/FogTin.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp

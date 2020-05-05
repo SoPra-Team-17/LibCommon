@@ -99,7 +99,7 @@ namespace spy::character {
 
             [[nodiscard]] bool hasGadget(spy::gadget::GadgetEnum type) const;
 
-            std::shared_ptr<spy::gadget::Gadget> getGadget(spy::gadget::GadgetEnum type);
+            std::optional<std::shared_ptr<spy::gadget::Gadget>> getGadget(spy::gadget::GadgetEnum type);
 
         private:
             spy::util::UUID characterId;

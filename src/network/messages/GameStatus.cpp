@@ -11,11 +11,11 @@ namespace spy::network::messages {
 
     GameStatus::GameStatus() : MessageContainer{MessageTypeEnum::GAME_STATUS, {}} {}
 
-    GameStatus::GameStatus(const util::UUID &playerId, const util::UUID &activeCharacterId,
+    GameStatus::GameStatus(const util::UUID &clientId, const util::UUID &activeCharacterId,
                            std::vector<std::shared_ptr<spy::gameplay::BaseOperation>> operations,
                            const spy::gameplay::State &state,
                            bool isGameOver) :
-            MessageContainer{MessageTypeEnum::GAME_STATUS, playerId},
+            MessageContainer{MessageTypeEnum::GAME_STATUS, clientId},
             activeCharacterId(activeCharacterId),
             operations(std::move(operations)),
             state(state),
