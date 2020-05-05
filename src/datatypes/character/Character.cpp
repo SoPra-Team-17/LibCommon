@@ -101,7 +101,8 @@ namespace spy::character {
         if (it != gadgets.end()) {
             return *it;
         } else {
-            return std::nullopt;                        // character doesn't posses the requested gadget
+            // character doesn't posses the requested gadget
+            return std::nullopt;
         }
     }
 
