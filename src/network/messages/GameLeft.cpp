@@ -17,8 +17,8 @@ namespace spy::network::messages {
 
     GameLeft::GameLeft() : MessageContainer{MessageTypeEnum::GAME_LEFT, {}} {}
 
-    GameLeft::GameLeft(util::UUID playerId, util::UUID leftUserId) :
-            MessageContainer{MessageTypeEnum::GAME_LEFT, playerId},
+    GameLeft::GameLeft(util::UUID clientId, util::UUID leftUserId) :
+            MessageContainer{MessageTypeEnum::GAME_LEFT, clientId},
             leftUserId{leftUserId} {}
 
     bool GameLeft::operator==(const GameLeft &rhs) const {

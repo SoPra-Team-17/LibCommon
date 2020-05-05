@@ -10,8 +10,8 @@ namespace spy::network::messages {
 
     Strike::Strike() : MessageContainer{MessageTypeEnum::STRIKE, {}} {}
 
-    Strike::Strike(const util::UUID &playerId, const int strikeNr, const int strikeMax, std::string reason)
-            : MessageContainer{MessageTypeEnum::STRIKE, playerId}, strikeNr(strikeNr), strikeMax(strikeMax),
+    Strike::Strike(const util::UUID &clientId, const int strikeNr, const int strikeMax, std::string reason)
+            : MessageContainer{MessageTypeEnum::STRIKE, clientId}, strikeNr(strikeNr), strikeMax(strikeMax),
               reason(std::move(reason)) {}
 
     void to_json(nlohmann::json &j, const Strike &s) {

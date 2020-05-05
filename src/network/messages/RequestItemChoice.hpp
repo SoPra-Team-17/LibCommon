@@ -16,7 +16,7 @@ namespace spy::network::messages {
 
             RequestItemChoice();
 
-            explicit RequestItemChoice(const util::UUID &playerId,
+            explicit RequestItemChoice(const util::UUID &clientId,
                                        std::vector<util::UUID> offeredCharacterIds,
                                        std::vector<spy::gadget::GadgetEnum> offeredGadgets);
 

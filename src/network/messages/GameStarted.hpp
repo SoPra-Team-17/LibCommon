@@ -12,7 +12,8 @@ namespace spy::network::messages {
         public:
             GameStarted();
 
-            GameStarted(const util::UUID &playerId, const util::UUID &playerOneId, const util::UUID &playerTwoId, std::string playerOneName,
+            GameStarted(const util::UUID &clientId, const util::UUID &playerOneId, const util::UUID &playerTwoId,
+                        std::string playerOneName,
                         std::string playerTwoName, const util::UUID &sessionId);
 
             [[nodiscard]] const util::UUID &getPlayerOneId() const;

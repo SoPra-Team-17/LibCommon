@@ -8,8 +8,8 @@ namespace spy::network::messages {
 
     ItemChoice::ItemChoice() : MessageContainer(MessageTypeEnum::ITEM_CHOICE, {}) {}
 
-    ItemChoice::ItemChoice(const util::UUID &playerId, std::variant<util::UUID, gadget::GadgetEnum> choice) :
-            MessageContainer(MessageTypeEnum::ITEM_CHOICE, playerId),
+    ItemChoice::ItemChoice(const util::UUID &clientId, std::variant<util::UUID, gadget::GadgetEnum> choice) :
+            MessageContainer(MessageTypeEnum::ITEM_CHOICE, clientId),
             choice(choice) {}
 
     void to_json(nlohmann::json &j, const ItemChoice &i) {

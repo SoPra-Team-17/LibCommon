@@ -18,7 +18,7 @@ namespace spy::network::messages {
             Replay();
 
             Replay(
-                    const util::UUID &playerId,
+                    const util::UUID &clientId,
                     const util::UUID &sessionId,
                     std::string gameStart,
                     std::string gameEnd,

@@ -9,7 +9,7 @@
 TEST(messages, MetaInformation) {
     auto parsedInput = R"({
   "creationDate": "",
-  "playerId": "00000000-0000-0000-0000-000000000000",
+  "clientId": "00000000-0000-0000-0000-000000000000",
   "type": "META_INFORMATION",
   "information": {
     "Spectator.Count": 2,

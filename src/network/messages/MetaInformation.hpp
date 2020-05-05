@@ -29,7 +29,7 @@ namespace spy::network::messages {
 
             MetaInformation();
 
-            MetaInformation(const util::UUID &playerId,
+            MetaInformation(const util::UUID &clientId,
                             std::map<MetaInformationKey, Info> information);
 
             friend void to_json(nlohmann::json &j, const MetaInformation &m);

@@ -14,7 +14,7 @@ namespace spy::network::messages {
         public:
             RequestGamePause();
 
-            RequestGamePause(const util::UUID &playerId, bool gamePause);
+            RequestGamePause(const util::UUID &clientId, bool gamePause);
 
             [[nodiscard]] bool getGamePause() const;
 

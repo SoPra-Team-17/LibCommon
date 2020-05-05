@@ -13,7 +13,7 @@ namespace spy::network::messages {
         public:
             RequestGameOperation();
 
-            RequestGameOperation(const util::UUID &playerId, const util::UUID &characterId);
+            RequestGameOperation(const util::UUID &clientId, const util::UUID &characterId);
 
             [[nodiscard]] const util::UUID &getCharacterId() const;
 
