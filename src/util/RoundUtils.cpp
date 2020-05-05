@@ -5,8 +5,6 @@
 * @brief  Implementation of utility methods for round initialization.
 */
 
-#include <random>
-
 #include "RoundUtils.hpp"
 #include "datatypes/gadgets/Cocktail.hpp"
 #include "datatypes/gadgets/WiretapWithEarplugs.hpp"
@@ -41,7 +39,7 @@ namespace spy::util {
         for (auto &c : s.getCharacters()) {
             auto gadget = c.getGadget(gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS);
             if (gadget.has_value()) {
-                auto wiretap = std::static_pointer_cast<spy::gadget::WiretapWithEarplugs>(gadget.value());
+                auto wiretap = std::dynamic_pointer_cast<spy::gadget::WiretapWithEarplugs>(gadget.value());
 
                 if (wiretap->isWorking() && GameLogicUtils::probabilityTest(config.getWiretapWithEarplugsFailChance())) {
                     wiretap->setWorking(false);

@@ -117,8 +117,8 @@ namespace spy::scenario {
 
             template<typename T>
             void forAllFields(T func) {
-                for (auto y = 0u; y < map.size(); y++) {
-                    for (auto x = 0u; x < map.at(y).size(); x++) {
+                for (auto y = 0U; y < map.size(); y++) {
+                    for (auto x = 0U; x < map.at(y).size(); x++) {
                         func(getField(x, y));
                     }
                 }
