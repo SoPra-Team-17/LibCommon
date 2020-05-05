@@ -28,18 +28,6 @@ namespace spy::util {
         }
     }
 
-    std::vector<unsigned int> RoundUtils::getRandomCharacterOrder(const gameplay::State &s) {
-        std::vector<unsigned int> order(s.getCharacters().size());
-        std::iota (order.begin(), order.end(), 0);
-
-        std::random_device rd;
-        std::mt19937 g(rd());
-
-        std::shuffle(order.begin(), order.end(), g);
-
-        return order;
-    }
-
     void RoundUtils::updateFog(gameplay::State &s) {
         for (unsigned int y = 0; y < s.getMap().getNumberOfRows(); y++) {
             for (unsigned int x = 0; x < s.getMap().getRowLength(y); x++) {
