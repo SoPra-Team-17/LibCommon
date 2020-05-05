@@ -87,6 +87,7 @@ set(SOURCE
         gameLogic/execution/gadget/MoleDie.cpp
         gameLogic/execution/gadget/BowlerBlade.cpp
         gameLogic/execution/gadget/TechnicolorPrism.cpp
+        gameLogic/execution/gadget/MothballPouch.cpp
         gameLogic/execution/gadget/FogTin.cpp
         gameLogic/execution/gadget/GasGloss.cpp
         gameLogic/execution/gadget/Grapple.cpp
