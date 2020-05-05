@@ -25,7 +25,7 @@ namespace spy::gameplay {
 
         // subtract a usage
         auto character = s.getCharacters().getByUUID(a.getCharacterId());
-        auto gadget = character->getGadget(gadget::GadgetEnum::MOTHBALL_POUCH);
+        auto gadget = character->getGadget(gadget::GadgetEnum::MOTHBALL_POUCH).value();
         gadget->setUsagesLeft(gadget->getUsagesLeft().value() - 1);
 
         // remove gadget from inventory if no usages left!
