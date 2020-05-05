@@ -93,12 +93,16 @@ namespace spy::character {
         Character::gadgets.push_back(std::move(gadget));
     }
 
-    std::shared_ptr<spy::gadget::Gadget> Character::getGadget(spy::gadget::GadgetEnum type) {
+    std::optional<std::shared_ptr<spy::gadget::Gadget>> Character::getGadget(spy::gadget::GadgetEnum type) {
         auto it = std::find_if(gadgets.begin(), gadgets.end(),
                             [&type](const std::shared_ptr<spy::gadget::Gadget> &g) {
                                 return g->getType() == type;
                             });
-        return *it;
+        if (it != gadgets.end()) {
+            return *it;
+        } else {
+            return std::nullopt;                        // character doesn't posses the requested gadget
+        }
     }
 
     void to_json(nlohmann::json &j, const spy::character::Character &c) {
