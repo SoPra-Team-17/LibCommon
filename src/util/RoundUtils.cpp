@@ -51,7 +51,9 @@ namespace spy::util {
 
                 if (wiretap->isWorking() && GameLogicUtils::probabilityTest(config.getWiretapWithEarplugsFailChance())) {
                     wiretap->setWorking(false);
-                    wiretap->setActiveOn(std::nullopt);
+                } else if (!wiretap->isWorking() && wiretap->getActiveOn().has_value()) {
+                    // Standard specifies that their must be at least one message with the gadget disabled after fallout
+                    c.removeGadget(gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS);
                 }
             }
         }
