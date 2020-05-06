@@ -222,7 +222,7 @@ namespace spy::util {
             auto otherTarget = it->getCoordinates().value();
             if (s.getMap().isInside(otherTarget)) {
                 a.setTarget(otherTarget);
-                if (gameplay::ActionValidator::validate(s, a, config)) {
+                if (gameplay::ActionValidator::validate(s, std::make_shared<gameplay::GadgetAction>(a), config)) {
                     alternativeTargets.push_back(otherTarget);
                 }
             }
