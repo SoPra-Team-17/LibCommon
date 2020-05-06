@@ -16,7 +16,7 @@ namespace spy::gameplay {
         //Honey Trap property
         bool doHoneyTrap = util::GameLogicUtils::isPersonOnField(s, action.getTarget());
         auto a = doHoneyTrap ? util::GameLogicUtils::getHoneyTrapOperation(s, action, config) : action;
-        
+
         // check if person on field
         bool personOnField = util::GameLogicUtils::isPersonOnField(s, a.getTarget());
 

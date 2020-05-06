@@ -30,7 +30,7 @@ namespace spy::gameplay {
         }
 
         // mole die bounces into the inventory of the closest person
-        auto closestPoint = util::GameLogicUtils::getRandomCharacterNearField(s, a.getTarget());
+        auto closestPoint = util::GameLogicUtils::getRandomCharacterNearField(s, action.getTarget());
         auto closestPerson = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), closestPoint);
 
         closestPerson->addGadget(std::make_shared<gadget::Gadget>(GadgetEnum::MOLEDIE));
