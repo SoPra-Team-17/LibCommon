@@ -13,6 +13,7 @@
 #include "datatypes/gameplay/State.hpp"
 #include "matchconfig/MatchConfig.hpp"
 #include "gameplay/CharacterOperation.hpp"
+#include "gameplay/GadgetAction.hpp"
 
 namespace spy::util {
     class GameLogicUtils {
