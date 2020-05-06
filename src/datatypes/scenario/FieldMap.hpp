@@ -42,6 +42,10 @@ namespace spy::scenario {
 
             [[nodiscard]] bool isInside(util::Point p) const;
 
+            [[nodiscard]] unsigned int getNumberOfRows() const;
+
+            [[nodiscard]] unsigned int getRowLength(unsigned int row) const;
+
             /**
              * Checks if a given field blocks the line of sight (thus is a wall or a fireplace).
              * @param p Coordinate of the field to check.
@@ -109,6 +113,15 @@ namespace spy::scenario {
                 }
 
                 return true;
+            }
+
+            template<typename T>
+            void forAllFields(T func) {
+                for (auto y = 0U; y < map.size(); y++) {
+                    for (auto x = 0U; x < map.at(y).size(); x++) {
+                        func(getField(x, y));
+                    }
+                }
             }
 
             friend void to_json(nlohmann::json &j, const FieldMap &m);
