@@ -106,6 +106,20 @@ namespace spy::character {
         }
     }
 
+    std::optional<const std::shared_ptr<const spy::gadget::Gadget>>
+    Character::getGadget(spy::gadget::GadgetEnum type) const {
+        auto it = std::find_if(gadgets.begin(), gadgets.end(),
+                               [&type](const std::shared_ptr<spy::gadget::Gadget> &g) {
+                                   return g->getType() == type;
+                               });
+        if (it != gadgets.end()) {
+            return *it;
+        } else {
+            // character doesn't posses the requested gadget
+            return std::nullopt;
+        }
+    }
+
     void to_json(nlohmann::json &j, const spy::character::Character &c) {
         j["characterId"] = c.characterId;
         j["name"] = c.name;

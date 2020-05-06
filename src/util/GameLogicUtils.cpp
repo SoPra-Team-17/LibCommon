@@ -202,8 +202,7 @@ namespace spy::util {
     std::optional<std::shared_ptr<character::Character>>
     GameLogicUtils::getWiredCharacter(const gameplay::State &s, const character::Character gettingIP) {
         std::optional<std::shared_ptr<character::Character>> resultChar;
-        auto character = std::find_if(s.getCharacters().begin(), s.getCharacters().end(), [&gettingIP](const character::Character &ch) {
-            character::Character c = ch; //undo const -> otherwise getGadget is not working
+        auto character = std::find_if(s.getCharacters().begin(), s.getCharacters().end(), [&gettingIP](const character::Character &c) {
             auto gadget_optionalPointer = c.getGadget(gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS);
             if (!gadget_optionalPointer.has_value()) {
                 return false;
