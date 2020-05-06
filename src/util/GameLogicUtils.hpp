@@ -188,7 +188,7 @@ namespace spy::util {
                 auto field = s.getMap().getMap();
                 for (unsigned int y = 0; y < field.size(); y++) {
                     for (unsigned int x = 0; x < field.at(y).size(); x++) {
-                        Point p {(int)x, (int)y};
+                        Point p{(int) x, (int) y};
                         if (isSearchedField(p)) {
                             result.push_back(p);
                         }
@@ -245,6 +245,16 @@ namespace spy::util {
              * @param damage        unmodified damage value
              */
             static void applyDamageToCharacter(character::Character &targetChar, unsigned int damage);
+
+            /**
+             * @brief get operation that might change due to honey trap property (probability test must have been successful)
+             * @param s current state
+             * @param op Operation that targets a character with successful honey trap porbability test
+             * @return resulting operation after honey trap was checked and applied
+             */
+            static std::shared_ptr<const gameplay::BaseOperation>
+            getHoneyTrapOperation(const gameplay::State &s, std::shared_ptr<const gameplay::BaseOperation> &op,
+                                  const MatchConfig &config);
     };
 }
 

@@ -5,6 +5,7 @@
  * @brief  implementation of gadget utils
  */
 
+#include <gameLogic/validation/ActionValidator.hpp>
 #include "GameLogicUtils.hpp"
 #include "gameplay/Movement.hpp"
 #include "scenario/FieldMap.hpp"
@@ -195,6 +196,40 @@ namespace spy::util {
         }
 
         targetChar.subHealthPoints(damage);
+    }
+
+    std::shared_ptr<const gameplay::BaseOperation>
+    GameLogicUtils::getHoneyTrapOperation(const gameplay::State &s,
+                                          std::shared_ptr<const gameplay::BaseOperation> &op,
+                                          const MatchConfig &config) {
+        auto a = std::dynamic_pointer_cast<gameplay::CharacterOperation>(op);
+        auto sourceChar = s.getCharacters().findByUUID(a->getCharacterId());
+        auto targetChar = util::GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), a->getTarget());
+
+        std::vector<Point> alternativeTargets;
+        for (auto it = s.getCharacters().begin(); it != s.getCharacters().end(); it++) {
+            if (it->getCharacterId() == sourceChar->getCharacterId() ||
+                it->getCharacterId() == targetChar->getCharacterId()) {
+                // alternative action target is not source or target
+                continue;
+            }
+
+            auto otherTarget = it->getCoordinates().value();
+            if (s.getMap().isInside(otherTarget)) {
+                a->setTarget(otherTarget);
+                if (gameplay::ActionValidator::validate(s, a, config)) {
+                    alternativeTargets.push_back(otherTarget);
+                }
+            }
+        }
+
+        if(alternativeTargets.empty()) {
+            return op;
+        } else {
+            a->setTarget(*GameLogicUtils::getRandomItemFromVector(alternativeTargets));
+        }
+
+        return a;
     }
 }
 
