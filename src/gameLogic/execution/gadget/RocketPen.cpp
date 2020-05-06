@@ -37,7 +37,7 @@ namespace spy::gameplay {
             if (!babysitter) {
                 auto person = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
                 auto damage = config.getRocketPenDamage();
-                person->subHealthPoints(damage);
+                util::GameLogicUtils::applyDamageToCharacter(*person, damage);
             }
         }
 
@@ -51,7 +51,7 @@ namespace spy::gameplay {
                 if (!babysitter) {
                     auto person = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), p);
                     auto damage = config.getRocketPenDamage();
-                    person->subHealthPoints(damage);
+                    util::GameLogicUtils::applyDamageToCharacter(*person, damage);
                 }
             }
         }

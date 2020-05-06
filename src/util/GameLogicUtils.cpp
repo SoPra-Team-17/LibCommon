@@ -188,5 +188,13 @@ namespace spy::util {
 
         return result;
     }
+
+    void GameLogicUtils::applyDamageToCharacter(character::Character &targetChar, unsigned int damage) {
+        if (targetChar.hasProperty(character::PropertyEnum::TOUGHNESS)) {
+            damage /= 2;
+        }
+
+        targetChar.subHealthPoints(damage);
+    }
 }
 

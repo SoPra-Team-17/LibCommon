@@ -17,7 +17,7 @@ namespace spy::gameplay {
 
         if (!babysitter) {
             auto damage = config.getGasGlossDamage();
-            targetPerson->subHealthPoints(damage);
+            util::GameLogicUtils::applyDamageToCharacter(*targetPerson, damage);
         }
 
         // remove gas gloss from inventory
