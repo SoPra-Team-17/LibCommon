@@ -95,6 +95,8 @@ namespace spy::character {
 
             void addHealthPoints(unsigned int);
 
+            void addIntelligencePoints(int points);
+
             [[nodiscard]] bool hasProperty(PropertyEnum property) const;
 
             [[nodiscard]] bool hasGadget(spy::gadget::GadgetEnum type) const;

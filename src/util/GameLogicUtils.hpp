@@ -188,7 +188,7 @@ namespace spy::util {
                 auto field = s.getMap().getMap();
                 for (unsigned int y = 0; y < field.size(); y++) {
                     for (unsigned int x = 0; x < field.at(y).size(); x++) {
-                        Point p {(int)x, (int)y};
+                        Point p{(int) x, (int) y};
                         if (isSearchedField(p)) {
                             result.push_back(p);
                         }
@@ -245,6 +245,15 @@ namespace spy::util {
              * @param damage        unmodified damage value
              */
             static void applyDamageToCharacter(character::Character &targetChar, unsigned int damage);
+
+            /**
+             * @brief tries to find character that gets ip because of wiretap with earplug gadget
+             * @param s current state
+             * @param gettingIP character that is getting intelligence points
+             * @return character that also gets intelligence points (optional has no value if wiretap with earplug is not applyable)
+             */
+            static std::optional<std::shared_ptr<character::Character>>
+            getWiredCharacter(const gameplay::State &s, const character::Character gettingIP);
     };
 }
 

@@ -188,4 +188,12 @@ namespace spy::character {
         healthPoints -= sub;
     }
 
+    void Character::addIntelligencePoints(int points) {
+        if (points < 0 && std::abs(points) >= static_cast<int>(intelligencePoints)) {
+            intelligencePoints = 0;
+        } else {
+            intelligencePoints += points;
+        }
+    }
+
 }  // namespace spy::character
