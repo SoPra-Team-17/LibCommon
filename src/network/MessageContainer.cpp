@@ -53,6 +53,10 @@ namespace spy::network {
         return clientId;
     }
 
+    void MessageContainer::setClientId(const util::UUID &id) {
+        clientId = id;
+    }
+
     messages::MessageTypeEnum MessageContainer::getType() const {
         return type;
     }
