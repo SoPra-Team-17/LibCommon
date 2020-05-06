@@ -60,6 +60,9 @@ set(SOURCE
         gameLogic/validation/gadget/DiamondCollar.cpp
         gameLogic/validation/gadget/Cocktail.cpp
         gameLogic/validation/gadget/BowlerBlade.cpp
+        gameLogic/validation/property/PropertyValidator.cpp
+        gameLogic/validation/property/Observation.cpp
+        gameLogic/validation/property/BangAndBurn.cpp
         gameLogic/execution/ActionExecutor.cpp
         gameLogic/execution/ActionExecutor_Exfiltration.cpp
         gameLogic/execution/ActionExecutor_Gadget.cpp
