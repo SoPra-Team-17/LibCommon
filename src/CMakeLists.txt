@@ -103,6 +103,10 @@ set(SOURCE
         network/messages/Hello.cpp
         network/messages/HelloReply.cpp
         network/MessageContainer.cpp
+        util/UUID.cpp
+        util/Point.cpp
+        util/GameLogicUtils.cpp
+        util/GadgetSerialization.hpp
         network/messages/GameStarted.cpp
         network/messages/Reconnect.cpp
         network/messages/RequestItemChoice.cpp
@@ -121,6 +125,7 @@ set(SOURCE
         util/Point.cpp
         util/GameLogicUtils.cpp
         util/GadgetSerialization.hpp
+        util/RoundUtils.cpp
          )
 
 
