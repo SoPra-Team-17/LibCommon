@@ -101,7 +101,7 @@ namespace spy::character {
 
             [[nodiscard]] bool hasGadget(spy::gadget::GadgetEnum type) const;
 
-            std::optional<std::shared_ptr<spy::gadget::Gadget>> getGadget(spy::gadget::GadgetEnum type);
+            std::optional<const std::shared_ptr<spy::gadget::Gadget>> getGadget(spy::gadget::GadgetEnum type);
 
             [[nodiscard]] std::optional<const std::shared_ptr<const spy::gadget::Gadget>> getGadget(spy::gadget::GadgetEnum type) const;
 

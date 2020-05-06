@@ -93,7 +93,7 @@ namespace spy::character {
         Character::gadgets.push_back(std::move(gadget));
     }
 
-    std::optional<std::shared_ptr<spy::gadget::Gadget>> Character::getGadget(spy::gadget::GadgetEnum type) {
+    std::optional<const std::shared_ptr<spy::gadget::Gadget>> Character::getGadget(spy::gadget::GadgetEnum type) {
         auto it = std::find_if(gadgets.begin(), gadgets.end(),
                             [&type](const std::shared_ptr<spy::gadget::Gadget> &g) {
                                 return g->getType() == type;
