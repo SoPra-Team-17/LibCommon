@@ -19,7 +19,7 @@ namespace spy::gameplay {
         if (charPoints.second) {
             for (const auto &p : charPoints.first) {
                 auto person = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), p);
-                person->subHealthPoints(config.getMothballPouchDamage());
+                util::GameLogicUtils::applyDamageToCharacter(*person, config.getMothballPouchDamage());
             }
         }
 

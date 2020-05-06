@@ -238,6 +238,13 @@ namespace spy::util {
              */
             static bool checkBabySitter(const gameplay::State &s, const gameplay::CharacterOperation &op,
                                         const spy::MatchConfig &config);
+
+            /**
+             * @brief applies damage to a given character based on his properties
+             * @param targetChar    Target Character who receives damage
+             * @param damage        unmodified damage value
+             */
+            static void applyDamageToCharacter(character::Character &targetChar, unsigned int damage);
     };
 }
 

@@ -23,27 +23,6 @@ set(SOURCE
         datatypes/character/CharacterDescription.cpp
         datatypes/character/CharacterSet.cpp
         datatypes/character/FactionEnum.hpp
-        gameLogic/execution/ActionExecutor_Cat.cpp
-        gameLogic/execution/ActionExecutor_Exfiltration.cpp
-        gameLogic/execution/ActionExecutor_Gadget.cpp
-        gameLogic/execution/ActionExecutor_Gamble.cpp
-        gameLogic/execution/ActionExecutor_Janitor.cpp
-        gameLogic/execution/ActionExecutor_Movement.cpp
-        gameLogic/execution/ActionExecutor_Property.cpp
-        gameLogic/execution/ActionExecutor_Retire.cpp
-        gameLogic/execution/ActionExecutor_Spy.cpp
-        gameLogic/execution/gadget/GadgetExecutor.cpp
-        gameLogic/execution/ActionExecutor.cpp
-        gameLogic/execution/gadget/HairDryer.cpp
-        gameLogic/execution/gadget/MoleDie.cpp
-        gameLogic/execution/gadget/BowlerBlade.cpp
-        gameLogic/execution/gadget/TechnicolorPrism.cpp
-        gameLogic/execution/gadget/Nugget.cpp
-        gameLogic/execution/gadget/RocketPen.cpp
-        gameLogic/execution/gadget/Grapple.cpp
-        gameLogic/execution/gadget/Jetpack.cpp
-        gameLogic/execution/gadget/GasGloss.cpp
-        gameLogic/generation/ActionGenerator_Server.cpp
         datatypes/matchconfig/MatchConfig.cpp
         datatypes/scenario/Scenario.cpp
         datatypes/scenario/Scenario.cpp
@@ -81,17 +60,27 @@ set(SOURCE
         gameLogic/validation/gadget/DiamondCollar.cpp
         gameLogic/validation/gadget/Cocktail.cpp
         gameLogic/validation/gadget/BowlerBlade.cpp
+        gameLogic/execution/ActionExecutor.cpp
+        gameLogic/execution/ActionExecutor_Exfiltration.cpp
+        gameLogic/execution/ActionExecutor_Gadget.cpp
+        gameLogic/execution/ActionExecutor_Gamble.cpp
+        gameLogic/execution/ActionExecutor_Janitor.cpp
+        gameLogic/execution/ActionExecutor_Movement.cpp
+        gameLogic/execution/ActionExecutor_Property.cpp
+        gameLogic/execution/ActionExecutor_Retire.cpp
+        gameLogic/execution/ActionExecutor_Spy.cpp
         gameLogic/execution/property/PropertyExecutor.cpp
         gameLogic/execution/property/BangAndBurn.cpp
         gameLogic/execution/property/Observation.cpp
+        gameLogic/execution/gadget/GadgetExecutor.cpp
         gameLogic/execution/gadget/MoleDie.cpp
         gameLogic/execution/gadget/BowlerBlade.cpp
         gameLogic/execution/gadget/TechnicolorPrism.cpp
+        gameLogic/execution/gadget/PoisonPills.cpp
         gameLogic/execution/gadget/MothballPouch.cpp
         gameLogic/execution/gadget/FogTin.cpp
         gameLogic/execution/gadget/GasGloss.cpp
         gameLogic/execution/gadget/Grapple.cpp
-        gameLogic/generation/ActionGenerator_Server.cpp
         gameLogic/execution/gadget/LaserCompact.cpp
         gameLogic/execution/gadget/DiamondCollar.cpp
         gameLogic/execution/gadget/ChickenFeed.cpp
@@ -99,6 +88,9 @@ set(SOURCE
         gameLogic/execution/gadget/Nugget.cpp
         gameLogic/execution/gadget/RocketPen.cpp
         gameLogic/execution/gadget/FogTin.cpp
+        gameLogic/execution/ActionExecutor_Cat.cpp
+        gameLogic/execution/gadget/HairDryer.cpp
+        gameLogic/execution/gadget/Jetpack.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp
@@ -108,6 +100,10 @@ set(SOURCE
         network/messages/Hello.cpp
         network/messages/HelloReply.cpp
         network/MessageContainer.cpp
+        util/UUID.cpp
+        util/Point.cpp
+        util/GameLogicUtils.cpp
+        util/GadgetSerialization.hpp
         network/messages/GameStarted.cpp
         network/messages/Reconnect.cpp
         network/messages/RequestItemChoice.cpp
@@ -127,7 +123,7 @@ set(SOURCE
         util/GameLogicUtils.cpp
         util/GadgetSerialization.hpp
         util/RoundUtils.cpp
-        )
+         )
 
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})

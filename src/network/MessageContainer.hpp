@@ -22,6 +22,8 @@ namespace spy::network {
 
             [[nodiscard]] const util::UUID &getclientId() const;
 
+            void setClientId(const util::UUID &id);
+
             [[nodiscard]] messages::MessageTypeEnum getType() const;
 
             [[nodiscard]] const std::string &getCreationDate() const;
