@@ -33,7 +33,7 @@ namespace spy::gameplay {
             case gadget::GadgetEnum::GRAPPLE:
                 return executeGrapple(s, action, config);
             case gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS:
-                break;
+                return executeWiretapWithEarplugs(s, action);
             case gadget::GadgetEnum::DIAMOND_COLLAR:
                 break;
             case gadget::GadgetEnum::JETPACK:

@@ -25,7 +25,7 @@ namespace spy::gameplay {
             static bool execute(State &s, GadgetAction action, const MatchConfig &config);
 
         private:
-            // TODO: Gadget execution methods
+            static bool executeWiretapWithEarplugs(State &s, const GadgetAction &a);
 
             static bool executeJetpack(State &s, const GadgetAction &a);
 
