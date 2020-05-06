@@ -87,7 +87,7 @@ set(SOURCE
         gameLogic/execution/gadget/MirrorOfWilderness.cpp
         gameLogic/execution/gadget/Nugget.cpp
         gameLogic/execution/gadget/RocketPen.cpp
-        gameLogic/execution/gadget/FogTin.cpp
+        gameLogic/execution/gadget/WiretapWithEarplugs.cpp
         gameLogic/execution/ActionExecutor_Cat.cpp
         gameLogic/execution/gadget/HairDryer.cpp
         gameLogic/execution/gadget/Jetpack.cpp
