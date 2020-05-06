@@ -247,14 +247,14 @@ namespace spy::util {
             static void applyDamageToCharacter(character::Character &targetChar, unsigned int damage);
 
             /**
-             * @brief get operation that might change due to honey trap property (probability test must have been successful)
+             * @brief get operation that might change due to possible honey trap property
              * @param s current state
-             * @param op Operation that targets a character with successful honey trap porbability test
-             * @return resulting operation after honey trap was checked and applied
+             * @param op GadgetOperation that targets a character
+             * @return resulting GadgetOperation after honey trap was checked and applied
              */
-            static std::shared_ptr<const gameplay::BaseOperation>
-            getHoneyTrapOperation(const gameplay::State &s, std::shared_ptr<const gameplay::BaseOperation> &op,
-                                  const MatchConfig &config);
+            static const gameplay::GadgetAction
+            getHoneyTrapOperation(const gameplay::State &s, const gameplay::GadgetAction &op,
+                                   const MatchConfig &config);
     };
 }
 

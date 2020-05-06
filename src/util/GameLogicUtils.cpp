@@ -198,13 +198,18 @@ namespace spy::util {
         targetChar.subHealthPoints(damage);
     }
 
-    std::shared_ptr<const gameplay::BaseOperation>
-    GameLogicUtils::getHoneyTrapOperation(const gameplay::State &s,
-                                          std::shared_ptr<const gameplay::BaseOperation> &op,
+    const gameplay::GadgetAction
+    GameLogicUtils::getHoneyTrapOperation(const gameplay::State &s, const gameplay::GadgetAction &op,
                                           const MatchConfig &config) {
-        auto a = std::dynamic_pointer_cast<gameplay::CharacterOperation>(op);
-        auto sourceChar = s.getCharacters().findByUUID(a->getCharacterId());
-        auto targetChar = util::GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), a->getTarget());
+
+        gameplay::GadgetAction a = op; // keep op const to know regular operation/target
+        auto sourceChar = s.getCharacters().findByUUID(a.getCharacterId());
+        auto targetChar = util::GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
+
+        if (!targetChar->hasProperty(character::PropertyEnum::HONEY_TRAP) ||
+            !util::GameLogicUtils::probabilityTestWithCharacter(*sourceChar, config.getHoneyTrapSuccessChance())) {
+            return op;
+        }
 
         std::vector<Point> alternativeTargets;
         for (auto it = s.getCharacters().begin(); it != s.getCharacters().end(); it++) {
@@ -216,17 +221,17 @@ namespace spy::util {
 
             auto otherTarget = it->getCoordinates().value();
             if (s.getMap().isInside(otherTarget)) {
-                a->setTarget(otherTarget);
+                a.setTarget(otherTarget);
                 if (gameplay::ActionValidator::validate(s, a, config)) {
                     alternativeTargets.push_back(otherTarget);
                 }
             }
         }
 
-        if(alternativeTargets.empty()) {
+        if (alternativeTargets.empty()) {
             return op;
         } else {
-            a->setTarget(*GameLogicUtils::getRandomItemFromVector(alternativeTargets));
+            a.setTarget(*GameLogicUtils::getRandomItemFromVector(alternativeTargets));
         }
 
         return a;

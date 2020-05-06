@@ -10,7 +10,10 @@
 
 namespace spy::gameplay {
 
-    bool GadgetExecutor::executeLaserCompact(State &s, const GadgetAction &a, const MatchConfig &config) {
+    bool GadgetExecutor::executeLaserCompact(State &s, const GadgetAction &action, const MatchConfig &config) {
+        //Honey Trap property
+        auto a = util::GameLogicUtils::getHoneyTrapOperation(s, action, config);
+
         auto character = s.getCharacters().getByUUID(a.getCharacterId());
         // check if shot hit
         bool hitSuccessful = util::GameLogicUtils::probabilityTestWithCharacter(*character,
