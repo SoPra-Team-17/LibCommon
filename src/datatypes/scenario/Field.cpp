@@ -14,29 +14,31 @@ namespace spy::scenario {
     Field::Field(FieldStateEnum fieldState) : state(fieldState) {}
 
     void Field::setFieldState(FieldStateEnum fieldState) {
-        Field::state = fieldState;
+        if (fieldState != Field::state) {
+            Field::updated = true;
+            Field::state = fieldState;
 
-        if (fieldState != FieldStateEnum::ROULETTE_TABLE) {
-            Field::inverted.reset();
-            Field::destroyed.reset();
-            Field::chipAmount.reset();
-        }
+            if (fieldState != FieldStateEnum::ROULETTE_TABLE) {
+                Field::inverted.reset();
+                Field::destroyed.reset();
+                Field::chipAmount.reset();
+            }
 
-        if (fieldState != FieldStateEnum::SAFE) {
-            Field::safeIndex.reset();
+            if (fieldState != FieldStateEnum::SAFE) {
+                Field::safeIndex.reset();
+            }
         }
     }
 
-    /**
-     * Setter for the state of the roulette table on this field.
-     * @param isDestroyed State of the roulette table.
-     * @note  This param can only be set if the field state is ROULETTE_TABLE.
-     */
     void Field::setDestroyed(std::optional<bool> isDestroyed) {
         if (Field::state != FieldStateEnum::ROULETTE_TABLE) {
             throw std::invalid_argument("Field has no roulette table!");
         }
-        Field::destroyed = isDestroyed;
+
+        if (isDestroyed != Field::destroyed) {
+            Field::updated = true;
+            Field::destroyed = isDestroyed;
+        }
     }
 
     void Field::setUpdated(std::optional<bool> isUpdated) {
@@ -44,62 +46,71 @@ namespace spy::scenario {
     }
 
     void Field::setFoggy(bool isFoggy) {
-        Field::foggy = isFoggy;
+        if (Field::foggy != isFoggy) {
+            Field::updated = true;
+            Field::foggy = isFoggy;
+        }
+    }
+
+    void Field::incrementFogCounter() {
+        Field::fogCounter++;
+    }
+
+    void Field::resetFogCounter() {
+        Field::fogCounter = 0;
     }
 
     void Field::setGadget(std::optional<std::shared_ptr<Gadget>> g) {
-        Field::gadget = g;
+        if (Field::gadget != g) {
+            Field::gadget = g;
+            Field::updated = true;
+        }
     }
 
     void Field::removeGadget() {
-        Field::gadget.reset();
+        if (Field::gadget.has_value()) {
+            Field::gadget.reset();
+            Field::updated = true;
+        }
     }
 
-    /**
-     * Setter for the chip amount of the roulette table on this field.
-     * @param chips Chip amount.
-     * @note  This param can only be set if the field state is ROULETTE_TABLE.
-     */
+
     void Field::setChipAmount(std::optional<unsigned int> chips) {
         if (Field::state != FieldStateEnum::ROULETTE_TABLE) {
             throw std::invalid_argument("Field has no roulette table!");
         }
-        Field::chipAmount = chips;
+
+        if (Field::chipAmount != chips) {
+            Field::chipAmount = chips;
+            Field::updated = true;
+        }
     }
 
-    /**
-     * Setter for the index of the safe on this field.
-     * @param index Safe index.
-     * @note  This param can only be set if the field state is SAFE.
-     */
     void Field::setSafeIndex(std::optional<unsigned int> index) {
         if (Field::state != FieldStateEnum::SAFE) {
             throw std::invalid_argument("Field has no safe!");
         }
-        Field::safeIndex = index;
+        if (Field::safeIndex != index) {
+            Field::safeIndex = index;
+            Field::updated = true;
+        }
     }
 
-    /**
-     * Setter for the inversion of the roulette table on this field.
-     * @param isInverted Inversion state of the roulette table.
-     * @note  This param can only be set if the field state is ROULETTE_TABLE.
-     */
     void Field::setInverted(std::optional<bool> isInverted) {
         if (Field::state != FieldStateEnum::ROULETTE_TABLE) {
             throw std::invalid_argument("Field has no roulette table!");
         }
-        Field::inverted = isInverted;
+
+        if (Field::inverted != isInverted) {
+            Field::inverted = isInverted;
+            Field::updated = true;
+        }
     }
 
     FieldStateEnum Field::getFieldState() const {
         return state;
     }
 
-    /**
-     * Getter for the state of the roulette table.
-     * @return True if the roulette table is destroyed, else false.
-     * @note   The return value only contains a value if the field's state is ROULETTE_TABLE.
-     */
     std::optional<bool> Field::isDestroyed() const {
         return destroyed;
     }
@@ -108,11 +119,6 @@ namespace spy::scenario {
         return updated;
     }
 
-    /**
-     * Getter for the inversion of the roulette table probabilities.
-     * @return True if the roulette table is inverted, else false.
-     * @note   The return value only contains a value if the field's state is ROULETTE_TABLE.
-     */
     std::optional<bool> Field::isInverted() const {
         return inverted;
     }
@@ -121,24 +127,18 @@ namespace spy::scenario {
         return foggy;
     }
 
+    [[nodiscard]] unsigned int Field::getFogCounter() const {
+        return fogCounter;
+    }
+
     const std::optional<std::shared_ptr<spy::gadget::Gadget>> &Field::getGadget() const {
         return gadget;
     }
 
-    /**
-     * Getter for the amount of chips of the roulette table.
-     * @return Chip amount.
-     * @note   The return value only contains a value if the field's state is ROULETTE_TABLE.
-     */
     std::optional<unsigned int> Field::getChipAmount() const {
         return chipAmount;
     }
 
-    /**
-     * Getter for the index of the safe.
-     * @return Safe index.
-     * @note   The return value only contains a value if the field's state is SAFE.
-     */
     std::optional<unsigned int> Field::getSafeIndex() const {
         return safeIndex;
     }

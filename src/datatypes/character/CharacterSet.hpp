@@ -12,8 +12,8 @@
 
 namespace spy::character {
     /**
-     * @brief   Realizes a specialized set for characters.
-     * @details Characters are sorted solely by their UUID.
+     * @brief   Realizes a specialized unsorted set for characters.
+     * @details Characters are distinguished solely by their UUID.
      * @note    Because the UUID of a character isn't modifiable, it's perfectly fine to enable the use
      *          of iterators instead of the const_iterators a normal set would return.
      */
