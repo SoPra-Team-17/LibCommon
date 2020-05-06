@@ -11,7 +11,7 @@ namespace spy::gameplay {
             case gadget::GadgetEnum::HAIRDRYER:
                 return executeHairDryer(s, action);
             case gadget::GadgetEnum::MOLEDIE:
-                break;
+                return executeMoleDie(s, action, config);
             case gadget::GadgetEnum::TECHNICOLOUR_PRISM:
                 break;
             case gadget::GadgetEnum::BOWLER_BLADE:
@@ -19,7 +19,7 @@ namespace spy::gameplay {
             case gadget::GadgetEnum::MAGNETIC_WATCH:
                 break;
             case gadget::GadgetEnum::POISON_PILLS:
-                break;
+                return executePoisonPills(s, action, config);
             case gadget::GadgetEnum::LASER_COMPACT:
                 break;
             case gadget::GadgetEnum::ROCKET_PEN:
