@@ -171,7 +171,8 @@ namespace spy::util {
         using spy::gadget::GadgetEnum;
 
         // character with clammy clothes only has half the chance of success
-        if (character.hasProperty(PropertyEnum::CLAMMY_CLOTHES)) {
+        if (character.hasProperty(PropertyEnum::CLAMMY_CLOTHES) ||
+            character.hasProperty(PropertyEnum::CONSTANT_CLAMMY_CLOTHES)) {
             chance /= 2;
         }
 
