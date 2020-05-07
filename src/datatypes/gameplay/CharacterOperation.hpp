@@ -12,10 +12,10 @@
 #include <util/Point.hpp>
 #include <util/UUID.hpp>
 #include <util/OptionalSerialization.hpp>
-#include "CopyableOperation.hpp"
+#include "BaseOperation.hpp"
 
 namespace spy::gameplay {
-    class CharacterOperation : public CopyableOperation<CharacterOperation> {
+    class CharacterOperation : public BaseOperation {
         public:
 
 

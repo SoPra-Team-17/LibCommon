@@ -29,8 +29,6 @@ namespace spy::gameplay {
 
             bool operator!=(const BaseOperation &rhs) const;
 
-            [[nodiscard]] virtual std::shared_ptr<BaseOperation> clone() const = 0;
-
         protected:
             BaseOperation() = default;
 

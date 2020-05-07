@@ -5,10 +5,10 @@
 #ifndef LIBCOMMON_CATACTION_HPP
 #define LIBCOMMON_CATACTION_HPP
 
-#include "CopyableOperation.hpp"
+#include "BaseOperation.hpp"
 
 namespace spy::gameplay {
-    class CatAction : public CopyableOperation<CatAction> {
+    class CatAction : public BaseOperation {
         public:
             CatAction();
 
