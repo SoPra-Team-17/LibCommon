@@ -5,6 +5,7 @@
 * @brief  Implementation of wiretap with earplugs gadget validation.
 */
 
+#include <datatypes/gadgets/WiretapWithEarplugs.hpp>
 #include "GadgetValidator.hpp"
 #include "util/GameLogicUtils.hpp"
 
@@ -12,6 +13,12 @@ namespace spy::gameplay {
 
     bool GadgetValidator::validateWiretapWithEarplugs(const State &s, GadgetAction a) {
         auto character = s.getCharacters().findByUUID(a.getCharacterId());
+        auto gadget = std::dynamic_pointer_cast<const gadget::WiretapWithEarplugs>(
+                character->getGadget(a.getGadget()).value());
+        if (gadget->getActiveOn().has_value()) {
+            //gadget is already in use
+            return false;
+        }
         return spy::util::GameLogicUtils::personOnNeighbourField(s, a.getTarget(), character->getCoordinates().value());
     }
 }

@@ -256,6 +256,15 @@ namespace spy::util {
             static const gameplay::GadgetAction
             getHoneyTrapOperation(const gameplay::State &s, const gameplay::GadgetAction &op,
                                    const MatchConfig &config);
+
+            /**
+             * @brief tries to find character that gets ip because of wiretap with earplug gadget
+             * @param s current state
+             * @param gettingIP character that is getting intelligence points
+             * @return character that also gets intelligence points (optional has no value if wiretap with earplug is not applyable)
+             */
+            static std::optional<std::shared_ptr<character::Character>>
+            getWiredCharacter(const gameplay::State &s, const character::Character gettingIP);
     };
 }
 

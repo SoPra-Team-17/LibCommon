@@ -25,11 +25,16 @@ namespace spy::gameplay {
 
         // targetCharacter is of enemy faction
         int ipDiff = static_cast<int>(sourceChar->getIntelligencePoints() - targetChar->getIntelligencePoints());
-        if (ipDiff < 0 && static_cast<int>(sourceChar->getIntelligencePoints()) < std::abs(ipDiff)) {
-            sourceChar->setIntelligencePoints(0);
+        sourceChar->addIntelligencePoints(ipDiff);
+
+        // check and apply wiretap with earplugs gadget
+        if (ipDiff > 0) {
+            auto character = util::GameLogicUtils::getWiredCharacter(s, *sourceChar);
+            if (character.has_value()) {
+                character.value()->addIntelligencePoints(ipDiff);
+            }
         }
 
-        sourceChar->setIntelligencePoints(sourceChar->getIntelligencePoints() + ipDiff);
         return true;
     }
 }

@@ -93,11 +93,25 @@ namespace spy::character {
         Character::gadgets.push_back(std::move(gadget));
     }
 
-    std::optional<std::shared_ptr<spy::gadget::Gadget>> Character::getGadget(spy::gadget::GadgetEnum type) {
+    std::optional<const std::shared_ptr<spy::gadget::Gadget>> Character::getGadget(spy::gadget::GadgetEnum type) {
         auto it = std::find_if(gadgets.begin(), gadgets.end(),
                             [&type](const std::shared_ptr<spy::gadget::Gadget> &g) {
                                 return g->getType() == type;
                             });
+        if (it != gadgets.end()) {
+            return *it;
+        } else {
+            // character doesn't posses the requested gadget
+            return std::nullopt;
+        }
+    }
+
+    std::optional<const std::shared_ptr<const spy::gadget::Gadget>>
+    Character::getGadget(spy::gadget::GadgetEnum type) const {
+        auto it = std::find_if(gadgets.begin(), gadgets.end(),
+                               [&type](const std::shared_ptr<spy::gadget::Gadget> &g) {
+                                   return g->getType() == type;
+                               });
         if (it != gadgets.end()) {
             return *it;
         } else {
@@ -186,6 +200,14 @@ namespace spy::character {
 
     void Character::subHealthPoints(unsigned int sub) {
         healthPoints -= sub;
+    }
+
+    void Character::addIntelligencePoints(int points) {
+        if (points < 0 && std::abs(points) >= static_cast<int>(intelligencePoints)) {
+            intelligencePoints = 0;
+        } else {
+            intelligencePoints += points;
+        }
     }
 
 }  // namespace spy::character
