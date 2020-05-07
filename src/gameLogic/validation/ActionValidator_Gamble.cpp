@@ -19,6 +19,12 @@ namespace spy::gameplay {
             return false;
         }
 
+        // check if character is inside fog
+        bool isFieldFoggy = s.getMap().getField(character->getCoordinates().value()).isFoggy();
+        if (isFieldFoggy) {
+            return false;
+        }
+
         auto targetField = s.getMap().getField(op.getTarget());
         if (Movement::getMoveDistance(op.getTarget(), character->getCoordinates().value()) != 1 ||
             targetField.getFieldState() != scenario::FieldStateEnum::ROULETTE_TABLE) {
