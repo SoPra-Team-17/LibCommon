@@ -8,6 +8,7 @@
 #include <gtest/gtest.h>
 #include "gadgetActionFixture.hpp"
 #include "gameLogic/validation/ActionValidator.hpp"
+#include "datatypes/gadgets/Cocktail.hpp"
 
 TEST_F(GadgetActionTests, Cocktail_Validate) {
     using spy::gameplay::ActionValidator;
@@ -16,7 +17,7 @@ TEST_F(GadgetActionTests, Cocktail_Validate) {
     using spy::gameplay::GadgetAction;
     using spy::gadget::Gadget;
 
-    auto cocktail = std::make_shared<Gadget>(spy::gadget::GadgetEnum::COCKTAIL);
+    auto cocktail = std::make_shared<spy::gadget::Cocktail>();
 
     state.getCharacters().getByUUID(uuid1)->setCoordinates({4, 3});
     state.getCharacters().getByUUID(uuid2)->setCoordinates({5, 3});

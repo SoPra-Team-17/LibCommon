@@ -35,6 +35,9 @@ namespace spy::gameplay {
             return true;
         }
 
-        return hasSafe && (distance == 2) && character->hasProperty(character::PropertyEnum::FLAPS_AND_SEALS);
+        bool hasMoleDie = character->hasGadget(spy::gadget::GadgetEnum::MOLEDIE);
+        bool hasFlapsAndSeals = character->hasProperty(character::PropertyEnum::FLAPS_AND_SEALS);
+
+        return hasSafe && (distance == 2) && hasFlapsAndSeals && !hasMoleDie;
     }
 }

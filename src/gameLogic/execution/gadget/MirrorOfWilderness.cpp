@@ -27,6 +27,22 @@ namespace spy::gameplay {
             sourceChar->setIntelligencePoints(targetCharIP);
             targetChar->setIntelligencePoints(sourceCharIP);
 
+            // check and apply wiretap with earplugs gadget
+            int ipDiff = static_cast<int>(sourceChar->getIntelligencePoints() - targetChar->getIntelligencePoints());
+            if (ipDiff > 0) {
+                // source has more ip than target after change -> due to change source received ip
+                auto character = util::GameLogicUtils::getWiredCharacter(s, *sourceChar);
+                if (character.has_value()) {
+                    character.value()->addIntelligencePoints(ipDiff);
+                }
+            } else if (ipDiff < 0) {
+                // target has more ip than source after change -> due to change target received ip
+                auto character = util::GameLogicUtils::getWiredCharacter(s, *targetChar);
+                if (character.has_value()) {
+                    character.value()->addIntelligencePoints(std::abs(ipDiff));
+                }
+            }
+
             if (!sameFaction) {
                 sourceChar->removeGadget(gadget::GadgetEnum::MIRROR_OF_WILDERNESS);
             }

@@ -11,43 +11,43 @@ namespace spy::gameplay {
             case gadget::GadgetEnum::HAIRDRYER:
                 return executeHairDryer(s, action);
             case gadget::GadgetEnum::MOLEDIE:
-                break;
+                return executeMoleDie(s, action);
             case gadget::GadgetEnum::TECHNICOLOUR_PRISM:
-                break;
+                return executeTechnicolorPrism(s, action);
             case gadget::GadgetEnum::BOWLER_BLADE:
-                break;
-            case gadget::GadgetEnum::MAGNETIC_WATCH:
-                break;
+                return executeBowlerBlade(s, action, config);
             case gadget::GadgetEnum::POISON_PILLS:
-                break;
+                return executePoisonPills(s, action);
             case gadget::GadgetEnum::LASER_COMPACT:
-                break;
+                return executeLaserCompact(s, action, config);
             case gadget::GadgetEnum::ROCKET_PEN:
-                break;
+                return executeRocketPen(s, action, config);
             case gadget::GadgetEnum::GAS_GLOSS:
                 return executeGasGloss(s, action, config);
             case gadget::GadgetEnum::MOTHBALL_POUCH:
-                break;
+                return executeMothballPouch(s, action, config);
             case gadget::GadgetEnum::FOG_TIN:
-                break;
+                return executeFogTin(s, action);
             case gadget::GadgetEnum::GRAPPLE:
                 return executeGrapple(s, action, config);
             case gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS:
                 return executeWiretapWithEarplugs(s, action);
             case gadget::GadgetEnum::DIAMOND_COLLAR:
-                break;
+                return executeDiamondCollar(s, action);
             case gadget::GadgetEnum::JETPACK:
                 return executeJetpack(s, action);
             case gadget::GadgetEnum::CHICKEN_FEED:
-                break;
+                return executeChickenFeed(s, action);
             case gadget::GadgetEnum::NUGGET:
-                break;
+                return executeNugget(s, action);
             case gadget::GadgetEnum::MIRROR_OF_WILDERNESS:
-                break;
-            case gadget::GadgetEnum::POCKET_LITTER:
-                break;
+                return executeMirrorOfWilderness(s, action, config);
             case gadget::GadgetEnum::COCKTAIL:
                 break;
+            case gadget::GadgetEnum::POCKET_LITTER:
+                [[fallthrough]];
+            case gadget::GadgetEnum::MAGNETIC_WATCH:
+                throw std::invalid_argument("Execution of gadget type not implemented -> gadget is passive");
             case gadget::GadgetEnum::INVALID:
                 [[fallthrough]];
             default:

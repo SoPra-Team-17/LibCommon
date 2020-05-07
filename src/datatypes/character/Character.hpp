@@ -95,11 +95,15 @@ namespace spy::character {
 
             void addHealthPoints(unsigned int);
 
+            void addIntelligencePoints(int points);
+
             [[nodiscard]] bool hasProperty(PropertyEnum property) const;
 
             [[nodiscard]] bool hasGadget(spy::gadget::GadgetEnum type) const;
 
-            std::optional<std::shared_ptr<spy::gadget::Gadget>> getGadget(spy::gadget::GadgetEnum type);
+            std::optional<const std::shared_ptr<spy::gadget::Gadget>> getGadget(spy::gadget::GadgetEnum type);
+
+            [[nodiscard]] std::optional<const std::shared_ptr<const spy::gadget::Gadget>> getGadget(spy::gadget::GadgetEnum type) const;
 
         private:
             spy::util::UUID characterId;
