@@ -212,14 +212,14 @@ namespace spy::util {
         }
 
         std::vector<Point> alternativeTargets;
-        for (auto it = s.getCharacters().begin(); it != s.getCharacters().end(); it++) {
-            if (it->getCharacterId() == sourceChar->getCharacterId() ||
-                it->getCharacterId() == targetChar->getCharacterId()) {
-                // alternative action target is not source or target
+        for (const auto &character: s.getCharacters()) {
+            if (character.getCharacterId() == sourceChar->getCharacterId() ||
+                character.getCharacterId() == targetChar->getCharacterId()) {
+                // alternative action target is source or target
                 continue;
             }
 
-            auto otherTarget = it->getCoordinates().value();
+            auto otherTarget = character.getCoordinates().value();
             if (s.getMap().isInside(otherTarget)) {
                 a.setTarget(otherTarget);
                 if (gameplay::ActionValidator::validate(s, std::make_shared<gameplay::GadgetAction>(a), config)) {
@@ -237,4 +237,3 @@ namespace spy::util {
         return a;
     }
 }
-
