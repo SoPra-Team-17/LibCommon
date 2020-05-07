@@ -8,6 +8,9 @@ namespace spy::gameplay {
     std::vector<std::shared_ptr<BaseOperation>>
     ActionGenerator::generateSpyActions(const State &s, const util::UUID &activeCharacter) {
         auto character = s.getCharacters().findByUUID(activeCharacter);
+        if (character->getActionPoints() == 0) {
+            return {};
+        }
 
         // TODO implement
         return {nullptr};
