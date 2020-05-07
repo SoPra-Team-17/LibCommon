@@ -67,7 +67,8 @@ namespace spy::scenario {
 
     bool FieldMap::blocksSight(util::Point p) const {
         return (getField(p).getFieldState() == FieldStateEnum::WALL
-                || getField(p).getFieldState() == FieldStateEnum::FIREPLACE);
+                || getField(p).getFieldState() == FieldStateEnum::FIREPLACE
+                || getField(p).isFoggy());
     }
 
     bool FieldMap::isAccessible(util::Point p) const {
