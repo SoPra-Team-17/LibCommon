@@ -5,10 +5,10 @@
 #ifndef LIBCOMMON_JANITORACTION_HPP
 #define LIBCOMMON_JANITORACTION_HPP
 
-#include "BaseOperation.hpp"
+#include "CopyableOperation.hpp"
 
 namespace spy::gameplay {
-    class JanitorAction : public BaseOperation {
+    class JanitorAction : public CopyableOperation<JanitorAction> {
         public:
             JanitorAction();
 
@@ -19,7 +19,7 @@ namespace spy::gameplay {
             friend void from_json(const nlohmann::json &j, JanitorAction &e);
 
         private:
-            bool isEqual(const BaseOperation &rhs) const override;
+            [[nodiscard]] bool isEqual(const BaseOperation &rhs) const override;
     };
 }
 
