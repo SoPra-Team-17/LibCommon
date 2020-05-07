@@ -29,7 +29,7 @@ namespace spy::network::messages {
         j.at("operation").get_to(g.operation);
     }
 
-    const std::shared_ptr<gameplay::BaseOperation> &GameOperation::getOperation() const {
+    std::shared_ptr<const gameplay::BaseOperation> GameOperation::getOperation() const {
         return operation;
     }
 
