@@ -31,7 +31,16 @@ set(SOURCE
         datatypes/statistics/StatisticsEntry.cpp
         datatypes/statistics/Statistics.cpp
         datatypes/gameplay/State.cpp
-        gameLogic/generation/ActionGenerator_Server.cpp
+        gameLogic/generation/actions/ActionGenerator_Server.cpp
+        gameLogic/generation/actions/ActionGenerator_Client.cpp
+        gameLogic/generation/actions/GadgetActions.cpp
+        gameLogic/generation/actions/MovementActions.cpp
+        gameLogic/generation/actions/PropertyActions.cpp
+        gameLogic/generation/actions/GambleActions.cpp
+        gameLogic/generation/actions/SpyActions.cpp
+        gameLogic/generation/actions/RetireActions.cpp
+        gameLogic/generation/ItemChoiceGenerator.cpp
+        gameLogic/generation/EquipmentChoiceGenerator.cpp
         gameLogic/validation/ActionValidator_Gadget.cpp
         gameLogic/validation/ActionValidator_Gamble.cpp
         gameLogic/validation/ActionValidator_Movement.cpp
