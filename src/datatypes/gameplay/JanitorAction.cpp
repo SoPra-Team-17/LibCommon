@@ -20,4 +20,8 @@ namespace spy::gameplay {
     bool JanitorAction::isEqual(const BaseOperation &) const {
         return true;
     }
+
+    std::shared_ptr<BaseOperation> JanitorAction::clone() const {
+        return std::make_shared<JanitorAction>(*this);
+    }
 }
