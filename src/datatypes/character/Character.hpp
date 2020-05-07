@@ -105,6 +105,8 @@ namespace spy::character {
 
             [[nodiscard]] std::optional<const std::shared_ptr<const spy::gadget::Gadget>> getGadget(spy::gadget::GadgetEnum type) const;
 
+            void addProperty(spy::character::PropertyEnum property);
+
         private:
             spy::util::UUID characterId;
             std::string name;

@@ -59,6 +59,7 @@ namespace spy::gameplay {
       
             static bool executeMothballPouch(State &s, const GadgetAction &a, const MatchConfig &config);
 
+            static bool executeCocktail(State &s, const GadgetAction &a, const MatchConfig &config);
     };
 }
 
