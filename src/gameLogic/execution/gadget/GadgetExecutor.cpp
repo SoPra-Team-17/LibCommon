@@ -52,6 +52,5 @@ namespace spy::gameplay {
             default:
                 throw std::invalid_argument("Execution of gadget type not implemented");
         }
-        return false;
     }
 }
