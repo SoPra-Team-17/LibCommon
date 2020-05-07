@@ -41,12 +41,9 @@ namespace spy::network::messages {
         std::vector<util::UUID> mapCharacters;
         std::vector<gadget::GadgetEnum> mapGadgets;
 
-        for (const auto & iter : equipment)
-        {
-            auto key =  iter.first;
-            auto value = iter.second;
-            mapCharacters.push_back(key);
-            mapGadgets.insert(mapGadgets.end(), value.begin(), value.end());
+        for (const auto &[character, gadgets] : equipment) {
+            mapCharacters.push_back(character);
+            mapGadgets.insert(mapGadgets.end(), gadgets.begin(), gadgets.end());
         }
 
         std::sort(chosenCharacter.begin(), chosenCharacter.end());
