@@ -56,9 +56,10 @@ namespace spy::gameplay {
             static bool executeDiamondCollar(State &s, const GadgetAction &a);
 
             static bool executePoisonPills(State &s, const GadgetAction &a);
-      
+
             static bool executeMothballPouch(State &s, const GadgetAction &a, const MatchConfig &config);
 
+            static bool executeCocktail(State &s, const GadgetAction &a, const MatchConfig &config);
     };
 }
 

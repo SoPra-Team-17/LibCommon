@@ -210,4 +210,8 @@ namespace spy::character {
         }
     }
 
+    void Character::addProperty(PropertyEnum property) {
+        properties.insert(property);
+    }
+
 }  // namespace spy::character

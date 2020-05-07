@@ -94,6 +94,7 @@ set(SOURCE
         gameLogic/execution/ActionExecutor_Cat.cpp
         gameLogic/execution/gadget/HairDryer.cpp
         gameLogic/execution/gadget/Jetpack.cpp
+        gameLogic/execution/gadget/Cocktail.cpp
         network/messages/EquipmentChoice.cpp
         network/messages/Error.cpp
         network/messages/GameLeave.cpp
