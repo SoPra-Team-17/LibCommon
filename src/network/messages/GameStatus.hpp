@@ -16,15 +16,13 @@ namespace spy::network::messages {
             GameStatus();
 
             GameStatus(const util::UUID &clientId, const util::UUID &activeCharacterId,
-                       std::vector<std::shared_ptr<spy::gameplay::BaseOperation>> operations,
+                       std::vector<std::shared_ptr<const spy::gameplay::BaseOperation>> operations,
                        const spy::gameplay::State &state,
                        bool isGameOver);
 
             [[nodiscard]] const util::UUID &getActiveCharacterId() const;
 
             [[nodiscard]] std::vector<std::shared_ptr<const spy::gameplay::BaseOperation>> getOperations() const;
-
-            [[nodiscard]] const std::vector<std::shared_ptr<spy::gameplay::BaseOperation>> &getOperations();
 
             [[nodiscard]] const spy::gameplay::State &getState() const;
 
@@ -38,7 +36,7 @@ namespace spy::network::messages {
 
         private:
             util::UUID activeCharacterId;
-            std::vector<std::shared_ptr<spy::gameplay::BaseOperation>> operations;
+            std::vector<std::shared_ptr<const spy::gameplay::BaseOperation>> operations;
             spy::gameplay::State state;
             bool isGameOver;
 

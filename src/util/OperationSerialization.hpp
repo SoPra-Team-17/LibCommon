@@ -22,8 +22,8 @@
 
 namespace nlohmann {
     template<>
-    struct adl_serializer<std::shared_ptr<spy::gameplay::BaseOperation>> {
-        static void to_json(json &j, const std::shared_ptr<spy::gameplay::BaseOperation> &op) {
+    struct adl_serializer<std::shared_ptr<const spy::gameplay::BaseOperation>> {
+        static void to_json(json &j, const std::shared_ptr<const spy::gameplay::BaseOperation> &op) {
             using namespace spy::gameplay;
             switch (op->getType()) {
                 case OperationEnum::GADGET_ACTION:
@@ -56,6 +56,17 @@ namespace nlohmann {
                 default:
                     throw std::invalid_argument("Operation type not valid");
             }
+        }
+
+        static void from_json(const json &j, std::shared_ptr<const spy::gameplay::BaseOperation> &opt) {
+            opt = j;
+        }
+    };
+
+    template<>
+    struct adl_serializer<std::shared_ptr<spy::gameplay::BaseOperation>> {
+        static void to_json(json &j, const std::shared_ptr<spy::gameplay::BaseOperation> &op) {
+            j = static_cast<std::shared_ptr<const spy::gameplay::BaseOperation>>(op);
         }
 
         static void from_json(const json &j, std::shared_ptr<spy::gameplay::BaseOperation> &opt) {
