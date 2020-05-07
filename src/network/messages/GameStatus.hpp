@@ -22,7 +22,9 @@ namespace spy::network::messages {
 
             [[nodiscard]] const util::UUID &getActiveCharacterId() const;
 
-            [[nodiscard]] const std::vector<std::shared_ptr<spy::gameplay::BaseOperation>> &getOperations() const;
+            [[nodiscard]] std::vector<std::shared_ptr<const spy::gameplay::BaseOperation>> getOperations() const;
+
+            [[nodiscard]] const std::vector<std::shared_ptr<spy::gameplay::BaseOperation>> &getOperations();
 
             [[nodiscard]] const spy::gameplay::State &getState() const;
 

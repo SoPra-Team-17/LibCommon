@@ -41,7 +41,11 @@ namespace spy::network::messages {
         return activeCharacterId;
     }
 
-    const std::vector<std::shared_ptr<spy::gameplay::BaseOperation>> &GameStatus::getOperations() const {
+    std::vector<std::shared_ptr<const spy::gameplay::BaseOperation>> GameStatus::getOperations() const {
+        return {operations.begin(), operations.end()};
+    }
+
+    const std::vector<std::shared_ptr<spy::gameplay::BaseOperation>> &GameStatus::getOperations() {
         return operations;
     }
 
