@@ -6,7 +6,6 @@
 
 namespace spy::gameplay {
     bool GadgetExecutor::execute(State &s, GadgetAction action, const MatchConfig &config) {
-        // TODO: implement
         switch (action.getGadget()) {
             case gadget::GadgetEnum::HAIRDRYER:
                 return executeHairDryer(s, action);
@@ -43,7 +42,7 @@ namespace spy::gameplay {
             case gadget::GadgetEnum::MIRROR_OF_WILDERNESS:
                 return executeMirrorOfWilderness(s, action, config);
             case gadget::GadgetEnum::COCKTAIL:
-                break;
+                return executeCocktail(s, action, config);
             case gadget::GadgetEnum::POCKET_LITTER:
                 [[fallthrough]];
             case gadget::GadgetEnum::MAGNETIC_WATCH:
