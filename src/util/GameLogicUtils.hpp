@@ -13,6 +13,7 @@
 #include "datatypes/gameplay/State.hpp"
 #include "matchconfig/MatchConfig.hpp"
 #include "gameplay/CharacterOperation.hpp"
+#include "gameplay/GadgetAction.hpp"
 
 namespace spy::util {
     class GameLogicUtils {
@@ -245,6 +246,16 @@ namespace spy::util {
              * @param damage        unmodified damage value
              */
             static void applyDamageToCharacter(character::Character &targetChar, unsigned int damage);
+
+            /**
+             * @brief get operation that might change due to possible honey trap property
+             * @param s current state
+             * @param op GadgetOperation that targets a character
+             * @return resulting GadgetOperation after honey trap was checked and applied
+             */
+            static gameplay::GadgetAction
+            getHoneyTrapOperation(const gameplay::State &s, const gameplay::GadgetAction &op,
+                                   const MatchConfig &config);
 
             /**
              * @brief tries to find character that gets ip because of wiretap with earplug gadget

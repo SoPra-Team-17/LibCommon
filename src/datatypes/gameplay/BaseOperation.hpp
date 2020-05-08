@@ -21,6 +21,8 @@ namespace spy::gameplay {
 
             [[nodiscard]] const util::Point &getTarget() const;
 
+            void setTarget(const util::Point &p);
+
             static void common_to_json(nlohmann::json &j, const BaseOperation &op);
 
             static void common_from_json(const nlohmann::json &j, BaseOperation &op);
