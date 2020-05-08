@@ -35,4 +35,8 @@ namespace spy::gameplay {
         auto rhs = dynamic_cast<const Movement &>(rhs_b);
         return isCharacterEqual(rhs) && from == rhs.from;
     }
+
+    std::shared_ptr<BaseOperation> Movement::clone() const {
+        return std::make_shared<Movement>(*this);
+    }
 }

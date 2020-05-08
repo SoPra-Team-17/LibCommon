@@ -5,14 +5,13 @@
 #include "GameStatus.hpp"
 #include <util/OperationSerialization.hpp>
 #include <utility>
-#include <iostream>
 
 namespace spy::network::messages {
 
     GameStatus::GameStatus() : MessageContainer{MessageTypeEnum::GAME_STATUS, {}} {}
 
     GameStatus::GameStatus(const util::UUID &clientId, const util::UUID &activeCharacterId,
-                           std::vector<std::shared_ptr<spy::gameplay::BaseOperation>> operations,
+                           std::vector<std::shared_ptr<const spy::gameplay::BaseOperation>> operations,
                            const spy::gameplay::State &state,
                            bool isGameOver) :
             MessageContainer{MessageTypeEnum::GAME_STATUS, clientId},
@@ -41,7 +40,7 @@ namespace spy::network::messages {
         return activeCharacterId;
     }
 
-    const std::vector<std::shared_ptr<spy::gameplay::BaseOperation>> &GameStatus::getOperations() const {
+    std::vector<std::shared_ptr<const spy::gameplay::BaseOperation>> GameStatus::getOperations() const {
         return operations;
     }
 

@@ -20,7 +20,7 @@ namespace spy::network {
 
             MessageContainer(messages::MessageTypeEnum messageType, util::UUID clientId);
 
-            [[nodiscard]] const util::UUID &getclientId() const;
+            [[nodiscard]] const util::UUID &getClientId() const;
 
             void setClientId(const util::UUID &id);
 

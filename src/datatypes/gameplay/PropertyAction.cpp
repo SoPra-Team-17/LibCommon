@@ -28,4 +28,8 @@ namespace spy::gameplay {
         auto rhs = dynamic_cast<const PropertyAction &>(rhs_b);
         return isCharacterEqual(rhs) && usedProperty == rhs.usedProperty;
     }
+
+    std::shared_ptr<BaseOperation> PropertyAction::clone() const {
+        return std::make_shared<PropertyAction>(*this);
+    }
 }

@@ -24,6 +24,8 @@ namespace spy::gameplay {
 
             friend void from_json(const nlohmann::json &j, Exfiltration &e);
 
+            std::shared_ptr<BaseOperation> clone() const override;
+
         private:
             util::Point from{};
 

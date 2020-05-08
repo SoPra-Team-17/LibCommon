@@ -21,4 +21,8 @@ namespace spy::gameplay {
     bool SpyAction::isEqual(const BaseOperation &rhs) const {
         return isCharacterEqual(dynamic_cast<const SpyAction &>(rhs));
     }
+
+    std::shared_ptr<BaseOperation> SpyAction::clone() const {
+        return std::make_shared<SpyAction>(*this);
+    }
 }
