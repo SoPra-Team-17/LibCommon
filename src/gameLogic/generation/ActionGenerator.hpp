@@ -10,6 +10,7 @@
 
 #include <datatypes/gameplay/State.hpp>
 #include <util/UUID.hpp>
+#include "datatypes/matchconfig/MatchConfig.hpp"
 
 namespace spy::gameplay {
     /**
@@ -78,7 +79,7 @@ namespace spy::gameplay {
             generateDiamondCollar(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateFogTin(const State &s, const util::UUID &activeCharacter);
+            generateFogTin(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateGasGloss(const State &s, const util::UUID &activeCharacter);
