@@ -52,4 +52,8 @@ namespace spy::gameplay {
     void BaseOperation::setTarget(const util::Point &p) {
         target = p;
     }
+
+    void BaseOperation::setSuccessful(bool s) {
+        BaseOperation::successful = s;
+    }
 }
