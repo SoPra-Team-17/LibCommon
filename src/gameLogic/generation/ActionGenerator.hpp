@@ -10,6 +10,7 @@
 
 #include <datatypes/gameplay/State.hpp>
 #include <util/UUID.hpp>
+#include <datatypes/matchconfig/MatchConfig.hpp>
 
 namespace spy::gameplay {
     /**
@@ -102,7 +103,7 @@ namespace spy::gameplay {
             generateMothballPouch(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateNugget(const State &s, const util::UUID &activeCharacter);
+            generateNugget(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generatePoisonPills(const State &s, const util::UUID &activeCharacter);
