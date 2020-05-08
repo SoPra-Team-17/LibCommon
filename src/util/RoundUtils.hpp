@@ -46,20 +46,26 @@ namespace spy::util {
              * @param s Current State, that is checked
              * @return true, if game is over
              */
-             static bool isGameOver(const spy::gameplay::State &s);
+            static bool isGameOver(const spy::gameplay::State &s);
 
-             /**
-              * @brief updates state, when game is over
-              * @param s CurrentState that should be modified
-              */
-              static void updateGameOver(spy::gameplay::State &s, const spy::MatchConfig &config);
+            /**
+             * @brief updates state, when game is over
+             * @param s CurrentState that should be modified
+             */
+            static void updateGameOver(spy::gameplay::State &s, const spy::MatchConfig &config);
 
-              /**
-               * @brief determines winning faction
-               * @param s Current state
-               * @return faction
-               */
-               static spy::character::FactionEnum determineWinningFaction(const spy::gameplay::State &s);
+            /**
+             * @brief determines winning faction
+             * @param s Current state
+             * @return faction
+             */
+            static spy::character::FactionEnum determineWinningFaction(const spy::gameplay::State &s);
+
+            /**
+             * @brief determines action and movement points for a character
+             * @param character to determine mp, ap
+             */
+            static void determinePoints(spy::character::Character &character);
     };
 }
 
