@@ -10,6 +10,7 @@
 
 #include <datatypes/gameplay/State.hpp>
 #include <util/UUID.hpp>
+#include <datatypes/matchconfig/MatchConfig.hpp>
 
 namespace spy::gameplay {
     /**
@@ -93,7 +94,7 @@ namespace spy::gameplay {
             generateJetpack(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateLaserCompact(const State &s, const util::UUID &activeCharacter);
+            generateLaserCompact(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateMirrorOfWilderness(const State &s, const util::UUID &activeCharacter);
