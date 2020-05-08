@@ -33,7 +33,7 @@ namespace spy::gameplay {
 
             [[nodiscard]] const std::set<int> &getMySafeCombinations() const;
 
-            void setCharacters(character::CharacterSet charSet);
+            void setCharacters(const character::CharacterSet &charSet);
 
             [[nodiscard]] const character::CharacterSet &getCharacters() const;
 
