@@ -6,24 +6,33 @@
 
 namespace spy::gameplay {
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generateAllPropertyActions(const State &s, const util::UUID &activeCharacter) {
+    ActionGenerator::generateAllPropertyActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config) {
         auto character = s.getCharacters().findByUUID(activeCharacter);
         if (character->getActionPoints() == 0) {
             return {};
         }
 
-        // TODO implement
-        return {nullptr};
+        auto observation = generateObservation(s, activeCharacter, config);
+        auto bangAndBurn = generateBangAndBurn(s, activeCharacter, config);
+
+        observation.insert(observation.end(), bangAndBurn.begin(), bangAndBurn.end());
+        return observation;
     }
 
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generatePropertyActions(const State &s, const util::UUID &activeCharacter, character::PropertyEnum /*property*/) {
+    ActionGenerator::generatePropertyActions(const State &s, const util::UUID &activeCharacter, character::PropertyEnum property, const MatchConfig &config) {
         auto character = s.getCharacters().findByUUID(activeCharacter);
         if (character->getActionPoints() == 0) {
             return {};
         }
 
-        // TODO implement: switch property
-        return {nullptr};
+        switch (property) {
+            case character::PropertyEnum::OBSERVATION:
+                return generateObservation(s, activeCharacter, config);
+            case character::PropertyEnum::BANG_AND_BURN:
+                return generateBangAndBurn(s, activeCharacter, config);
+            default:
+                return {};
+        }
     }
 }

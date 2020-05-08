@@ -6,7 +6,7 @@
 
 namespace spy::gameplay {
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generateObservation(const State &/*s*/, const util::UUID &/*activeCharacter*/) {
+    ActionGenerator::generateObservation(const State &s, const util::UUID &activeCharacter, const MatchConfig &config) {
 
         // TODO implement
         return {nullptr};

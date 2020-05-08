@@ -10,6 +10,7 @@
 
 #include <datatypes/gameplay/State.hpp>
 #include <util/UUID.hpp>
+#include <datatypes/matchconfig/MatchConfig.hpp>
 
 namespace spy::gameplay {
     /**
@@ -38,7 +39,7 @@ namespace spy::gameplay {
             generateMovementActions(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateAllPropertyActions(const State &s, const util::UUID &activeCharacter);
+            generateAllPropertyActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateGambleActions(const State &s, const util::UUID &activeCharacter);
@@ -50,17 +51,18 @@ namespace spy::gameplay {
             generateAllGadgetActions(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generatePropertyActions(const State &s, const util::UUID &activeCharacter, character::PropertyEnum property);
+            generatePropertyActions(const State &s, const util::UUID &activeCharacter, character::PropertyEnum property,
+                                    const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateGadgetActions(const State &s, const util::UUID &activeCharacter, gadget::GadgetEnum gadget);
 
         private:
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateObservation(const State &s, const util::UUID &activeCharacter);
+            generateObservation(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateBangAndBurn(const State &s, const util::UUID &activeCharacter);
+            generateBangAndBurn(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateMoleDie(const State &s, const util::UUID &activeCharacter);
