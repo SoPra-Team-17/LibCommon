@@ -127,5 +127,44 @@ namespace spy::util {
         // randomly choose winner
         return util::GameLogicUtils::probabilityTest(0.5) ? FactionEnum::PLAYER1 : FactionEnum::PLAYER2;
     }
+
+    void RoundUtils::determinePoints(character::Character &character) {
+        // default_mp = 2, default_ap = 1
+        unsigned int movement_pts = 2;
+        unsigned int action_pts = 1;
+
+        if (character.hasProperty(character::PropertyEnum::NIMBLENESS)) {
+            movement_pts = 3;
+        }
+
+        if (character.hasProperty(character::PropertyEnum::SLUGGISHNESS)) {
+            movement_pts = 1;
+        }
+
+        if (character.hasProperty(character::PropertyEnum::SPRYNESS)) {
+            action_pts = 2;
+        }
+
+        // todo missing property behäbibkeit!
+        if (false /*|| character.hasProperty(Behaebigkeit)*/) {
+            if (util::GameLogicUtils::probabilityTest(0.5)) {
+                movement_pts--;
+            } else {
+                action_pts++;
+            }
+        }
+
+        if (character.hasProperty(character::PropertyEnum::AGILITY)) {
+            if (util::GameLogicUtils::probabilityTest(0.5)) {
+                movement_pts++;
+            } else {
+                action_pts++;
+            }
+        }
+
+        character.setActionPoints(action_pts);
+        character.setMovePoints(movement_pts);
+    }
+
 }
 
