@@ -2,7 +2,7 @@
 // Created by jonas on 02.04.20.
 //
 #include <gtest/gtest.h>
-#include "gadgets/Gadget.hpp"
+#include "datatypes/gadgets/Gadget.hpp"
 #include "util/GadgetSerialization.hpp"
 
 TEST(JSON_Decode, Gadget_generic) {

@@ -6,10 +6,10 @@
  */
 
 #include <gtest/gtest.h>
-#include "scenario/Scenario.hpp"
-#include "scenario/FieldMap.hpp"
-#include "gameplay/State.hpp"
-#include "character/Character.hpp"
+#include "datatypes/scenario/Scenario.hpp"
+#include "datatypes/scenario/FieldMap.hpp"
+#include "datatypes/gameplay/State.hpp"
+#include "datatypes/character/Character.hpp"
 #include "util/Point.hpp"
 #include "gameLogic/validation/ActionValidator.hpp"
 #include "gameLogic/execution/ActionExecutor.hpp"

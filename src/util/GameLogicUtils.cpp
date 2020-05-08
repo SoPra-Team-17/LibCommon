@@ -7,8 +7,8 @@
 
 #include <datatypes/gadgets/WiretapWithEarplugs.hpp>
 #include "GameLogicUtils.hpp"
-#include "gameplay/Movement.hpp"
-#include "scenario/FieldMap.hpp"
+#include "datatypes/gameplay/Movement.hpp"
+#include "datatypes/scenario/FieldMap.hpp"
 
 
 namespace spy::util {

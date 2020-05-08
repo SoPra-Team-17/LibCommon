@@ -11,8 +11,8 @@
 #include <random>
 #include <unordered_set>
 #include "datatypes/gameplay/State.hpp"
-#include "matchconfig/MatchConfig.hpp"
-#include "gameplay/CharacterOperation.hpp"
+#include "datatypes/matchconfig/MatchConfig.hpp"
+#include "datatypes/gameplay/CharacterOperation.hpp"
 
 namespace spy::util {
     class GameLogicUtils {
