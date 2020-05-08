@@ -6,7 +6,8 @@
 
 namespace spy::gameplay {
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generateAllPropertyActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config) {
+    ActionGenerator::generateAllPropertyActions(const State &s, const util::UUID &activeCharacter,
+                                                const MatchConfig &config) {
         auto character = s.getCharacters().findByUUID(activeCharacter);
         if (character->getActionPoints() == 0) {
             return {};
@@ -20,7 +21,8 @@ namespace spy::gameplay {
     }
 
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generatePropertyActions(const State &s, const util::UUID &activeCharacter, character::PropertyEnum property, const MatchConfig &config) {
+    ActionGenerator::generatePropertyActions(const State &s, const util::UUID &activeCharacter,
+                                             character::PropertyEnum property, const MatchConfig &config) {
         auto character = s.getCharacters().findByUUID(activeCharacter);
         if (character->getActionPoints() == 0) {
             return {};
