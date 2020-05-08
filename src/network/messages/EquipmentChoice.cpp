@@ -38,7 +38,6 @@ namespace spy::network::messages {
             return false;
         }
 
-        std::vector<util::UUID> mapCharacters;
         std::vector<gadget::GadgetEnum> mapGadgets;
 
         for (const auto &[character, gadgets] : equipment) {
@@ -47,6 +46,7 @@ namespace spy::network::messages {
             if (charIt == chosenCharacter.end()) {
                 return false;
             }
+            mapGadgets.insert(mapGadgets.end(), gadgets.begin(), gadgets.end());
         }
 
         std::sort(chosenGadget.begin(), chosenGadget.end());
