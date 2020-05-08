@@ -150,7 +150,7 @@ namespace spy::util {
             if (util::GameLogicUtils::probabilityTest(0.5)) {
                 movement_pts--;
             } else {
-                action_pts++;
+                action_pts--;
             }
         }
 
@@ -167,4 +167,3 @@ namespace spy::util {
     }
 
 }
-
