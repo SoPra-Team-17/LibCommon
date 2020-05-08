@@ -42,15 +42,23 @@ namespace spy::network::messages {
         std::vector<gadget::GadgetEnum> mapGadgets;
 
         for (const auto &[character, gadgets] : equipment) {
-            mapCharacters.push_back(character);
-            mapGadgets.insert(mapGadgets.end(), gadgets.begin(), gadgets.end());
+            // check if character is part of the chosen ones
+            auto charIt = std::find(chosenCharacter.begin(), chosenCharacter.end(), character);
+            if (charIt == chosenCharacter.end()) {
+                return false;
+            }
+
+            // check if the gadget set is part of the chosen ones
+            for (const auto &g : gadgets) {
+                auto gadgetIt = std::find(chosenGadget.begin(), chosenGadget.end(), g);
+                if (gadgetIt == chosenGadget.end()) {
+                    return false;
+                } else {
+                    *gadgetIt = spy::gadget::GadgetEnum::INVALID;
+                }
+            }
         }
 
-        std::sort(chosenCharacter.begin(), chosenCharacter.end());
-        std::sort(mapCharacters.begin(), mapCharacters.end());
-        std::sort(chosenGadget.begin(), chosenGadget.end());
-        std::sort(mapGadgets.begin(), mapGadgets.end());
-
-        return (chosenCharacter == mapCharacters && chosenGadget == mapGadgets);
+        return true;
     }
 }
