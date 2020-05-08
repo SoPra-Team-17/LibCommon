@@ -18,6 +18,8 @@ namespace spy::gameplay {
 
             friend void from_json(const nlohmann::json &j, JanitorAction &e);
 
+            std::shared_ptr<BaseOperation> clone() const override;
+
         private:
             bool isEqual(const BaseOperation &rhs) const override;
     };

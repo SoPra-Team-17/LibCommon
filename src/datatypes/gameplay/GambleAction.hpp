@@ -22,6 +22,8 @@ namespace spy::gameplay {
 
             friend void from_json(const nlohmann::json &j, GambleAction &g);
 
+            std::shared_ptr<BaseOperation> clone() const override;
+
         private:
             unsigned int stake = 0;
 
