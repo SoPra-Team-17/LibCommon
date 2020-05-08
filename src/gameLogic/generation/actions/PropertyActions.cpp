@@ -6,7 +6,7 @@
 
 namespace spy::gameplay {
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generatePropertyActions(const State &s, const util::UUID &activeCharacter) {
+    ActionGenerator::generateAllPropertyActions(const State &s, const util::UUID &activeCharacter) {
         auto character = s.getCharacters().findByUUID(activeCharacter);
         if (character->getActionPoints() == 0) {
             return {};
@@ -17,24 +17,13 @@ namespace spy::gameplay {
     }
 
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generateObservation(const State &s, const util::UUID &activeCharacter) {
+    ActionGenerator::generatePropertyActions(const State &s, const util::UUID &activeCharacter, character::PropertyEnum /*property*/) {
         auto character = s.getCharacters().findByUUID(activeCharacter);
         if (character->getActionPoints() == 0) {
             return {};
         }
 
-        // TODO implement
-        return {nullptr};
-    }
-
-    std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generateBangAndBurn(const State &s, const util::UUID &activeCharacter) {
-        auto character = s.getCharacters().findByUUID(activeCharacter);
-        if (character->getActionPoints() == 0) {
-            return {};
-        }
-
-        // TODO implement
+        // TODO implement: switch property
         return {nullptr};
     }
 }

@@ -38,13 +38,7 @@ namespace spy::gameplay {
             generateMovementActions(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generatePropertyActions(const State &s, const util::UUID &activeCharacter);
-
-            static std::vector<std::shared_ptr<BaseOperation>>
-            generateObservation(const State &s, const util::UUID &activeCharacter);
-
-            static std::vector<std::shared_ptr<BaseOperation>>
-            generateBangAndBurn(const State &s, const util::UUID &activeCharacter);
+            generateAllPropertyActions(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateGambleActions(const State &s, const util::UUID &activeCharacter);
@@ -53,7 +47,20 @@ namespace spy::gameplay {
             generateSpyActions(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateGadgetActions(const State &s, const util::UUID &activeCharacter);
+            generateAllGadgetActions(const State &s, const util::UUID &activeCharacter);
+
+            static std::vector<std::shared_ptr<BaseOperation>>
+            generatePropertyActions(const State &s, const util::UUID &activeCharacter, character::PropertyEnum property);
+
+            static std::vector<std::shared_ptr<BaseOperation>>
+            generateGadgetActions(const State &s, const util::UUID &activeCharacter, gadget::GadgetEnum gadget);
+
+        private:
+            static std::vector<std::shared_ptr<BaseOperation>>
+            generateObservation(const State &s, const util::UUID &activeCharacter);
+
+            static std::vector<std::shared_ptr<BaseOperation>>
+            generateBangAndBurn(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateMoleDie(const State &s, const util::UUID &activeCharacter);

@@ -39,6 +39,26 @@ set(SOURCE
         gameLogic/generation/actions/GambleActions.cpp
         gameLogic/generation/actions/SpyActions.cpp
         gameLogic/generation/actions/RetireActions.cpp
+        gameLogic/generation/actions/gadget/BowlerBlade.cpp
+        gameLogic/generation/actions/gadget/ChickenFeed.cpp
+        gameLogic/generation/actions/gadget/Cocktail.cpp
+        gameLogic/generation/actions/gadget/DiamondCollar.cpp
+        gameLogic/generation/actions/gadget/FogTin.cpp
+        gameLogic/generation/actions/gadget/GasGloss.cpp
+        gameLogic/generation/actions/gadget/Grapple.cpp
+        gameLogic/generation/actions/gadget/HairDryer.cpp
+        gameLogic/generation/actions/gadget/Jetpack.cpp
+        gameLogic/generation/actions/gadget/LaserCompact.cpp
+        gameLogic/generation/actions/gadget/MirrorOfWilderness.cpp
+        gameLogic/generation/actions/gadget/MoleDie.cpp
+        gameLogic/generation/actions/gadget/MothballPouch.cpp
+        gameLogic/generation/actions/gadget/Nugget.cpp
+        gameLogic/generation/actions/gadget/PoisonPills.cpp
+        gameLogic/generation/actions/gadget/RocketPen.cpp
+        gameLogic/generation/actions/gadget/TechnicolorPrism.cpp
+        gameLogic/generation/actions/gadget/WiretapWithEarplugs.cpp
+        gameLogic/generation/actions/property/BangAndBurn.cpp
+        gameLogic/generation/actions/property/Observation.cpp
         gameLogic/generation/ItemChoiceGenerator.cpp
         gameLogic/generation/EquipmentChoiceGenerator.cpp
         gameLogic/validation/ActionValidator_Gadget.cpp
