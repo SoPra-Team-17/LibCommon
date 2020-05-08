@@ -1,10 +1,12 @@
-//
-// Created by Carolin on 08.05.2020.
-//
+/**
+ * @file   Cocktail.cpp
+ * @author Marco Deuscher (code), Carolin (created)
+ * @date   08.05.2020 (creation)
+ * @brief  Implementation of bowler blade gadget action generation
+ */
 
 #include "gameLogic/generation/ActionGenerator.hpp"
 #include "gameLogic/validation/ActionValidator.hpp"
-#include "util/GameLogicUtils.hpp"
 #include "datatypes/gameplay/GadgetAction.hpp"
 
 namespace spy::gameplay {
