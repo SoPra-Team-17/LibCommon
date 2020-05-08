@@ -31,6 +31,9 @@ TEST(MatchConfig, MatchConfigDecodingEncoding) {
     "honeyTrapSuccessChance": 0.35,
     "observationSuccessChance": 0.12,
     "chipsToIpFactor": 12,
+    "secretToIpFactor": 9 ,
+    "minChipsRoulette": 0 ,
+    "maxChipsRoulette": 6 ,
     "roundLimit": 15,
     "turnPhaseLimit": 6,
     "catIp": 8,
@@ -63,12 +66,15 @@ TEST(MatchConfig, MatchConfigDecodingEncoding) {
     EXPECT_EQ(decodedMatchConfig.getHoneyTrapSuccessChance(), 0.35);
     EXPECT_EQ(decodedMatchConfig.getObservationSuccessChance(), 0.12);
     EXPECT_EQ(decodedMatchConfig.getChipsToIpFactor(), 12);
+    EXPECT_EQ(decodedMatchConfig.getSecretToIpFactorFactor(), 9);
     EXPECT_EQ(decodedMatchConfig.getRoundLimit(), 15);
     EXPECT_EQ(decodedMatchConfig.getTurnPhaseLimit(), 6);
     EXPECT_EQ(decodedMatchConfig.getCatIp(), 8);
     EXPECT_EQ(decodedMatchConfig.getStrikeMaximum(), 4);
     EXPECT_EQ(decodedMatchConfig.getPauseLimit(), 320);
     EXPECT_EQ(decodedMatchConfig.getReconnectLimit(), 20);
+    EXPECT_EQ(decodedMatchConfig.getMinChipsRoulette(), 0);
+    EXPECT_EQ(decodedMatchConfig.getMaxChipsRoulette(), 6);
 
     nlohmann::json json;
     EXPECT_NO_THROW(json = decodedMatchConfig);
@@ -98,6 +104,9 @@ TEST(MatchConfig, InfiniteLimits) {
     "honeyTrapSuccessChance": 0.35,
     "observationSuccessChance": 0.12,
     "chipsToIpFactor": 12,
+    "secretToIpFactor": 9,
+    "minChipsRoulette": 0,
+    "maxChipsRoulette": 6,
     "roundLimit": 15,
     "turnPhaseLimit": -10,
     "catIp": 8,
@@ -128,6 +137,9 @@ TEST(MatchConfig, InfiniteLimits) {
     "honeyTrapSuccessChance": 0.35,
     "observationSuccessChance": 0.12,
     "chipsToIpFactor": 12,
+    "secretToIpFactor": 9,
+    "minChipsRoulette": 0,
+    "maxChipsRoulette": 6,
     "roundLimit": 15,
     "turnPhaseLimit": -1,
     "catIp": 8,
