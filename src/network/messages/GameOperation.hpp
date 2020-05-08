@@ -19,9 +19,9 @@ namespace spy::network::messages {
         public:
             GameOperation();
 
-            GameOperation(util::UUID clientId, std::shared_ptr<gameplay::BaseOperation> operation);
+            GameOperation(util::UUID clientId, std::shared_ptr<const gameplay::BaseOperation> operation);
 
-            [[nodiscard]] const std::shared_ptr<gameplay::BaseOperation> &getOperation() const;
+            [[nodiscard]] std::shared_ptr<const gameplay::BaseOperation> getOperation() const;
 
             friend void to_json(nlohmann::json &j, const GameOperation &g);
 
@@ -45,7 +45,7 @@ namespace spy::network::messages {
 
 
         private:
-            std::shared_ptr<gameplay::BaseOperation> operation;
+            std::shared_ptr<const gameplay::BaseOperation> operation;
     };
 }
 

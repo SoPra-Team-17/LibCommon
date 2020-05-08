@@ -24,6 +24,8 @@ namespace spy::gameplay {
 
             friend void from_json(const nlohmann::json &j, GadgetAction &g);
 
+            std::shared_ptr<BaseOperation> clone() const override;
+
         private:
             gadget::GadgetEnum gadget = gadget::GadgetEnum::INVALID;
 

@@ -33,6 +33,8 @@ namespace spy::gameplay {
 
             friend void from_json(const nlohmann::json &j, Movement &m);
 
+            std::shared_ptr<BaseOperation> clone() const override;
+
         private:
             util::Point from{};
 
