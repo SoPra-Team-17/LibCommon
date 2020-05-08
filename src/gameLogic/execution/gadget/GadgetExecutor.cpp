@@ -6,18 +6,17 @@
 
 namespace spy::gameplay {
     bool GadgetExecutor::execute(State &s, GadgetAction action, const MatchConfig &config) {
-        // TODO: implement
         switch (action.getGadget()) {
             case gadget::GadgetEnum::HAIRDRYER:
                 return executeHairDryer(s, action);
             case gadget::GadgetEnum::MOLEDIE:
-                return executeMoleDie(s, action);
+                return executeMoleDie(s, action, config);
             case gadget::GadgetEnum::TECHNICOLOUR_PRISM:
                 return executeTechnicolorPrism(s, action);
             case gadget::GadgetEnum::BOWLER_BLADE:
                 return executeBowlerBlade(s, action, config);
             case gadget::GadgetEnum::POISON_PILLS:
-                return executePoisonPills(s, action);
+                return executePoisonPills(s, action, config);
             case gadget::GadgetEnum::LASER_COMPACT:
                 return executeLaserCompact(s, action, config);
             case gadget::GadgetEnum::ROCKET_PEN:
@@ -43,7 +42,7 @@ namespace spy::gameplay {
             case gadget::GadgetEnum::MIRROR_OF_WILDERNESS:
                 return executeMirrorOfWilderness(s, action, config);
             case gadget::GadgetEnum::COCKTAIL:
-                break;
+                return executeCocktail(s, action, config);
             case gadget::GadgetEnum::POCKET_LITTER:
                 [[fallthrough]];
             case gadget::GadgetEnum::MAGNETIC_WATCH:
@@ -53,6 +52,5 @@ namespace spy::gameplay {
             default:
                 throw std::invalid_argument("Execution of gadget type not implemented");
         }
-        return false;
     }
 }

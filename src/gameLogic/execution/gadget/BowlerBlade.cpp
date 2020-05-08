@@ -11,7 +11,10 @@
 
 namespace spy::gameplay {
 
-    bool GadgetExecutor::executeBowlerBlade(State &s, const GadgetAction &a, const MatchConfig &config) {
+    bool GadgetExecutor::executeBowlerBlade(State &s, const GadgetAction &action, const MatchConfig &config) {
+        //Honey Trap property
+        auto a = util::GameLogicUtils::getHoneyTrapOperation(s, action, config);
+
         auto character = *(s.getCharacters().getByUUID(a.getCharacterId()));
         bool successfullHit = util::GameLogicUtils::probabilityTestWithCharacter(character,
                                                                                  config.getBowlerBladeHitChance());

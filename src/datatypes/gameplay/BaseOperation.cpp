@@ -49,6 +49,10 @@ namespace spy::gameplay {
                std::tie(rhs.type, rhs.successful, rhs.target);
     }
 
+    void BaseOperation::setTarget(const util::Point &p) {
+        target = p;
+    }
+
     void BaseOperation::setSuccessful(bool s) {
         BaseOperation::successful = s;
     }
