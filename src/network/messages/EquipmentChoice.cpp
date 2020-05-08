@@ -47,18 +47,11 @@ namespace spy::network::messages {
             if (charIt == chosenCharacter.end()) {
                 return false;
             }
-
-            // check if the gadget set is part of the chosen ones
-            for (const auto &g : gadgets) {
-                auto gadgetIt = std::find(chosenGadget.begin(), chosenGadget.end(), g);
-                if (gadgetIt == chosenGadget.end()) {
-                    return false;
-                } else {
-                    *gadgetIt = spy::gadget::GadgetEnum::INVALID;
-                }
-            }
         }
 
-        return true;
+        std::sort(chosenGadget.begin(), chosenGadget.end());
+        std::sort(mapGadgets.begin(), mapGadgets.end());
+
+        return (chosenGadget == mapGadgets);
     }
 }
