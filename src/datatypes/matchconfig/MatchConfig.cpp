@@ -94,6 +94,10 @@ namespace spy {
         return chipsToIpFactor;
     }
 
+    unsigned int MatchConfig::getSecretToIpFactorFactor() const {
+        return secretToIpFactor;
+    }
+
     unsigned int MatchConfig::getRoundLimit() const {
         return roundLimit;
     }
@@ -116,6 +120,13 @@ namespace spy {
 
     unsigned int MatchConfig::getStrikeMaximum() const {
         return strikeMaximum;
+    }
+
+    unsigned int MatchConfig::getMinChipsRoulette() const {
+        return minChipsRoulette;
+    }
+    unsigned int MatchConfig::getMaxChipsRoulette() const {
+        return maxChipsRoulette;
     }
 
     void to_json(nlohmann::json &j, const MatchConfig &c) {
@@ -157,6 +168,8 @@ namespace spy {
 
         j["chipsToIpFactor"] = c.chipsToIpFactor;
 
+        j["secretToIpFactor"] = c.secretToIpFactor;
+
         j["roundLimit"] = c.roundLimit;
 
         if (c.turnPhaseLimit.has_value()) {
@@ -180,6 +193,9 @@ namespace spy {
         } else {
             j["reconnectLimit"] = INFINITE_LIMIT;
         }
+
+        j["minChipsRoulette"] = c.minChipsRoulette;
+        j["maxChipsRoulette"] = c.maxChipsRoulette;
     }
 
     void from_json(const nlohmann::json &j, MatchConfig &c) {
@@ -225,6 +241,8 @@ namespace spy {
 
         j.at("chipsToIpFactor").get_to(c.chipsToIpFactor);
 
+        j.at("secretToIpFactor").get_to(c.secretToIpFactor);
+
         j.at("roundLimit").get_to(c.roundLimit);
 
         j.at("catIp").get_to(c.catIp);
@@ -238,6 +256,13 @@ namespace spy {
         c.turnPhaseLimit = (turnPhaseLimit < 0) ? std::optional<unsigned int>() : turnPhaseLimit;
         c.reconnectLimit = (reconnectLimit < 0) ? std::optional<unsigned int>() : reconnectLimit;
         c.pauseLimit = (pauseLimit < 0) ? std::optional<unsigned int>() : pauseLimit;
+
+        j.at("minChipsRoulette").get_to(c.minChipsRoulette);
+        j.at("maxChipsRoulette").get_to(c.maxChipsRoulette);
+
+        if (c.maxChipsRoulette < c.minChipsRoulette) {
+            throw std::invalid_argument("minChipsRoulette <= maxChipsRoulette is violated!");
+        }
     }
 
     bool MatchConfig::operator==(const MatchConfig &rhs) const {
@@ -246,13 +271,15 @@ namespace spy {
                         grappleRange, grappleHitChance, wiretapWithEarplugsFailChance, mirrorSwapChance,
                         cocktailDodgeChance, cocktailHealthPoints, spySuccessChance, babysitterSuccessChance,
                         honeyTrapSuccessChance, observationSuccessChance, chipsToIpFactor, roundLimit, catIp,
-                        strikeMaximum, turnPhaseLimit, pauseLimit, reconnectLimit) ==
+                        strikeMaximum, turnPhaseLimit, pauseLimit, reconnectLimit, secretToIpFactor, minChipsRoulette,
+                        maxChipsRoulette) ==
                std::tie(rhs.moledieRange, rhs.bowlerBladeRange, rhs.bowlerBladeHitChance, rhs.bowlerBladeDamage,
                         rhs.laserCompactHitChance, rhs.rocketPenDamage, rhs.gasGlossDamage, rhs.mothballPouchRange,
                         rhs.mothballPouchDamage, rhs.fogTinRange, rhs.grappleRange, rhs.grappleHitChance,
                         rhs.wiretapWithEarplugsFailChance, rhs.mirrorSwapChance, rhs.cocktailDodgeChance,
                         rhs.cocktailHealthPoints, rhs.spySuccessChance, rhs.babysitterSuccessChance,
                         rhs.honeyTrapSuccessChance, rhs.observationSuccessChance, rhs.chipsToIpFactor, rhs.roundLimit,
-                        rhs.catIp, rhs.strikeMaximum, rhs.turnPhaseLimit, rhs.pauseLimit, rhs.reconnectLimit);
+                        rhs.catIp, rhs.strikeMaximum, rhs.turnPhaseLimit, rhs.pauseLimit, rhs.reconnectLimit,
+                        rhs.secretToIpFactor, rhs.minChipsRoulette, rhs.maxChipsRoulette);
     }
 }
