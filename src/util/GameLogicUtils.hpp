@@ -240,11 +240,12 @@ namespace spy::util {
                                         const spy::MatchConfig &config);
 
             /**
-             * @brief applies damage to a given character based on his properties
+             * @brief applies damage to a given character based on his properties and updates stats
+             * @param s             Current state
              * @param targetChar    Target Character who receives damage
              * @param damage        unmodified damage value
              */
-            static void applyDamageToCharacter(character::Character &targetChar, unsigned int damage);
+            static void applyDamageToCharacter(spy::gameplay::State &s, character::Character &targetChar, unsigned int damage);
 
             /**
              * @brief tries to find character that gets ip because of wiretap with earplug gadget

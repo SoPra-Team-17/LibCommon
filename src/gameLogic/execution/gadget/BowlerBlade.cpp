@@ -26,7 +26,7 @@ namespace spy::gameplay {
 
         if (successfullHit && !targetHasMagneticWatch && !babysitter) {
             auto damage = config.getBowlerBladeDamage();
-            util::GameLogicUtils::applyDamageToCharacter(*targetPerson, damage);
+            util::GameLogicUtils::applyDamageToCharacter(s, *targetPerson, damage);
         }
 
         // move hat to random free field of target person

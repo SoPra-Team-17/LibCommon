@@ -191,25 +191,37 @@ namespace spy::util {
         return result;
     }
 
-    void GameLogicUtils::applyDamageToCharacter(character::Character &targetChar, unsigned int damage) {
+    void GameLogicUtils::applyDamageToCharacter(spy::gameplay::State &s, character::Character &targetChar,
+                                                unsigned int damage) {
         if (targetChar.hasProperty(character::PropertyEnum::TOUGHNESS)) {
             damage /= 2;
         }
 
         targetChar.subHealthPoints(damage);
+
+        // update stats
+        if (targetChar.getFaction() == character::FactionEnum::PLAYER1) {
+            s.getFactionStats().damageSuffered.first += damage;
+        } else if (targetChar.getFaction() == character::FactionEnum::PLAYER2) {
+            s.getFactionStats().damageSuffered.second += damage;
+        }
     }
 
     std::optional<std::shared_ptr<character::Character>>
     GameLogicUtils::getWiredCharacter(const gameplay::State &s, const character::Character gettingIP) {
         std::optional<std::shared_ptr<character::Character>> resultChar;
-        auto character = std::find_if(s.getCharacters().begin(), s.getCharacters().end(), [&gettingIP](const character::Character &c) {
-            auto gadget_optionalPointer = c.getGadget(gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS);
-            if (!gadget_optionalPointer.has_value()) {
-                return false;
-            }
-            auto gadget = *std::dynamic_pointer_cast<const gadget::WiretapWithEarplugs>(gadget_optionalPointer.value());
-            return gadget.isWorking() && gadget.getActiveOn().has_value() && gadget.getActiveOn().value() == gettingIP.getCharacterId();
-        });
+        auto character = std::find_if(s.getCharacters().begin(), s.getCharacters().end(),
+                                      [&gettingIP](const character::Character &c) {
+                                          auto gadget_optionalPointer = c.getGadget(
+                                                  gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS);
+                                          if (!gadget_optionalPointer.has_value()) {
+                                              return false;
+                                          }
+                                          auto gadget = *std::dynamic_pointer_cast<const gadget::WiretapWithEarplugs>(
+                                                  gadget_optionalPointer.value());
+                                          return gadget.isWorking() && gadget.getActiveOn().has_value() &&
+                                                 gadget.getActiveOn().value() == gettingIP.getCharacterId();
+                                      });
 
         if (character != s.getCharacters().end()) {
             //character getting intelligence points is wired
