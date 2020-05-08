@@ -6,7 +6,7 @@
 #include <util/GameLogicUtils.hpp>
 #include <datatypes/gameplay/JanitorAction.hpp>
 #include <datatypes/gameplay/Exfiltration.hpp>
-#include "ActionGenerator.hpp"
+#include "gameLogic/generation/ActionGenerator.hpp"
 
 namespace spy::gameplay {
     std::shared_ptr<BaseOperation>
@@ -32,8 +32,13 @@ namespace spy::gameplay {
     }
 
     std::shared_ptr<BaseOperation>
-    ActionGenerator::generateNPCAction(const State &/*s*/, const util::UUID &/*activeNPC*/) {
-        // TODO implement
-        return nullptr;
+    ActionGenerator::generateNPCAction(const State &s, const util::UUID &activeNPC) {
+        // get rid of mole die if possible
+        auto moleDie = generateMoleDie(s, activeNPC);
+        if (!moleDie.empty()) {
+            return *util::GameLogicUtils::getRandomItemFromVector(moleDie);
+        }
+
+        return generateRandomAction(s, activeNPC);
     }
 }
