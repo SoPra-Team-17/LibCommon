@@ -38,19 +38,20 @@ namespace spy::network::messages {
             return false;
         }
 
-        std::vector<util::UUID> mapCharacters;
         std::vector<gadget::GadgetEnum> mapGadgets;
 
         for (const auto &[character, gadgets] : equipment) {
-            mapCharacters.push_back(character);
+            // check if character is part of the chosen ones
+            auto charIt = std::find(chosenCharacter.begin(), chosenCharacter.end(), character);
+            if (charIt == chosenCharacter.end()) {
+                return false;
+            }
             mapGadgets.insert(mapGadgets.end(), gadgets.begin(), gadgets.end());
         }
 
-        std::sort(chosenCharacter.begin(), chosenCharacter.end());
-        std::sort(mapCharacters.begin(), mapCharacters.end());
         std::sort(chosenGadget.begin(), chosenGadget.end());
         std::sort(mapGadgets.begin(), mapGadgets.end());
 
-        return (chosenCharacter == mapCharacters && chosenGadget == mapGadgets);
+        return (chosenGadget == mapGadgets);
     }
 }
