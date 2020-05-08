@@ -29,4 +29,8 @@ namespace spy::gameplay {
         auto rhs = dynamic_cast<const Exfiltration &>(rhs_b);
         return isCharacterEqual(rhs) and from == rhs.from;
     }
+
+    std::shared_ptr<BaseOperation> Exfiltration::clone() const {
+        return std::make_shared<Exfiltration>(*this);
+    }
 }

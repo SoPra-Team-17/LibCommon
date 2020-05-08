@@ -29,4 +29,8 @@ namespace spy::gameplay {
         auto rhs = dynamic_cast<const GambleAction &>(rhs_b);
         return isCharacterEqual(rhs) && stake == rhs.stake;
     }
+
+    std::shared_ptr<BaseOperation> GambleAction::clone() const {
+        return std::make_shared<GambleAction>(*this);
+    }
 }

@@ -22,8 +22,8 @@
 
 namespace nlohmann {
     template<>
-    struct adl_serializer<std::shared_ptr<spy::gameplay::BaseOperation>> {
-        static void to_json(json &j, const std::shared_ptr<spy::gameplay::BaseOperation> &op) {
+    struct adl_serializer<std::shared_ptr<const spy::gameplay::BaseOperation>> {
+        static void to_json(json &j, const std::shared_ptr<const spy::gameplay::BaseOperation> &op) {
             using namespace spy::gameplay;
             switch (op->getType()) {
                 case OperationEnum::GADGET_ACTION:
@@ -56,6 +56,71 @@ namespace nlohmann {
                 default:
                     throw std::invalid_argument("Operation type not valid");
             }
+        }
+
+        static void from_json(const json &j, std::shared_ptr<const spy::gameplay::BaseOperation> &opt) {
+            using namespace spy::gameplay;
+
+            OperationEnum opType;
+            j.at("type").get_to(opType);
+
+            switch (opType) {
+                case OperationEnum::GADGET_ACTION: {
+                    GadgetAction g = j.get<GadgetAction>();
+                    opt = std::make_shared<GadgetAction>(g);
+                    break;
+                }
+                case OperationEnum::SPY_ACTION: {
+                    SpyAction g = j.get<SpyAction>();
+                    opt = std::make_shared<SpyAction>(g);
+                    break;
+                }
+                case OperationEnum::GAMBLE_ACTION: {
+                    GambleAction g = j.get<GambleAction>();
+                    opt = std::make_shared<GambleAction>(g);
+                    break;
+                }
+                case OperationEnum::PROPERTY_ACTION: {
+                    PropertyAction g = j.get<PropertyAction>();
+                    opt = std::make_shared<PropertyAction>(g);
+                    break;
+                }
+                case OperationEnum::MOVEMENT: {
+                    Movement g = j.get<Movement>();
+                    opt = std::make_shared<Movement>(g);
+                    break;
+                }
+                case OperationEnum::CAT_ACTION: {
+                    CatAction g = j.get<CatAction>();
+                    opt = std::make_shared<CatAction>(g);
+                    break;
+                }
+                case OperationEnum::JANITOR_ACTION: {
+                    JanitorAction g = j.get<JanitorAction>();
+                    opt = std::make_shared<JanitorAction>(g);
+                    break;
+                }
+                case OperationEnum::EXFILTRATION: {
+                    Exfiltration g = j.get<Exfiltration>();
+                    opt = std::make_shared<Exfiltration>(g);
+                    break;
+                }
+                case OperationEnum::RETIRE: {
+                    RetireAction g = j.get<RetireAction>();
+                    opt = std::make_shared<RetireAction>(g);
+                    break;
+                }
+                default:
+                    throw std::invalid_argument("Operation type not valid");
+
+            }
+        }
+    };
+
+    template<>
+    struct adl_serializer<std::shared_ptr<spy::gameplay::BaseOperation>> {
+        static void to_json(json &j, const std::shared_ptr<spy::gameplay::BaseOperation> &op) {
+            j = static_cast<std::shared_ptr<const spy::gameplay::BaseOperation>>(op);
         }
 
         static void from_json(const json &j, std::shared_ptr<spy::gameplay::BaseOperation> &opt) {
