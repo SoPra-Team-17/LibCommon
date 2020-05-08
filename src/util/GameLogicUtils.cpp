@@ -224,7 +224,7 @@ namespace spy::util {
         return resultChar;
     }
 
-    const gameplay::GadgetAction
+    gameplay::GadgetAction
     GameLogicUtils::getHoneyTrapOperation(const gameplay::State &s, const gameplay::GadgetAction &op,
                                           const MatchConfig &config) {
 

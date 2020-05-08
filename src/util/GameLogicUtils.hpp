@@ -253,7 +253,7 @@ namespace spy::util {
              * @param op GadgetOperation that targets a character
              * @return resulting GadgetOperation after honey trap was checked and applied
              */
-            static const gameplay::GadgetAction
+            static gameplay::GadgetAction
             getHoneyTrapOperation(const gameplay::State &s, const gameplay::GadgetAction &op,
                                    const MatchConfig &config);
 
