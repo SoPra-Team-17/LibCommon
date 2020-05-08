@@ -10,7 +10,11 @@
 
 namespace spy::gameplay {
 
-    bool GadgetExecutor::executeRocketPen(State &s, const GadgetAction &a, const MatchConfig &config) {
+    bool GadgetExecutor::executeRocketPen(State &s, const GadgetAction &action, const MatchConfig &config) {
+        //Honey Trap property
+        bool doHoneyTrap = util::GameLogicUtils::isPersonOnField(s, action.getTarget());
+        auto a = doHoneyTrap ? util::GameLogicUtils::getHoneyTrapOperation(s, action, config) : action;
+
         // destroy potential wall on target field
         bool targetHasWall = (s.getMap().getField(a.getTarget()).getFieldState() == scenario::FieldStateEnum::WALL);
         if (targetHasWall) {
