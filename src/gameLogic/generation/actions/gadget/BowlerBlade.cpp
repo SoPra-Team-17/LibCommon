@@ -13,10 +13,12 @@ namespace spy::gameplay {
     std::vector<std::shared_ptr<BaseOperation>>
     ActionGenerator::generateBowlerBlade(const State &s, const util::UUID &activeCharacter,
                                          const spy::MatchConfig &config) {
+        auto character = s.getCharacters().findByUUID(activeCharacter);
         std::vector<std::shared_ptr<BaseOperation>> valid_ops;
 
         for (const auto &targetChar : s.getCharacters()) {
-            if (targetChar.getCoordinates().has_value()) {
+            if (targetChar.getCoordinates().has_value() &&
+                character->getCoordinates().value() != targetChar.getCoordinates().value()) {
                 auto action = std::make_shared<GadgetAction>(false, targetChar.getCoordinates().value(),
                                                              activeCharacter,
                                                              gadget::GadgetEnum::BOWLER_BLADE);
