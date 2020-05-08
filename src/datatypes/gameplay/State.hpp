@@ -16,6 +16,15 @@
 #include "Movement.hpp"
 
 namespace spy::gameplay {
+
+    struct Stats{
+        character::FactionEnum collarToCat = character::FactionEnum::INVALID;
+        std::pair<unsigned int, unsigned int> cocktails;
+        std::pair<unsigned int, unsigned int> cocktailsPoured;
+        std::pair<unsigned int, unsigned int> damageSuffered;
+    };
+
+
     class State {
         public:
 
@@ -44,6 +53,10 @@ namespace spy::gameplay {
             [[nodiscard]] const std::optional<util::Point> &getJanitorCoordinates() const;
 
             [[nodiscard]] bool getHasCatDiamondCollar() const;
+
+            [[nodiscard]]const Stats &getConstFactionStats() const;
+
+            [[nodiscard]] Stats &getFactionStats();
 
             void setHasCatDiamondCollar(bool);
 
@@ -76,6 +89,7 @@ namespace spy::gameplay {
             std::optional<util::Point> catCoordinates;
             std::optional<util::Point> janitorCoordinates;
             bool hasCatDiamondCollar = false;
+            Stats factionStats = {};
     };
 }
 #endif //LIBCOMMON_STATE_HPP

@@ -84,6 +84,11 @@ namespace spy::scenario {
                     return true;
                 }
 
+                // check if current and target field for fog
+                if (getField(p1).isFoggy() || getField(p2).isFoggy()) {
+                    return false;
+                }
+
                 int dx = abs(p1.x - p2.x);
                 int dy = abs(p1.y - p2.y);
 

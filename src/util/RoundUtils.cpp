@@ -41,7 +41,8 @@ namespace spy::util {
             if (gadget.has_value()) {
                 auto wiretap = std::dynamic_pointer_cast<spy::gadget::WiretapWithEarplugs>(gadget.value());
 
-                if (wiretap->isWorking() && GameLogicUtils::probabilityTest(config.getWiretapWithEarplugsFailChance())) {
+                if (wiretap->isWorking() &&
+                    GameLogicUtils::probabilityTest(config.getWiretapWithEarplugsFailChance())) {
                     wiretap->setWorking(false);
                 } else if (!wiretap->isWorking() && wiretap->getActiveOn().has_value()) {
                     // Standard specifies that their must be at least one message with the gadget disabled after fallout
@@ -53,8 +54,78 @@ namespace spy::util {
 
     void RoundUtils::resetUpdatedMarker(gameplay::State &s) {
         s.getMap().forAllFields([](scenario::Field &field) {
-           field.setUpdated(false);
+            field.setUpdated(false);
         });
+    }
+
+    bool RoundUtils::isGameOver(const gameplay::State &s) {
+        // check if cat has diamond collar
+        bool getHasCollar = s.getHasCatDiamondCollar();
+
+        // check if character remaining on field
+        bool charOnField = false;
+        for (const auto &character : s.getCharacters()) {
+            if (character.getCoordinates().has_value()) {
+                charOnField = true;
+                break;
+            }
+        }
+
+        return getHasCollar || !charOnField;
+    }
+
+    void RoundUtils::updateGameOver(gameplay::State &s, const spy::MatchConfig &config) {
+        // convert chips to IP
+        for (auto &character : s.getCharacters()) {
+            character.addIntelligencePoints(character.getChips() * config.getChipsToIpFactor());
+        }
+    }
+
+    spy::character::FactionEnum RoundUtils::determineWinningFaction(const gameplay::State &s) {
+        using character::FactionEnum;
+
+        // check which faction has more ip
+        unsigned int ipFaction1 = 0;
+        unsigned int ipFaction2 = 0;
+
+        for (const auto &character : s.getCharacters()) {
+            if (character.getFaction() == FactionEnum::PLAYER1) {
+                ipFaction1 += character.getIntelligencePoints();
+            } else if (character.getFaction() == FactionEnum::PLAYER2) {
+                ipFaction2 += character.getIntelligencePoints();
+            }
+        }
+
+        if (ipFaction1 != ipFaction2) {
+            return ipFaction1 > ipFaction2 ? FactionEnum::PLAYER1 : FactionEnum::PLAYER2;
+        }
+
+        auto stats = s.getConstFactionStats();
+
+        // which faction brought diamond collar to cat
+        if (stats.collarToCat != FactionEnum::INVALID) {
+            return stats.collarToCat;
+        }
+
+        // which faction drank more cocktails
+        if (stats.cocktails.first != stats.cocktails.second) {
+            return stats.cocktails.first > stats.cocktails.second ? FactionEnum::PLAYER1 : FactionEnum::PLAYER2;
+        }
+
+        // more cocktails pours against the other faction
+        if (stats.cocktailsPoured.first != stats.cocktailsPoured.second) {
+            return stats.cocktailsPoured.first > stats.cocktailsPoured.second ? FactionEnum::PLAYER1
+                                                                              : FactionEnum::PLAYER2;
+        }
+
+        // which faction suffered less damage
+        if (stats.damageSuffered.first != stats.damageSuffered.second) {
+            return stats.damageSuffered.first > stats.damageSuffered.second ? FactionEnum::PLAYER2
+                                                                            : FactionEnum::PLAYER1;
+        }
+
+        // randomly choose winner
+        return util::GameLogicUtils::probabilityTest(0.5) ? FactionEnum::PLAYER1 : FactionEnum::PLAYER2;
     }
 }
 

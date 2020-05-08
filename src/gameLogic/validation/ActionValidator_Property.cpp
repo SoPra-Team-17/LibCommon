@@ -21,6 +21,12 @@ namespace spy::gameplay {
             return false;
         }
 
+        // check if character is inside fog
+        bool isFieldFoggy = s.getMap().getField(character->getCoordinates().value()).isFoggy();
+        if (isFieldFoggy) {
+            return false;
+        }
+
         return PropertyValidator::validate(s, op);
     }
 }

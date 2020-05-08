@@ -115,4 +115,12 @@ namespace spy::gameplay {
     void State::setHasCatDiamondCollar(bool d) {
         hasCatDiamondCollar = d;
     }
+
+    const Stats &State::getConstFactionStats() const{
+        return factionStats;
+    }
+
+    Stats &State::getFactionStats() {
+        return factionStats;
+    }
 }
