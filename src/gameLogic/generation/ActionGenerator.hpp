@@ -10,6 +10,7 @@
 
 #include <datatypes/gameplay/State.hpp>
 #include <util/UUID.hpp>
+#include "datatypes/matchconfig/MatchConfig.hpp"
 
 namespace spy::gameplay {
     /**
@@ -44,7 +45,7 @@ namespace spy::gameplay {
             generateGambleActions(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateSpyActions(const State &s, const util::UUID &activeCharacter);
+            generateSpyActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateAllGadgetActions(const State &s, const util::UUID &activeCharacter);
