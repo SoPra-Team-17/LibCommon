@@ -66,7 +66,7 @@ TEST(MatchConfig, MatchConfigDecodingEncoding) {
     EXPECT_EQ(decodedMatchConfig.getHoneyTrapSuccessChance(), 0.35);
     EXPECT_EQ(decodedMatchConfig.getObservationSuccessChance(), 0.12);
     EXPECT_EQ(decodedMatchConfig.getChipsToIpFactor(), 12);
-    EXPECT_EQ(decodedMatchConfig.getSecretToIpFactorFactor(), 9);
+    EXPECT_EQ(decodedMatchConfig.getSecretToIpFactor(), 9);
     EXPECT_EQ(decodedMatchConfig.getRoundLimit(), 15);
     EXPECT_EQ(decodedMatchConfig.getTurnPhaseLimit(), 6);
     EXPECT_EQ(decodedMatchConfig.getCatIp(), 8);

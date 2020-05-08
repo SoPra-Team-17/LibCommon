@@ -60,7 +60,7 @@ namespace spy {
 
             [[nodiscard]] unsigned int getChipsToIpFactor() const;
 
-            [[nodiscard]] unsigned int getSecretToIpFactorFactor() const;
+            [[nodiscard]] unsigned int getSecretToIpFactor() const;
 
             [[nodiscard]] unsigned int getRoundLimit() const;
 

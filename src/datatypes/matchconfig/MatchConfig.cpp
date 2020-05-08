@@ -94,7 +94,7 @@ namespace spy {
         return chipsToIpFactor;
     }
 
-    unsigned int MatchConfig::getSecretToIpFactorFactor() const {
+    unsigned int MatchConfig::getSecretToIpFactor() const {
         return secretToIpFactor;
     }
 
