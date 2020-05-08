@@ -19,7 +19,7 @@ namespace spy::network::messages {
         public:
             GameOperation();
 
-            GameOperation(util::UUID clientId, std::shared_ptr<gameplay::BaseOperation> operation);
+            GameOperation(util::UUID clientId, std::shared_ptr<const gameplay::BaseOperation> operation);
 
             [[nodiscard]] std::shared_ptr<const gameplay::BaseOperation> getOperation() const;
 
@@ -45,7 +45,7 @@ namespace spy::network::messages {
 
 
         private:
-            std::shared_ptr<gameplay::BaseOperation> operation;
+            std::shared_ptr<const gameplay::BaseOperation> operation;
     };
 }
 

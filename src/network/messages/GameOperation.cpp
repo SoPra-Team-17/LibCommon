@@ -15,7 +15,7 @@
 namespace spy::network::messages {
     GameOperation::GameOperation() : MessageContainer{MessageTypeEnum::GAME_OPERATION, {}} {}
 
-    GameOperation::GameOperation(spy::util::UUID clientId, std::shared_ptr<gameplay::BaseOperation> operation) :
+    GameOperation::GameOperation(spy::util::UUID clientId, std::shared_ptr<const gameplay::BaseOperation> operation) :
             MessageContainer{MessageTypeEnum::GAME_OPERATION, clientId},
             operation{std::move(operation)} {}
 
