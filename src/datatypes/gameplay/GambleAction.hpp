@@ -26,6 +26,10 @@ namespace spy::gameplay {
 
         private:
             unsigned int stake = 0;
+        public:
+            void setStake(unsigned int stake);
+
+        private:
 
             [[nodiscard]] bool isEqual(const BaseOperation &rhs) const override;
     };
