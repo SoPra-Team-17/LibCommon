@@ -24,6 +24,8 @@ namespace spy::gameplay {
 
             friend void from_json(const nlohmann::json &j, PropertyAction &p);
 
+            std::shared_ptr<BaseOperation> clone() const override;
+
         private:
             character::PropertyEnum usedProperty;
 

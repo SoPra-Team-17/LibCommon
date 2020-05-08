@@ -17,6 +17,8 @@ namespace spy::gameplay {
 
             [[nodiscard]] bool isSuccessful() const;
 
+            void setSuccessful(bool successful);
+
             [[nodiscard]] const util::Point &getTarget() const;
 
             void setTarget(const util::Point &p);
@@ -30,6 +32,8 @@ namespace spy::gameplay {
             bool operator==(const BaseOperation &rhs) const;
 
             bool operator!=(const BaseOperation &rhs) const;
+
+            [[nodiscard]] virtual std::shared_ptr<BaseOperation> clone() const = 0;
 
         protected:
             BaseOperation() = default;
