@@ -10,6 +10,7 @@
 
 #include <datatypes/gameplay/State.hpp>
 #include <util/UUID.hpp>
+#include <datatypes/matchconfig/MatchConfig.hpp>
 
 namespace spy::gameplay {
     /**
@@ -72,7 +73,7 @@ namespace spy::gameplay {
             generateChickenFeed(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateCocktail(const State &s, const util::UUID &activeCharacter);
+            generateCocktail(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateDiamondCollar(const State &s, const util::UUID &activeCharacter);
