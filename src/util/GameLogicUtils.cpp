@@ -5,6 +5,7 @@
  * @brief  implementation of gadget utils
  */
 
+#include <gameLogic/validation/ActionValidator.hpp>
 #include <datatypes/gadgets/WiretapWithEarplugs.hpp>
 #include "GameLogicUtils.hpp"
 #include "datatypes/gameplay/Movement.hpp"
@@ -202,14 +203,18 @@ namespace spy::util {
     std::optional<std::shared_ptr<character::Character>>
     GameLogicUtils::getWiredCharacter(const gameplay::State &s, const character::Character gettingIP) {
         std::optional<std::shared_ptr<character::Character>> resultChar;
-        auto character = std::find_if(s.getCharacters().begin(), s.getCharacters().end(), [&gettingIP](const character::Character &c) {
-            auto gadget_optionalPointer = c.getGadget(gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS);
-            if (!gadget_optionalPointer.has_value()) {
-                return false;
-            }
-            auto gadget = *std::dynamic_pointer_cast<const gadget::WiretapWithEarplugs>(gadget_optionalPointer.value());
-            return gadget.isWorking() && gadget.getActiveOn().has_value() && gadget.getActiveOn().value() == gettingIP.getCharacterId();
-        });
+        auto character = std::find_if(s.getCharacters().begin(), s.getCharacters().end(),
+                                      [&gettingIP](const character::Character &c) {
+                                          auto gadget_optionalPointer = c.getGadget(
+                                                  gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS);
+                                          if (!gadget_optionalPointer.has_value()) {
+                                              return false;
+                                          }
+                                          auto gadget = *std::dynamic_pointer_cast<const gadget::WiretapWithEarplugs>(
+                                                  gadget_optionalPointer.value());
+                                          return gadget.isWorking() && gadget.getActiveOn().has_value() &&
+                                                 gadget.getActiveOn().value() == gettingIP.getCharacterId();
+                                      });
 
         if (character != s.getCharacters().end()) {
             //character getting intelligence points is wired
@@ -218,5 +223,44 @@ namespace spy::util {
 
         return resultChar;
     }
-}
 
+    gameplay::GadgetAction
+    GameLogicUtils::getHoneyTrapOperation(const gameplay::State &s, const gameplay::GadgetAction &op,
+                                          const MatchConfig &config) {
+
+        gameplay::GadgetAction a = op; // keep op const to know regular operation/target
+        auto sourceChar = s.getCharacters().findByUUID(a.getCharacterId());
+        auto targetChar = util::GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
+
+        if (!targetChar->hasProperty(character::PropertyEnum::HONEY_TRAP) ||
+            !util::GameLogicUtils::probabilityTestWithCharacter(*sourceChar, config.getHoneyTrapSuccessChance())) {
+            return op;
+        }
+
+        std::vector<Point> alternativeTargets;
+        for (const auto &character: s.getCharacters()) {
+            if (character.getCharacterId() == sourceChar->getCharacterId() ||
+                character.getCharacterId() == targetChar->getCharacterId() ||
+                !character.getCoordinates().has_value()) {
+                // alternative action target is source or target or not in map
+                continue;
+            }
+
+            auto otherTarget = character.getCoordinates().value();
+            if (s.getMap().isInside(otherTarget)) {
+                a.setTarget(otherTarget);
+                if (gameplay::ActionValidator::validate(s, std::make_shared<gameplay::GadgetAction>(a), config)) {
+                    alternativeTargets.push_back(otherTarget);
+                }
+            }
+        }
+
+        if (alternativeTargets.empty()) {
+            return op;
+        } else {
+            a.setTarget(*GameLogicUtils::getRandomItemFromVector(alternativeTargets));
+        }
+
+        return a;
+    }
+}
