@@ -117,7 +117,7 @@ namespace spy::util {
             return s.getMap().isAccessible(currentPoint) && !isPersonOnField(s, currentPoint);
         });
         if (res.second && !res.first.empty()) {
-            result = *getRandomItemFromVector(res.first);
+            result = *getRandomItemFromContainer(res.first);
         }
         return result;
     }
@@ -161,7 +161,7 @@ namespace spy::util {
                    !isPersonOnField(s, currentPoint);
         });
         if (!points.empty()) {
-            return *getRandomItemFromVector(points);
+            return *getRandomItemFromContainer(points);
         } else {
             throw std::domain_error("No seat field with no character on it was found in the whole map");
         }
@@ -258,7 +258,7 @@ namespace spy::util {
         if (alternativeTargets.empty()) {
             return op;
         } else {
-            a.setTarget(*GameLogicUtils::getRandomItemFromVector(alternativeTargets));
+            a.setTarget(*GameLogicUtils::getRandomItemFromContainer(alternativeTargets));
         }
 
         return a;
