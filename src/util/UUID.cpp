@@ -78,4 +78,8 @@ namespace spy::util {
     void from_json(const nlohmann::json &j, UUID &c) {
         c = UUID(j.get<std::string>());
     }
+
+    UUID::operator std::string() const {
+        return to_string();
+    }
 }
