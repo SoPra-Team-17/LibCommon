@@ -6,7 +6,7 @@
 
 namespace spy::gameplay {
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generateMovementActions(const State &s, const util::UUID &activeCharacter) {
+    ActionGenerator::generateMovementActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &/*config*/) {
         auto character = s.getCharacters().findByUUID(activeCharacter);
         if (character->getMovePoints() == 0) {
             return {};

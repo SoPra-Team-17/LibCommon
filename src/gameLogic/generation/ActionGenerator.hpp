@@ -10,6 +10,7 @@
 
 #include <datatypes/gameplay/State.hpp>
 #include <util/UUID.hpp>
+#include <datatypes/matchconfig/MatchConfig.hpp>
 
 namespace spy::gameplay {
     /**
@@ -26,31 +27,33 @@ namespace spy::gameplay {
 
             static std::shared_ptr<BaseOperation> generateJanitorAction(const State &s);
 
-            static std::shared_ptr<BaseOperation> generateNPCAction(const State &s, const util::UUID &activeNPC);
+            static std::shared_ptr<BaseOperation>
+            generateNPCAction(const State &s, const util::UUID &activeNPC, const MatchConfig &config);
 
             static std::shared_ptr<BaseOperation>
-            generateRandomAction(const State &s, const util::UUID &activeCharacter);
+            generateRandomAction(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::shared_ptr<BaseOperation>
             generateRetire(const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateMovementActions(const State &s, const util::UUID &activeCharacter);
+            generateMovementActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateAllPropertyActions(const State &s, const util::UUID &activeCharacter);
+            generateAllPropertyActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateGambleActions(const State &s, const util::UUID &activeCharacter);
+            generateGambleActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateSpyActions(const State &s, const util::UUID &activeCharacter);
+            generateSpyActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateAllGadgetActions(const State &s, const util::UUID &activeCharacter);
+            generateAllGadgetActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generatePropertyActions(const State &s, const util::UUID &activeCharacter, character::PropertyEnum property);
+            generatePropertyActions(const State &s, const util::UUID &activeCharacter,
+                                    character::PropertyEnum property);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateGadgetActions(const State &s, const util::UUID &activeCharacter, gadget::GadgetEnum gadget);
