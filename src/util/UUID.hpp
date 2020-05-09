@@ -44,12 +44,6 @@ namespace spy::util {
             [[nodiscard]] std::string to_string() const;
 
             /**
-             * Explicit conversion to std::string using UUID::to_string
-             * Needed for conversion of std::map<UUID, T> to json
-             */
-            explicit operator std::string() const;
-
-            /**
              * Same as to_string(), but with upper case hex digits
              */
             [[nodiscard]] std::string to_string_upper() const;
