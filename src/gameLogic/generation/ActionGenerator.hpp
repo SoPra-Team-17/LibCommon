@@ -106,7 +106,7 @@ namespace spy::gameplay {
             generateNugget(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generatePoisonPills(const State &s, const util::UUID &activeCharacter);
+            generatePoisonPills(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateRocketPen(const State &s, const util::UUID &activeCharacter);
