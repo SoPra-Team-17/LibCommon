@@ -5,6 +5,7 @@
  * @brief  implementation of gadget utils
  */
 
+#include <gameLogic/validation/ActionValidator.hpp>
 #include <datatypes/gadgets/WiretapWithEarplugs.hpp>
 #include "GameLogicUtils.hpp"
 #include "gameplay/Movement.hpp"
@@ -116,7 +117,7 @@ namespace spy::util {
             return s.getMap().isAccessible(currentPoint) && !isPersonOnField(s, currentPoint);
         });
         if (res.second && !res.first.empty()) {
-            result = *getRandomItemFromVector(res.first);
+            result = *getRandomItemFromContainer(res.first);
         }
         return result;
     }
@@ -160,7 +161,7 @@ namespace spy::util {
                    !isPersonOnField(s, currentPoint);
         });
         if (!points.empty()) {
-            return *getRandomItemFromVector(points);
+            return *getRandomItemFromContainer(points);
         } else {
             throw std::domain_error("No seat field with no character on it was found in the whole map");
         }
@@ -230,5 +231,44 @@ namespace spy::util {
 
         return resultChar;
     }
-}
 
+    gameplay::GadgetAction
+    GameLogicUtils::getHoneyTrapOperation(const gameplay::State &s, const gameplay::GadgetAction &op,
+                                          const MatchConfig &config) {
+
+        gameplay::GadgetAction a = op; // keep op const to know regular operation/target
+        auto sourceChar = s.getCharacters().findByUUID(a.getCharacterId());
+        auto targetChar = util::GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
+
+        if (!targetChar->hasProperty(character::PropertyEnum::HONEY_TRAP) ||
+            !util::GameLogicUtils::probabilityTestWithCharacter(*sourceChar, config.getHoneyTrapSuccessChance())) {
+            return op;
+        }
+
+        std::vector<Point> alternativeTargets;
+        for (const auto &character: s.getCharacters()) {
+            if (character.getCharacterId() == sourceChar->getCharacterId() ||
+                character.getCharacterId() == targetChar->getCharacterId() ||
+                !character.getCoordinates().has_value()) {
+                // alternative action target is source or target or not in map
+                continue;
+            }
+
+            auto otherTarget = character.getCoordinates().value();
+            if (s.getMap().isInside(otherTarget)) {
+                a.setTarget(otherTarget);
+                if (gameplay::ActionValidator::validate(s, std::make_shared<gameplay::GadgetAction>(a), config)) {
+                    alternativeTargets.push_back(otherTarget);
+                }
+            }
+        }
+
+        if (alternativeTargets.empty()) {
+            return op;
+        } else {
+            a.setTarget(*GameLogicUtils::getRandomItemFromContainer(alternativeTargets));
+        }
+
+        return a;
+    }
+}

@@ -21,4 +21,8 @@ namespace spy::gameplay {
         // This class does not add members
         return true;
     }
+
+    std::shared_ptr<BaseOperation> CatAction::clone() const {
+        return std::make_shared<CatAction>(*this);
+    }
 }

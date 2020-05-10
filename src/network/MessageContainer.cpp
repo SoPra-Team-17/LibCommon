@@ -49,7 +49,7 @@ namespace spy::network {
         }
     }
 
-    const util::UUID &MessageContainer::getclientId() const {
+    const util::UUID &MessageContainer::getClientId() const {
         return clientId;
     }
 

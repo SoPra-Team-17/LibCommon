@@ -49,14 +49,14 @@ namespace spy::gameplay {
 
             static bool executeRocketPen(State &s, const GadgetAction &a, const MatchConfig &config);
 
-            static bool executeMoleDie(State &s, const GadgetAction &a);
+            static bool executeMoleDie(State &s, const GadgetAction &a, const MatchConfig &config);
 
             static bool executeFogTin(State &s, const GadgetAction &a);
 
             static bool executeDiamondCollar(State &s, const GadgetAction &a);
 
-            static bool executePoisonPills(State &s, const GadgetAction &a);
-
+            static bool executePoisonPills(State &s, const GadgetAction &a, const MatchConfig & config);
+      
             static bool executeMothballPouch(State &s, const GadgetAction &a, const MatchConfig &config);
 
             static bool executeCocktail(State &s, const GadgetAction &a, const MatchConfig &config);

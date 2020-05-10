@@ -29,4 +29,8 @@ namespace spy::gameplay {
         auto rhs = dynamic_cast<const GadgetAction &>(rhs_b);
         return isCharacterEqual(rhs) && gadget == rhs.gadget;
     }
+
+    std::shared_ptr<BaseOperation> GadgetAction::clone() const {
+        return std::make_shared<GadgetAction>(*this);
+    }
 }

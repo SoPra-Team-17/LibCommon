@@ -54,7 +54,11 @@ namespace spy::gameplay {
 
         // cocktail is used on target
         bool ret = false;
-        auto targetChar = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
+        //Honey Trap property
+        bool doHoneyTrap = util::GameLogicUtils::isPersonOnField(s, a.getTarget());
+        auto action = doHoneyTrap ? util::GameLogicUtils::getHoneyTrapOperation(s, a, config) : a;
+
+        auto targetChar = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), action.getTarget());
         bool dodged = util::GameLogicUtils::probabilityTestWithCharacter(*targetChar, config.getCocktailDodgeChance());
 
         if (!dodged) {

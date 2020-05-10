@@ -9,12 +9,19 @@
 namespace spy::network::messages {
     void to_json(nlohmann::json &j, const EquipmentChoice &e) {
         MessageContainer::common_to_json(j, e);
-        j["equipment"] = e.equipment;
+        for (const auto &equip: e.equipment) {
+            j["equipment"][equip.first.to_string()] = equip.second;
+        }
     }
 
     void from_json(const nlohmann::json &j, EquipmentChoice &e) {
         MessageContainer::common_from_json(j, e);
-        j.at("equipment").get_to(e.equipment);
+        for (auto const &equip : j.at("equipment").items()) {
+            auto const characterId = util::UUID(equip.key());
+            std::set<gadget::GadgetEnum> gadgets;
+            equip.value().get_to(gadgets);
+            e.equipment.insert({characterId, gadgets});
+        }
     }
 
     EquipmentChoice::EquipmentChoice() : MessageContainer{MessageTypeEnum::EQUIPMENT_CHOICE, {}} {}
@@ -38,22 +45,20 @@ namespace spy::network::messages {
             return false;
         }
 
-        std::vector<util::UUID> mapCharacters;
         std::vector<gadget::GadgetEnum> mapGadgets;
 
-        for (const auto & iter : equipment)
-        {
-            auto key =  iter.first;
-            auto value = iter.second;
-            mapCharacters.push_back(key);
-            mapGadgets.insert(mapGadgets.end(), value.begin(), value.end());
+        for (const auto &[character, gadgets] : equipment) {
+            // check if character is part of the chosen ones
+            auto charIt = std::find(chosenCharacter.begin(), chosenCharacter.end(), character);
+            if (charIt == chosenCharacter.end()) {
+                return false;
+            }
+            mapGadgets.insert(mapGadgets.end(), gadgets.begin(), gadgets.end());
         }
 
-        std::sort(chosenCharacter.begin(), chosenCharacter.end());
-        std::sort(mapCharacters.begin(), mapCharacters.end());
         std::sort(chosenGadget.begin(), chosenGadget.end());
         std::sort(mapGadgets.begin(), mapGadgets.end());
 
-        return (chosenCharacter == mapCharacters && chosenGadget == mapGadgets);
+        return (chosenGadget == mapGadgets);
     }
 }
