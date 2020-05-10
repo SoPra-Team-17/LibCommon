@@ -10,6 +10,7 @@
 
 #include <datatypes/gameplay/State.hpp>
 #include <util/UUID.hpp>
+#include "datatypes/matchconfig/MatchConfig.hpp"
 
 namespace spy::gameplay {
     /**
@@ -35,7 +36,7 @@ namespace spy::gameplay {
             generateRetire(const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateMovementActions(const State &s, const util::UUID &activeCharacter);
+            generateMovementActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateAllPropertyActions(const State &s, const util::UUID &activeCharacter);
