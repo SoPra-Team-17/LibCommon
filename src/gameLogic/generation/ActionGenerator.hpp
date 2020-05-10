@@ -36,7 +36,7 @@ namespace spy::gameplay {
             generateRetire(const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateMovementActions(const State &s, const util::UUID &activeCharacter);
+            generateMovementActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateAllPropertyActions(const State &s, const util::UUID &activeCharacter);
@@ -82,7 +82,7 @@ namespace spy::gameplay {
             generateFogTin(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateGasGloss(const State &s, const util::UUID &activeCharacter);
+            generateGasGloss(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateGrapple(const State &s, const util::UUID &activeCharacter);
@@ -106,7 +106,7 @@ namespace spy::gameplay {
             generateNugget(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generatePoisonPills(const State &s, const util::UUID &activeCharacter);
+            generatePoisonPills(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateRocketPen(const State &s, const util::UUID &activeCharacter);

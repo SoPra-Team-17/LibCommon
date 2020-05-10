@@ -36,7 +36,7 @@ namespace spy::gameplay {
         // get rid of mole die if possible
         auto moleDie = generateMoleDie(s, activeNPC);
         if (!moleDie.empty()) {
-            return *util::GameLogicUtils::getRandomItemFromVector(moleDie);
+            return *util::GameLogicUtils::getRandomItemFromContainer(moleDie);
         }
 
         return generateRandomAction(s, activeNPC);
