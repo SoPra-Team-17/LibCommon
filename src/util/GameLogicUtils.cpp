@@ -192,12 +192,20 @@ namespace spy::util {
         return result;
     }
 
-    void GameLogicUtils::applyDamageToCharacter(character::Character &targetChar, unsigned int damage) {
+    void GameLogicUtils::applyDamageToCharacter(spy::gameplay::State &s, character::Character &targetChar,
+                                                unsigned int damage) {
         if (targetChar.hasProperty(character::PropertyEnum::TOUGHNESS)) {
             damage /= 2;
         }
 
         targetChar.subHealthPoints(damage);
+
+        // update stats
+        if (targetChar.getFaction() == character::FactionEnum::PLAYER1) {
+            s.getFactionStats().damageSuffered.first += damage;
+        } else if (targetChar.getFaction() == character::FactionEnum::PLAYER2) {
+            s.getFactionStats().damageSuffered.second += damage;
+        }
     }
 
     std::optional<std::shared_ptr<character::Character>>
