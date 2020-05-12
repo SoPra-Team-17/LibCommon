@@ -77,6 +77,27 @@ namespace spy::util {
             getInCharacterSetByCoordinates(character::CharacterSet &cs, const util::Point &p);
 
             /**
+             * Returns a random point on the map for which the predicate returns true
+             * @tparam Predicate function-like type mapping spy::util::Point -> bool
+             * @param s current game state
+             * @param p predicate indicating valid fields, gets called exactly once for each field on the map
+             * @return random point for which p returns true, std::nullopt if p returns false for all points
+             */
+            template<typename Predicate>
+            static std::optional<util::Point> getRandomMapPoint(const gameplay::State &s, Predicate p) {
+                // List of all fields matching predicate
+                auto validFields = getAllFieldsWith(s, p);
+
+                if (validFields.empty()) {
+                    // No matching fields found
+                    return std::nullopt;
+                }
+
+                auto randomField = getRandomItemFromContainer(validFields);
+                return *randomField;
+            }
+
+            /**
              * @brief get point of random free neighbouring field with no character on it
              * @param s current state
              * @param p Point where character is at the moment
@@ -249,7 +270,8 @@ namespace spy::util {
              * @param targetChar    Target Character who receives damage
              * @param damage        unmodified damage value
              */
-            static void applyDamageToCharacter(spy::gameplay::State &s, character::Character &targetChar, unsigned int damage);
+            static void
+            applyDamageToCharacter(spy::gameplay::State &s, character::Character &targetChar, unsigned int damage);
 
             /**
              * @brief get operation that might change due to possible honey trap property
@@ -259,7 +281,7 @@ namespace spy::util {
              */
             static gameplay::GadgetAction
             getHoneyTrapOperation(const gameplay::State &s, const gameplay::GadgetAction &op,
-                                   const MatchConfig &config);
+                                  const MatchConfig &config);
 
             /**
              * @brief tries to find character that gets ip because of wiretap with earplug gadget
