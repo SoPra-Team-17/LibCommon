@@ -121,7 +121,7 @@ namespace spy::util {
                         throw std::domain_error("No Point fulfilling isSearchedField was found on the whole map");
                     }
                     if (!res.first.empty()) {
-                        return *getRandomItemFromVector(res.first);
+                        return *getRandomItemFromContainer(res.first);
                     }
                     dist++;
                 }
@@ -199,13 +199,16 @@ namespace spy::util {
             }
 
             /**
-             * @brief get random element from a vector
-             * @tparam T type of vector elements
-             * @param v non empty vector to select a random element from
+             * @brief get random element from a container (e.g. vector)
+             * @param v non empty container to select a random element from
              * @return const_iterator pointing to randomly selected element
              */
-            template<typename T>
-            static typename std::vector<T>::const_iterator getRandomItemFromVector(const std::vector<T> &v) {
+            template<typename Container>
+            static typename Container::const_iterator getRandomItemFromContainer(const Container &v) {
+                if (v.empty()) {
+                    throw std::invalid_argument("Container is empty, cannot choose any element!");
+                }
+
                 std::random_device rd;
                 std::mt19937 gen(rd());
                 std::uniform_int_distribution<unsigned int> randPos(0, v.size() - 1);
@@ -241,11 +244,12 @@ namespace spy::util {
                                         const spy::MatchConfig &config);
 
             /**
-             * @brief applies damage to a given character based on his properties
+             * @brief applies damage to a given character based on his properties and updates stats
+             * @param s             Current state
              * @param targetChar    Target Character who receives damage
              * @param damage        unmodified damage value
              */
-            static void applyDamageToCharacter(character::Character &targetChar, unsigned int damage);
+            static void applyDamageToCharacter(spy::gameplay::State &s, character::Character &targetChar, unsigned int damage);
 
             /**
              * @brief get operation that might change due to possible honey trap property

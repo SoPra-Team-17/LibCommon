@@ -3,12 +3,36 @@
 //
 
 #include "gameLogic/generation/ActionGenerator.hpp"
+#include "gameLogic/validation/ActionValidator.hpp"
+#include "util/GameLogicUtils.hpp"
+#include "datatypes/gameplay/GadgetAction.hpp"
 
 namespace spy::gameplay {
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generateGasGloss(const State &/*s*/, const util::UUID &/*activeCharacter*/) {
+    ActionGenerator::generateGasGloss(const State &s, const util::UUID &activeCharacter,
+                                      const spy::MatchConfig &config) {
 
-        // TODO implement
-        return {nullptr};
+        std::vector<std::shared_ptr<BaseOperation>> valid_ops;
+
+        auto character = s.getCharacters().findByUUID(activeCharacter);
+        auto neighboringFields = util::GameLogicUtils::getNearFieldsInDist(s, character->getCoordinates().value(), 1,
+                                                                           [&s](const util::Point &p) {
+                                                                               return util::GameLogicUtils::isPersonOnField(
+                                                                                       s, p);
+                                                                           });
+
+        if (neighboringFields.second) {
+            for (const auto &pt : neighboringFields.first) {
+                auto action = std::make_shared<GadgetAction>(false, pt, activeCharacter, gadget::GadgetEnum::GAS_GLOSS);
+                bool valid = ActionValidator::validate(s, action, config);
+
+                if (valid) {
+                    valid_ops.push_back(action);
+                }
+            }
+        }
+
+
+        return valid_ops;
     }
 }

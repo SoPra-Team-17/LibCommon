@@ -9,12 +9,19 @@
 namespace spy::network::messages {
     void to_json(nlohmann::json &j, const EquipmentChoice &e) {
         MessageContainer::common_to_json(j, e);
-        j["equipment"] = e.equipment;
+        for (const auto &equip: e.equipment) {
+            j["equipment"][equip.first.to_string()] = equip.second;
+        }
     }
 
     void from_json(const nlohmann::json &j, EquipmentChoice &e) {
         MessageContainer::common_from_json(j, e);
-        j.at("equipment").get_to(e.equipment);
+        for (auto const &equip : j.at("equipment").items()) {
+            auto const characterId = util::UUID(equip.key());
+            std::set<gadget::GadgetEnum> gadgets;
+            equip.value().get_to(gadgets);
+            e.equipment.insert({characterId, gadgets});
+        }
     }
 
     EquipmentChoice::EquipmentChoice() : MessageContainer{MessageTypeEnum::EQUIPMENT_CHOICE, {}} {}
