@@ -8,7 +8,7 @@
 #ifndef LIBCOMMON_CHARACTER_SET_HPP
 #define LIBCOMMON_CHARACTER_SET_HPP
 
-#include "character/Character.hpp"
+#include "datatypes/character/Character.hpp"
 
 namespace spy::character {
     /**
