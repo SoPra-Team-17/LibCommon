@@ -27,7 +27,8 @@ namespace spy::gameplay {
 
             static std::shared_ptr<BaseOperation> generateJanitorAction(const State &s);
 
-            static std::shared_ptr<BaseOperation> generateNPCAction(const State &s, const util::UUID &activeNPC);
+            static std::shared_ptr<BaseOperation>
+            generateNPCAction(const State &s, const util::UUID &activeNPC, spy::MatchConfig &config);
 
             static std::shared_ptr<BaseOperation>
             generateRandomAction(const State &s, const util::UUID &activeCharacter);
@@ -51,7 +52,8 @@ namespace spy::gameplay {
             generateAllGadgetActions(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generatePropertyActions(const State &s, const util::UUID &activeCharacter, character::PropertyEnum property);
+            generatePropertyActions(const State &s, const util::UUID &activeCharacter,
+                                    character::PropertyEnum property);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateGadgetActions(const State &s, const util::UUID &activeCharacter, gadget::GadgetEnum gadget);
@@ -64,7 +66,7 @@ namespace spy::gameplay {
             generateBangAndBurn(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateMoleDie(const State &s, const util::UUID &activeCharacter);
+            generateMoleDie(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateBowlerBlade(const State &s, const util::UUID &activeCharacter);
