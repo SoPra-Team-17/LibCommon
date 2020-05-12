@@ -85,8 +85,6 @@ namespace spy::util {
              */
             template<typename Predicate>
             static std::optional<util::Point> getRandomMapPoint(const gameplay::State &s, Predicate p) {
-                static std::mt19937 rng{std::random_device{}()};
-
                 // List of all fields matching predicate
                 auto validFields = getAllFieldsWith(s, p);
 
