@@ -87,7 +87,7 @@ namespace spy::gameplay {
             generateGasGloss(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateGrapple(const State &s, const util::UUID &activeCharacter);
+            generateGrapple(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateHairDryer(const State &s, const util::UUID &activeCharacter);
