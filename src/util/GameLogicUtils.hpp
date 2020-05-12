@@ -11,9 +11,9 @@
 #include <random>
 #include <unordered_set>
 #include "datatypes/gameplay/State.hpp"
-#include "matchconfig/MatchConfig.hpp"
-#include "gameplay/CharacterOperation.hpp"
-#include "gameplay/GadgetAction.hpp"
+#include "datatypes/matchconfig/MatchConfig.hpp"
+#include "datatypes/gameplay/CharacterOperation.hpp"
+#include "datatypes/gameplay/GadgetAction.hpp"
 
 namespace spy::util {
     class GameLogicUtils {
@@ -77,6 +77,27 @@ namespace spy::util {
             getInCharacterSetByCoordinates(character::CharacterSet &cs, const util::Point &p);
 
             /**
+             * Returns a random point on the map for which the predicate returns true
+             * @tparam Predicate function-like type mapping spy::util::Point -> bool
+             * @param s current game state
+             * @param p predicate indicating valid fields, gets called exactly once for each field on the map
+             * @return random point for which p returns true, std::nullopt if p returns false for all points
+             */
+            template<typename Predicate>
+            static std::optional<util::Point> getRandomMapPoint(const gameplay::State &s, Predicate p) {
+                // List of all fields matching predicate
+                auto validFields = getAllFieldsWith(s, p);
+
+                if (validFields.empty()) {
+                    // No matching fields found
+                    return std::nullopt;
+                }
+
+                auto randomField = getRandomItemFromContainer(validFields);
+                return *randomField;
+            }
+
+            /**
              * @brief get point of random free neighbouring field with no character on it
              * @param s current state
              * @param p Point where character is at the moment
@@ -121,7 +142,7 @@ namespace spy::util {
                         throw std::domain_error("No Point fulfilling isSearchedField was found on the whole map");
                     }
                     if (!res.first.empty()) {
-                        return *getRandomItemFromVector(res.first);
+                        return *getRandomItemFromContainer(res.first);
                     }
                     dist++;
                 }
@@ -199,13 +220,16 @@ namespace spy::util {
             }
 
             /**
-             * @brief get random element from a vector
-             * @tparam T type of vector elements
-             * @param v non empty vector to select a random element from
+             * @brief get random element from a container (e.g. vector)
+             * @param v non empty container to select a random element from
              * @return const_iterator pointing to randomly selected element
              */
-            template<typename T>
-            static typename std::vector<T>::const_iterator getRandomItemFromVector(const std::vector<T> &v) {
+            template<typename Container>
+            static typename Container::const_iterator getRandomItemFromContainer(const Container &v) {
+                if (v.empty()) {
+                    throw std::invalid_argument("Container is empty, cannot choose any element!");
+                }
+
                 std::random_device rd;
                 std::mt19937 gen(rd());
                 std::uniform_int_distribution<unsigned int> randPos(0, v.size() - 1);
@@ -241,11 +265,13 @@ namespace spy::util {
                                         const spy::MatchConfig &config);
 
             /**
-             * @brief applies damage to a given character based on his properties
+             * @brief applies damage to a given character based on his properties and updates stats
+             * @param s             Current state
              * @param targetChar    Target Character who receives damage
              * @param damage        unmodified damage value
              */
-            static void applyDamageToCharacter(character::Character &targetChar, unsigned int damage);
+            static void
+            applyDamageToCharacter(spy::gameplay::State &s, character::Character &targetChar, unsigned int damage);
 
             /**
              * @brief get operation that might change due to possible honey trap property
@@ -255,7 +281,7 @@ namespace spy::util {
              */
             static gameplay::GadgetAction
             getHoneyTrapOperation(const gameplay::State &s, const gameplay::GadgetAction &op,
-                                   const MatchConfig &config);
+                                  const MatchConfig &config);
 
             /**
              * @brief tries to find character that gets ip because of wiretap with earplug gadget
