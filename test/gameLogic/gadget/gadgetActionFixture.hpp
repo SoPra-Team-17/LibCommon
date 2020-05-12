@@ -8,12 +8,12 @@
 #ifndef LIBCOMMON_GADGET_ACTION_FIXTURE_HPP
 #define LIBCOMMON_GADGET_ACTION_FIXTURE_HPP
 
-#include "scenario/Scenario.hpp"
-#include "scenario/FieldMap.hpp"
-#include "gameplay/State.hpp"
-#include "character/CharacterSet.hpp"
+#include "datatypes/scenario/Scenario.hpp"
+#include "datatypes/scenario/FieldMap.hpp"
+#include "datatypes/gameplay/State.hpp"
+#include "datatypes/character/CharacterSet.hpp"
 #include "util/Point.hpp"
-#include "matchconfig/MatchConfig.hpp"
+#include "datatypes/matchconfig/MatchConfig.hpp"
 
 class GadgetActionTests : public ::testing::Test {
     public:
