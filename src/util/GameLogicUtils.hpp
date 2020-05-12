@@ -88,22 +88,14 @@ namespace spy::util {
                 static std::mt19937 rng{std::random_device{}()};
 
                 // List of all fields matching predicate
-                std::vector<util::Point> validFields{};
-                for (auto row = 0U; row < s.getMap().getNumberOfRows(); row++) {
-                    for (auto col = 0U; col < s.getMap().getRowLength(row); col++) {
-                        auto point = util::Point{static_cast<int>(col), static_cast<int>(row)};
-                        if (p(point)) {
-                            validFields.push_back(point);
-                        }
-                    }
-                }
+                auto validFields = getAllFieldsWith(s, p);
 
-                auto randomField = getRandomItemFromContainer(validFields);
-                if (randomField == validFields.end()) {
+                if (validFields.empty()) {
                     // No matching fields found
                     return std::nullopt;
                 }
 
+                auto randomField = getRandomItemFromContainer(validFields);
                 return *randomField;
             }
 
