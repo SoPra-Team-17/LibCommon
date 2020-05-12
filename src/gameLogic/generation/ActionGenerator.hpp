@@ -117,7 +117,7 @@ namespace spy::gameplay {
             generateTechnicolorPrism(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateWiretapWithEarplugs(const State &s, const util::UUID &activeCharacter);
+            generateWiretapWithEarplugs(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
     };
 }
 
