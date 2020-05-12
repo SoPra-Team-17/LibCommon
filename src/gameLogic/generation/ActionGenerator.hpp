@@ -99,7 +99,7 @@ namespace spy::gameplay {
             generateLaserCompact(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateMirrorOfWilderness(const State &s, const util::UUID &activeCharacter);
+            generateMirrorOfWilderness(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateMothballPouch(const State &s, const util::UUID &activeCharacter);
