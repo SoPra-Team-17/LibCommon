@@ -27,7 +27,8 @@ namespace spy::gameplay {
 
             static std::shared_ptr<BaseOperation> generateJanitorAction(const State &s);
 
-            static std::shared_ptr<BaseOperation> generateNPCAction(const State &s, const util::UUID &activeNPC);
+            static std::shared_ptr<BaseOperation>
+            generateNPCAction(const State &s, const util::UUID &activeNPC, spy::MatchConfig &config);
 
             static std::shared_ptr<BaseOperation>
             generateRandomAction(const State &s, const util::UUID &activeCharacter);
@@ -36,7 +37,7 @@ namespace spy::gameplay {
             generateRetire(const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateMovementActions(const State &s, const util::UUID &activeCharacter);
+            generateMovementActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateAllPropertyActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
@@ -65,7 +66,7 @@ namespace spy::gameplay {
             generateBangAndBurn(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateMoleDie(const State &s, const util::UUID &activeCharacter);
+            generateMoleDie(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateBowlerBlade(const State &s, const util::UUID &activeCharacter);
@@ -83,7 +84,7 @@ namespace spy::gameplay {
             generateFogTin(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateGasGloss(const State &s, const util::UUID &activeCharacter);
+            generateGasGloss(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateGrapple(const State &s, const util::UUID &activeCharacter);
@@ -98,7 +99,7 @@ namespace spy::gameplay {
             generateLaserCompact(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateMirrorOfWilderness(const State &s, const util::UUID &activeCharacter);
+            generateMirrorOfWilderness(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateMothballPouch(const State &s, const util::UUID &activeCharacter);
@@ -107,13 +108,13 @@ namespace spy::gameplay {
             generateNugget(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generatePoisonPills(const State &s, const util::UUID &activeCharacter);
+            generatePoisonPills(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateRocketPen(const State &s, const util::UUID &activeCharacter);
+            generateRocketPen(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateTechnicolorPrism(const State &s, const util::UUID &activeCharacter);
+            generateTechnicolorPrism(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateWiretapWithEarplugs(const State &s, const util::UUID &activeCharacter);
