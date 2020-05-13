@@ -78,7 +78,7 @@ namespace spy::gameplay {
             generateCocktail(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateDiamondCollar(const State &s, const util::UUID &activeCharacter);
+            generateDiamondCollar(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateFogTin(const State &s, const util::UUID &activeCharacter);
