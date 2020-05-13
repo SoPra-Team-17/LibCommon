@@ -8,8 +8,8 @@
 #include <gameLogic/validation/ActionValidator.hpp>
 #include <datatypes/gadgets/WiretapWithEarplugs.hpp>
 #include "GameLogicUtils.hpp"
-#include "gameplay/Movement.hpp"
-#include "scenario/FieldMap.hpp"
+#include "datatypes/gameplay/Movement.hpp"
+#include "datatypes/scenario/FieldMap.hpp"
 
 
 namespace spy::util {
@@ -117,7 +117,7 @@ namespace spy::util {
             return s.getMap().isAccessible(currentPoint) && !isPersonOnField(s, currentPoint);
         });
         if (res.second && !res.first.empty()) {
-            result = *getRandomItemFromVector(res.first);
+            result = *getRandomItemFromContainer(res.first);
         }
         return result;
     }
@@ -161,7 +161,7 @@ namespace spy::util {
                    !isPersonOnField(s, currentPoint);
         });
         if (!points.empty()) {
-            return *getRandomItemFromVector(points);
+            return *getRandomItemFromContainer(points);
         } else {
             throw std::domain_error("No seat field with no character on it was found in the whole map");
         }
@@ -192,12 +192,20 @@ namespace spy::util {
         return result;
     }
 
-    void GameLogicUtils::applyDamageToCharacter(character::Character &targetChar, unsigned int damage) {
+    void GameLogicUtils::applyDamageToCharacter(spy::gameplay::State &s, character::Character &targetChar,
+                                                unsigned int damage) {
         if (targetChar.hasProperty(character::PropertyEnum::TOUGHNESS)) {
             damage /= 2;
         }
 
         targetChar.subHealthPoints(damage);
+
+        // update stats
+        if (targetChar.getFaction() == character::FactionEnum::PLAYER1) {
+            s.getFactionStats().damageSuffered.first += damage;
+        } else if (targetChar.getFaction() == character::FactionEnum::PLAYER2) {
+            s.getFactionStats().damageSuffered.second += damage;
+        }
     }
 
     std::optional<std::shared_ptr<character::Character>>
@@ -258,7 +266,7 @@ namespace spy::util {
         if (alternativeTargets.empty()) {
             return op;
         } else {
-            a.setTarget(*GameLogicUtils::getRandomItemFromVector(alternativeTargets));
+            a.setTarget(*GameLogicUtils::getRandomItemFromContainer(alternativeTargets));
         }
 
         return a;
