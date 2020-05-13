@@ -11,9 +11,9 @@
 #include <random>
 #include <unordered_set>
 #include "datatypes/gameplay/State.hpp"
-#include "matchconfig/MatchConfig.hpp"
-#include "gameplay/CharacterOperation.hpp"
-#include "gameplay/GadgetAction.hpp"
+#include "datatypes/matchconfig/MatchConfig.hpp"
+#include "datatypes/gameplay/CharacterOperation.hpp"
+#include "datatypes/gameplay/GadgetAction.hpp"
 
 namespace spy::util {
     class GameLogicUtils {
@@ -75,6 +75,27 @@ namespace spy::util {
              */
             static std::vector<character::Character>::iterator
             getInCharacterSetByCoordinates(character::CharacterSet &cs, const util::Point &p);
+
+            /**
+             * Returns a random point on the map for which the predicate returns true
+             * @tparam Predicate function-like type mapping spy::util::Point -> bool
+             * @param s current game state
+             * @param p predicate indicating valid fields, gets called exactly once for each field on the map
+             * @return random point for which p returns true, std::nullopt if p returns false for all points
+             */
+            template<typename Predicate>
+            static std::optional<util::Point> getRandomMapPoint(const gameplay::State &s, Predicate p) {
+                // List of all fields matching predicate
+                auto validFields = getAllFieldsWith(s, p);
+
+                if (validFields.empty()) {
+                    // No matching fields found
+                    return std::nullopt;
+                }
+
+                auto randomField = getRandomItemFromContainer(validFields);
+                return *randomField;
+            }
 
             /**
              * @brief get point of random free neighbouring field with no character on it
@@ -244,11 +265,13 @@ namespace spy::util {
                                         const spy::MatchConfig &config);
 
             /**
-             * @brief applies damage to a given character based on his properties
+             * @brief applies damage to a given character based on his properties and updates stats
+             * @param s             Current state
              * @param targetChar    Target Character who receives damage
              * @param damage        unmodified damage value
              */
-            static void applyDamageToCharacter(character::Character &targetChar, unsigned int damage);
+            static void
+            applyDamageToCharacter(spy::gameplay::State &s, character::Character &targetChar, unsigned int damage);
 
             /**
              * @brief get operation that might change due to possible honey trap property
@@ -258,7 +281,7 @@ namespace spy::util {
              */
             static gameplay::GadgetAction
             getHoneyTrapOperation(const gameplay::State &s, const gameplay::GadgetAction &op,
-                                   const MatchConfig &config);
+                                  const MatchConfig &config);
 
             /**
              * @brief tries to find character that gets ip because of wiretap with earplug gadget
