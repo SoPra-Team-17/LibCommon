@@ -2,8 +2,8 @@
 // Created by jonas on 02.04.20.
 //
 #include <gtest/gtest.h>
-#include <gadgets/Cocktail.hpp>
-#include <gadgets/WiretapWithEarplugs.hpp>
+#include <datatypes/gadgets/Cocktail.hpp>
+#include <datatypes/gadgets/WiretapWithEarplugs.hpp>
 
 TEST(Gadgets, cocktail_type) {
     spy::gadget::Cocktail c;

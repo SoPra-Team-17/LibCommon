@@ -9,7 +9,9 @@
 
 namespace spy::gameplay {
 
-    bool GadgetExecutor::executeDiamondCollar(State &s, const GadgetAction &/*a*/) {
+    bool GadgetExecutor::executeDiamondCollar(State &s, const GadgetAction &a) {
+        auto character = s.getCharacters().findByUUID(a.getCharacterId());
+        s.getFactionStats().collarToCat = character->getFaction();
         s.setHasCatDiamondCollar(true);
         return true;
     }
