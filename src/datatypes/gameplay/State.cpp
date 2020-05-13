@@ -38,6 +38,10 @@ namespace spy::gameplay {
         return mySafeCombinations;
     }
 
+    void State::setCharacters(const character::CharacterSet &charSet) {
+        characters = charSet;
+    }
+
     const character::CharacterSet &State::getCharacters() const {
         return characters;
     }
