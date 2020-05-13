@@ -9,6 +9,7 @@
 #define LIBCOMMON_ACTIONGENERATOR_HPP
 
 #include <datatypes/gameplay/State.hpp>
+#include <datatypes/matchconfig/MatchConfig.hpp>
 #include <util/UUID.hpp>
 #include <datatypes/matchconfig/MatchConfig.hpp>
 
@@ -69,7 +70,7 @@ namespace spy::gameplay {
             generateMoleDie(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateBowlerBlade(const State &s, const util::UUID &activeCharacter);
+            generateBowlerBlade(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateChickenFeed(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
