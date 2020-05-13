@@ -6,8 +6,8 @@
  */
 
 #include <gtest/gtest.h>
-#include <scenario/Scenario.hpp>
-#include <scenario/FieldMap.hpp>
+#include <datatypes/scenario/Scenario.hpp>
+#include <datatypes/scenario/FieldMap.hpp>
 
 TEST(Scenario, ScenarioDecodingEncoding) {
     auto input = R"({ "scenario": [
