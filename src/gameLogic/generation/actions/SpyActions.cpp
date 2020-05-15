@@ -26,7 +26,7 @@ namespace spy::gameplay {
         }
 
         for (auto &p: points) {
-            auto action = std::make_shared<Movement>(Movement(false, p, activeCharacter, character->getCoordinates().value()));
+            auto action = std::make_shared<SpyAction>(activeCharacter, p);
             bool valid = ActionValidator::validate(s, action, config);
             if (valid) {
                 valid_ops.push_back(action);
