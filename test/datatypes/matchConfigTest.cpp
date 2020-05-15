@@ -6,7 +6,7 @@
  */
 
 #include <gtest/gtest.h>
-#include <matchconfig/MatchConfig.hpp>
+#include <datatypes/matchconfig/MatchConfig.hpp>
 
 TEST(MatchConfig, MatchConfigDecodingEncoding) {
     auto input = R"({

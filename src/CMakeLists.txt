@@ -166,8 +166,7 @@ target_link_libraries(${PROJECT_NAME}
         PRIVATE uuid $<$<CONFIG:Debug>:--coverage>)
 target_include_directories(${PROJECT_NAME}
         PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/datatypes>)
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 
 include(GNUInstallDirs)

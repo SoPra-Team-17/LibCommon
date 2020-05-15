@@ -9,6 +9,7 @@
 #define LIBCOMMON_ACTIONGENERATOR_HPP
 
 #include <datatypes/gameplay/State.hpp>
+#include <datatypes/matchconfig/MatchConfig.hpp>
 #include <util/UUID.hpp>
 #include <datatypes/matchconfig/MatchConfig.hpp>
 
@@ -52,72 +53,72 @@ namespace spy::gameplay {
             generateAllGadgetActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generatePropertyActions(const State &s, const util::UUID &activeCharacter,
-                                    character::PropertyEnum property);
+            generatePropertyActions(const State &s, const util::UUID &activeCharacter, character::PropertyEnum property,
+                                    const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateGadgetActions(const State &s, const util::UUID &activeCharacter, gadget::GadgetEnum gadget);
 
         private:
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateObservation(const State &s, const util::UUID &activeCharacter);
+            generateObservation(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateBangAndBurn(const State &s, const util::UUID &activeCharacter);
+            generateBangAndBurn(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateMoleDie(const State &s, const util::UUID &activeCharacter);
+            generateMoleDie(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateBowlerBlade(const State &s, const util::UUID &activeCharacter);
+            generateBowlerBlade(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateChickenFeed(const State &s, const util::UUID &activeCharacter);
+            generateChickenFeed(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateCocktail(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateDiamondCollar(const State &s, const util::UUID &activeCharacter);
+            generateDiamondCollar(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateFogTin(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateGasGloss(const State &s, const util::UUID &activeCharacter);
+            generateGasGloss(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateGrapple(const State &s, const util::UUID &activeCharacter);
+            generateGrapple(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateHairDryer(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateJetpack(const State &s, const util::UUID &activeCharacter);
+            generateJetpack(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateLaserCompact(const State &s, const util::UUID &activeCharacter);
+            generateLaserCompact(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateMirrorOfWilderness(const State &s, const util::UUID &activeCharacter);
+            generateMirrorOfWilderness(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateMothballPouch(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateNugget(const State &s, const util::UUID &activeCharacter);
+            generateNugget(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generatePoisonPills(const State &s, const util::UUID &activeCharacter);
+            generatePoisonPills(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateRocketPen(const State &s, const util::UUID &activeCharacter);
+            generateRocketPen(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateTechnicolorPrism(const State &s, const util::UUID &activeCharacter);
+            generateTechnicolorPrism(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateWiretapWithEarplugs(const State &s, const util::UUID &activeCharacter);
+            generateWiretapWithEarplugs(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
     };
 }
 

@@ -2,9 +2,6 @@ cmake_minimum_required(VERSION 3.10)
 
 find_package(nlohmann_json REQUIRED)
 
-include_directories(../src)
-include_directories(../src/datatypes)
-
 set(SOURCES
         datatypes/gadgetTest.cpp
         datatypes/jsonEncodingTest.cpp
@@ -27,6 +24,7 @@ set(SOURCES
         messages/messageEncodeDecode.cpp
         messages/debugInfoTest.cpp
         messages/messageValidateTest.cpp
+        messages/equipmentChoiceTest.cpp
         gameLogic/lineOfSightTests.cpp
         gameLogic/movementTests.cpp
         gameLogic/gadget/hairdryerTests.cpp
