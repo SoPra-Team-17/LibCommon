@@ -25,11 +25,10 @@ namespace spy::gameplay {
             valid_ops.push_back(action);
         }
 
-        // pour cocktail
+        // pour cocktail or get cocktail from bar
         auto neighbouringFields = util::GameLogicUtils::getNearFieldsInDist(s, character->getCoordinates().value(), 1,
-                                                                            [&s](const util::Point &p) {
-                                                                                return util::GameLogicUtils::isPersonOnField(
-                                                                                        s, p);
+                                                                            [](const util::Point &/*p*/) {
+                                                                                return true;
                                                                             });
 
         if (neighbouringFields.second) {
@@ -42,7 +41,6 @@ namespace spy::gameplay {
                 }
             }
         }
-
 
         return valid_ops;
     }
