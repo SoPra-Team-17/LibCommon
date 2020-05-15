@@ -11,7 +11,7 @@
 #include <datatypes/gameplay/State.hpp>
 #include <datatypes/matchconfig/MatchConfig.hpp>
 #include <util/UUID.hpp>
-#include <datatypes/matchconfig/MatchConfig.hpp>
+#include "datatypes/matchconfig/MatchConfig.hpp"
 
 namespace spy::gameplay {
     /**
