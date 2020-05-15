@@ -6,10 +6,10 @@
  */
 
 #include <gtest/gtest.h>
-#include "scenario/Scenario.hpp"
-#include "scenario/FieldMap.hpp"
-#include "gameplay/State.hpp"
-#include "character/Character.hpp"
+#include "datatypes/scenario/Scenario.hpp"
+#include "datatypes/scenario/FieldMap.hpp"
+#include "datatypes/gameplay/State.hpp"
+#include "datatypes/character/Character.hpp"
 #include "util/Point.hpp"
 #include "gameLogic/validation/ActionValidator.hpp"
 #include "gameLogic/execution/ActionExecutor.hpp"
@@ -76,6 +76,9 @@ class MovementOperation : public ::testing::Test {
             "honeyTrapSuccessChance": 0.35,
             "observationSuccessChance": 0.12,
             "chipsToIpFactor": 12,
+            "secretToIpFactor": 9,
+            "minChipsRoulette": 0,
+            "maxChipsRoulette": 6,
             "roundLimit": 15,
             "turnPhaseLimit": 6,
             "catIp": 8,

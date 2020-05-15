@@ -109,22 +109,28 @@ TEST(messages, EquipmentChoiceMessage_validate) {
             {spy::util::UUID{"123e4567-e89b-12d3-a456-426655440001"}, {spy::gadget::GadgetEnum::BOWLER_BLADE}},
             {spy::util::UUID{"123e4567-e89b-12d3-a456-426655440000"}, {spy::gadget::GadgetEnum::CHICKEN_FEED}}
     };
-    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapFalse1{
+    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapCor3{
             {spy::util::UUID{
                     "123e4567-e89b-12d3-a456-426655440001"}, {spy::gadget::GadgetEnum::BOWLER_BLADE, spy::gadget::GadgetEnum::CHICKEN_FEED}}
     };
-    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapFalse2{
+    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapFalse1{
             {spy::util::UUID{"123e4567-e89b-12d3-a456-426655440001"}, {spy::gadget::GadgetEnum::BOWLER_BLADE}},
             {spy::util::UUID{"123e4567-e89b-12d3-a456-426655440000"}, {}}
     };
-    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapFalse3{
+    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapFalse2{
             {spy::util::UUID{
                     "123e4567-e89b-12d3-a456-426655440001"},          {spy::gadget::GadgetEnum::BOWLER_BLADE, spy::gadget::GadgetEnum::CHICKEN_FEED}},
             {spy::util::UUID{"123e4567-e89b-12d3-a456-426655440000"}, {spy::gadget::GadgetEnum::BOWLER_BLADE}}
     };
+    std::map<spy::util::UUID, std::set<spy::gadget::GadgetEnum>> mapFalse3{
+            {spy::util::UUID{
+                    "123e4567-e89b-12d3-a456-426655440005"},          {spy::gadget::GadgetEnum::CHICKEN_FEED}},
+            {spy::util::UUID{"123e4567-e89b-12d3-a456-426655440001"}, {spy::gadget::GadgetEnum::BOWLER_BLADE}}
+    };
 
     spy::network::messages::EquipmentChoice mCor1(spy::util::UUID{}, mapCor1);
     spy::network::messages::EquipmentChoice mCor2(spy::util::UUID{}, mapCor2);
+    spy::network::messages::EquipmentChoice mCor3(spy::util::UUID{}, mapCor3);
     spy::network::messages::EquipmentChoice mFalse1(spy::util::UUID{}, mapFalse1);
     spy::network::messages::EquipmentChoice mFalse2(spy::util::UUID{}, mapFalse2);
     spy::network::messages::EquipmentChoice mFalse3(spy::util::UUID{}, mapFalse3);
@@ -137,12 +143,16 @@ TEST(messages, EquipmentChoiceMessage_validate) {
     EXPECT_TRUE(mCor2.validate(spy::network::RoleEnum::PLAYER, offeredCharacters, offeredGadgets));
     EXPECT_FALSE(mCor2.validate(spy::network::RoleEnum::SPECTATOR, offeredCharacters, offeredGadgets));
 
+    EXPECT_TRUE(mCor3.validate(spy::network::RoleEnum::PLAYER, offeredCharacters, offeredGadgets));
+    EXPECT_FALSE(mCor3.validate(spy::network::RoleEnum::SPECTATOR, offeredCharacters, offeredGadgets));
+
     EXPECT_FALSE(mFalse1.validate(spy::network::RoleEnum::PLAYER, offeredCharacters, offeredGadgets));
     EXPECT_FALSE(mFalse1.validate(spy::network::RoleEnum::AI, offeredCharacters, offeredGadgets));
     EXPECT_FALSE(mFalse1.validate(spy::network::RoleEnum::INVALID, offeredCharacters, offeredGadgets));
     EXPECT_FALSE(mFalse1.validate(spy::network::RoleEnum::SPECTATOR, offeredCharacters, offeredGadgets));
 
     EXPECT_FALSE(mFalse2.validate(spy::network::RoleEnum::PLAYER, offeredCharacters, offeredGadgets));
+
     EXPECT_FALSE(mFalse3.validate(spy::network::RoleEnum::PLAYER, offeredCharacters, offeredGadgets));
 }
 
