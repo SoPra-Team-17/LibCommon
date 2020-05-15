@@ -33,4 +33,8 @@ namespace spy::gameplay {
     std::shared_ptr<BaseOperation> GambleAction::clone() const {
         return std::make_shared<GambleAction>(*this);
     }
+
+    void GambleAction::setStake(unsigned int stake) {
+        GambleAction::stake = stake;
+    }
 }
