@@ -4,9 +4,9 @@
 
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
-#include <character/Character.hpp>
-#include <character/CharacterDescription.hpp>
-#include <character/CharacterInformation.hpp>
+#include <datatypes/character/Character.hpp>
+#include <datatypes/character/CharacterDescription.hpp>
+#include <datatypes/character/CharacterInformation.hpp>
 
 TEST(Character, Character) {
     std::string s = "some Name";
