@@ -11,7 +11,7 @@ namespace spy::gameplay {
         // get rid of mole die if possible
         auto moleDie = generateGadgetActions(s, activeNPC, gadget::GadgetEnum::MOLEDIE);
         if (!moleDie.empty()) {
-            return *util::GameLogicUtils::getRandomItemFromVector(moleDie);
+            return *util::GameLogicUtils::getRandomItemFromContainer(moleDie);
         }
 
         return generateRandomAction(s, activeNPC, config);
@@ -33,6 +33,6 @@ namespace spy::gameplay {
         ret.insert(ret.end(), gamble.begin(), gamble.end());
         ret.insert(ret.end(), generateRetire(activeCharacter));
 
-        return *util::GameLogicUtils::getRandomItemFromVector(ret);
+        return *util::GameLogicUtils::getRandomItemFromContainer(ret);
     }
 }
