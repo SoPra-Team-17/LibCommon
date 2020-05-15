@@ -5,7 +5,7 @@
 set -e
 
 # libuuid
-sudo apt install uuid-dev
+sudo apt install -y uuid-dev
 
 # nlohmann json
 cd /tmp
