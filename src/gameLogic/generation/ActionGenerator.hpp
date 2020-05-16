@@ -45,7 +45,7 @@ namespace spy::gameplay {
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateGambleActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config,
-                                  const double chipPercentage = 0.5);
+                                  double chipPercentage = 0.5);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateSpyActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);

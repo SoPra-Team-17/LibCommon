@@ -9,7 +9,7 @@ namespace spy::gameplay {
     std::shared_ptr<BaseOperation>
     ActionGenerator::generateNPCAction(const State &s, const util::UUID &activeNPC, const MatchConfig &config) {
         // get rid of mole die if possible
-        auto moleDie = generateGadgetActions(s, activeNPC, gadget::GadgetEnum::MOLEDIE);
+        auto moleDie = generateGadgetActions(s, activeNPC, gadget::GadgetEnum::MOLEDIE, config);
         if (!moleDie.empty()) {
             return *util::GameLogicUtils::getRandomItemFromContainer(moleDie);
         }
