@@ -77,7 +77,7 @@ namespace spy::gameplay {
             generateChickenFeed(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateCocktail(const State &s, const util::UUID &activeCharacter);
+            generateCocktail(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateDiamondCollar(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);
