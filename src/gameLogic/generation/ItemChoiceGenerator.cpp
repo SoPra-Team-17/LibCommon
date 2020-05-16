@@ -28,5 +28,7 @@ namespace spy::gameplay {
         if (offeredGadgets.empty()) {
             return std::variant<util::UUID, gadget::GadgetEnum>(*util::GameLogicUtils::getRandomItemFromContainer(offeredCharacterIds));
         }
+        
+        throw std::domain_error("offeredCharacterIds and offeredGadgets were empty");
     }
 }
