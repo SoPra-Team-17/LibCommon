@@ -32,7 +32,7 @@ set(SOURCE
         datatypes/statistics/Statistics.cpp
         datatypes/gameplay/State.cpp
         gameLogic/generation/actions/ActionGenerator_Server.cpp
-        gameLogic/generation/actions/ActionGenerator_Client.cpp
+        gameLogic/generation/actions/ActionGenerator_NPC.cpp
         gameLogic/generation/actions/GadgetActions.cpp
         gameLogic/generation/actions/MovementActions.cpp
         gameLogic/generation/actions/PropertyActions.cpp
@@ -166,8 +166,7 @@ target_link_libraries(${PROJECT_NAME}
         PRIVATE uuid $<$<CONFIG:Debug>:--coverage>)
 target_include_directories(${PROJECT_NAME}
         PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/datatypes>)
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 
 include(GNUInstallDirs)
