@@ -32,7 +32,7 @@ set(SOURCE
         datatypes/statistics/Statistics.cpp
         datatypes/gameplay/State.cpp
         gameLogic/generation/actions/ActionGenerator_Server.cpp
-        gameLogic/generation/actions/ActionGenerator_Client.cpp
+        gameLogic/generation/actions/ActionGenerator_NPC.cpp
         gameLogic/generation/actions/GadgetActions.cpp
         gameLogic/generation/actions/MovementActions.cpp
         gameLogic/generation/actions/PropertyActions.cpp

@@ -29,10 +29,10 @@ namespace spy::gameplay {
             static std::shared_ptr<BaseOperation> generateJanitorAction(const State &s);
 
             static std::shared_ptr<BaseOperation>
-            generateNPCAction(const State &s, const util::UUID &activeNPC, spy::MatchConfig &config);
+            generateNPCAction(const State &s, const util::UUID &activeNPC, const MatchConfig &config);
 
             static std::shared_ptr<BaseOperation>
-            generateRandomAction(const State &s, const util::UUID &activeCharacter);
+            generateRandomAction(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::shared_ptr<BaseOperation>
             generateRetire(const util::UUID &activeCharacter);
@@ -51,7 +51,7 @@ namespace spy::gameplay {
             generateSpyActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateAllGadgetActions(const State &s, const util::UUID &activeCharacter);
+            generateAllGadgetActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generatePropertyActions(const State &s, const util::UUID &activeCharacter, character::PropertyEnum property,
