@@ -3,12 +3,28 @@
 //
 
 #include "gameLogic/generation/ActionGenerator.hpp"
+#include "gameLogic/validation/ActionValidator.hpp"
+#include "util/GameLogicUtils.hpp"
+#include "datatypes/gameplay/GadgetAction.hpp"
 
 namespace spy::gameplay {
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generateLaserCompact(const State &/*s*/, const util::UUID &/*activeCharacter*/) {
+    ActionGenerator::generateLaserCompact(const State &s, const util::UUID &activeCharacter,
+                                          const spy::MatchConfig &config) {
+        std::vector<std::shared_ptr<BaseOperation>> valid_ops;
 
-        // TODO implement
-        return {nullptr};
+        auto fieldsWithCocktail = util::GameLogicUtils::getAllFieldsWith(s, [&s](const util::Point &p) {
+            return util::GameLogicUtils::hasCocktail(s, p);
+        });
+
+        for (const auto &pt : fieldsWithCocktail) {
+            auto action = std::make_shared<GadgetAction>(false, pt, activeCharacter, gadget::GadgetEnum::LASER_COMPACT);
+            bool valid = ActionValidator::validate(s, action, config);
+            if (valid) {
+                valid_ops.push_back(action);
+            }
+        }
+
+        return valid_ops;
     }
 }

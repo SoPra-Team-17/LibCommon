@@ -2,17 +2,41 @@
 // Created by Carolin on 07.05.2020.
 //
 
+#include <util/GameLogicUtils.hpp>
+#include <gameLogic/validation/ActionValidator.hpp>
+#include <datatypes/gameplay/GambleAction.hpp>
 #include "gameLogic/generation/ActionGenerator.hpp"
 
 namespace spy::gameplay {
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generateGambleActions(const State &s, const util::UUID &activeCharacter) {
+    ActionGenerator::generateGambleActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config,
+                                           const double chipPercentage) {
         auto character = s.getCharacters().findByUUID(activeCharacter);
-        if (character->getActionPoints() == 0) {
+        if (character->getActionPoints() == 0 || character->getChips() == 0) {
             return {};
         }
 
-        // TODO implement
-        return {nullptr};
+        std::vector<std::shared_ptr<BaseOperation>> valid_ops;
+        auto points = util::GameLogicUtils::getNearFieldsInDist(s, character->getCoordinates().value(), 1,
+                                                                [](const util::Point &/*p*/) {
+                                                                    return true;
+                                                                });
+
+        for (auto &p: points.first) {
+            auto action = std::make_shared<GambleAction>(false, p, activeCharacter,
+                                                         0);
+            bool valid = ActionValidator::validate(s, action, config);
+            if (valid) {
+                valid_ops.push_back(action);
+            }
+        }
+
+        for (auto &op: valid_ops) {
+            auto stake = std::min((int)s.getMap().getField(op->getTarget()).getChipAmount().value(),
+                                  (int)std::ceil(chipPercentage * character->getChips()));
+            std::dynamic_pointer_cast<GambleAction>(op)->setStake(stake);
+        }
+
+        return valid_ops;
     }
 }

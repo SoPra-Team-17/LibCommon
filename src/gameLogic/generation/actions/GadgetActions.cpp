@@ -6,7 +6,7 @@
 
 namespace spy::gameplay {
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generateAllGadgetActions(const State &s, const util::UUID &activeCharacter) {
+    ActionGenerator::generateAllGadgetActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &/*config*/) {
         auto character = s.getCharacters().findByUUID(activeCharacter);
         if (character->getActionPoints() == 0) {
             return {};
