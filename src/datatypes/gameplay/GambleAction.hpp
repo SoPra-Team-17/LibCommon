@@ -18,6 +18,8 @@ namespace spy::gameplay {
 
             [[nodiscard]] unsigned int getStake() const;
 
+            void setStake(unsigned int stake);
+
             friend void to_json(nlohmann::json &j, const GambleAction &g);
 
             friend void from_json(const nlohmann::json &j, GambleAction &g);

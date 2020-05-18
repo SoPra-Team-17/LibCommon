@@ -30,15 +30,4 @@ namespace spy::gameplay {
         auto action = std::make_shared<JanitorAction>(spy::gameplay::JanitorAction(target));
         return action;
     }
-
-    std::shared_ptr<BaseOperation>
-    ActionGenerator::generateNPCAction(const State &s, const util::UUID &activeNPC) {
-        // get rid of mole die if possible
-        auto moleDie = generateMoleDie(s, activeNPC);
-        if (!moleDie.empty()) {
-            return *util::GameLogicUtils::getRandomItemFromVector(moleDie);
-        }
-
-        return generateRandomAction(s, activeNPC);
-    }
 }

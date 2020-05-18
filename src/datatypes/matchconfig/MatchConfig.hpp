@@ -60,6 +60,8 @@ namespace spy {
 
             [[nodiscard]] unsigned int getChipsToIpFactor() const;
 
+            [[nodiscard]] unsigned int getSecretToIpFactor() const;
+
             [[nodiscard]] unsigned int getRoundLimit() const;
 
             [[nodiscard]] unsigned int getCatIp() const;
@@ -71,6 +73,10 @@ namespace spy {
             [[nodiscard]] std::optional<unsigned int> getPauseLimit() const;
 
             [[nodiscard]] std::optional<unsigned int> getReconnectLimit() const;
+
+            [[nodiscard]] unsigned int getMinChipsRoulette() const;
+
+            [[nodiscard]] unsigned int getMaxChipsRoulette() const;
 
             friend void to_json(nlohmann::json &j, const MatchConfig &c);
 
@@ -112,9 +118,13 @@ namespace spy {
             double observationSuccessChance;
 
             unsigned int chipsToIpFactor;
+            unsigned int secretToIpFactor;
             unsigned int roundLimit;
             unsigned int catIp;
             unsigned int strikeMaximum;
+
+            unsigned int minChipsRoulette;
+            unsigned int maxChipsRoulette;
 
             std::optional<unsigned int> turnPhaseLimit;
             std::optional<unsigned int> pauseLimit;
