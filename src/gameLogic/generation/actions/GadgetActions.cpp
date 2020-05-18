@@ -13,7 +13,7 @@ namespace spy::gameplay {
         }
 
         std::vector<std::shared_ptr<BaseOperation>> actions;
-        for (const auto& g: character->getGadgets()) {
+        for (const auto &g: character->getGadgets()) {
             auto a = generateGadgetActions(s, activeCharacter, g->getType(), config);
             actions.insert(actions.end(), a.begin(), a.end());
         }
