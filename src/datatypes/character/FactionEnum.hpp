@@ -10,12 +10,13 @@
 
 namespace spy::character {
     /**
-     * Represents the different possible factions.
+     * Represents the different possible factions. (internal representation, not sent over network)
      */
     enum class FactionEnum {
             INVALID,
             PLAYER1,
-            PLAYER2
+            PLAYER2,
+            NEUTRAL //!< NPC
     };
 }
 
