@@ -11,7 +11,13 @@
 
 namespace spy::scenario {
 
-    Field::Field(FieldStateEnum fieldState) : state(fieldState) {}
+    Field::Field(FieldStateEnum fieldState) : state(fieldState) {
+        if (fieldState == FieldStateEnum::ROULETTE_TABLE) {
+            Field::inverted   = false;
+            Field::destroyed  = false;
+            Field::chipAmount = 0;
+        }
+    }
 
     void Field::setFieldState(FieldStateEnum fieldState) {
         if (fieldState != Field::state) {
@@ -26,6 +32,12 @@ namespace spy::scenario {
 
             if (fieldState != FieldStateEnum::SAFE) {
                 Field::safeIndex.reset();
+            }
+
+            if (fieldState == FieldStateEnum::ROULETTE_TABLE) {
+                Field::inverted   = false;
+                Field::destroyed  = false;
+                Field::chipAmount = 0;
             }
         }
     }
