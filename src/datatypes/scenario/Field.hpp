@@ -23,6 +23,11 @@ namespace spy::scenario {
             Field() = default;
             explicit Field(FieldStateEnum fieldState);
 
+            /**
+             * Setter for the type of the field.
+             * @param fieldState New field type.
+             * @note  This operation resets the values of the optional attributes according to the field type.
+             */
             void setFieldState(FieldStateEnum fieldState);
 
             /**
