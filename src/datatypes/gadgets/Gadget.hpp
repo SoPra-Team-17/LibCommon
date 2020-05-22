@@ -1,6 +1,9 @@
-//
-// Created by jonas on 02.04.20.
-//
+/**
+ * @file   Gadget.hpp
+ * @author Jonas Otto
+ * @date   02.04.20 (creation)
+ * @brief  Declaration of the gadget class.
+ */
 
 #ifndef LIBCOMMON_GADGET_HPP
 #define LIBCOMMON_GADGET_HPP
@@ -15,7 +18,9 @@ namespace spy::gadget {
         public:
             Gadget() : type{GadgetEnum::INVALID}, usagesLeft{0} {};
 
-            explicit Gadget(GadgetEnum type, int usagesLeft = 0);
+            explicit Gadget(GadgetEnum type);
+
+            Gadget(GadgetEnum type, unsigned int usagesLeft);
 
             virtual ~Gadget() = default;
 
