@@ -108,6 +108,12 @@ namespace spy::scenario {
             bool operator==(const Field &rhs) const;
 
         private:
+            /**
+             * Initializes the values of optional attributes according to the field type.
+             * @param fieldState Field state.
+             */
+            void initializeOptionals(FieldStateEnum fieldState);
+
             FieldStateEnum state = FieldStateEnum::FREE;
             std::optional<std::shared_ptr<Gadget>> gadget;
             std::optional<bool> destroyed;

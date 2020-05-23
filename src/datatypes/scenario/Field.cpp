@@ -12,11 +12,7 @@
 namespace spy::scenario {
 
     Field::Field(FieldStateEnum fieldState) : state(fieldState) {
-        if (fieldState == FieldStateEnum::ROULETTE_TABLE) {
-            Field::inverted   = false;
-            Field::destroyed  = false;
-            Field::chipAmount = 0;
-        }
+        initializeOptionals(fieldState);
     }
 
     void Field::setFieldState(FieldStateEnum fieldState) {
@@ -24,21 +20,7 @@ namespace spy::scenario {
             Field::updated = true;
             Field::state = fieldState;
 
-            if (fieldState != FieldStateEnum::ROULETTE_TABLE) {
-                Field::inverted.reset();
-                Field::destroyed.reset();
-                Field::chipAmount.reset();
-            }
-
-            if (fieldState != FieldStateEnum::SAFE) {
-                Field::safeIndex.reset();
-            }
-
-            if (fieldState == FieldStateEnum::ROULETTE_TABLE) {
-                Field::inverted   = false;
-                Field::destroyed  = false;
-                Field::chipAmount = 0;
-            }
+            initializeOptionals(fieldState);
         }
     }
 
@@ -200,5 +182,23 @@ namespace spy::scenario {
         return std::tie(state, gadget, destroyed, inverted, chipAmount, safeIndex, foggy, updated) ==
                std::tie(rhs.state, rhs.gadget, rhs.destroyed, rhs.inverted, rhs.chipAmount, rhs.safeIndex, rhs.foggy,
                         rhs.updated);
+    }
+
+    void Field::initializeOptionals(FieldStateEnum fieldState) {
+        if (fieldState == FieldStateEnum::ROULETTE_TABLE) {
+            Field::inverted   = false;
+            Field::destroyed  = false;
+            Field::chipAmount = 0;
+        } else {
+            Field::inverted.reset();
+            Field::destroyed.reset();
+            Field::chipAmount.reset();
+        }
+
+        if (fieldState != FieldStateEnum::SAFE) {
+            Field::safeIndex.reset();
+        } else {
+            Field::safeIndex = 0;
+        }
     }
 }
