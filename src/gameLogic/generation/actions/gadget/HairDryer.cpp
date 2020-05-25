@@ -42,7 +42,7 @@ namespace spy::gameplay {
 
         valid_ops.erase(std::remove_if(valid_ops.begin(), valid_ops.end(),
                                        [&s, &config](std::shared_ptr<BaseOperation> &action) {
-                                           return ActionValidator::validate(s, action, config);
+                                           return !ActionValidator::validate(s, action, config);
                                        }), valid_ops.end());
 
         return valid_ops;
