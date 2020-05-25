@@ -195,11 +195,11 @@ namespace spy::character {
     }
 
     void Character::addHealthPoints(unsigned int add) {
-        healthPoints += add;
+        healthPoints = std::min(healthPoints + static_cast<int>(add), 100);
     }
 
     void Character::subHealthPoints(unsigned int sub) {
-        healthPoints -= sub;
+        healthPoints -= static_cast<int>(sub);
     }
 
     void Character::addIntelligencePoints(int points) {
