@@ -18,7 +18,7 @@ namespace spy::gameplay {
         auto points = util::GameLogicUtils::getNearFieldsInDist(s, character->getCoordinates().value(), 1, [](const util::Point &/*p*/) {
             return true;
         });
-        for (auto &p: points.first) {
+        for (const auto &p: points.first) {
             Movement action {false, p, activeCharacter, character->getCoordinates().value()};
             bool valid = ActionValidator::validateMovement(s, action);
             if (valid) {
