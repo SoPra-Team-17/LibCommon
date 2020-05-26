@@ -21,7 +21,7 @@ namespace spy::gameplay {
                                                                     return true;
                                                                 });
 
-        for (auto &p: points.first) {
+        for (const auto &p: points.first) {
             GambleAction action {false, p, activeCharacter, 0};
             bool valid = ActionValidator::validateGambleAction(s, action);
             if (valid) {
