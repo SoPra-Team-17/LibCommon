@@ -37,7 +37,7 @@ namespace spy::gameplay {
                                        [&s, &config](const std::shared_ptr<BaseOperation> &action) {
                                            return !ActionValidator::validateGadgetAction(s,
                                                                                          *std::dynamic_pointer_cast<const gameplay::GadgetAction>(
-                                                                                                 action), config);;
+                                                                                                 action), config);
                                        }), valid_ops.end());
 
         return valid_ops;
