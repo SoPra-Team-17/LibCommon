@@ -25,7 +25,7 @@ namespace spy::gameplay {
             points.insert(points.end(), morePoints.begin(), morePoints.end());
         }
 
-        for (auto &p: points) {
+        for (const auto &p: points) {
             SpyAction action {activeCharacter, p};
             bool valid = ActionValidator::validateSpyAction(s, action);
             if (valid) {
