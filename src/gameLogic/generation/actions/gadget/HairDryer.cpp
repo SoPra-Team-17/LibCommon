@@ -33,16 +33,11 @@ namespace spy::gameplay {
             }
         }
 
-        for (const auto &ops : valid_ops) {
-            bool valid = ActionValidator::validate(s, ops, config);
-            if (!valid) {
-                valid_ops.erase(std::remove(valid_ops.begin(), valid_ops.end(), ops), valid_ops.end());
-            }
-        }
-
         valid_ops.erase(std::remove_if(valid_ops.begin(), valid_ops.end(),
-                                       [&s, &config](std::shared_ptr<BaseOperation> &action) {
-                                           return !ActionValidator::validate(s, action, config);
+                                       [&s, &config](const std::shared_ptr<BaseOperation> &action) {
+                                           return !ActionValidator::validateGadgetAction(s,
+                                                                                         *std::dynamic_pointer_cast<const gameplay::GadgetAction>(
+                                                                                                 action), config);;
                                        }), valid_ops.end());
 
         return valid_ops;

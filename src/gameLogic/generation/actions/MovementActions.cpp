@@ -8,7 +8,7 @@
 
 namespace spy::gameplay {
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generateMovementActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config) {
+    ActionGenerator::generateMovementActions(const State &s, const util::UUID &activeCharacter) {
         auto character = s.getCharacters().findByUUID(activeCharacter);
         if (character->getMovePoints() == 0) {
             return {};
@@ -19,10 +19,10 @@ namespace spy::gameplay {
             return true;
         });
         for (auto &p: points.first) {
-            auto action = std::make_shared<Movement>(Movement(false, p, activeCharacter, character->getCoordinates().value()));
-            bool valid = ActionValidator::validate(s, action, config);
+            Movement action {false, p, activeCharacter, character->getCoordinates().value()};
+            bool valid = ActionValidator::validateMovement(s, action);
             if (valid) {
-                valid_ops.push_back(action);
+                valid_ops.push_back(std::make_shared<Movement>(action));
             }
         }
 

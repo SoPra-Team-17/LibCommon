@@ -20,15 +20,15 @@ namespace spy::gameplay {
         for (const auto &targetChar : s.getCharacters()) {
             if (targetChar.getCoordinates().has_value() &&
                 targetChar.getCoordinates().value() != character->getCoordinates().value()) {
-                auto action = std::make_shared<GadgetAction>(false, targetChar.getCoordinates().value(),
-                                                             activeCharacter, gadget::GadgetEnum::ROCKET_PEN);
-                bool valid = ActionValidator::validate(s, action, config);
+                GadgetAction action {false, targetChar.getCoordinates().value(),
+                                                             activeCharacter, gadget::GadgetEnum::ROCKET_PEN};
+                bool valid = ActionValidator::validateGadgetAction(s, action, config);
 
                 auto dist = Movement::getMoveDistance(character->getCoordinates().value(),
                                                       targetChar.getCoordinates().value());
 
                 if (valid && dist > 1) {
-                    valid_ops.push_back(action);
+                    valid_ops.push_back(std::make_shared<GadgetAction>(action));
                 }
             }
         }

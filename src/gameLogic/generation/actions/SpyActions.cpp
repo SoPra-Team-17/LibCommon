@@ -8,9 +8,9 @@
 
 namespace spy::gameplay {
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generateSpyActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config) {
+    ActionGenerator::generateSpyActions(const State &s, const util::UUID &activeCharacter) {
         auto character = s.getCharacters().findByUUID(activeCharacter);
-        if (character->getActionPoints() == 0) {
+        if (character->getActionPoints() == 0 || character->getFaction() == character::FactionEnum::NEUTRAL) {
             return {};
         }
 
@@ -26,10 +26,10 @@ namespace spy::gameplay {
         }
 
         for (auto &p: points) {
-            auto action = std::make_shared<SpyAction>(activeCharacter, p);
-            bool valid = ActionValidator::validate(s, action, config);
+            SpyAction action {activeCharacter, p};
+            bool valid = ActionValidator::validateSpyAction(s, action);
             if (valid) {
-                valid_ops.push_back(action);
+                valid_ops.push_back(std::make_shared<SpyAction>(action));
             }
         }
 
