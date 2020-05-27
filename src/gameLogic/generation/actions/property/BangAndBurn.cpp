@@ -17,7 +17,7 @@ namespace spy::gameplay {
                                                                     return true;
                                                                 });
 
-        for (auto &p: points.first) {
+        for (const auto &p: points.first) {
             PropertyAction action {false, p, activeCharacter,
                                                            character::PropertyEnum::BANG_AND_BURN};
             bool valid = ActionValidator::validatePropertyAction(s, action);
