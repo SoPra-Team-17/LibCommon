@@ -23,6 +23,11 @@ namespace spy::scenario {
             Field() = default;
             explicit Field(FieldStateEnum fieldState);
 
+            /**
+             * Setter for the type of the field.
+             * @param fieldState New field type.
+             * @note  This operation resets the values of the optional attributes according to the field type.
+             */
             void setFieldState(FieldStateEnum fieldState);
 
             /**
@@ -103,6 +108,12 @@ namespace spy::scenario {
             bool operator==(const Field &rhs) const;
 
         private:
+            /**
+             * Initializes the values of optional attributes according to the field type.
+             * @param fieldState Field state.
+             */
+            void initializeOptionals(FieldStateEnum fieldState);
+
             FieldStateEnum state = FieldStateEnum::FREE;
             std::optional<std::shared_ptr<Gadget>> gadget;
             std::optional<bool> destroyed;
