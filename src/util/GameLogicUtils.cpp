@@ -71,7 +71,12 @@ namespace spy::util {
                 return true;
             }
             // check if character blocks point
-            return isPersonOnField(s, currentPoint);
+            bool personOnField = isPersonOnField(s, currentPoint);
+            bool catOnField = (s.getCatCoordinates().has_value() && s.getCatCoordinates().value() == currentPoint);
+            bool janitorOnField = (s.getJanitorCoordinates().has_value()
+                                   && s.getJanitorCoordinates().value() == currentPoint);
+
+            return (personOnField || catOnField || janitorOnField);
         });
     }
 
