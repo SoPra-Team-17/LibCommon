@@ -47,6 +47,16 @@ namespace spy::util {
             personOnNeighbourField(const spy::gameplay::State &s, const Point &target, const Point &charCoord);
 
             /**
+             * @brief               checks if a other person is on a neighboring field
+             * @param s             current state
+             * @param target        input target
+             * @param charCoord     coordinates of character
+             * @return              UUID of the character, otherwise std::nullopt
+             */
+            static std::optional<UUID>
+            getPersonOnNeighbourField(const gameplay::State &s, const Point &target, const Point &charCoord);
+
+            /**
              * @brief       checks the bowler blade line of sight
              * @note        the implementation from FieldMap is used, with the modification, that characters also block the LoS
              * @param s     current state
