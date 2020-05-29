@@ -32,8 +32,6 @@ namespace spy::gameplay {
 
             static bool validate(const State &s, std::shared_ptr<const BaseOperation> op, const MatchConfig &config);
 
-        private:
-
             static bool validateGadgetAction(const State &s, GadgetAction op, const MatchConfig &config);
 
             static bool validateGambleAction(const State &s, const GambleAction& op);

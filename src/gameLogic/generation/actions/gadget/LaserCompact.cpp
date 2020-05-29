@@ -18,10 +18,10 @@ namespace spy::gameplay {
         });
 
         for (const auto &pt : fieldsWithCocktail) {
-            auto action = std::make_shared<GadgetAction>(false, pt, activeCharacter, gadget::GadgetEnum::LASER_COMPACT);
-            bool valid = ActionValidator::validate(s, action, config);
+            GadgetAction action {false, pt, activeCharacter, gadget::GadgetEnum::LASER_COMPACT};
+            bool valid = ActionValidator::validateGadgetAction(s, action, config);
             if (valid) {
-                valid_ops.push_back(action);
+                valid_ops.push_back(std::make_shared<GadgetAction>(action));
             }
         }
 

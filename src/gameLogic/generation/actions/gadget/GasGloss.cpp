@@ -23,11 +23,11 @@ namespace spy::gameplay {
 
         if (neighboringFields.second) {
             for (const auto &pt : neighboringFields.first) {
-                auto action = std::make_shared<GadgetAction>(false, pt, activeCharacter, gadget::GadgetEnum::GAS_GLOSS);
-                bool valid = ActionValidator::validate(s, action, config);
+                GadgetAction action {false, pt, activeCharacter, gadget::GadgetEnum::GAS_GLOSS};
+                bool valid = ActionValidator::validateGadgetAction(s, action, config);
 
                 if (valid) {
-                    valid_ops.push_back(action);
+                    valid_ops.push_back(std::make_shared<GadgetAction>(action));
                 }
             }
         }

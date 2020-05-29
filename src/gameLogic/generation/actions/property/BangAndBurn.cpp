@@ -8,7 +8,7 @@
 
 namespace spy::gameplay {
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generateBangAndBurn(const State &s, const util::UUID &activeCharacter, const MatchConfig &config) {
+    ActionGenerator::generateBangAndBurn(const State &s, const util::UUID &activeCharacter) {
         auto character = s.getCharacters().findByUUID(activeCharacter);
 
         std::vector<std::shared_ptr<BaseOperation>> valid_ops;
@@ -17,12 +17,12 @@ namespace spy::gameplay {
                                                                     return true;
                                                                 });
 
-        for (auto &p: points.first) {
-            auto action = std::make_shared<PropertyAction>(false, p, activeCharacter,
-                                                           character::PropertyEnum::BANG_AND_BURN);
-            bool valid = ActionValidator::validate(s, action, config);
+        for (const auto &p: points.first) {
+            PropertyAction action {false, p, activeCharacter,
+                                                           character::PropertyEnum::BANG_AND_BURN};
+            bool valid = ActionValidator::validatePropertyAction(s, action);
             if (valid) {
-                valid_ops.push_back(action);
+                valid_ops.push_back(std::make_shared<PropertyAction>(action));
             }
         }
 

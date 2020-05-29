@@ -340,3 +340,30 @@ TEST_F(MovementOperation, MovementGadget) {
               state.getCharacters().getByUUID(uuid1)->getGadgets().end());
 }
 
+TEST_F(MovementOperation, MovementCatJanitor) {
+    using spy::gameplay::Movement;
+    using spy::gameplay::ActionExecutor;
+    using spy::util::Point;
+
+    state.getCharacters().getByUUID(uuid1)->setCoordinates({1, 2});
+    state.setCatCoordinates(Point{2, 2});
+    state.setJanitorCoordinates(Point{3, 2});
+
+    auto move1 = std::make_shared<Movement>(Movement(false, {2, 2}, uuid1, {1, 2}));
+    auto move2 = std::make_shared<Movement>(Movement(false, {3, 2}, uuid1, {2, 2}));
+
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (Point{1, 2}));
+    ASSERT_EQ(state.getCatCoordinates().value(), (Point{2, 2}));
+    ASSERT_EQ(state.getJanitorCoordinates().value(), (Point{3, 2}));
+
+    ASSERT_TRUE(ActionExecutor::execute(state, move1, config));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (Point{2, 2}));
+    ASSERT_EQ(state.getCatCoordinates().value(), (Point{1, 2}));
+    ASSERT_EQ(state.getJanitorCoordinates().value(), (Point{3, 2}));
+
+    ASSERT_TRUE(ActionExecutor::execute(state, move2, config));
+    ASSERT_EQ(state.getCharacters().getByUUID(uuid1)->getCoordinates().value(), (Point{3, 2}));
+    ASSERT_EQ(state.getCatCoordinates().value(), (Point{1, 2}));
+    ASSERT_EQ(state.getJanitorCoordinates().value(), (Point{2, 2}));
+}
+
