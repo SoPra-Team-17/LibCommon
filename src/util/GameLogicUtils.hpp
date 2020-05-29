@@ -47,7 +47,7 @@ namespace spy::util {
             personOnNeighbourField(const spy::gameplay::State &s, const Point &target, const Point &charCoord);
 
             /**
-             * @brief               checks if an other person is on a neighboring field
+             * @brief               returns id of person on the specified field, if it's a neighboring field
              * @param s             current state
              * @param target        input target
              * @param charCoord     coordinates of character
