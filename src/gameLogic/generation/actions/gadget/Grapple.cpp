@@ -20,11 +20,11 @@ namespace spy::gameplay {
         });
 
         for (const auto &pt : gadgetFields) {
-            auto action = std::make_shared<GadgetAction>(false, pt, activeCharacter, gadget::GadgetEnum::GRAPPLE);
-            bool valid = ActionValidator::validate(s, action, config);
+            GadgetAction action {false, pt, activeCharacter, gadget::GadgetEnum::GRAPPLE};
+            bool valid = ActionValidator::validateGadgetAction(s, action, config);
 
             if (valid) {
-                valid_ops.push_back(action);
+                valid_ops.push_back(std::make_shared<GadgetAction>(action));
             }
         }
         return valid_ops;

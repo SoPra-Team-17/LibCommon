@@ -8,19 +8,19 @@
 
 namespace spy::gameplay {
     std::vector<std::shared_ptr<BaseOperation>>
-    ActionGenerator::generateObservation(const State &s, const util::UUID &activeCharacter, const MatchConfig &config) {
+    ActionGenerator::generateObservation(const State &s, const util::UUID &activeCharacter) {
         auto character = s.getCharacters().findByUUID(activeCharacter);
 
         std::vector<std::shared_ptr<BaseOperation>> valid_ops;
         for (const auto &targetChar : s.getCharacters()) {
             if (targetChar.getCoordinates().has_value() &&
                 character->getCoordinates().value() != targetChar.getCoordinates().value()) {
-                auto action = std::make_shared<PropertyAction>(false, targetChar.getCoordinates().value(),
-                                                               activeCharacter,
-                                                               character::PropertyEnum::OBSERVATION);
-                bool valid = ActionValidator::validate(s, action, config);
+                PropertyAction action{false, targetChar.getCoordinates().value(),
+                                      activeCharacter,
+                                      character::PropertyEnum::OBSERVATION};
+                bool valid = ActionValidator::validatePropertyAction(s, action);
                 if (valid) {
-                    valid_ops.push_back(action);
+                    valid_ops.push_back(std::make_shared<PropertyAction>(action));
                 }
             }
         }

@@ -23,12 +23,11 @@ namespace spy::gameplay {
 
         if (neighboringFieldsWithPerson.second) {
             for (const auto &pt : neighboringFieldsWithPerson.first) {
-                auto action = std::make_shared<GadgetAction>(false, pt, activeCharacter,
-                                                             gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS);
-                bool valid = ActionValidator::validate(s, action, config);
+                GadgetAction action{false, pt, activeCharacter, gadget::GadgetEnum::WIRETAP_WITH_EARPLUGS};
+                bool valid = ActionValidator::validateGadgetAction(s, action, config);
 
                 if (valid) {
-                    valid_ops.push_back(action);
+                    valid_ops.push_back(std::make_shared<GadgetAction>(action));
                 }
             }
         }
