@@ -21,6 +21,16 @@ namespace spy::gameplay {
         // check if there is a person on target field
         bool personOnField = util::GameLogicUtils::isPersonOnField(s, a.getTarget());
 
+        // cat is not allowed as target of the action
+        if (s.getCatCoordinates().has_value() && s.getCatCoordinates().value() == a.getTarget()) {
+            return false;
+        }
+
+        // janitor is not allowed as target of the action
+        if (s.getJanitorCoordinates().has_value() && s.getJanitorCoordinates().value() == a.getTarget()) {
+            return false;
+        }
+
         return personOnField && lineOfSightFree && distance <= config.getBowlerBladeRange();
     }
 }

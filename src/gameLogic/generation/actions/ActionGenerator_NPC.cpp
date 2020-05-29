@@ -20,11 +20,11 @@ namespace spy::gameplay {
     std::shared_ptr<BaseOperation>
     ActionGenerator::generateRandomAction(const State &s, const util::UUID &activeCharacter,
                                           const MatchConfig &config) {
-        auto move = generateMovementActions(s, activeCharacter, config);
-        auto properties = generateAllPropertyActions(s, activeCharacter, config);
+        auto move = generateMovementActions(s, activeCharacter);
+        auto properties = generateAllPropertyActions(s, activeCharacter);
         auto gadget = generateAllGadgetActions(s, activeCharacter, config);
-        auto spy = generateSpyActions(s, activeCharacter, config);
-        auto gamble = generateGambleActions(s, activeCharacter, config);
+        auto spy = generateSpyActions(s, activeCharacter);
+        auto gamble = generateGambleActions(s, activeCharacter);
 
         auto ret = move;
         ret.insert(ret.end(), properties.begin(), properties.end());

@@ -17,12 +17,12 @@ namespace spy::gameplay {
         auto character = s.getCharacters().findByUUID(activeCharacter);
 
         // drink cocktail
-        auto action = std::make_shared<GadgetAction>(false, character->getCoordinates().value(), activeCharacter,
-                                                     gadget::GadgetEnum::COCKTAIL);
-        bool valid = ActionValidator::validate(s, action, config);
+        GadgetAction action {false, character->getCoordinates().value(), activeCharacter,
+                                                     gadget::GadgetEnum::COCKTAIL};
+        bool valid = ActionValidator::validateGadgetAction(s, action, config);
 
         if (valid) {
-            valid_ops.push_back(action);
+            valid_ops.push_back(std::make_shared<GadgetAction>(action));
         }
 
         // pour cocktail or get cocktail from bar
@@ -33,11 +33,11 @@ namespace spy::gameplay {
 
         if (neighbouringFields.second) {
             for (const auto &pt : neighbouringFields.first) {
-                action = std::make_shared<GadgetAction>(false, pt, activeCharacter, gadget::GadgetEnum::COCKTAIL);
-                valid = ActionValidator::validate(s, action, config);
+                action = {false, pt, activeCharacter, gadget::GadgetEnum::COCKTAIL};
+                valid = ActionValidator::validateGadgetAction(s, action, config);
 
                 if (valid) {
-                    valid_ops.push_back(action);
+                    valid_ops.push_back(std::make_shared<GadgetAction>(action));
                 }
             }
         }

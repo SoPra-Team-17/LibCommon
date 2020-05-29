@@ -38,24 +38,22 @@ namespace spy::gameplay {
             generateRetire(const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateMovementActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
+            generateMovementActions(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateAllPropertyActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
+            generateAllPropertyActions(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateGambleActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config,
-                                  double chipPercentage = 0.5);
+            generateGambleActions(const State &s, const util::UUID &activeCharacter, double chipPercentage = 0.5);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateSpyActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
+            generateSpyActions(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateAllGadgetActions(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generatePropertyActions(const State &s, const util::UUID &activeCharacter, character::PropertyEnum property,
-                                    const MatchConfig &config);
+            generatePropertyActions(const State &s, const util::UUID &activeCharacter, character::PropertyEnum property);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateGadgetActions(const State &s, const util::UUID &activeCharacter, gadget::GadgetEnum gadget,
@@ -63,10 +61,10 @@ namespace spy::gameplay {
 
         private:
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateObservation(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
+            generateObservation(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
-            generateBangAndBurn(const State &s, const util::UUID &activeCharacter, const MatchConfig &config);
+            generateBangAndBurn(const State &s, const util::UUID &activeCharacter);
 
             static std::vector<std::shared_ptr<BaseOperation>>
             generateMoleDie(const State &s, const util::UUID &activeCharacter, const spy::MatchConfig &config);

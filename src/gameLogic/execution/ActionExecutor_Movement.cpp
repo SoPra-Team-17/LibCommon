@@ -1,6 +1,10 @@
-//
-// Created by jonas on 28.04.20.
-//
+/**
+ * @file   ActionExecutor_Movement.cpp
+ * @author Dominik Authaler
+ * @date   28.04.2020 (creation)
+ * @brief  Definition of the execution method for movement operations.
+ */
+
 #include "ActionExecutor.hpp"
 
 namespace spy::gameplay {
@@ -17,6 +21,16 @@ namespace spy::gameplay {
         if (charTarget != s.getCharacters().end()) {
             // characters need to swap places
             charTarget->setCoordinates(op.getFrom());
+        }
+
+        // special treatment for the cat
+        if (s.getCatCoordinates().has_value() && s.getCatCoordinates().value() == op.getTarget()) {
+            s.setCatCoordinates(op.getFrom());
+        }
+
+        // special treatment for the janitor
+        if (s.getJanitorCoordinates().has_value() && s.getJanitorCoordinates().value() == op.getTarget()) {
+            s.setJanitorCoordinates(op.getFrom());
         }
 
         character->setCoordinates(op.getTarget());
