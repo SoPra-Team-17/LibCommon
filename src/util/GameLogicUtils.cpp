@@ -98,8 +98,7 @@ namespace spy::util {
         return character;
     }
 
-    const util::Point &
-    GameLogicUtils::getRandomCharacterFreeNearField(const gameplay::State &s, const Point &p) {
+    util::Point GameLogicUtils::getRandomCharacterFreeNearField(const gameplay::State &s, const Point &p) {
         return getRandomNearField(s, p, [&s](util::Point currentPoint) {
             // check if point is free -> accessible and no character is on point
             return s.getMap().isAccessible(currentPoint) && !isPersonOnField(s, currentPoint);
@@ -127,7 +126,7 @@ namespace spy::util {
         return result;
     }
 
-    const util::Point &GameLogicUtils::getRandomCharacterNearField(const gameplay::State &s, const Point &p) {
+    util::Point GameLogicUtils::getRandomCharacterNearField(const gameplay::State &s, const Point &p) {
         return getRandomNearField(s, p, [&s](util::Point currentPoint) {
             // check if character is on point
             return isPersonOnField(s, currentPoint);
@@ -159,7 +158,7 @@ namespace spy::util {
         return babySitterSuccess;
     }
 
-    const util::Point &GameLogicUtils::getRandomFreeSeatField(const gameplay::State &s) {
+    util::Point GameLogicUtils::getRandomFreeSeatField(const gameplay::State &s) {
         auto points = getAllFieldsWith(s, [&s](util::Point currentPoint) {
             // check if field is seat with no character on it
             return s.getMap().getField(currentPoint).getFieldState() == scenario::FieldStateEnum::BAR_SEAT &&
