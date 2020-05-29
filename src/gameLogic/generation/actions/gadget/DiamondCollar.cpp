@@ -12,12 +12,12 @@ namespace spy::gameplay {
                                            const spy::MatchConfig &config) {
         std::vector<std::shared_ptr<BaseOperation>> valid_ops;
 
-        auto action = std::make_shared<GadgetAction>(false, s.getCatCoordinates().value(), activeCharacter,
-                                                     gadget::GadgetEnum::DIAMOND_COLLAR);
-        bool valid = ActionValidator::validate(s, action, config);
+        GadgetAction action{false, s.getCatCoordinates().value(), activeCharacter,
+                            gadget::GadgetEnum::DIAMOND_COLLAR};
+        bool valid = ActionValidator::validateGadgetAction(s, action, config);
 
         if (valid) {
-            valid_ops.push_back(action);
+            valid_ops.push_back(std::make_shared<GadgetAction>(action));
         }
 
         return valid_ops;

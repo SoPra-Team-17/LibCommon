@@ -19,12 +19,12 @@ namespace spy::gameplay {
         for (const auto &targetChar : s.getCharacters()) {
             if (targetChar.getCoordinates().has_value() &&
                 character->getCoordinates().value() != targetChar.getCoordinates().value()) {
-                auto action = std::make_shared<GadgetAction>(false, targetChar.getCoordinates().value(),
+                GadgetAction action {false, targetChar.getCoordinates().value(),
                                                              activeCharacter,
-                                                             gadget::GadgetEnum::BOWLER_BLADE);
-                bool valid = ActionValidator::validate(s, action, config);
+                                                             gadget::GadgetEnum::BOWLER_BLADE};
+                bool valid = ActionValidator::validateGadgetAction(s, action, config);
                 if (valid) {
-                    valid_ops.push_back(action);
+                    valid_ops.push_back(std::make_shared<GadgetAction>(action));
                 }
             }
         }
