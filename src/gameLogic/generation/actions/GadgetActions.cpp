@@ -66,6 +66,8 @@ namespace spy::gameplay {
                 return generateMirrorOfWilderness(s, activeCharacter, config);
             case gadget::GadgetEnum::COCKTAIL:
                 return generateCocktail(s, activeCharacter, config);
+            case gadget::GadgetEnum::ANTI_PLAGUE_MASK:
+                [[fallthrough]];
             case gadget::GadgetEnum::POCKET_LITTER:
                 [[fallthrough]];
             case gadget::GadgetEnum::MAGNETIC_WATCH:
