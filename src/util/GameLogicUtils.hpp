@@ -37,7 +37,7 @@ namespace spy::util {
             static bool isPersonOnField(const gameplay::State &s, const Point &target);
 
             /**
-             * @brief               checks if a other person is on a neighboring field
+             * @brief               checks if an other person is on a neighboring field
              * @param s             current state
              * @param target        input target
              * @param charCoord     coordinates of character
@@ -47,7 +47,7 @@ namespace spy::util {
             personOnNeighbourField(const spy::gameplay::State &s, const Point &target, const Point &charCoord);
 
             /**
-             * @brief               checks if a other person is on a neighboring field
+             * @brief               checks if an other person is on a neighboring field
              * @param s             current state
              * @param target        input target
              * @param charCoord     coordinates of character
