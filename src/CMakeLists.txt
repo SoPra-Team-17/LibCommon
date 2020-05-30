@@ -80,12 +80,10 @@ set(SOURCE
         gameLogic/validation/gadget/FogTin.cpp
         gameLogic/validation/gadget/Grapple.cpp
         gameLogic/validation/gadget/Jetpack.cpp
-        gameLogic/validation/gadget/MagneticWatch.cpp
         gameLogic/validation/gadget/WiretapWithEarplugs.cpp
         gameLogic/validation/gadget/ChickenFeed.cpp
         gameLogic/validation/gadget/Nugget.cpp
         gameLogic/validation/gadget/MirrorOfWilderness.cpp
-        gameLogic/validation/gadget/PocketLitter.cpp
         gameLogic/validation/gadget/DiamondCollar.cpp
         gameLogic/validation/gadget/Cocktail.cpp
         gameLogic/validation/gadget/BowlerBlade.cpp
