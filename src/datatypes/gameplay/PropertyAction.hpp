@@ -24,6 +24,8 @@ namespace spy::gameplay {
 
             [[nodiscard]] std::optional<bool> getIsEnemy() const;
 
+            void setIsEnemy(std::optional<bool> enemy);
+
             friend void to_json(nlohmann::json &j, const PropertyAction &p);
 
             friend void from_json(const nlohmann::json &j, PropertyAction &p);

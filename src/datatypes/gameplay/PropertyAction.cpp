@@ -21,6 +21,10 @@ namespace spy::gameplay {
         return isEnemy;
     }
 
+    void PropertyAction::setIsEnemy(std::optional<bool> enemy) {
+        this->isEnemy = enemy;
+    }
+
     void to_json(nlohmann::json &j, const PropertyAction &p) {
         CharacterOperation::common_to_json(j, p);
         j["usedProperty"] = p.usedProperty;
