@@ -46,6 +46,8 @@ namespace spy::gameplay {
             case gadget::GadgetEnum::POCKET_LITTER:
                 [[fallthrough]];
             case gadget::GadgetEnum::MAGNETIC_WATCH:
+                [[fallthrough]];
+            case gadget::GadgetEnum::ANTI_PLAGUE_MASK:
                 throw std::invalid_argument("Execution of gadget type not implemented -> gadget is passive");
             case gadget::GadgetEnum::INVALID:
                 [[fallthrough]];
