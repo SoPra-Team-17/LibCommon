@@ -64,6 +64,19 @@ namespace spy::util {
         return isPersonOnField(s, target);
     }
 
+    character::CharacterSet::const_iterator
+    GameLogicUtils::findPersonOnNeighbourField(const gameplay::State &s, const Point &target, const Point &charCoord) {
+        // check distance
+        auto distance = gameplay::Movement::getMoveDistance(charCoord, target);
+        if (distance != 1) {
+            return s.getCharacters().end();
+        }
+
+        // check if person on target field
+        auto character = findInCharacterSetByCoordinates(s.getCharacters(), target);
+        return character;
+    }
+
     bool GameLogicUtils::bowlerBladeLineOfSight(const spy::gameplay::State &s, const Point &p1, const Point &p2) {
         return s.getMap().isLineOfSightFree(p1, p2, [&s](util::Point currentPoint) {
             // check if point is conventionally blocked
