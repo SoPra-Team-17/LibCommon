@@ -74,11 +74,7 @@ namespace spy::util {
 
         // check if person on target field
         auto character = findInCharacterSetByCoordinates(s.getCharacters(), target);
-        if (character == s.getCharacters().end()) {
-            return s.getCharacters().end();
-        } else {
-            return character;
-        }
+        return character;
     }
 
     bool GameLogicUtils::bowlerBladeLineOfSight(const spy::gameplay::State &s, const Point &p1, const Point &p2) {
