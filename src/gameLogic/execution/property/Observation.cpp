@@ -10,7 +10,8 @@
 
 namespace spy::gameplay {
 
-    bool PropertyExecutor::executeObservation(State &s, const PropertyAction &a, const MatchConfig &config) {
+    std::shared_ptr<const BaseOperation>
+    PropertyExecutor::executeObservation(State &s, const PropertyAction &a, const MatchConfig &config) {
         auto sourceChar = s.getCharacters().findByUUID(a.getCharacterId());
         auto targetChar = util::GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
 
@@ -19,9 +20,22 @@ namespace spy::gameplay {
 
         bool targetHasPocketLitter = targetChar->hasGadget(gadget::GadgetEnum::POCKET_LITTER);
 
-        return success
-               && sourceChar->getFaction() != targetChar->getFaction()
-               && targetChar->getFaction() != character::FactionEnum::INVALID
-               && !targetHasPocketLitter;
+        auto retOp = std::make_shared<PropertyAction>(a);
+
+        bool observationSuccess = (success
+                                   && sourceChar->getFaction() != targetChar->getFaction()
+                                   && targetChar->getFaction() != character::FactionEnum::INVALID);
+
+        retOp->setSuccessful(observationSuccess);
+
+        if (observationSuccess) {
+            if (targetHasPocketLitter) {
+                retOp->setIsEnemy(false);
+            } else {
+                retOp->setIsEnemy(targetChar->getFaction() != character::FactionEnum::NEUTRAL);
+            }
+        }
+
+        return retOp;
     }
 }
