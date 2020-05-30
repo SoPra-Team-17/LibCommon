@@ -12,8 +12,8 @@ namespace spy::gameplay {
 
         auto retOp = std::make_shared<SpyAction>(op);
 
-        auto targetChar = util::GameLogicUtils::findPersonOnNeighbourField(s, op.getTarget(),
-                                                                           character->getCoordinates().value());
+        auto targetChar = util::GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), op.getTarget());
+
         if (targetChar != s.getCharacters().end()) {
             // spy on person
             if (targetChar->getFaction() == character::FactionEnum::NEUTRAL) {
