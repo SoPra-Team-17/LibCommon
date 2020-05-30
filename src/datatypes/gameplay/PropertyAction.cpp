@@ -1,32 +1,41 @@
-//
-// Created by jonas on 10.04.20.
-//
+/**
+ * @file   PropertyAction.hpp
+ * @author Jonas
+ * @date   10.04.2020 (creation)
+ * @brief  PropertyAction operation
+ */
 
 #include "PropertyAction.hpp"
 
 namespace spy::gameplay {
     PropertyAction::PropertyAction(bool successful, const util::Point &target, const util::UUID &characterId,
-                                   character::PropertyEnum usedProperty) :
+                                   character::PropertyEnum usedProperty, std::optional<bool> isEnemy) :
             CharacterOperation(OperationEnum::PROPERTY_ACTION, successful, target, characterId),
-            usedProperty(usedProperty) {}
+            usedProperty(usedProperty), isEnemy(isEnemy) {}
 
     character::PropertyEnum PropertyAction::getUsedProperty() const {
         return usedProperty;
     }
 
+    std::optional<bool> PropertyAction::getIsEnemy() const {
+        return isEnemy;
+    }
+
     void to_json(nlohmann::json &j, const PropertyAction &p) {
         CharacterOperation::common_to_json(j, p);
         j["usedProperty"] = p.usedProperty;
+        j["isEnemy"] = p.isEnemy;
     }
 
     void from_json(const nlohmann::json &j, PropertyAction &p) {
         CharacterOperation::common_from_json(j, p);
         j.at("usedProperty").get_to(p.usedProperty);
+        j.at("isEnemy").get_to(p.isEnemy);
     }
 
     bool PropertyAction::isEqual(const BaseOperation &rhs_b) const {
         auto rhs = dynamic_cast<const PropertyAction &>(rhs_b);
-        return isCharacterEqual(rhs) && usedProperty == rhs.usedProperty;
+        return isCharacterEqual(rhs) && usedProperty == rhs.usedProperty && isEnemy == rhs.isEnemy;
     }
 
     std::shared_ptr<BaseOperation> PropertyAction::clone() const {
