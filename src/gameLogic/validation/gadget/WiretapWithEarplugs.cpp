@@ -21,14 +21,13 @@ namespace spy::gameplay {
             return false;
         }
 
-        auto targetUUID = spy::util::GameLogicUtils::getPersonOnNeighbourField(s, a.getTarget(),
-                                                                               character->getCoordinates().value());
-        if (!targetUUID.has_value()) {
+        auto targetChar = spy::util::GameLogicUtils::findPersonOnNeighbourField(s, a.getTarget(),
+                                                                                character->getCoordinates().value());
+        if (targetChar == s.getCharacters().end()) {
             // no character on target field
             return false;
         } else {
             // wiretap with earplugs can only be used against characters of another faction
-            auto targetChar = s.getCharacters().findByUUID(targetUUID.value());
             return (targetChar->getFaction() != character->getFaction());
         }
     }

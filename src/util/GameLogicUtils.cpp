@@ -64,20 +64,20 @@ namespace spy::util {
         return isPersonOnField(s, target);
     }
 
-    std::optional<UUID>
-    GameLogicUtils::getPersonOnNeighbourField(const gameplay::State &s, const Point &target, const Point &charCoord) {
+    character::CharacterSet::const_iterator
+    GameLogicUtils::findPersonOnNeighbourField(const gameplay::State &s, const Point &target, const Point &charCoord) {
         // check distance
         auto distance = gameplay::Movement::getMoveDistance(charCoord, target);
         if (distance != 1) {
-            return std::nullopt;
+            return s.getCharacters().end();
         }
 
         // check if person on target field
         auto character = findInCharacterSetByCoordinates(s.getCharacters(), target);
         if (character == s.getCharacters().end()) {
-            return std::nullopt;
+            return s.getCharacters().end();
         } else {
-            return character->getCharacterId();
+            return character;
         }
     }
 

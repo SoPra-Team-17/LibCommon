@@ -13,15 +13,14 @@ namespace spy::gameplay {
     bool GadgetValidator::validateNugget(const State &s, GadgetAction a) {
         auto character = s.getCharacters().findByUUID(a.getCharacterId());
 
-        auto targetUUID = spy::util::GameLogicUtils::getPersonOnNeighbourField(s, a.getTarget(),
-                                                                               character->getCoordinates().value());
+        auto targetChar = spy::util::GameLogicUtils::findPersonOnNeighbourField(s, a.getTarget(),
+                                                                                character->getCoordinates().value());
 
-        if (!targetUUID.has_value()) {
+        if (targetChar == s.getCharacters().end()) {
             // nugget can only be used against characters
             return false;
         } else {
             // nugget can only be used against characters of another faction
-            auto targetChar = s.getCharacters().findByUUID(targetUUID.value());
             return (targetChar->getFaction() != character->getFaction());
         }
     }

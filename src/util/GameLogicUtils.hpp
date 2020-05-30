@@ -47,14 +47,16 @@ namespace spy::util {
             personOnNeighbourField(const spy::gameplay::State &s, const Point &target, const Point &charCoord);
 
             /**
-             * @brief               returns id of person on the specified field, if it's a neighboring field
+             * @brief               returns a const_iterator to the character on the specified field,
+             *                      if it's a neighboring field
              * @param s             current state
              * @param target        input target
              * @param charCoord     coordinates of character
-             * @return              UUID of the character, otherwise std::nullopt
+             * @return              const_iterator to the character if there is a character, otherwise
+             *                      a const_iterator to the end of the character set
              */
-            static std::optional<UUID>
-            getPersonOnNeighbourField(const gameplay::State &s, const Point &target, const Point &charCoord);
+            static character::CharacterSet::const_iterator
+            findPersonOnNeighbourField(const gameplay::State &s, const Point &target, const Point &charCoord);
 
             /**
              * @brief       checks the bowler blade line of sight
