@@ -5,7 +5,7 @@
 #include "util/GameLogicUtils.hpp"
 
 namespace spy::gameplay {
-    bool ActionExecutor::executeGamble(State &s, const GambleAction &op) {
+    std::shared_ptr<const BaseOperation> ActionExecutor::executeGamble(State &s, const GambleAction &op) {
         auto character = s.getCharacters().getByUUID(op.getCharacterId());
         character->subActionPoint();
         auto targetField = s.getMap().getField(op.getTarget());
@@ -27,6 +27,9 @@ namespace spy::gameplay {
             targetField.setChipAmount(targetField.getChipAmount().value() + op.getStake());
         }
 
-        return won;
+        auto retOp = std::make_shared<GambleAction>(op);
+        retOp->setSuccessful(won);
+
+        return retOp;
     }
 }
