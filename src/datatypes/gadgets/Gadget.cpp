@@ -22,6 +22,8 @@ namespace spy::gadget {
                 [[fallthrough]];
             case GadgetEnum::POCKET_LITTER:
                 [[fallthrough]];
+            case GadgetEnum::ANTI_PLAGUE_MASK:
+                [[fallthrough]];
             case GadgetEnum::MOLEDIE:
                 usagesLeft = std::nullopt;
                 break;

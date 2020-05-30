@@ -1,6 +1,9 @@
-//
-// Created by jonas on 03.04.20.
-//
+/**
+ * @file   GadgetEnum.hpp
+ * @author Jonas Otto
+ * @date   03.04.20 (creation)
+ * @brief  Declaration of the enum for the different gadget types.
+ */
 
 #ifndef LIBCOMMON_GADGETENUM_HPP
 #define LIBCOMMON_GADGETENUM_HPP
@@ -29,7 +32,8 @@ namespace spy::gadget {
         NUGGET,
         MIRROR_OF_WILDERNESS,
         POCKET_LITTER,
-        COCKTAIL
+        COCKTAIL,
+        ANTI_PLAGUE_MASK
     };
 
     NLOHMANN_JSON_SERIALIZE_ENUM(GadgetEnum, {
@@ -54,6 +58,7 @@ namespace spy::gadget {
         { GadgetEnum::MIRROR_OF_WILDERNESS, "MIRROR_OF_WILDERNESS" },
         { GadgetEnum::POCKET_LITTER, "POCKET_LITTER" },
         { GadgetEnum::COCKTAIL, "COCKTAIL" },
+        { GadgetEnum::ANTI_PLAGUE_MASK, "ANTI_PLAGUE_MASK" },
     })
 }
 
