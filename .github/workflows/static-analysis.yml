@@ -53,7 +53,7 @@ jobs:
         run: |
           cd build
           ./test/allTests
-          gcov-8 $(find . -type f -name "*.gc*")
+          gcov-8 -p $(find . -type f -name "*.gc*")
       - name: sonar-scanner
         run: |
           sonar-scanner \
