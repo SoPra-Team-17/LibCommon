@@ -37,7 +37,7 @@ namespace spy::util {
             static bool isPersonOnField(const gameplay::State &s, const Point &target);
 
             /**
-             * @brief               checks if a other person is on a neighboring field
+             * @brief               checks if an other person is on a neighboring field
              * @param s             current state
              * @param target        input target
              * @param charCoord     coordinates of character
@@ -45,6 +45,18 @@ namespace spy::util {
              */
             static bool
             personOnNeighbourField(const spy::gameplay::State &s, const Point &target, const Point &charCoord);
+
+            /**
+             * @brief               returns a const_iterator to the character on the specified field,
+             *                      if it's a neighboring field
+             * @param s             current state
+             * @param target        input target
+             * @param charCoord     coordinates of character
+             * @return              const_iterator to the character if there is a character, otherwise
+             *                      a const_iterator to the end of the character set
+             */
+            static character::CharacterSet::const_iterator
+            findPersonOnNeighbourField(const gameplay::State &s, const Point &target, const Point &charCoord);
 
             /**
              * @brief       checks the bowler blade line of sight
