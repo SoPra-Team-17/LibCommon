@@ -36,9 +36,6 @@ namespace spy::gameplay {
             case GadgetEnum::TECHNICOLOUR_PRISM:
                 return GadgetValidator::validateTechnicolourPrism(s, op);
 
-            case GadgetEnum::MAGNETIC_WATCH:
-                return GadgetValidator::validateMagneticWatch(s, op);
-
             case GadgetEnum::POISON_PILLS:
                 return GadgetValidator::validatePoisonPills(s, op);
 
@@ -66,12 +63,17 @@ namespace spy::gameplay {
             case GadgetEnum::MIRROR_OF_WILDERNESS:
                 return GadgetValidator::validateMirrorOfWilderness(s, op);
 
-            case GadgetEnum::POCKET_LITTER:
-                return GadgetValidator::validatePocketLitter(s, op);
-
             case GadgetEnum::COCKTAIL:
                 return GadgetValidator::validateCocktail(s, op);
 
+            case GadgetEnum::POCKET_LITTER:
+                [[fallthrough]];
+            case GadgetEnum::MAGNETIC_WATCH:
+                [[fallthrough]];
+            case GadgetEnum::ANTI_PLAGUE_MASK:
+                [[fallthrough]];
+            case gadget::GadgetEnum::INVALID:
+                [[fallthrough]];
             default:
                 return false;
         }
