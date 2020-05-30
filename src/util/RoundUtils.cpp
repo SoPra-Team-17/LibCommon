@@ -145,8 +145,7 @@ namespace spy::util {
             action_pts = 2;
         }
 
-        // todo missing property behäbibkeit!
-        if (false /*|| character.hasProperty(Behaebigkeit)*/) {
+        if (character.hasProperty(character::PropertyEnum::PONDEROUSNESS)) {
             if (util::GameLogicUtils::probabilityTest(0.5)) {
                 movement_pts--;
             } else {
@@ -165,5 +164,4 @@ namespace spy::util {
         character.setActionPoints(action_pts);
         character.setMovePoints(movement_pts);
     }
-
 }

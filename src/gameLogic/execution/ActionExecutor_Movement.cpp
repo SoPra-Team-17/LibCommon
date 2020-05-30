@@ -8,7 +8,7 @@
 #include "ActionExecutor.hpp"
 
 namespace spy::gameplay {
-    bool ActionExecutor::executeMovement(State &s, const Movement &op) {
+    std::shared_ptr<const BaseOperation> ActionExecutor::executeMovement(State &s, const Movement &op) {
         auto character = s.getCharacters().getByUUID(op.getCharacterId());
         character->subMovePoint();
 
@@ -42,6 +42,9 @@ namespace spy::gameplay {
             s.getMap().getField(op.getTarget()).removeGadget();
         }
 
-        return true;
+        auto retOp = std::make_shared<Movement>(op);
+        retOp->setSuccessful(true);
+
+        return retOp;
     }
 }
