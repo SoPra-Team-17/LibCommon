@@ -8,8 +8,12 @@
 #include "PropertyExecutor.hpp"
 
 namespace spy::gameplay {
-    bool PropertyExecutor::executeBangAndBurn(State &s, const PropertyAction &a) {
+    std::shared_ptr<const BaseOperation> PropertyExecutor::executeBangAndBurn(State &s, const PropertyAction &a) {
         s.getMap().getField(a.getTarget()).setDestroyed(true);
-        return true;
+
+        auto retOp = std::make_shared<PropertyAction>(a);
+        retOp->setSuccessful(true);
+
+        return retOp;
     }
 }

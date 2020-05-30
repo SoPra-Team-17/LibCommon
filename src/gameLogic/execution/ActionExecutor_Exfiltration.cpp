@@ -9,7 +9,7 @@
 #include <util/GameLogicUtils.hpp>
 
 namespace spy::gameplay {
-    bool ActionExecutor::executeExfiltration(State &s, const Exfiltration &op) {
+    std::shared_ptr<const BaseOperation> ActionExecutor::executeExfiltration(State &s, const Exfiltration &op) {
         auto character = s.getCharacters().getByUUID(op.getCharacterId());
 
         // search for character at target position
@@ -31,6 +31,10 @@ namespace spy::gameplay {
         }
         character->setCoordinates(op.getTarget());
         character->setHealthPoints(1);
-        return true;
+
+        auto retOp = std::make_shared<Exfiltration>(op);
+        retOp->setSuccessful(true);
+
+        return retOp;
     }
 }
