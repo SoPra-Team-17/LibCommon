@@ -28,17 +28,13 @@ namespace spy::gameplay {
                                                                 });
         if (points.second) {
             for (const auto &pt : points.first) {
-                valid_ops.push_back(
-                        std::make_shared<GadgetAction>(false, pt, activeCharacter, gadget::GadgetEnum::HAIRDRYER));
+                GadgetAction action{false, pt, activeCharacter, gadget::GadgetEnum::HAIRDRYER};
+                if (ActionValidator::validateGadgetAction(s, action, config)) {
+                    valid_ops.push_back(std::make_shared<GadgetAction>(action));
+                }
             }
         }
 
-        valid_ops.erase(std::remove_if(valid_ops.begin(), valid_ops.end(),
-                                       [&s, &config](const std::shared_ptr<BaseOperation> &action) {
-                                           return !ActionValidator::validateGadgetAction(s,
-                                                                                         *std::dynamic_pointer_cast<const gameplay::GadgetAction>(
-                                                                                                 action), config);
-                                       }), valid_ops.end());
 
         return valid_ops;
     }
