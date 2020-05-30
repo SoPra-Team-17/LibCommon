@@ -5,10 +5,14 @@
 #include "ActionExecutor.hpp"
 
 namespace spy::gameplay {
-    bool ActionExecutor::executeJanitor(State &s, const JanitorAction &op) {
+    std::shared_ptr<const BaseOperation> ActionExecutor::executeJanitor(State &s, const JanitorAction &op) {
         s.setJanitorCoordinates(op.getTarget());
         util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), op.getTarget())->setCoordinates(
                 util::Point{-1, -1});
-        return true;
+
+        auto retOp = std::make_shared<JanitorAction>(op);
+        retOp->setSuccessful(true);
+
+        return retOp;
     }
 }

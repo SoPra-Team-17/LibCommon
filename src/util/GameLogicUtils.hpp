@@ -115,8 +115,7 @@ namespace spy::util {
              * @param p Point where character is at the moment
              * @return point where character can be placed to
              */
-            static const util::Point &
-            getRandomCharacterFreeNearField(const spy::gameplay::State &s, const util::Point &p);
+            static util::Point getRandomCharacterFreeNearField(const spy::gameplay::State &s, const util::Point &p);
 
             /**
              * @brief get point of free neighbour field (dist = 1) with no character on it
@@ -133,8 +132,7 @@ namespace spy::util {
              * @param p Point where character is at the moment
              * @return point where closest character is standing
              */
-            static const util::Point &
-            getRandomCharacterNearField(const spy::gameplay::State &s, const util::Point &p);
+            static util::Point getRandomCharacterNearField(const spy::gameplay::State &s, const util::Point &p);
 
             /**
              * @brief get point of random neighbouring field which fulfils certain condition
@@ -145,7 +143,7 @@ namespace spy::util {
              * @return randomly selected closest point fulfilling conditions
              */
             template<typename T>
-            static const util::Point &
+            static util::Point
             getRandomNearField(const spy::gameplay::State &s, const util::Point &p, T isSearchedField) {
                 int dist = 1;
                 while (true) {
@@ -206,7 +204,7 @@ namespace spy::util {
              * @param s current state
              * @return randomly selected point with a free seat on it
              */
-            static const util::Point &getRandomFreeSeatField(const spy::gameplay::State &s);
+            static util::Point getRandomFreeSeatField(const spy::gameplay::State &s);
 
             /**
              * @brief get point of all fields fulfilling certain conditions

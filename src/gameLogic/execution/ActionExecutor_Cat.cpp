@@ -4,8 +4,12 @@
 #include "ActionExecutor.hpp"
 
 namespace spy::gameplay {
-    bool ActionExecutor::executeCat(State &s, const CatAction &op) {
+    std::shared_ptr<const BaseOperation> ActionExecutor::executeCat(State &s, const CatAction &op) {
         s.setCatCoordinates(op.getTarget());
-        return true;
+
+        auto retOp = std::make_shared<CatAction>(op);
+        retOp->setSuccessful(true);
+
+        return retOp;
     }
 }

@@ -4,10 +4,14 @@
 #include "ActionExecutor.hpp"
 
 namespace spy::gameplay {
-    bool ActionExecutor::executeRetire(State &s, const RetireAction &op) {
+    std::shared_ptr<const BaseOperation> ActionExecutor::executeRetire(State &s, const RetireAction &op) {
         auto character = s.getCharacters().getByUUID(op.getCharacterId());
         character->setActionPoints(0);
         character->setMovePoints(0);
-        return true;
+
+        auto retOp = std::make_shared<RetireAction>(op);
+        retOp->setSuccessful(true);
+
+        return retOp;
     }
 }

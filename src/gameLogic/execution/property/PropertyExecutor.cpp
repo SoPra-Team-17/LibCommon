@@ -7,7 +7,8 @@
 
 namespace spy::gameplay {
 
-    bool PropertyExecutor::execute(State &s, const PropertyAction &a, const MatchConfig &config) {
+    std::shared_ptr<const BaseOperation>
+    PropertyExecutor::execute(State &s, const PropertyAction &a, const MatchConfig &config) {
         switch (a.getUsedProperty()) {
             case character::PropertyEnum::BANG_AND_BURN:
                 return PropertyExecutor::executeBangAndBurn(s, a);

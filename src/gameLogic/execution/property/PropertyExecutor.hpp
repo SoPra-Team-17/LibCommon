@@ -20,12 +20,14 @@ namespace spy::gameplay {
         public:
             PropertyExecutor() = delete;
 
-            static bool execute(State &s, const PropertyAction &a, const MatchConfig &config);
+            static std::shared_ptr<const BaseOperation>
+            execute(State &s, const PropertyAction &a, const MatchConfig &config);
 
         private:
-            static bool executeObservation(State &s, const PropertyAction &a, const MatchConfig &config);
+            static std::shared_ptr<const BaseOperation>
+            executeObservation(State &s, const PropertyAction &a, const MatchConfig &config);
 
-            static bool executeBangAndBurn(State &s, const PropertyAction &a);
+            static std::shared_ptr<const BaseOperation> executeBangAndBurn(State &s, const PropertyAction &a);
     };
 
 }

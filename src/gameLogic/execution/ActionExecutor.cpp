@@ -9,7 +9,8 @@
 
 namespace spy::gameplay {
 
-    bool ActionExecutor::execute(State &s, const std::shared_ptr<const BaseOperation> op, const MatchConfig &config) {
+    std::shared_ptr<const BaseOperation>
+    ActionExecutor::execute(State &s, const std::shared_ptr<const BaseOperation> op, const MatchConfig &config) {
         switch (op->getType()) {
             case spy::gameplay::OperationEnum::MOVEMENT:
                 return ActionExecutor::executeMovement(s, *std::dynamic_pointer_cast<const gameplay::Movement>(op));

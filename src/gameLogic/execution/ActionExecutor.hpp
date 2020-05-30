@@ -28,74 +28,76 @@ namespace spy::gameplay {
         public:
             ActionExecutor() = delete;
 
-            static bool execute(State &s, std::shared_ptr<const BaseOperation> op, const MatchConfig &config);
+            static std::shared_ptr<const BaseOperation>
+            execute(State &s, std::shared_ptr<const BaseOperation> op, const MatchConfig &config);
 
         private:
 
             /**
              * Execute Exfiltration
              * @param op Operation to execute, has to be valid
-             * @return true, if Exfiltration was successful
+             * @return resulting operation with success parameter set
              */
-            static bool executeExfiltration(State &s, const Exfiltration &op);
+            static std::shared_ptr<const BaseOperation> executeExfiltration(State &s, const Exfiltration &op);
 
             /**
              * Execute GadgetAction
              * @param op Operation to execute, has to be valid
-             * @return true, if GadgetAction was successful
+             * @return resulting operation with success parameter set
              */
-            static bool executeGadget(State &s, const GadgetAction &op, const MatchConfig &config);
+            static std::shared_ptr<const BaseOperation>
+            executeGadget(State &s, const GadgetAction &op, const MatchConfig &config);
 
             /**
              * Execute GambleAction
              * @param op Operation to execute, has to be valid
-             * @return true, if GambleAction was successful
+             * @return resulting operation with success parameter set
              */
-            static bool executeGamble(State &s, const GambleAction &op);
+            static std::shared_ptr<const BaseOperation> executeGamble(State &s, const GambleAction &op);
 
             /**
              * Execute Movement
              * @param op Operation to execute, has to be valid
-             * @return true, if Movement was successful
+             * @return resulting operation with success parameter set
              */
-            static bool executeMovement(State &s, const Movement &op);
+            static std::shared_ptr<const BaseOperation> executeMovement(State &s, const Movement &op);
 
             /**
              * Execute PropertyAction
              * @param op Operation to execute, has to be valid
-             * @return true, if PropertyAction was successful
+             * @return resulting operation with success parameter set
              */
-            static bool executeProperty(State &s, const PropertyAction &op, const MatchConfig &config);
+            static std::shared_ptr<const BaseOperation>
+            executeProperty(State &s, const PropertyAction &op, const MatchConfig &config);
 
             /**
              * Execute SpyAction
              * @param op Operation to execute, has to be valid
-             * @return true, if SpyAction was successful
+             * @return resulting operation with success parameter set
              */
-            static bool executeSpy(State &s, const SpyAction &op, const MatchConfig &config);
+            static std::shared_ptr<const BaseOperation>
+            executeSpy(State &s, const SpyAction &op, const MatchConfig &config);
 
             /**
              * Execute CatAction
              * @param op Operation to execute, has to be valid
-             * @return true, if CatAction was successful
+             * @return resulting operation with success parameter set
              */
-            static bool executeCat(State &s, const CatAction &op);
+            static std::shared_ptr<const BaseOperation> executeCat(State &s, const CatAction &op);
 
             /**
              * Execute JanitorAction
              * @param op Operation to execute, has to be valid
-             * @return true, if JanitorAction was successful
+             * @return resulting operation with success parameter set
              */
-            static bool executeJanitor(State &s, const JanitorAction &op);
+            static std::shared_ptr<const BaseOperation> executeJanitor(State &s, const JanitorAction &op);
 
             /**
              * Execute RetireAction
              * @param op Operation to execute, has to be valid
-             * @return true, if RetireAction was successful
+             * @return resulting operation with success parameter set
              */
-            static bool executeRetire(State &s, const RetireAction &op);
-
-
+            static std::shared_ptr<const BaseOperation> executeRetire(State &s, const RetireAction &op);
     };
 }
 

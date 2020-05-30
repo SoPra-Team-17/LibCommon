@@ -17,6 +17,7 @@ namespace spy::character {
     enum class PropertyEnum {
         NIMBLENESS,
         SLUGGISHNESS,
+        PONDEROUSNESS,
         SPRYNESS,
         AGILITY,
         LUCKY_DEVIL,
@@ -36,6 +37,7 @@ namespace spy::character {
     NLOHMANN_JSON_SERIALIZE_ENUM(PropertyEnum , {
         { PropertyEnum::NIMBLENESS, "NIMBLENESS" },
         { PropertyEnum::SLUGGISHNESS, "SLUGGISHNESS" },
+        { PropertyEnum::PONDEROUSNESS, "PONDEROUSNESS" },
         { PropertyEnum::SPRYNESS, "SPRYNESS" },
         { PropertyEnum::AGILITY, "AGILITY" },
         { PropertyEnum::LUCKY_DEVIL, "LUCKY_DEVIL" },
