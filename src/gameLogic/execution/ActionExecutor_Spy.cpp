@@ -8,28 +8,6 @@ namespace spy::gameplay {
 
     static std::shared_ptr<const BaseOperation>
     handleSpyOnPerson(State &s, const SpyAction &op, const MatchConfig &config,
-                      character::CharacterSet::iterator character, character::CharacterSet::const_iterator targetChar);
-
-    static std::shared_ptr<const BaseOperation>
-    handleSpyOnSafe(State &s, const SpyAction &op, const MatchConfig &config,
-                    character::CharacterSet::iterator character);
-
-    std::shared_ptr<const BaseOperation>
-    ActionExecutor::executeSpy(State &s, const SpyAction &op, const MatchConfig &config) {
-        auto character = s.getCharacters().getByUUID(op.getCharacterId());
-        character->subActionPoint();
-
-        auto targetChar = util::GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), op.getTarget());
-
-        if (targetChar != s.getCharacters().end()) {
-            return handleSpyOnPerson(s, op, config, character, targetChar);
-        } else {
-            return handleSpyOnSafe(s, op, config, character);
-        }
-    }
-
-    static std::shared_ptr<const BaseOperation>
-    handleSpyOnPerson(State &s, const SpyAction &op, const MatchConfig &config,
                       character::CharacterSet::iterator character, character::CharacterSet::const_iterator targetChar) {
         auto retOp = std::make_shared<SpyAction>(op);
 
@@ -51,7 +29,6 @@ namespace spy::gameplay {
 
             s.getMap().forAllFields([&maxSafeIndex](const scenario::Field &f) {
                 if (f.getFieldState() == scenario::FieldStateEnum::SAFE
-                    && f.getSafeIndex().has_value()
                     && f.getSafeIndex().value() > maxSafeIndex) {
                     maxSafeIndex = f.getSafeIndex().value();
                 }
@@ -63,10 +40,11 @@ namespace spy::gameplay {
 
             auto secret = randPos(gen);
 
-            s.addSafeCombination(secret);
+            if (s.getMySafeCombinations().find(secret) != s.getMySafeCombinations().end()) {
+                s.addSafeCombination(secret);
+                character->addIntelligencePoints(static_cast<int>(config.getSecretToIpFactor()));
+            }
         }
-
-        character->addIntelligencePoints(static_cast<int>(config.getSecretToIpFactor()));
 
         return retOp;
     }
@@ -95,16 +73,41 @@ namespace spy::gameplay {
             }
         });
 
+        if (!collarOnMap) {
+            for (const auto &c : s.getCharacters()) {
+                if (c.hasGadget(gadget::GadgetEnum::DIAMOND_COLLAR)) {
+                    collarOnMap = true;
+                    break;
+                }
+            }
+        }
+
         if (safeIndex == maxSafeIndex && !collarOnMap) {
             // first character gets the diamond collar
             character->addGadget(std::make_shared<gadget::Gadget>(gadget::GadgetEnum::DIAMOND_COLLAR));
+            character->addIntelligencePoints(static_cast<int>(config.getSecretToIpFactor()));
         } else if (safeIndex < maxSafeIndex) {
-            // faction gets the key for the next safe
-            s.addSafeCombination(safeIndex + 1);
+            if (s.getMySafeCombinations().find(safeIndex) != s.getMySafeCombinations().end()) {
+                // faction gets the key for the next safe
+                s.addSafeCombination(safeIndex + 1);
+                character->addIntelligencePoints(static_cast<int>(config.getSecretToIpFactor()));
+            }
         }
 
-        character->addIntelligencePoints(static_cast<int>(config.getSecretToIpFactor()));
-
         return retOp;
+    }
+
+    std::shared_ptr<const BaseOperation>
+    ActionExecutor::executeSpy(State &s, const SpyAction &op, const MatchConfig &config) {
+        auto character = s.getCharacters().getByUUID(op.getCharacterId());
+        character->subActionPoint();
+
+        auto targetChar = util::GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), op.getTarget());
+
+        if (targetChar != s.getCharacters().end()) {
+            return handleSpyOnPerson(s, op, config, character, targetChar);
+        } else {
+            return handleSpyOnSafe(s, op, config, character);
+        }
     }
 }
