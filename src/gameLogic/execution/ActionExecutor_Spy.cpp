@@ -40,7 +40,7 @@ namespace spy::gameplay {
 
             auto secret = randPos(gen);
 
-            if (s.getMySafeCombinations().find(secret) != s.getMySafeCombinations().end()) {
+            if (s.getMySafeCombinations().find(secret) == s.getMySafeCombinations().end()) {
                 s.addSafeCombination(secret);
                 character->addIntelligencePoints(static_cast<int>(config.getSecretToIpFactor()));
             }
@@ -86,12 +86,11 @@ namespace spy::gameplay {
             // first character gets the diamond collar
             character->addGadget(std::make_shared<gadget::Gadget>(gadget::GadgetEnum::DIAMOND_COLLAR));
             character->addIntelligencePoints(static_cast<int>(config.getSecretToIpFactor()));
-        } else if (safeIndex < maxSafeIndex) {
-            if (s.getMySafeCombinations().find(safeIndex) != s.getMySafeCombinations().end()) {
-                // faction gets the key for the next safe
-                s.addSafeCombination(safeIndex + 1);
-                character->addIntelligencePoints(static_cast<int>(config.getSecretToIpFactor()));
-            }
+        } else if (safeIndex < maxSafeIndex
+                   && s.getMySafeCombinations().find(safeIndex + 1) == s.getMySafeCombinations().end()) {
+            // faction gets the key for the next safe
+            s.addSafeCombination(safeIndex + 1);
+            character->addIntelligencePoints(static_cast<int>(config.getSecretToIpFactor()));
         }
 
         return retOp;
