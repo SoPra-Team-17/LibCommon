@@ -28,7 +28,7 @@ namespace spy::gameplay {
         }
     }
 
-    std::shared_ptr<const BaseOperation>
+    static std::shared_ptr<const BaseOperation>
     handleSpyOnPerson(State &s, const SpyAction &op, const MatchConfig &config,
                       character::CharacterSet::iterator character, character::CharacterSet::const_iterator targetChar) {
         auto retOp = std::make_shared<SpyAction>(op);
@@ -71,7 +71,7 @@ namespace spy::gameplay {
         return retOp;
     }
 
-    std::shared_ptr<const BaseOperation>
+    static std::shared_ptr<const BaseOperation>
     handleSpyOnSafe(State &s, const SpyAction &op, const MatchConfig &config,
                     character::CharacterSet::iterator character) {
         auto retOp = std::make_shared<SpyAction>(op);
