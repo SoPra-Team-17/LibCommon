@@ -129,6 +129,15 @@ namespace spy::scenario {
                 }
             }
 
+            template<typename T>
+            void forAllPoints(T func) {
+                for (auto y = 0U; y < map.size(); y++) {
+                    for (auto x = 0U; x < map.at(y).size(); x++) {
+                        func(spy::util::Point{static_cast<int>(x), static_cast<int>(y)});
+                    }
+                }
+            }
+
             friend void to_json(nlohmann::json &j, const FieldMap &m);
 
             friend void from_json(const nlohmann::json &j, FieldMap &m);
