@@ -82,6 +82,12 @@ namespace spy::gameplay {
             }
         }
 
+        if (s.getMySafeCombinations().find(safeIndex) == s.getMySafeCombinations().end()) {
+            // character lacks the safe combination --> safe cannot be opened
+            retOp->setSuccessful(false);
+            return retOp;
+        }
+
         if (safeIndex == maxSafeIndex && !collarOnMap) {
             // first character gets the diamond collar
             character->addGadget(std::make_shared<gadget::Gadget>(gadget::GadgetEnum::DIAMOND_COLLAR));
