@@ -78,6 +78,8 @@ namespace spy::gameplay {
 
             void setKnownSafeCombinations(std::set<int> combinations);
 
+            void incrementRoundCounter();
+
             friend void to_json(nlohmann::json &j, const State &s);
 
             friend void from_json(const nlohmann::json &j, State &s);
