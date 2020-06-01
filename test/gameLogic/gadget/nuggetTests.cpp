@@ -18,13 +18,13 @@ TEST_F(GadgetActionTests, Nugget_Validate) {
 
     auto nugget = std::make_shared<Gadget>(GadgetEnum::NUGGET);
 
-    state.getCharacters().getByUUID(uuid1)->setCoordinates({4, 3});
-    state.getCharacters().getByUUID(uuid2)->setCoordinates({5, 3});
+    state.getCharacters().getByUUID(uuid1)->setCoordinates(Point{4, 3});
+    state.getCharacters().getByUUID(uuid2)->setCoordinates(Point{5, 3});
     state.getCharacters().getByUUID(uuid2)->setFaction(spy::character::FactionEnum::PLAYER2);
-    state.getCharacters().getByUUID(uuid3)->setCoordinates({4, 2});
+    state.getCharacters().getByUUID(uuid3)->setCoordinates(Point{4, 2});
     state.getCharacters().getByUUID(uuid3)->setFaction(spy::character::FactionEnum::PLAYER1);
-    state.getCharacters().getByUUID(uuid4)->setCoordinates({4, 5});
-    state.getCharacters().getByUUID(uuid5)->setCoordinates({6, 6});
+    state.getCharacters().getByUUID(uuid4)->setCoordinates(Point{4, 5});
+    state.getCharacters().getByUUID(uuid5)->setCoordinates(Point{6, 6});
 
     state.getCharacters().getByUUID(uuid1)->addGadget(nugget);
     state.getCharacters().getByUUID(uuid1)->setFaction(spy::character::FactionEnum::PLAYER1);

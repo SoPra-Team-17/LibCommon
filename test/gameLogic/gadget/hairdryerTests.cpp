@@ -20,11 +20,11 @@ TEST_F(GadgetActionTests, Hairdryer_Validate) {
 
     auto hairdryer = std::make_shared<Gadget>(GadgetEnum::HAIRDRYER);
 
-    state.getCharacters().getByUUID(uuid1)->setCoordinates({4, 3});
-    state.getCharacters().getByUUID(uuid2)->setCoordinates({4, 2});
-    state.getCharacters().getByUUID(uuid3)->setCoordinates({4, 4});
-    state.getCharacters().getByUUID(uuid4)->setCoordinates({5, 3});
-    state.getCharacters().getByUUID(uuid5)->setCoordinates({6, 6});
+    state.getCharacters().getByUUID(uuid1)->setCoordinates(Point{4, 3});
+    state.getCharacters().getByUUID(uuid2)->setCoordinates(Point{4, 2});
+    state.getCharacters().getByUUID(uuid3)->setCoordinates(Point{4, 4});
+    state.getCharacters().getByUUID(uuid4)->setCoordinates(Point{5, 3});
+    state.getCharacters().getByUUID(uuid5)->setCoordinates(Point{6, 6});
 
     state.getCharacters().getByUUID(uuid1)->addGadget(hairdryer);
     state.getCharacters().getByUUID(uuid5)->addGadget(hairdryer);
@@ -58,9 +58,10 @@ TEST_F(GadgetActionTests, HairDryer_Execute) {
     using spy::character::PropertyEnum;
     using spy::gameplay::ActionExecutor;
     using spy::gameplay::GadgetAction;
+    using spy::util::Point;
 
-    state.getCharacters().getByUUID(uuid1)->setCoordinates({1, 2});
-    state.getCharacters().getByUUID(uuid2)->setCoordinates({2, 2});
+    state.getCharacters().getByUUID(uuid1)->setCoordinates(Point{1, 2});
+    state.getCharacters().getByUUID(uuid2)->setCoordinates(Point{2, 2});
 
     auto c1 = state.getCharacters().getByUUID(uuid1);
     auto c2 = state.getCharacters().getByUUID(uuid2);
