@@ -25,7 +25,7 @@ namespace spy::character {
         return coordinates;
     }
 
-    void Character::setCoordinates(const util::Point &coordinate) {
+    void Character::setCoordinates(const std::optional<util::Point> &coordinate) {
         Character::coordinates = coordinate;
     }
 
