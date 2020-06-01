@@ -127,4 +127,8 @@ namespace spy::gameplay {
     void State::addSafeCombination(unsigned int safe) {
         mySafeCombinations.insert(safe);
     }
+
+    void State::setKnownSafeCombinations(std::set<int> combinations) {
+        mySafeCombinations = combinations;
+    }
 }

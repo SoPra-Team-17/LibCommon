@@ -76,6 +76,8 @@ namespace spy::gameplay {
 
             void addSafeCombination(unsigned int safe);
 
+            void setKnownSafeCombinations(std::set<int> combinations);
+
             friend void to_json(nlohmann::json &j, const State &s);
 
             friend void from_json(const nlohmann::json &j, State &s);
