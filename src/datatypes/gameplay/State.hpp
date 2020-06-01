@@ -17,7 +17,7 @@
 
 namespace spy::gameplay {
 
-    struct Stats{
+    struct Stats {
         character::FactionEnum collarToCat = character::FactionEnum::INVALID;
         std::pair<unsigned int, unsigned int> cocktails;
         std::pair<unsigned int, unsigned int> cocktailsPoured;
@@ -73,6 +73,8 @@ namespace spy::gameplay {
              * the janitorCoordinates optional if the coordinates are outside the map.
              */
             void setJanitorCoordinates(const std::optional<util::Point> &janitorCoordinates);
+
+            void addSafeCombination(unsigned int safe);
 
             friend void to_json(nlohmann::json &j, const State &s);
 

@@ -123,4 +123,8 @@ namespace spy::gameplay {
     Stats &State::getFactionStats() {
         return factionStats;
     }
+
+    void State::addSafeCombination(unsigned int safe) {
+        mySafeCombinations.insert(safe);
+    }
 }
