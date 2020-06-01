@@ -18,10 +18,10 @@ TEST_F(GadgetActionTests, TechnicolourPrism_Validate) {
 
     auto prism = std::make_shared<Gadget>(GadgetEnum::TECHNICOLOUR_PRISM);
 
-    state.getCharacters().getByUUID(uuid1)->setCoordinates({4, 3});
-    state.getCharacters().getByUUID(uuid2)->setCoordinates({5, 3});
-    state.getCharacters().getByUUID(uuid3)->setCoordinates({3, 2});
-    state.getCharacters().getByUUID(uuid5)->setCoordinates({6, 6});
+    state.getCharacters().getByUUID(uuid1)->setCoordinates(Point{4, 3});
+    state.getCharacters().getByUUID(uuid2)->setCoordinates(Point{5, 3});
+    state.getCharacters().getByUUID(uuid3)->setCoordinates(Point{3, 2});
+    state.getCharacters().getByUUID(uuid5)->setCoordinates(Point{6, 6});
 
     state.getCharacters().getByUUID(uuid1)->addGadget(prism);
     state.getCharacters().getByUUID(uuid5)->addGadget(prism);

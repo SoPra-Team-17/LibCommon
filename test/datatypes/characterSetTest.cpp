@@ -88,7 +88,7 @@ TEST_F(CharacterSet, get_uuid_modify) {
     set.insert(c1);
 
     auto c = set.getByUUID(c1.getCharacterId());
-    c->setCoordinates({1, 7});
+    c->setCoordinates(spy::util::Point{1, 7});
     EXPECT_EQ(set.findByUUID(c1.getCharacterId())->getCoordinates(), (spy::util::Point{1, 7}));
 }
 

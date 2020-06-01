@@ -104,12 +104,13 @@ TEST_F(MovementOperation, isMovementValid) {
     using spy::character::Character;
     using spy::character::CharacterSet;
     using spy::util::UUID;
+    using spy::util::Point;
     using spy::gameplay::Movement;
     using spy::gameplay::State;
     using spy::gameplay::ActionValidator;
 
-    state.getCharacters().getByUUID(uuid1)->setCoordinates({1, 2});
-    state.getCharacters().getByUUID(uuid2)->setCoordinates({1, 5});
+    state.getCharacters().getByUUID(uuid1)->setCoordinates(Point{1, 2});
+    state.getCharacters().getByUUID(uuid2)->setCoordinates(Point{1, 5});
 
     auto move1 = std::make_shared<Movement>(Movement(false, {1, 1}, uuid1, {1, 2}));
     auto move2 = std::make_shared<Movement>(Movement(false, {1, 3}, uuid1, {1, 2}));
@@ -139,7 +140,7 @@ TEST_F(MovementOperation, Movement) {
     using spy::util::Point;
     using spy::gameplay::ActionExecutor;
 
-    state.getCharacters().getByUUID(uuid1)->setCoordinates({1, 2});
+    state.getCharacters().getByUUID(uuid1)->setCoordinates(Point{1, 2});
 
     auto move1 = std::make_shared<Movement>(Movement(false, {2, 2}, uuid1, {1, 2}));
     auto move2 = std::make_shared<Movement>(Movement(false, {3, 2}, uuid1, {2, 2}));
@@ -168,11 +169,11 @@ TEST_F(MovementOperation, MovementSwap) {
     using spy::util::Point;
     using spy::gameplay::ActionExecutor;
 
-    state.getCharacters().getByUUID(uuid1)->setCoordinates({1, 2});
-    state.getCharacters().getByUUID(uuid2)->setCoordinates({2, 2});
-    state.getCharacters().getByUUID(uuid3)->setCoordinates({3, 2});
-    state.getCharacters().getByUUID(uuid4)->setCoordinates({4, 3});
-    state.getCharacters().getByUUID(uuid5)->setCoordinates({4, 4});
+    state.getCharacters().getByUUID(uuid1)->setCoordinates(Point{1, 2});
+    state.getCharacters().getByUUID(uuid2)->setCoordinates(Point{2, 2});
+    state.getCharacters().getByUUID(uuid3)->setCoordinates(Point{3, 2});
+    state.getCharacters().getByUUID(uuid4)->setCoordinates(Point{4, 3});
+    state.getCharacters().getByUUID(uuid5)->setCoordinates(Point{4, 4});
 
     auto move1 = std::make_shared<Movement>(Movement(false, {2, 2}, uuid1, {1, 2}));
     auto move2 = std::make_shared<Movement>(Movement(false, {3, 2}, uuid1, {2, 2}));
@@ -226,6 +227,7 @@ TEST_F(MovementOperation, MovementSwap) {
 TEST_F(MovementOperation, MovementGadget) {
     using spy::gameplay::Movement;
     using spy::gameplay::ActionExecutor;
+    using spy::util::Point;
 
     state.getMap().getField({2, 2}).setGadget(g1);
     state.getMap().getField({3, 2}).setGadget(g2);
@@ -233,7 +235,7 @@ TEST_F(MovementOperation, MovementGadget) {
     state.getMap().getField({4, 4}).setGadget(g4);
     state.getMap().getField({5, 3}).setGadget(g5);
 
-    state.getCharacters().getByUUID(uuid1)->setCoordinates({1, 2});
+    state.getCharacters().getByUUID(uuid1)->setCoordinates(Point{1, 2});
 
     auto move1 = std::make_shared<Movement>(Movement(false, {2, 2}, uuid1, {1, 2}));
     auto move2 = std::make_shared<Movement>(Movement(false, {3, 2}, uuid1, {2, 2}));
@@ -345,7 +347,7 @@ TEST_F(MovementOperation, MovementCatJanitor) {
     using spy::gameplay::ActionExecutor;
     using spy::util::Point;
 
-    state.getCharacters().getByUUID(uuid1)->setCoordinates({1, 2});
+    state.getCharacters().getByUUID(uuid1)->setCoordinates(Point{1, 2});
     state.setCatCoordinates(Point{2, 2});
     state.setJanitorCoordinates(Point{3, 2});
 
