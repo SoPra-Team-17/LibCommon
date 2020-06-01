@@ -31,8 +31,6 @@ namespace spy::gameplay {
             static std::shared_ptr<const BaseOperation>
             execute(State &s, std::shared_ptr<const BaseOperation> op, const MatchConfig &config);
 
-        private:
-
             /**
              * Execute Exfiltration
              * @param op Operation to execute, has to be valid
