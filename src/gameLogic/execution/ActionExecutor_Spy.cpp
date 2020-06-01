@@ -59,6 +59,12 @@ namespace spy::gameplay {
         // get index of safe
         auto safeIndex = s.getMap().getField(op.getTarget()).getSafeIndex().value();
 
+        if (s.getMySafeCombinations().find(safeIndex) == s.getMySafeCombinations().end()) {
+            // character lacks the safe combination --> safe cannot be opened
+            retOp->setSuccessful(false);
+            return retOp;
+        }
+
         // query safe indexes and the collar location from the current state
         unsigned int maxSafeIndex = 1;
         bool collarOnMap = false;
@@ -80,12 +86,6 @@ namespace spy::gameplay {
                     break;
                 }
             }
-        }
-
-        if (s.getMySafeCombinations().find(safeIndex) == s.getMySafeCombinations().end()) {
-            // character lacks the safe combination --> safe cannot be opened
-            retOp->setSuccessful(false);
-            return retOp;
         }
 
         if (safeIndex == maxSafeIndex && !collarOnMap) {
