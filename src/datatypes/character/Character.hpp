@@ -41,7 +41,7 @@ namespace spy::character {
 
             [[nodiscard]] const std::optional<util::Point> &getCoordinates() const;
 
-            void setCoordinates(const util::Point &coordinates);
+            void setCoordinates(const std::optional<util::Point> &coordinates);
 
             [[nodiscard]] unsigned int getMovePoints() const;
 

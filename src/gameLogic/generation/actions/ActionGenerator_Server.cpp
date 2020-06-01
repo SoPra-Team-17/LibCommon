@@ -19,9 +19,19 @@ namespace spy::gameplay {
     }
 
     std::shared_ptr<BaseOperation> ActionGenerator::generateCatAction(const State &s) {
-        auto target = util::GameLogicUtils::getRandomCharacterFreeNeighbourField(s, s.getCatCoordinates().value());
-        target = target.has_value() ? target : s.getCatCoordinates().value();
-        auto action = std::make_shared<CatAction>(spy::gameplay::CatAction(target.value()));
+        auto targetFields = util::GameLogicUtils::getNearFieldsInDist(s, s.getCatCoordinates().value(), 1,
+                                                                      [&s](const util::Point &p) {
+                                                                          return s.getMap().isAccessible(p);
+                                                                      });
+        util::Point target;
+
+        if (targetFields.second) {
+            target = *util::GameLogicUtils::getRandomItemFromContainer(targetFields.first);
+        } else {
+            target = s.getCatCoordinates().value();
+        }
+
+        auto action = std::make_shared<CatAction>(spy::gameplay::CatAction(target));
         return action;
     }
 
@@ -30,4 +40,5 @@ namespace spy::gameplay {
         auto action = std::make_shared<JanitorAction>(spy::gameplay::JanitorAction(target));
         return action;
     }
+
 }
