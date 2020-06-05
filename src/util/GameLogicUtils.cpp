@@ -111,6 +111,17 @@ namespace spy::util {
         return character;
     }
 
+    std::optional<spy::util::Point> GameLogicUtils::getRandomCharacterFreeMapPoint(const spy::gameplay::State &state) {
+        auto point = getRandomMapPoint(state, [&state](const auto &p) {
+            if (!state.getMap().isAccessible(p)) {
+                return false;
+            }
+            return !spy::util::GameLogicUtils::isPersonOnField(state, p);
+        });
+
+        return point;
+    }
+
     util::Point GameLogicUtils::getRandomCharacterFreeNearField(const gameplay::State &s, const Point &p) {
         return getRandomNearField(s, p, [&s](util::Point currentPoint) {
             // check if point is free -> accessible and no character is on point
