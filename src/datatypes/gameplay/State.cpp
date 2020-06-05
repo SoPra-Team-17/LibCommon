@@ -135,4 +135,19 @@ namespace spy::gameplay {
     void State::incrementRoundCounter() {
         currentRound++;
     }
+
+    void State::removeAllNPCs() {
+        for (auto &c : characters) {
+            if (c.getFaction() != character::FactionEnum::NEUTRAL) {
+                continue;
+            }
+
+            if (c.hasGadget(gadget::GadgetEnum::DIAMOND_COLLAR)) {
+                auto collar = std::make_shared<spy::gadget::Gadget>(gadget::GadgetEnum::DIAMOND_COLLAR);
+                map.getField(c.getCoordinates().value()).setGadget(collar);
+                c.removeGadget(gadget::GadgetEnum::DIAMOND_COLLAR);
+            }
+            c.setCoordinates(std::nullopt);
+        }
+    }
 }

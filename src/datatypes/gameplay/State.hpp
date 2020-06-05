@@ -80,6 +80,12 @@ namespace spy::gameplay {
 
             void incrementRoundCounter();
 
+            /**
+             * Removes all NPCs from the map.
+             * @note If a character owns the diamond collar, it gets dropped.
+             */
+            void removeAllNPCs();
+
             friend void to_json(nlohmann::json &j, const State &s);
 
             friend void from_json(const nlohmann::json &j, State &s);
