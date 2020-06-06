@@ -110,6 +110,13 @@ namespace spy::util {
             }
 
             /**
+             * Get a random accessible field without a character on it.
+             * @param state State to search the field in.
+             * @return Coordinates of the found field, otherwise std::nullopt.
+             */
+            static std::optional<spy::util::Point> getRandomCharacterFreeMapPoint(const spy::gameplay::State &state);
+
+            /**
              * @brief get point of random free neighbouring field with no character on it
              * @param s current state
              * @param p Point where character is at the moment
