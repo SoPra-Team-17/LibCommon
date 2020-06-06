@@ -18,7 +18,7 @@ namespace spy::gameplay {
         // remove gadget
         sourceChar->removeGadget(gadget::GadgetEnum::CHICKEN_FEED);
 
-        if (targetChar->getFaction() == character::FactionEnum::INVALID
+        if (targetChar->getFaction() == character::FactionEnum::NEUTRAL
             || targetChar->getFaction() == sourceChar->getFaction()) {
             return false;
         }
@@ -34,6 +34,9 @@ namespace spy::gameplay {
                 character.value()->addIntelligencePoints(ipDiff);
             }
         }
+
+        // remove chicken feed from inventory
+        sourceChar->removeGadget(gadget::GadgetEnum::CHICKEN_FEED);
 
         return true;
     }

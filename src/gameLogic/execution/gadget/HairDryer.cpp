@@ -17,6 +17,7 @@ namespace spy::gameplay {
         if (charTarget->hasProperty(character::PropertyEnum::CONSTANT_CLAMMY_CLOTHES)) {
             return false;
         }
+
         // Remove CLAMMY_CLOTHES (Lastenheft: "Klamme Klamotten") property
         charTarget->getProperties().erase(character::PropertyEnum::CLAMMY_CLOTHES);
 

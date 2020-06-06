@@ -63,7 +63,9 @@ namespace spy::gameplay {
 
         if (!dodged) {
             ret = true;
-            targetChar->addProperty(character::PropertyEnum::CLAMMY_CLOTHES);
+            if (!targetChar->hasProperty(character::PropertyEnum::CONSTANT_CLAMMY_CLOTHES)) {
+                targetChar->addProperty(character::PropertyEnum::CLAMMY_CLOTHES);
+            }
 
             // update cocktail poured stats
             if (sourceChar->getFaction() == character::FactionEnum::PLAYER1) {
