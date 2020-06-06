@@ -28,8 +28,8 @@ namespace spy::gameplay {
                 unsigned int num = randNum(gen);
                 for (unsigned int i = 0; i < num; i++) {
                     auto gbuf = util::GameLogicUtils::getRandomItemFromContainer(g);
-                    g.erase(gbuf);
                     m.at(id).insert(*gbuf);
+                    g.erase(gbuf);
                 }
             }
         }
