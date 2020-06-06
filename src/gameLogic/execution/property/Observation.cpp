@@ -24,7 +24,7 @@ namespace spy::gameplay {
 
         bool observationSuccess = (success
                                    && sourceChar->getFaction() != targetChar->getFaction()
-                                   && targetChar->getFaction() != character::FactionEnum::INVALID);
+                                   && targetChar->getFaction() != character::FactionEnum::NEUTRAL);
 
         retOp->setSuccessful(observationSuccess);
 

@@ -22,6 +22,11 @@ namespace spy::gameplay {
                 s.getMap().getField(p).setFoggy(true);
             }
         }
+
+        // remove fog tin from inventory
+        auto sourceChar = s.getCharacters().getByUUID(a.getCharacterId());
+        sourceChar->removeGadget(gadget::GadgetEnum::CHICKEN_FEED);
+
         return true;
     }
 }

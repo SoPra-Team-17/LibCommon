@@ -18,7 +18,7 @@ namespace spy::gameplay {
         // get person on target field
         auto person = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
 
-        if (person->getFaction() == character::FactionEnum::INVALID) {
+        if (person->getFaction() == character::FactionEnum::NEUTRAL) {
             // npc --> changes faction
             person->setFaction(character->getFaction());
             return true;

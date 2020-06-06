@@ -15,8 +15,8 @@ namespace spy::gameplay {
         //Honey Trap property
         auto a = util::GameLogicUtils::getHoneyTrapOperation(s, action, config);
 
-        auto character = *(s.getCharacters().getByUUID(a.getCharacterId()));
-        bool successfullHit = util::GameLogicUtils::probabilityTestWithCharacter(character,
+        auto character = s.getCharacters().getByUUID(a.getCharacterId());
+        bool successfullHit = util::GameLogicUtils::probabilityTestWithCharacter(*character,
                                                                                  config.getBowlerBladeHitChance());
 
         // Babysitter successfull
@@ -40,10 +40,10 @@ namespace spy::gameplay {
             return !fieldHasGadget && !fieldHasPerson && isFieldFree;
         });
 
-        s.getMap().getField(newHatPt).setGadget(character.getGadget(gadget::GadgetEnum::BOWLER_BLADE));
+        s.getMap().getField(newHatPt).setGadget(character->getGadget(gadget::GadgetEnum::BOWLER_BLADE));
 
         // remove bowler blade from inventory
-        character.removeGadget(gadget::GadgetEnum::BOWLER_BLADE);
+        character->removeGadget(gadget::GadgetEnum::BOWLER_BLADE);
 
         return successfullHit;
     }
