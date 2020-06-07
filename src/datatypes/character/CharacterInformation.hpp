@@ -23,7 +23,7 @@ namespace spy::character {
 
             CharacterInformation(const util::UUID &characterId, const std::string &name, const std::string &description,
                                  GenderEnum gender,
-                                 const std::vector<PropertyEnum> &features);
+                                 const std::set<PropertyEnum> &features);
 
             CharacterInformation(CharacterDescription description, const util::UUID &characterId);
 

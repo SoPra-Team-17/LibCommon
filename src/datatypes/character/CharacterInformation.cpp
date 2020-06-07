@@ -11,7 +11,7 @@ namespace spy::character {
 
     CharacterInformation::CharacterInformation(const util::UUID &characterId,
                                                const std::string &name, const std::string &description,
-                                               GenderEnum gender, const std::vector<PropertyEnum> &features)
+                                               GenderEnum gender, const std::set<PropertyEnum> &features)
             : CharacterDescription(name, description, gender, features),
               characterId(characterId) {}
 

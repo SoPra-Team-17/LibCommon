@@ -11,7 +11,7 @@ namespace spy::character {
     CharacterDescription::CharacterDescription(const std::string &name,
                                                const std::string &description,
                                                GenderEnum gender,
-                                               const std::vector<PropertyEnum> &features) :
+                                               const std::set<PropertyEnum> &features) :
             name(name),
             description(description),
             gender(gender),
@@ -19,7 +19,7 @@ namespace spy::character {
 
     CharacterDescription::CharacterDescription(const std::string &name,
                                                const std::string &description,
-                                               const std::vector<PropertyEnum> &features) :
+                                               const std::set<PropertyEnum> &features) :
             name(name),
             description(description),
             features(features) {}
@@ -36,7 +36,7 @@ namespace spy::character {
         return gender;
     }
 
-    const std::vector<PropertyEnum> &CharacterDescription::getFeatures() const {
+    const std::set<PropertyEnum> &CharacterDescription::getFeatures() const {
         return features;
     }
 
