@@ -37,11 +37,11 @@ namespace spy::character {
             CharacterDescription(const std::string &name,
                                  const std::string &description,
                                  GenderEnum gender,
-                                 const std::vector<PropertyEnum> &features);
+                                 const std::set<PropertyEnum> &features);
 
             CharacterDescription(const std::string &name,
                                  const std::string &description,
-                                 const std::vector<PropertyEnum> &features);
+                                 const std::set<PropertyEnum> &features);
 
             [[nodiscard]] const std::string &getName() const;
 
@@ -49,7 +49,7 @@ namespace spy::character {
 
             [[nodiscard]] std::optional<GenderEnum> getGender() const;
 
-            [[nodiscard]] const std::vector<PropertyEnum> &getFeatures() const;
+            [[nodiscard]] const std::set<PropertyEnum> &getFeatures() const;
 
             friend void to_json(nlohmann::json &j, const CharacterDescription &m);
 
@@ -87,7 +87,7 @@ namespace spy::character {
             std::string name;
             std::string description;
             std::optional<GenderEnum> gender;
-            std::vector<spy::character::PropertyEnum> features;
+            std::set<spy::character::PropertyEnum> features;
     };
 }
 
