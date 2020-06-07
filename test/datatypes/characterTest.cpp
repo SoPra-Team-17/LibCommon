@@ -63,15 +63,15 @@ TEST(Character, json_decode) {
 TEST(CharacterDescription, json_encode) {
     spy::character::CharacterDescription characterDescription("James Bond", "Bester Geheimagent aller Zeiten mit 00-Status.",
             spy::character::GenderEnum::DIVERSE, {spy::character::PropertyEnum::SPRYNESS,
-                                                  spy::character::PropertyEnum::TOUGHNESS,
-                                                  spy::character::PropertyEnum::ROBUST_STOMACH,
                                                   spy::character::PropertyEnum::LUCKY_DEVIL,
+                                                  spy::character::PropertyEnum::ROBUST_STOMACH,
+                                                  spy::character::PropertyEnum::TOUGHNESS,
                                                   spy::character::PropertyEnum::TRADECRAFT});
 
     nlohmann::json characterDescriptionJson = characterDescription;
 
     std::string serialized = characterDescriptionJson.dump();
-    std::string expected = R"({"description":"Bester Geheimagent aller Zeiten mit 00-Status.","features":["SPRYNESS","TOUGHNESS","ROBUST_STOMACH","LUCKY_DEVIL","TRADECRAFT"],"gender":"DIVERSE","name":"James Bond"})";
+    std::string expected = R"({"description":"Bester Geheimagent aller Zeiten mit 00-Status.","features":["SPRYNESS","LUCKY_DEVIL","ROBUST_STOMACH","TOUGHNESS","TRADECRAFT"],"gender":"DIVERSE","name":"James Bond"})";
     EXPECT_EQ(expected, serialized);
 }
 
@@ -101,7 +101,7 @@ TEST(CharacterInformation, json_encode) {
     nlohmann::json characterInformationJson = characterInformation;
 
     std::string serialized = characterInformationJson.dump();
-    std::string expected = R"({"characterId":"00000000-0000-0000-0000-000000000000","description":"Bester Geheimagent aller Zeiten mit 00-Status.","features":["SPRYNESS","TOUGHNESS","ROBUST_STOMACH","LUCKY_DEVIL","TRADECRAFT"],"gender":"DIVERSE","name":"James Bond"})";
+    std::string expected = R"({"characterId":"00000000-0000-0000-0000-000000000000","description":"Bester Geheimagent aller Zeiten mit 00-Status.","features":["SPRYNESS","LUCKY_DEVIL","ROBUST_STOMACH","TOUGHNESS","TRADECRAFT"],"gender":"DIVERSE","name":"James Bond"})";
     EXPECT_EQ(expected, serialized);
 }
 
