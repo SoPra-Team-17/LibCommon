@@ -23,6 +23,10 @@ namespace spy::statistics {
         return entries;
     }
 
+    void Statistics::addEntry(const StatisticsEntry &entry) {
+        entries.push_back(entry);
+    }
+
     bool Statistics::operator==(const Statistics &rhs) const {
         return entries == rhs.entries;
     }

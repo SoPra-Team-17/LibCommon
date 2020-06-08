@@ -10,8 +10,11 @@
 
 #include "datatypes/gameplay/State.hpp"
 #include "datatypes/matchconfig/MatchConfig.hpp"
+#include "datatypes/statistics/VictoryEnum.hpp"
 
 namespace spy::util {
+    using VictoryInfo = std::pair<spy::character::FactionEnum, spy::statistics::VictoryEnum>;
+
     class RoundUtils {
         public:
             RoundUtils() = delete;
@@ -55,11 +58,11 @@ namespace spy::util {
             static void updateGameOver(spy::gameplay::State &s, const spy::MatchConfig &config);
 
             /**
-             * @brief determines winning faction
+             * @brief determines winning faction and the reason of the victory
              * @param s Current state
-             * @return faction
+             * @return faction + reason of the victory
              */
-            static spy::character::FactionEnum determineWinningFaction(const spy::gameplay::State &s);
+            static VictoryInfo determineVictory(const spy::gameplay::State &s);
 
             /**
              * @brief determines action and movement points for a character

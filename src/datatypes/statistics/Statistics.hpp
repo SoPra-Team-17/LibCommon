@@ -19,6 +19,8 @@ namespace spy::statistics {
 
             [[nodiscard]] auto getEntries() const -> const std::vector<StatisticsEntry> &;
 
+            void addEntry(const StatisticsEntry &entry);
+
             friend void to_json(nlohmann::json &j, const Statistics &s);
 
             friend void from_json(const nlohmann::json &j, Statistics &s);
