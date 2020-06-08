@@ -81,7 +81,7 @@ namespace spy::util {
         }
     }
 
-    VictoryInfo RoundUtils::determineWinningFaction(const gameplay::State &s) {
+    VictoryInfo RoundUtils::determineVictory(const gameplay::State &s) {
         using character::FactionEnum;
         using statistics::VictoryEnum;
 

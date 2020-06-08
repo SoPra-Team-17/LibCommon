@@ -62,7 +62,7 @@ namespace spy::util {
              * @param s Current state
              * @return faction + reason of the victory
              */
-            static VictoryInfo determineWinningFaction(const spy::gameplay::State &s);
+            static VictoryInfo determineVictory(const spy::gameplay::State &s);
 
             /**
              * @brief determines action and movement points for a character
