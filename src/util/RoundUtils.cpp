@@ -81,8 +81,11 @@ namespace spy::util {
         }
     }
 
-    spy::character::FactionEnum RoundUtils::determineWinningFaction(const gameplay::State &s) {
+    VictoryInfo RoundUtils::determineWinningFaction(const gameplay::State &s) {
         using character::FactionEnum;
+        using statistics::VictoryEnum;
+
+        FactionEnum winner;
 
         // check which faction has more ip
         unsigned int ipFaction1 = 0;
@@ -97,35 +100,41 @@ namespace spy::util {
         }
 
         if (ipFaction1 != ipFaction2) {
-            return ipFaction1 > ipFaction2 ? FactionEnum::PLAYER1 : FactionEnum::PLAYER2;
+            winner = (ipFaction1 > ipFaction2) ? FactionEnum::PLAYER1 : FactionEnum::PLAYER2;
+
+            return VictoryInfo(winner, VictoryEnum::VICTORY_BY_IP);
         }
 
         auto stats = s.getConstFactionStats();
 
         // which faction brought diamond collar to cat
         if (stats.collarToCat != FactionEnum::INVALID) {
-            return stats.collarToCat;
+            return VictoryInfo(stats.collarToCat, VictoryEnum::VICTORY_BY_COLLAR);
         }
 
         // which faction drank more cocktails
         if (stats.cocktails.first != stats.cocktails.second) {
-            return stats.cocktails.first > stats.cocktails.second ? FactionEnum::PLAYER1 : FactionEnum::PLAYER2;
+            winner = (stats.cocktails.first > stats.cocktails.second) ? FactionEnum::PLAYER1 : FactionEnum::PLAYER2;
+            return VictoryInfo(winner, VictoryEnum::VICTORY_BY_DRINKING);
         }
 
         // more cocktails pours against the other faction
         if (stats.cocktailsPoured.first != stats.cocktailsPoured.second) {
-            return stats.cocktailsPoured.first > stats.cocktailsPoured.second ? FactionEnum::PLAYER1
-                                                                              : FactionEnum::PLAYER2;
+            winner = (stats.cocktailsPoured.first > stats.cocktailsPoured.second) ? FactionEnum::PLAYER1
+                                                                                  : FactionEnum::PLAYER2;
+            return VictoryInfo(winner, VictoryEnum::VICTORY_BY_SPILLING);
         }
 
         // which faction suffered less damage
         if (stats.damageSuffered.first != stats.damageSuffered.second) {
-            return stats.damageSuffered.first > stats.damageSuffered.second ? FactionEnum::PLAYER2
-                                                                            : FactionEnum::PLAYER1;
+            winner = (stats.damageSuffered.first > stats.damageSuffered.second) ? FactionEnum::PLAYER2
+                                                                                : FactionEnum::PLAYER1;
+            return VictoryInfo(winner, VictoryEnum::VICTORY_BY_HP);
         }
 
         // randomly choose winner
-        return util::GameLogicUtils::probabilityTest(0.5) ? FactionEnum::PLAYER1 : FactionEnum::PLAYER2;
+        winner = util::GameLogicUtils::probabilityTest(0.5) ? FactionEnum::PLAYER1 : FactionEnum::PLAYER2;
+        return VictoryInfo(winner, VictoryEnum::VICTORY_BY_RANDOMNESS);
     }
 
     void RoundUtils::determinePoints(character::Character &character) {
