@@ -88,4 +88,8 @@ namespace spy::gadget {
     bool Gadget::operator==(const Gadget &rhs) const {
         return this->type == rhs.type;
     }
+
+    bool Gadget::operator<(const Gadget &rhs) const {
+        return this->type < rhs.type;
+    }
 }  // namespace spy::gadget
