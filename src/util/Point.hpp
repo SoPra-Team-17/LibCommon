@@ -28,6 +28,8 @@ namespace spy::util {
 
             bool operator!=(const Point &other) const;
 
+            bool operator<(const Point &other) const;
+
             friend std::ostream &operator<<(std::ostream &os, const Point &p);
 
             friend void to_json(nlohmann::json &j, const Point &p);
