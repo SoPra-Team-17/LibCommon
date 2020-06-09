@@ -36,7 +36,9 @@ namespace spy::gadget {
 
             bool operator==(const Gadget &rhs) const;
 
-            bool operator<(const Gadget &rhs) const;
+            bool operator==(const std::shared_ptr<const Gadget> &rhs) const;
+
+            bool operator<(const std::shared_ptr<const Gadget> &rhs) const;
 
         private:
             GadgetEnum type;

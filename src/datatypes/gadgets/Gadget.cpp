@@ -86,10 +86,16 @@ namespace spy::gadget {
     }
 
     bool Gadget::operator==(const Gadget &rhs) const {
-        return this->type == rhs.type;
+        return std::tie(type, usagesLeft) == std::tie(rhs.type, rhs.usagesLeft);
     }
 
-    bool Gadget::operator<(const Gadget &rhs) const {
-        return this->type < rhs.type;
+    bool Gadget::operator==(const std::shared_ptr<const Gadget> &rhs) const {
+        return type == rhs->type;
     }
+
+    bool Gadget::operator<(const std::shared_ptr<const Gadget> &rhs) const {
+        return type < rhs->type;
+    }
+
+
 }  // namespace spy::gadget
