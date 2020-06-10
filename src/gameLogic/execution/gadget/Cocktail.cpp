@@ -21,15 +21,15 @@ namespace spy::gameplay {
     static bool executeDrink(State &s,
                              const MatchConfig &config,
                              character::CharacterSet::iterator sourceChar) {
-        auto cocktailHP = config.getCocktailHealthPoints();
+        auto configHP = config.getCocktailHealthPoints();
 
         // check if cocktail is poisoned
         auto cocktail = std::dynamic_pointer_cast<gadget::Cocktail>(
                 sourceChar->getGadget(gadget::GadgetEnum::COCKTAIL).value());
 
         if (!cocktail->isPoisoned()) {
-            cocktailHP = sourceChar->hasProperty(character::PropertyEnum::ROBUST_STOMACH) ? 2 * cocktailHP
-                                                                                          : cocktailHP;
+            auto cocktailHP = sourceChar->hasProperty(character::PropertyEnum::ROBUST_STOMACH) ? 2 * configHP
+                                                                                               : configHP;
             sourceChar->addHealthPoints(cocktailHP);
 
             //update stats
@@ -41,17 +41,17 @@ namespace spy::gameplay {
 
         } else {
             // cocktail is poisoned
-            cocktailHP = sourceChar->hasProperty(character::PropertyEnum::ROBUST_STOMACH) ? 0.5 * cocktailHP
-                                                                                          : cocktailHP;
-            sourceChar->subHealthPoints(cocktailHP);
+            auto cocktailDamage = sourceChar->hasProperty(character::PropertyEnum::ROBUST_STOMACH) ? 0.5 * configHP
+                                                                                                   : configHP;
+            sourceChar->subHealthPoints(cocktailDamage);
 
             // update stats --> damage suffered, also counts as cocktail!
             if (sourceChar->getFaction() == character::FactionEnum::PLAYER1) {
                 s.getFactionStats().cocktails.first++;
-                s.getFactionStats().damageSuffered.first += cocktailHP;
+                s.getFactionStats().damageSuffered.first += cocktailDamage;
             } else if (sourceChar->getFaction() == character::FactionEnum::PLAYER2) {
                 s.getFactionStats().cocktails.second++;
-                s.getFactionStats().damageSuffered.second += cocktailHP;
+                s.getFactionStats().damageSuffered.second += cocktailDamage;
             }
         }
 
@@ -69,17 +69,13 @@ namespace spy::gameplay {
      * @return True if the action was successfull, otherwise false.
      */
     static bool executeCocktailAttack(State &s,
-                             const GadgetAction &a,
-                             const MatchConfig &config,
-                             character::CharacterSet::iterator sourceChar) {
+                                      const GadgetAction &a,
+                                      const MatchConfig &config,
+                                      character::CharacterSet::iterator sourceChar) {
 
         bool ret = false;
 
-        //Honey Trap property
-        bool doHoneyTrap = util::GameLogicUtils::isPersonOnField(s, a.getTarget());
-        auto action = doHoneyTrap ? util::GameLogicUtils::getHoneyTrapOperation(s, a, config) : a;
-
-        auto targetChar = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), action.getTarget());
+        auto targetChar = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
         bool dodged = util::GameLogicUtils::probabilityTestWithCharacter(*targetChar, config.getCocktailDodgeChance());
 
         if (!dodged) {
@@ -110,15 +106,24 @@ namespace spy::gameplay {
         if (drink) {
             // drink the cocktail
             return executeDrink(s, config, sourceChar);
-        } else if (targetField.getFieldState() == scenario::FieldStateEnum::BAR_TABLE {
-            // take the cocktail from the bar table
-            sourceChar->addGadget(targetField.getGadget().value());
-            targetField.removeGadget();
+        } else if (targetField.getFieldState() == scenario::FieldStateEnum::BAR_TABLE) {
+                // take the cocktail from the bar table
+                sourceChar->addGadget(targetField.getGadget().value());
+                targetField.removeGadget();
 
-            return true;
+                return true;
         } else {
             // pour the cocktail over another character
-            return executeCocktailAttack(s, a, config, sourceChar);
+
+            if (util::GameLogicUtils::isPersonOnField(s, a.getTarget())) {
+                auto action = util::GameLogicUtils::getHoneyTrapOperation(s, a, config);
+                return executeCocktailAttack(s, action, config, sourceChar);
+            } else {
+                // invalid operation
+                throw std::invalid_argument("Cocktail action is not valid!");
+            }
+
+
         }
     }
 }
