@@ -314,9 +314,9 @@ namespace spy::util {
                                         const spy::MatchConfig &config);
 
             /**
-             * @brief checks if the babysitter property can be applied
+             * @brief get number of possible babysitters that could be applied
              * @param state current state
-             * @return true, if babysitter could be applied
+             * @return number of babysitters
              */
             static int
             babysitterNumber(const gameplay::State &s, std::shared_ptr<const spy::gameplay::GadgetAction> action);
