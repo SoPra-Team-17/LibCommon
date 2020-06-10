@@ -110,8 +110,7 @@ namespace spy::gameplay {
         if (drink) {
             // drink the cocktail
             return executeDrink(s, config, sourceChar);
-        } else if (targetField.getFieldState() == scenario::FieldStateEnum::BAR_TABLE
-                   && targetField.getGadget().has_value()) {
+        } else if (targetField.getFieldState() == scenario::FieldStateEnum::BAR_TABLE {
             // take the cocktail from the bar table
             sourceChar->addGadget(targetField.getGadget().value());
             targetField.removeGadget();
@@ -123,4 +122,3 @@ namespace spy::gameplay {
         }
     }
 }
-
