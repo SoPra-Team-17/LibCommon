@@ -319,7 +319,7 @@ namespace spy::util {
              * @return number of babysitters
              */
             static int
-            babysitterNumber(const gameplay::State &s, std::shared_ptr<const spy::gameplay::GadgetAction> action);
+            babysitterCount(const gameplay::State &s, std::shared_ptr<const spy::gameplay::GadgetAction> action);
 
             /**
              * @brief applies damage to a given character based on his properties and updates stats
