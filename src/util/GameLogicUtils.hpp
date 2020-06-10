@@ -174,7 +174,7 @@ namespace spy::util {
             }
 
             /**
-             * @brief get point of random neighbouring field which fulfils certain condition
+             * @brief get points of neighbouring fields which fulfil certain condition (with minimal distance to p)
              * @tparam t function
              * @param s current state
              * @param p Point from which to search
