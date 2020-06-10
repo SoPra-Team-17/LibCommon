@@ -150,7 +150,7 @@ namespace spy::util {
             static std::vector<util::Point> getCharacterNearFields(const spy::gameplay::State &s, const util::Point &p);
 
             /**
-             * @brief get points of neighbouring fields which fulfil certain condition
+             * @brief get point of random neighbouring field which fulfils certain condition
              * @tparam t function
              * @param s current state
              * @param p Point from which to search
