@@ -298,8 +298,9 @@ namespace spy::util {
         auto sourceChar = s.getCharacters().findByUUID(a.getCharacterId());
         auto targetChar = util::GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
 
-        if (!targetChar->hasProperty(character::PropertyEnum::HONEY_TRAP) ||
-            !util::GameLogicUtils::probabilityTestWithCharacter(*sourceChar, config.getHoneyTrapSuccessChance())) {
+        if (targetChar == s.getCharacters().end()
+            || !targetChar->hasProperty(character::PropertyEnum::HONEY_TRAP)
+            || !util::GameLogicUtils::probabilityTestWithCharacter(*sourceChar, config.getHoneyTrapSuccessChance())) {
             return op;
         }
 
