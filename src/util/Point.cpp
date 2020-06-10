@@ -50,8 +50,4 @@ namespace spy::util {
         j.at("y").get_to(p.y);
     }
 
-    bool Point::operator<(const Point &other) const {
-        return Point::x < other.x && Point::y < other.y;
-    }
-
 }  // namespace spy::util
