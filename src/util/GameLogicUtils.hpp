@@ -134,7 +134,7 @@ namespace spy::util {
             getRandomCharacterFreeNeighbourField(const spy::gameplay::State &s, const util::Point &p);
 
             /**
-             * @brief get point of of a neighbouring field with a character on it. If there are more fields randomize
+             * @brief get point of a neighbouring field with a character on it. If there are more fields randomize
              * @param s current state
              * @param p Point where character is at the moment
              * @return point where closest character is standing
@@ -142,7 +142,15 @@ namespace spy::util {
             static util::Point getRandomCharacterNearField(const spy::gameplay::State &s, const util::Point &p);
 
             /**
-             * @brief get point of random neighbouring field which fulfils certain condition
+             * @brief get points of neighbouring fields with a character on it
+             * @param s current state
+             * @param p Point where character is at the moment
+             * @return points where closest characters are standing
+             */
+            static std::vector<util::Point> getCharacterNearFields(const spy::gameplay::State &s, const util::Point &p);
+
+            /**
+             * @brief get points of neighbouring fields which fulfil certain condition
              * @tparam t function
              * @param s current state
              * @param p Point from which to search
@@ -160,6 +168,30 @@ namespace spy::util {
                     }
                     if (!res.first.empty()) {
                         return *getRandomItemFromContainer(res.first);
+                    }
+                    dist++;
+                }
+            }
+
+            /**
+             * @brief get point of random neighbouring field which fulfils certain condition
+             * @tparam t function
+             * @param s current state
+             * @param p Point from which to search
+             * @param isSearchedField function that defines conditions returned point must fulfil to be accepted
+             * @return closest points fulfilling conditions
+             */
+            template<typename T>
+            static std::vector<util::Point>
+            getNearFields(const spy::gameplay::State &s, const util::Point &p, T isSearchedField) {
+                int dist = 1;
+                while (true) {
+                    auto res = getNearFieldsInDist(s, p, dist, isSearchedField);
+                    if (!res.second) {
+                        throw std::domain_error("No Point fulfilling isSearchedField was found on the whole map");
+                    }
+                    if (!res.first.empty()) {
+                        return res.first;
                     }
                     dist++;
                 }

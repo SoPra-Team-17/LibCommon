@@ -157,6 +157,13 @@ namespace spy::util {
         });
     }
 
+    std::vector<util::Point> GameLogicUtils::getCharacterNearFields(const gameplay::State &s, const Point &p) {
+        return getNearFields(s, p, [&s](util::Point currentPoint) {
+            // check if character is on point
+            return isPersonOnField(s, currentPoint);
+        });
+    }
+
     bool GameLogicUtils::checkBabySitter(const gameplay::State &s, const gameplay::CharacterOperation &op,
                                          const spy::MatchConfig &config) {
         bool babySitterSuccess = false;
