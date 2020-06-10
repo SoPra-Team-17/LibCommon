@@ -16,7 +16,7 @@ namespace spy::gameplay {
             return false;
         }
 
-        // check if selected character exits and stands within the game field
+        // check if selected character exists and stands within the game field
         auto character = s.getCharacters().findByUUID(op.getCharacterId());
         if (character == s.getCharacters().end()
             || !character->getCoordinates().has_value()
