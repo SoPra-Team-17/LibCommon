@@ -158,7 +158,7 @@ namespace spy::util {
     }
 
     std::vector<util::Point> GameLogicUtils::getCharacterNearFields(const gameplay::State &s, const Point &p) {
-        return getNearFields(s, p, [&s](util::Point currentPoint) {
+        return getNearFields(s, p, [&s](const util::Point &currentPoint) {
             // check if character is on point
             return isPersonOnField(s, currentPoint);
         });
