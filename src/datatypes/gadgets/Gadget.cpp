@@ -86,6 +86,8 @@ namespace spy::gadget {
     }
 
     bool Gadget::operator==(const Gadget &rhs) const {
-        return this->type == rhs.type;
+        return std::tie(type, usagesLeft) == std::tie(rhs.type, rhs.usagesLeft);
     }
+
+
 }  // namespace spy::gadget
