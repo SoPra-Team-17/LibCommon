@@ -12,6 +12,8 @@
 namespace spy::gameplay {
 
     bool GadgetExecutor::executeBowlerBlade(State &s, const GadgetAction &action, const MatchConfig &config) {
+        bool ret = false;
+
         //Honey Trap property
         auto a = util::GameLogicUtils::getHoneyTrapOperation(s, action, config);
 
@@ -30,6 +32,7 @@ namespace spy::gameplay {
         if (successfullHit && !targetHasMagneticWatch && !babysitter) {
             auto damage = config.getBowlerBladeDamage();
             util::GameLogicUtils::applyDamageToCharacter(s, *targetPerson, damage);
+            ret = true;
         }
 
         // move hat to random free field of target person
@@ -45,6 +48,6 @@ namespace spy::gameplay {
         // remove bowler blade from inventory
         character->removeGadget(gadget::GadgetEnum::BOWLER_BLADE);
 
-        return successfullHit;
+        return ret;
     }
 }

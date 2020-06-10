@@ -157,6 +157,13 @@ namespace spy::util {
         });
     }
 
+    std::vector<util::Point> GameLogicUtils::getCharacterNearFields(const gameplay::State &s, const Point &p) {
+        return getNearFields(s, p, [&s](const util::Point &currentPoint) {
+            // check if character is on point
+            return isPersonOnField(s, currentPoint);
+        });
+    }
+
     bool GameLogicUtils::checkBabySitter(const gameplay::State &s, const gameplay::CharacterOperation &op,
                                          const spy::MatchConfig &config) {
         bool babySitterSuccess = false;
@@ -180,6 +187,29 @@ namespace spy::util {
         }
 
         return babySitterSuccess;
+    }
+
+    int GameLogicUtils::babysitterNumber(const gameplay::State &s,
+                                           std::shared_ptr<const spy::gameplay::GadgetAction> action) {
+        int numBabySitter = 0;
+
+        auto result = getNearFieldsInDist(s, action->getTarget(), 1, [&s](const util::Point &p) {
+            return isPersonOnField(s, p);
+        });
+
+        auto character = s.getCharacters().findByUUID(action->getCharacterId());
+
+        if (result.second) {
+            for (const auto &p : result.first) {
+                auto person = GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), p);
+                if (person->hasProperty(character::PropertyEnum::BABYSITTER)
+                    && (character->getFaction() == person->getFaction())) {
+                    numBabySitter += 1;
+                }
+            }
+        }
+
+        return numBabySitter;
     }
 
     util::Point GameLogicUtils::getRandomFreeSeatField(const gameplay::State &s) {
