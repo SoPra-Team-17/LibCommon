@@ -205,7 +205,6 @@ namespace spy::util {
                 if (person->hasProperty(character::PropertyEnum::BABYSITTER)
                     && (character->getFaction() == person->getFaction())) {
                     numBabySitter += 1;
-                    break;
                 }
             }
         }
