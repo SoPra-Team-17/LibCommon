@@ -12,7 +12,7 @@
 namespace spy::gameplay {
 
     bool GadgetExecutor::executeBowlerBlade(State &s, const GadgetAction &action, const MatchConfig &config) {
-        bool ret = true;
+        bool ret = false;
 
         //Honey Trap property
         auto a = util::GameLogicUtils::getHoneyTrapOperation(s, action, config);
