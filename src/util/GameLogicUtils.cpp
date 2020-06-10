@@ -189,6 +189,30 @@ namespace spy::util {
         return babySitterSuccess;
     }
 
+    int GameLogicUtils::babysitterNumber(const gameplay::State &s,
+                                           std::shared_ptr<const spy::gameplay::GadgetAction> action) {
+        int numBabySitter = 0;
+
+        auto result = getNearFieldsInDist(s, action->getTarget(), 1, [&s](const util::Point &p) {
+            return isPersonOnField(s, p);
+        });
+
+        auto character = s.getCharacters().findByUUID(action->getCharacterId());
+
+        if (result.second) {
+            for (const auto &p : result.first) {
+                auto person = GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), p);
+                if (person->hasProperty(character::PropertyEnum::BABYSITTER)
+                    && (character->getFaction() == person->getFaction())) {
+                    numBabySitter += 1;
+                    break;
+                }
+            }
+        }
+
+        return numBabySitter;
+    }
+
     util::Point GameLogicUtils::getRandomFreeSeatField(const gameplay::State &s) {
         auto points = getAllFieldsWith(s, [&s](util::Point currentPoint) {
             // check if field is seat with no character on it

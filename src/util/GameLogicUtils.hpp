@@ -314,6 +314,14 @@ namespace spy::util {
                                         const spy::MatchConfig &config);
 
             /**
+             * @brief checks if the babysitter property can be applied
+             * @param state current state
+             * @return true, if babysitter could be applied
+             */
+            static int
+            babysitterNumber(const gameplay::State &s, std::shared_ptr<const spy::gameplay::GadgetAction> action);
+
+            /**
              * @brief applies damage to a given character based on his properties and updates stats
              * @param s             Current state
              * @param targetChar    Target Character who receives damage
