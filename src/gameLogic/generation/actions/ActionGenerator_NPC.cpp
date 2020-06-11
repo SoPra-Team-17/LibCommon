@@ -20,13 +20,14 @@ namespace spy::gameplay {
     std::shared_ptr<BaseOperation>
     ActionGenerator::generateRandomAction(const State &s, const util::UUID &activeCharacter,
                                           const MatchConfig &config) {
-        auto allActions = generateMovementActions(s, activeCharacter);
-        allActions.insert(allActions.end(), generateRetire(activeCharacter));
-
         auto activeCharPosition = s.getCharacters().findByUUID(activeCharacter)->getCoordinates();
         if (!activeCharPosition.has_value()) {
             return {};
         }
+
+        auto allActions = generateMovementActions(s, activeCharacter);
+        allActions.insert(allActions.end(), generateRetire(activeCharacter));
+
         if (!s.getMap().getField(activeCharPosition.value()).isFoggy()) {
             auto properties = generateAllPropertyActions(s, activeCharacter);
             auto gadget = generateAllGadgetActions(s, activeCharacter, config);
