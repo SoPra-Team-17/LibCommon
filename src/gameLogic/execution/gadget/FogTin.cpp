@@ -25,7 +25,7 @@ namespace spy::gameplay {
 
         // remove fog tin from inventory
         auto sourceChar = s.getCharacters().getByUUID(a.getCharacterId());
-        sourceChar->removeGadget(gadget::GadgetEnum::CHICKEN_FEED);
+        sourceChar->removeGadget(gadget::GadgetEnum::FOG_TIN);
 
         return true;
     }
