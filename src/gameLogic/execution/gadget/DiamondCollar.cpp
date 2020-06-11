@@ -10,9 +10,12 @@
 namespace spy::gameplay {
 
     bool GadgetExecutor::executeDiamondCollar(State &s, const GadgetAction &a) {
-        auto character = s.getCharacters().findByUUID(a.getCharacterId());
+        auto character = s.getCharacters().getByUUID(a.getCharacterId());
         s.getFactionStats().collarToCat = character->getFaction();
         s.setHasCatDiamondCollar(true);
+
+        character->removeGadget(gadget::GadgetEnum::DIAMOND_COLLAR);
+
         return true;
     }
 }
