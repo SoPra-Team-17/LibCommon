@@ -122,8 +122,6 @@ namespace spy::gameplay {
                 // invalid operation
                 throw std::invalid_argument("Cocktail action is not valid!");
             }
-
-
         }
     }
 }
