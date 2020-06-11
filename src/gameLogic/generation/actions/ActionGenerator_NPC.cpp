@@ -27,7 +27,7 @@ namespace spy::gameplay {
         if (!activeCharPosition.has_value()) {
             return {};
         }
-        if (s.getMap().getField(activeCharPosition.value()).isFoggy()) {
+        if (!s.getMap().getField(activeCharPosition.value()).isFoggy()) {
             auto properties = generateAllPropertyActions(s, activeCharacter);
             auto gadget = generateAllGadgetActions(s, activeCharacter, config);
             auto spy = generateSpyActions(s, activeCharacter);
