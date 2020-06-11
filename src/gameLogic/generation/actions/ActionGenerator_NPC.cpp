@@ -20,19 +20,27 @@ namespace spy::gameplay {
     std::shared_ptr<BaseOperation>
     ActionGenerator::generateRandomAction(const State &s, const util::UUID &activeCharacter,
                                           const MatchConfig &config) {
-        auto move = generateMovementActions(s, activeCharacter);
-        auto properties = generateAllPropertyActions(s, activeCharacter);
-        auto gadget = generateAllGadgetActions(s, activeCharacter, config);
-        auto spy = generateSpyActions(s, activeCharacter);
-        auto gamble = generateGambleActions(s, activeCharacter);
+        auto activeCharPosition = s.getCharacters().findByUUID(activeCharacter)->getCoordinates();
+        if (!activeCharPosition.has_value()) {
+            return {};
+        }
 
-        auto ret = move;
-        ret.insert(ret.end(), properties.begin(), properties.end());
-        ret.insert(ret.end(), gadget.begin(), gadget.end());
-        ret.insert(ret.end(), spy.begin(), spy.end());
-        ret.insert(ret.end(), gamble.begin(), gamble.end());
-        ret.insert(ret.end(), generateRetire(activeCharacter));
+        auto allActions = generateMovementActions(s, activeCharacter);
+        allActions.insert(allActions.end(), generateRetire(activeCharacter));
 
-        return *util::GameLogicUtils::getRandomItemFromContainer(ret);
+        if (!s.getMap().getField(activeCharPosition.value()).isFoggy()) {
+            auto properties = generateAllPropertyActions(s, activeCharacter);
+            auto gadget = generateAllGadgetActions(s, activeCharacter, config);
+            auto spy = generateSpyActions(s, activeCharacter);
+            auto gamble = generateGambleActions(s, activeCharacter);
+
+            allActions.insert(allActions.end(), properties.begin(), properties.end());
+            allActions.insert(allActions.end(), gadget.begin(), gadget.end());
+            allActions.insert(allActions.end(), spy.begin(), spy.end());
+            allActions.insert(allActions.end(), gamble.begin(), gamble.end());
+        }
+
+
+        return *util::GameLogicUtils::getRandomItemFromContainer(allActions);
     }
 }
