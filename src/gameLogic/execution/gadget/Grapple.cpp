@@ -9,14 +9,14 @@ namespace spy::gameplay {
 
     bool GadgetExecutor::executeGrapple(State &s, const GadgetAction &action, const MatchConfig &config) {
         auto character = s.getCharacters().getByUUID(action.getCharacterId());
-        bool successfullHit = util::GameLogicUtils::probabilityTestWithCharacter(*character,
+        bool successfulHit = util::GameLogicUtils::probabilityTestWithCharacter(*character,
                                                                                  config.getGrappleHitChance());
-        if (successfullHit) {
+        if (successfulHit) {
             auto targetField = s.getMap().getField(action.getTarget());
             character->addGadget(targetField.getGadget().value());
             targetField.removeGadget();
         }
 
-        return successfullHit;
+        return successfulHit;
     }
 }

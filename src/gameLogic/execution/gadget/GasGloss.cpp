@@ -13,7 +13,7 @@ namespace spy::gameplay {
 
         auto character = s.getCharacters().getByUUID(a.getCharacterId());
 
-        // Babysitter successfull
+        // Babysitter successful
         bool babysitter = util::GameLogicUtils::checkBabySitter(s, a, config);
 
         auto targetPerson = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
