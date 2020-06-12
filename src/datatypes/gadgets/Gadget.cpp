@@ -45,6 +45,8 @@ namespace spy::gadget {
                 [[fallthrough]];
             case GadgetEnum::COCKTAIL:
                 [[fallthrough]];
+            case GadgetEnum::MIRROR_OF_WILDERNESS:
+                [[fallthrough]];
             case GadgetEnum::FOG_TIN:
                 usagesLeft = 1;
                 break;
