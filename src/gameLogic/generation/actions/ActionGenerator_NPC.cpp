@@ -35,7 +35,6 @@ namespace spy::gameplay {
 
             allActions.insert(allActions.end(), properties.begin(), properties.end());
             allActions.insert(allActions.end(), gadget.begin(), gadget.end());
-            allActions.insert(allActions.end(), spy.begin(), spy.end());
             allActions.insert(allActions.end(), gamble.begin(), gamble.end());
         }
 
