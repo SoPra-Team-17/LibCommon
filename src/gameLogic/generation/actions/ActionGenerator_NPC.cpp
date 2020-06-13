@@ -31,7 +31,6 @@ namespace spy::gameplay {
         if (!s.getMap().getField(activeCharPosition.value()).isFoggy()) {
             auto properties = generateAllPropertyActions(s, activeCharacter);
             auto gadget = generateAllGadgetActions(s, activeCharacter, config);
-            auto spy = generateSpyActions(s, activeCharacter);
             auto gamble = generateGambleActions(s, activeCharacter);
 
             allActions.insert(allActions.end(), properties.begin(), properties.end());
