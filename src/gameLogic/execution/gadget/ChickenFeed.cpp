@@ -35,9 +35,6 @@ namespace spy::gameplay {
             }
         }
 
-        // remove chicken feed from inventory
-        sourceChar->removeGadget(gadget::GadgetEnum::CHICKEN_FEED);
-
         return true;
     }
 }

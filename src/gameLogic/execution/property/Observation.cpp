@@ -22,9 +22,7 @@ namespace spy::gameplay {
 
         auto retOp = std::make_shared<PropertyAction>(a);
 
-        bool observationSuccess = (success
-                                   && sourceChar->getFaction() != targetChar->getFaction()
-                                   && targetChar->getFaction() != character::FactionEnum::NEUTRAL);
+        bool observationSuccess = (success && sourceChar->getFaction() != targetChar->getFaction());
 
         retOp->setSuccessful(observationSuccess);
 
