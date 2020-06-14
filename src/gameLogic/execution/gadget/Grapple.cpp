@@ -12,7 +12,7 @@ namespace spy::gameplay {
         bool successfulHit = util::GameLogicUtils::probabilityTestWithCharacter(*character,
                                                                                  config.getGrappleHitChance());
         if (successfulHit) {
-            auto targetField = s.getMap().getField(action.getTarget());
+            auto &targetField = s.getMap().getField(action.getTarget());
             character->addGadget(targetField.getGadget().value());
             targetField.removeGadget();
         }
