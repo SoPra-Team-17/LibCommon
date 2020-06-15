@@ -14,18 +14,17 @@ namespace spy::gameplay {
         using spy::util::GameLogicUtils;
 
         auto character = s.getCharacters().findByUUID(a.getCharacterId());
-        auto targetChar = GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
-
-        bool hasProperty = character->hasProperty(character::PropertyEnum::OBSERVATION);
-        bool freeLoS = s.getMap().isLineOfSightFree(a.getTarget(), character->getCoordinates().value());
-        bool validTarget = (targetChar != s.getCharacters().end());
-
 
         // if character has mole die observation is deactivated
         bool hasMoleDie = character->hasGadget(GadgetEnum::MOLEDIE);
         if (hasMoleDie) {
             return false;
         }
+
+        auto targetChar = GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
+        bool hasProperty = character->hasProperty(character::PropertyEnum::OBSERVATION);
+        bool freeLoS = s.getMap().isLineOfSightFree(a.getTarget(), character->getCoordinates().value());
+        bool validTarget = (targetChar != s.getCharacters().end());
 
         return validTarget && hasProperty && freeLoS;
     }
