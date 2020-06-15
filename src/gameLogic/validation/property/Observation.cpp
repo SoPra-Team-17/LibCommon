@@ -6,10 +6,13 @@
 */
 
 #include "PropertyValidator.hpp"
+#include "util/GameLogicUtils.hpp"
 
 namespace spy::gameplay {
     bool PropertyValidator::validateObservation(const State &s, const PropertyAction &a) {
         using spy::gadget::GadgetEnum;
+        using spy::util::GameLogicUtils;
+
         auto character = s.getCharacters().findByUUID(a.getCharacterId());
 
         // if character has mole die observation is deactivated
@@ -18,7 +21,11 @@ namespace spy::gameplay {
             return false;
         }
 
-        return character->hasProperty(character::PropertyEnum::OBSERVATION) &&
-               s.getMap().isLineOfSightFree(a.getTarget(), character->getCoordinates().value());
+        auto targetChar = GameLogicUtils::findInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
+        bool hasProperty = character->hasProperty(character::PropertyEnum::OBSERVATION);
+        bool freeLoS = s.getMap().isLineOfSightFree(a.getTarget(), character->getCoordinates().value());
+        bool validTarget = (targetChar != s.getCharacters().end());
+
+        return validTarget && hasProperty && freeLoS;
     }
 }
