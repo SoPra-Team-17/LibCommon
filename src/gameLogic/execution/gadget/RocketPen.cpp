@@ -11,9 +11,20 @@
 namespace spy::gameplay {
 
     bool GadgetExecutor::executeRocketPen(State &s, const GadgetAction &action, const MatchConfig &config) {
-        //Honey Trap property
+        // Honey Trap property
         bool doHoneyTrap = util::GameLogicUtils::isPersonOnField(s, action.getTarget());
         auto a = doHoneyTrap ? util::GameLogicUtils::getHoneyTrapOperation(s, action, config) : action;
+
+        // babysitter
+        bool targetHasPerson = util::GameLogicUtils::isPersonOnField(s, a.getTarget());
+        bool babysitter = false;
+        if (targetHasPerson) {
+            babysitter = util::GameLogicUtils::checkBabySitter(s, a, config);
+        }
+
+        if (babysitter) {
+            return false;
+        }
 
         // destroy potential wall on target field
         bool targetHasWall = (s.getMap().getField(a.getTarget()).getFieldState() == scenario::FieldStateEnum::WALL);
@@ -35,14 +46,10 @@ namespace spy::gameplay {
         }
 
         // damage on targetfield, if there is a person
-        bool targetHasPerson = util::GameLogicUtils::isPersonOnField(s, a.getTarget());
         if (targetHasPerson) {
-            bool babysitter = util::GameLogicUtils::checkBabySitter(s, a, config);
-            if (!babysitter) {
-                auto person = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
-                auto damage = config.getRocketPenDamage();
-                util::GameLogicUtils::applyDamageToCharacter(s, *person, damage);
-            }
+            auto person = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), a.getTarget());
+            auto damage = config.getRocketPenDamage();
+            util::GameLogicUtils::applyDamageToCharacter(s, *person, damage);
         }
 
         // get characters on neighboring fields
@@ -51,12 +58,9 @@ namespace spy::gameplay {
         });
         if (charPoints.second) {
             for (const auto &p : charPoints.first) {
-                bool babysitter = util::GameLogicUtils::isPersonOnField(s, p);
-                if (!babysitter) {
-                    auto person = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), p);
-                    auto damage = config.getRocketPenDamage();
-                    util::GameLogicUtils::applyDamageToCharacter(s, *person, damage);
-                }
+                auto person = util::GameLogicUtils::getInCharacterSetByCoordinates(s.getCharacters(), p);
+                auto damage = config.getRocketPenDamage();
+                util::GameLogicUtils::applyDamageToCharacter(s, *person, damage);
             }
         }
 

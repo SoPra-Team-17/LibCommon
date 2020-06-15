@@ -37,7 +37,6 @@ set(SOURCE
         gameLogic/generation/actions/MovementActions.cpp
         gameLogic/generation/actions/PropertyActions.cpp
         gameLogic/generation/actions/GambleActions.cpp
-        gameLogic/generation/actions/SpyActions.cpp
         gameLogic/generation/actions/RetireActions.cpp
         gameLogic/generation/actions/gadget/BowlerBlade.cpp
         gameLogic/generation/actions/gadget/ChickenFeed.cpp
@@ -59,8 +58,6 @@ set(SOURCE
         gameLogic/generation/actions/gadget/WiretapWithEarplugs.cpp
         gameLogic/generation/actions/property/BangAndBurn.cpp
         gameLogic/generation/actions/property/Observation.cpp
-        gameLogic/generation/ItemChoiceGenerator.cpp
-        gameLogic/generation/EquipmentChoiceGenerator.cpp
         gameLogic/validation/ActionValidator_Gadget.cpp
         gameLogic/validation/ActionValidator_Gamble.cpp
         gameLogic/validation/ActionValidator_Movement.cpp
