@@ -8,7 +8,7 @@
 #include <util/UUID.hpp>
 #include <iostream>
 
-TEST(messages, helloMessage){
+TEST(messages, helloMessage) {
     using namespace spy::network;
     using namespace spy::network::messages;
     std::string str = "name123";
@@ -32,3 +32,11 @@ TEST(messages, helloMessage){
     EXPECT_EQ(decodedMessage.getName(), m.getName());
 }
 
+TEST(messages, helloMessageWithoutClientId) {
+    std::string messageString = R"({"name":"Admiral Edward Davidov","role":"SPECTATOR","type":"HELLO","creationDate":"Jul 22, 2020, 7:45:42 PM"})";
+    auto decodedJson = nlohmann::json::parse(messageString);
+    auto message = decodedJson.get<spy::network::messages::Hello>();
+    EXPECT_EQ(message.getName(), "Admiral Edward Davidov");
+    EXPECT_EQ(message.getRole(), spy::network::RoleEnum::SPECTATOR);
+    EXPECT_EQ(message.getCreationDate(), "Jul 22, 2020, 7:45:42 PM");
+}

@@ -38,8 +38,15 @@ namespace spy::network {
     }
 
     void MessageContainer::common_from_json(const nlohmann::json &j, MessageContainer &message) {
-        j.at("clientId").get_to(message.clientId);
         j.at("type").get_to(message.type);
+
+        // Some clients may not send clientId in HELLO message, as it is not relevant
+        if (not j.contains("clientId") and message.type == messages::MessageTypeEnum::HELLO) {
+            message.clientId = spy::util::UUID{};
+        } else {
+            j.at("clientId").get_to(message.clientId);
+        }
+
         j.at("creationDate").get_to(message.creationDate);
         if (j.find("debugMessage") != j.end()) {
             // debugMessage present
