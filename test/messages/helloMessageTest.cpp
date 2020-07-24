@@ -13,7 +13,7 @@ TEST(messages, helloMessage) {
     using namespace spy::network::messages;
     std::string str = "name123";
     RoleEnum role = RoleEnum::PLAYER;
-    Hello m(spy::util::UUID(), str, role);
+    Hello m(spy::util::UUID{"6a1333d0-2317-4044-9d37-047d29205011"}, str, role);
 
     EXPECT_EQ(m.getRole(), role);
     EXPECT_EQ(m.getName(), str);
@@ -21,7 +21,7 @@ TEST(messages, helloMessage) {
     nlohmann::json json = m;
     std::string serialized = json.dump();
     std::string expected =
-            R"({"clientId":"00000000-0000-0000-0000-000000000000","creationDate":")" + m.getCreationDate() +
+            R"({"clientId":"6a1333d0-2317-4044-9d37-047d29205011","creationDate":")" + m.getCreationDate() +
             R"(","name":"name123","role":"PLAYER","type":"HELLO"})";
     EXPECT_EQ(serialized, expected);
 
